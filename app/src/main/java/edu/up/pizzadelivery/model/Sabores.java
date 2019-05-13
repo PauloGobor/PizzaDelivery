@@ -5,5 +5,4 @@ public class Sabores {
     private int id;
     private String nome;
 
-
 }

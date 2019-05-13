@@ -5,6 +5,7 @@ public class Pizza {
     private int id;
     private Sabores sabores;
     private Tamanho tamanho;
+    private Borda borda;
 
     public int getId() {
         return id;
@@ -30,4 +31,11 @@ public class Pizza {
         this.tamanho = tamanho;
     }
 
+    public Borda getBorda() {
+        return borda;
+    }
+
+    public void setBorda(Borda borda) {
+        this.borda = borda;
+    }
 }
