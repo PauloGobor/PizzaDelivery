@@ -1,11 +1,15 @@
 package edu.up.pizzadelivery.model;
 
+import java.util.List;
+
 public class Pizza {
 
     private int id;
-    private Sabores sabores;
+    private Sabor sabor;
     private Tamanho tamanho;
     private Borda borda;
+
+
 
     public int getId() {
         return id;
@@ -15,12 +19,12 @@ public class Pizza {
         this.id = id;
     }
 
-    public Sabores getSabores() {
-        return sabores;
+    public Sabor getSabor() {
+        return sabor;
     }
 
-    public void setSabores(Sabores sabores) {
-        this.sabores = sabores;
+    public void setSabor(Sabor sabor) {
+        this.sabor = sabor;
     }
 
     public Tamanho getTamanho() {
@@ -38,4 +42,6 @@ public class Pizza {
     public void setBorda(Borda borda) {
         this.borda = borda;
     }
+
+
 }
