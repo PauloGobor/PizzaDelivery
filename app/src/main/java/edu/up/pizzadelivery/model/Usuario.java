@@ -8,6 +8,7 @@ public class Usuario {
     private String telefone;
     private String senha;
     private String confSenha;
+    private Endereco endereco;
 
 
     public String getEmail() {
@@ -58,11 +59,11 @@ public class Usuario {
         this.confSenha = confSenha;
     }
 
+    public Endereco getEndereco() {
+        return endereco;
+    }
 
-    // constructor
-//    public Usuario(){
-//        super();
-//
-//    }
-
+    public void setEndereco(Endereco endereco) {
+        this.endereco = endereco;
+    }
 }
