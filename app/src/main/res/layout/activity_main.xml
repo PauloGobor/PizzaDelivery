@@ -12,7 +12,8 @@
         android:layout_height="0dp"
         android:layout_weight="3"
         android:padding="12dp"
-        android:src="@mipmap/ic_launcher_pizzadelivery" />
+        android:src="@mipmap/ic_launcher_pizzadelivery"
+        tools:ignore="ContentDescription" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -26,8 +27,10 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="E-mail"
-            android:textSize="32dp" />
+            android:text="@string/email"
+            android:textSize="32sp"
+            android:layout_marginStart="10dp"
+            tools:ignore="NestedWeights" />
 
         <EditText
             android:id="@+id/edtEmail"
@@ -35,8 +38,11 @@
             android:layout_height="match_parent"
             android:layout_weight="3"
             android:gravity="center"
-            android:hint="test@test.com.br"
-            android:inputType="textEmailAddress" />
+            android:layout_marginEnd="10dp"
+            android:hint="@string/hintEmail"
+            android:inputType="textEmailAddress"
+            android:textSize="28sp"
+            tools:ignore="Autofill"/>
     </LinearLayout>
 
     <LinearLayout
@@ -51,41 +57,44 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="Senha"
-            android:textSize="32dp" />
+            android:text="@string/senha"
+            android:textSize="32sp"
+            android:layout_marginStart="10dp"
+            tools:ignore="NestedWeights" />
 
         <EditText
             android:id="@+id/edtSenha"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="3"
+            android:layout_marginEnd="10dp"
             android:gravity="center"
-            android:inputType="textPassword" />
+            android:inputType="textPassword"
+            android:hint="@string/hintSenha"
+            android:textSize="28sp"
+            tools:ignore="Autofill" />
     </LinearLayout>
-
 
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_margin="10dp"
         android:layout_weight="1"
-        android:orientation="horizontal"
-        android:padding="10dp">
+        android:orientation="horizontal">
 
         <Button
             android:id="@+id/btnEntrar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Entrar"
+            android:layout_height="match_parent"
+            android:background="@drawable/btn_entrar"
+            android:drawableStart="@drawable/ic_action_name"
+            android:paddingStart="20dp"
+            android:shadowColor="#000000"
+            android:text="@string/logar"
             android:textColor="#FFFFFF"
             android:textSize="30sp"
-            android:background="@drawable/btn_entrar"
-            android:drawableLeft="@drawable/ic_action_name"
-
-            android:shadowColor="#000000"
-            android:shadowDx="0"
-            android:shadowDy="0"
-            android:shadowRadius="10"/>
+            tools:ignore="RtlSymmetry" />
     </LinearLayout>
 
 
@@ -98,18 +107,19 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="3"/>
+            android:layout_weight="3"
+            tools:ignore="NestedWeights" />
 
         <TextView
             android:id="@+id/txtNaoCadastro"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:layout_gravity="right"
-            android:gravity="right"
+            android:layout_gravity="end"
+            android:gravity="end"
             android:onClick="CadastroPessoaActivity"
             android:padding="10dp"
-            android:text="Não tem conta! Cadastre-se!"
+            android:text="@string/nconta"
             android:textColor="#666"
             android:textSize="20sp" />
     </LinearLayout>
@@ -119,9 +129,13 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:orientation="horizontal"
-        android:paddingLeft="70dp"
-        android:paddingRight="16dp">
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            tools:ignore="NestedWeights" />
 
         <TextView
             android:id="@+id/txtCardapio"
@@ -130,8 +144,13 @@
             android:layout_gravity="center"
             android:onClick="CardapioActivity"
             android:padding="10dp"
-            android:text="Confira nosso cardápio!"
+            android:text="@string/cCardapio"
             android:textColor="#666"
             android:textSize="20sp" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            tools:ignore="NestedWeights" />
     </LinearLayout>
 </LinearLayout>

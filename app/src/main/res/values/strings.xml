@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">Pizza Delivery</string>
+    <string name="email">E-mail</string>
+    <string name="senha">Senha</string>
+    <string name="hintEmail">pd@pd.com.br</string>
+    <string name="hintSenha">Sua senha</string>
+    <string name="nconta">Não tem conta? Cadastre-se</string>
+    <string name="logar">Entrar</string>
+    <string name="cCardapio">Confira nosso cardápio!</string>
 </resources>
