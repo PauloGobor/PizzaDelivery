@@ -2,15 +2,15 @@ package edu.up.pizzadelivery.model;
 
 public class Borda {
 
-    private int id;
+    private int idBorda;
     private int nome;
 
-    public int getId() {
-        return id;
+    public int getIdBorda() {
+        return idBorda;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setIdBorda(int idBorda) {
+        this.idBorda = idBorda;
     }
 
     public int getNome() {

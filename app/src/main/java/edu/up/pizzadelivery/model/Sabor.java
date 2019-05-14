@@ -4,16 +4,16 @@ import java.util.List;
 
 public class Sabor {
 
-    private int id;
+    private int idSabor;
     private String nome;
     private List<Ingrediente> ingredientes;
 
-    public int getId() {
-        return id;
+    public int getIdSabor() {
+        return idSabor;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setIdSabor(int idSabor) {
+        this.idSabor = idSabor;
     }
 
     public String getNome() {

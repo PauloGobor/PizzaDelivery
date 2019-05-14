@@ -2,7 +2,7 @@ package edu.up.pizzadelivery.model;
 
 public class Endereco {
 
-    private int id;
+    private int idEndereco;
     private String cep;
     private String Rua;
     private String bairro;
@@ -10,12 +10,12 @@ public class Endereco {
     private int numero;
     private String complemento;
 
-    public int getId() {
-        return id;
+    public int getIdEndereco() {
+        return idEndereco;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setIdEndereco(int idEndereco) {
+        this.idEndereco = idEndereco;
     }
 
     public String getCep() {

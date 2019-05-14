@@ -4,20 +4,21 @@ import java.util.List;
 
 public class Pizza {
 
-    private int id;
+    private int idPizza;
     private Sabor sabor;
     private Tamanho tamanho;
     private Borda borda;
+    private double preco;
 
 
-
-    public int getId() {
-        return id;
+    public int getIdPizza() {
+        return idPizza;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setIdPizza(int idPizza) {
+        this.idPizza = idPizza;
     }
+
 
     public Sabor getSabor() {
         return sabor;
@@ -43,5 +44,12 @@ public class Pizza {
         this.borda = borda;
     }
 
+    public double getPreco() {
+        return preco;
+    }
+
+    public void setPreco(double preco) {
+        this.preco = preco;
+    }
 
 }

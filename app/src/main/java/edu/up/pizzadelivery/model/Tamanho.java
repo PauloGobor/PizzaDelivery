@@ -2,16 +2,16 @@ package edu.up.pizzadelivery.model;
 
 public class Tamanho {
 
-    private int id;
+    private int idTamanho;
     private int nome;
     private int qtdPedaços;
 
-    public int getId() {
-        return id;
+    public int getIdTamanho() {
+        return idTamanho;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setIdTamanho(int idTamanho) {
+        this.idTamanho = idTamanho;
     }
 
     public int getNome() {

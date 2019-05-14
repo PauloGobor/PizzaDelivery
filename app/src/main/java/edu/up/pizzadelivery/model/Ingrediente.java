@@ -2,15 +2,15 @@ package edu.up.pizzadelivery.model;
 
 public class Ingrediente {
 
-    private int id;
+    private int idIngrediente;
     private String nome;
 
-    public int getId() {
-        return id;
+    public int getIdIngrediente() {
+        return idIngrediente;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setIdIngrediente(int idIngrediente) {
+        this.idIngrediente = idIngrediente;
     }
 
     public String getNome() {
