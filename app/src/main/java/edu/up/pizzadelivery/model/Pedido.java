@@ -8,6 +8,7 @@ public class Pedido {
     private int idPedido;
     private Usuario usuario;
     private List<ItemPedido> itensPedido;
+    private FormaPagamento formaPagamento;
     private Date Data;
 
     public int getIdPedido() {

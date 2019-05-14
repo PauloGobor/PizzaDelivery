@@ -20,4 +20,6 @@ public class Borda {
     public void setNome(int nome) {
         this.nome = nome;
     }
+
+
 }
