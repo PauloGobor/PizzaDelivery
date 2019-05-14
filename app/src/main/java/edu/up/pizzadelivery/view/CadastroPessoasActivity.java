@@ -98,7 +98,8 @@ public class CadastroPessoasActivity extends AppCompatActivity {
                     "cpf VARCHAR," +
                     "telefone VARCHAR," +
                     "senha VARCHAR NOT NULL," +
-                    "confSenha VARCHAR NOT NULL)");// falta FK Endereço
+                    "confSenha VARCHAR NOT NULL," +
+                    "CONSTRAINT fk_UserEnd FOREIGN KEY(idEndereco) REFERENCES enderecos(idEndereco))");// FK Endereço
 
 
         } catch (Exception e) {
