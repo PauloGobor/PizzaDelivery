@@ -21,5 +21,4 @@ public class Borda {
         this.nome = nome;
     }
 
-
 }

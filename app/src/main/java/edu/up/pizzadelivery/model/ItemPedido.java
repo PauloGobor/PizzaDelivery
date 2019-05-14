@@ -2,19 +2,19 @@ package edu.up.pizzadelivery.model;
 
 public class ItemPedido {
 
-    private int itemId;
+    private int Iditem;
     private Pizza pizza;
     private Bebida bebida;
     private int quantidade;
     private double subTotal;
     private double precoPedido;
 
-    public int getItemId() {
-        return itemId;
+    public int getIditem() {
+        return Iditem;
     }
 
-    public void setItemId(int itemId) {
-        this.itemId = itemId;
+    public void setIditem(int iditem) {
+        Iditem = iditem;
     }
 
     public Pizza getPizza() {

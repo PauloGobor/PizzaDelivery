@@ -4,7 +4,7 @@ public class Tamanho {
 
     private int idTamanho;
     private int nome;
-    private int qtdPedaços;
+    private int qtdPedacos;
 
     public int getIdTamanho() {
         return idTamanho;
@@ -22,11 +22,11 @@ public class Tamanho {
         this.nome = nome;
     }
 
-    public int getQtdPedaços() {
-        return qtdPedaços;
+    public int getQtdPedacos() {
+        return qtdPedacos;
     }
 
-    public void setQtdPedaços(int qtdPedaços) {
-        this.qtdPedaços = qtdPedaços;
+    public void setQtdPedacos(int qtdPedacos) {
+        this.qtdPedacos = qtdPedacos;
     }
 }
