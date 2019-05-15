@@ -89,8 +89,9 @@ public class BancoDados extends SQLiteOpenHelper
                     Contrato.TabelaPizza.COLUNA_SABOR + TIPO_INTEIRO + VIRGULA + //FK
                     Contrato.TabelaPizza.COLUNA_BORDA + TIPO_INTEIRO + VIRGULA +//FK
                     Contrato.TabelaPizza.COLUNA_TAMANHO+  TIPO_INTEIRO + VIRGULA +
-                    " FOREIGN KEY ("+Contrato.TabelaPizza.COLUNA_SABOR+") REFERENCES "+Contrato.TabelaSabor.NOME_DA_TABELA+"("+Contrato.TabelaSabor.COLUNA_ID+")"+
-                    ")";  //FK
+                    " FOREIGN KEY ("+Contrato.TabelaPizza.COLUNA_SABOR + ")" +
+                    " REFERENCES "+Contrato.TabelaSabor.NOME_DA_TABELA +
+                    "("+Contrato.TabelaSabor.COLUNA_ID+")"+ ")";  //FK
 
 
     @Override
@@ -121,7 +122,7 @@ public class BancoDados extends SQLiteOpenHelper
         values.put(Contrato.TabelaUsuario.COLUNA_SENHA, usuario.getSenha());
         values.put(Contrato.TabelaUsuario.COLUNA_CONFSENHA, usuario.getConfSenha());
 
-        return db.insert(Contrato.TabelaBebida.NOME_DA_TABELA,null,values);
+        return db.insert(Contrato.TabelaUsuario.NOME_DA_TABELA,null,values);
 
     }
 }
