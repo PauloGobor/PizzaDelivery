@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         <activity android:name=".view.CardapioActivity"></activity>
-        <activity android:name=".view.CadastroPessoasActivity" />
+        <activity android:name=".view.CadastroDeUsuariosActivity" />
         <activity android:name=".view.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
