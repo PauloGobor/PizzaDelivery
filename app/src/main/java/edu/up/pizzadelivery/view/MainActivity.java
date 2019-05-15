@@ -9,11 +9,16 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import edu.up.pizzadelivery.R;
+import edu.up.pizzadelivery.model.Login;
 
 public class MainActivity extends AppCompatActivity {
 
-    private EditText edtEmail, edtSenha;
-    private Button btnEntrar;
+    private EditText edtEmail,
+                     edtSenha;
+
+    private Button   btnEntrar;
+
+    private Long     verificacao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,10 +35,25 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (!edtEmail.getText().toString().equals("") && !edtSenha.getText().toString().equals("")) {
 
+                    Login login = new Login();
+                    login.setEmail(edtEmail.getText().toString());
+                    login.setSenha(edtSenha.getText().toString());
+
+                    //preciso que verifique uma daL para esse comando
+                    verificacao = LoginDAL.VerificaDadao(this, login);
+
+                    //Verifica se existe  no banco.
+                    if(verificacao == 0){
+                        Intent telaInicial = new Intent(this, TelaInicialActivity.class); ///esse irei criar mais para frente
+                        startActivity(telaInicial);
+
+                    }else {
+                        Toast.makeText(MainActivity.this, "E-mail/senha incorreto.", Toast.LENGTH_SHORT).show();
+                    }
 
 
                 }else{
-                    Toast.makeText(MainActivity.this, "Favor preencher os campos de login!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "Favor preencher os campos!", Toast.LENGTH_SHORT).show();
                 }
             }
         });
