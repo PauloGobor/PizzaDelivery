@@ -6,11 +6,13 @@ import edu.up.pizzadelivery.model.Login;
 
 public class UsuarioDAO {
 
-    /*public static long ValidarLogin(Context context, Login login){
+    private static boolean valorReferencia;
 
-        Banco db = new Banco(Context);
-        return db.ValidaLogin(login);
-    }*/
+    public static boolean ValidarLogin(Context context, Login login){
+
+        BancoDados db = new BancoDados(context);
+        return valorReferencia =  db.ValidadaLogin(login);
+    }
 
 
 }
