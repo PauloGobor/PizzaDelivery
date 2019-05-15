@@ -8,8 +8,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import edu.up.pizzadelivery.DAO.UsuarioDAO;
 import edu.up.pizzadelivery.R;
 import edu.up.pizzadelivery.model.Login;
+import edu.up.pizzadelivery.model.Usuario;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -39,8 +41,8 @@ public class MainActivity extends AppCompatActivity {
                     login.setEmail(edtEmail.getText().toString());
                     login.setSenha(edtSenha.getText().toString());
 
-                    //preciso que verifique uma daL para esse comando
-                    //verificacao = LoginDAL.VerificaDadao(this, login);
+
+                    //verificacao = UsuarioDAO.ValidarLogin(MainActivity.this, login);
 
                     //Verifica se existe  no banco.
                     if(verificacao == 0){
