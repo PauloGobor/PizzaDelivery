@@ -1,6 +1,8 @@
 package edu.up.pizzadelivery.model;
 
-public class Usuario {
+import java.io.Serializable;
+
+public class Usuario implements Serializable {
 
     private String email;
     private String nome;

@@ -1,8 +1,9 @@
 package edu.up.pizzadelivery.model;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Pizza {
+public class Pizza implements Serializable {
 
     private int idPizza;
     private Sabor sabor;

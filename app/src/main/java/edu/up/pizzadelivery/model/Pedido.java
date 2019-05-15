@@ -1,9 +1,10 @@
 package edu.up.pizzadelivery.model;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
-public class Pedido {
+public class Pedido implements Serializable {
 
     private int idPedido;
     private Usuario usuario;

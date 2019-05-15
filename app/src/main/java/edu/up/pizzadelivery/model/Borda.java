@@ -1,6 +1,8 @@
 package edu.up.pizzadelivery.model;
 
-public class Borda {
+import java.io.Serializable;
+
+public class Borda implements Serializable {
 
     private int idBorda;
     private int nome;

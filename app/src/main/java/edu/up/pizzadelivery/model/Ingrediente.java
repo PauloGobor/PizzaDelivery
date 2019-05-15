@@ -1,6 +1,8 @@
 package edu.up.pizzadelivery.model;
 
-public class Ingrediente {
+import java.io.Serializable;
+
+public class Ingrediente implements Serializable {
 
     private int idIngrediente;
     private String nome;
@@ -20,4 +22,5 @@ public class Ingrediente {
     public void setNome(String nome) {
         this.nome = nome;
     }
+
 }

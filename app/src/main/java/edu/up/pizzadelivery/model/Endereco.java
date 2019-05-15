@@ -1,6 +1,8 @@
 package edu.up.pizzadelivery.model;
 
-public class Endereco {
+import java.io.Serializable;
+
+public class Endereco implements Serializable {
 
     private int idEndereco;
     private String cep;

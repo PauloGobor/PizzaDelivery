@@ -1,6 +1,8 @@
 package edu.up.pizzadelivery.model;
 
-public class Tamanho {
+import java.io.Serializable;
+
+public class Tamanho implements Serializable {
 
     private int idTamanho;
     private int nome;

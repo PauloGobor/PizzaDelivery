@@ -1,6 +1,8 @@
 package edu.up.pizzadelivery.model;
 
-public class Bebida {
+import java.io.Serializable;
+
+public class Bebida implements Serializable {
 
     private int idBebida;
     private String nome;

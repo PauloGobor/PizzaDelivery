@@ -1,6 +1,8 @@
 package edu.up.pizzadelivery.model;
 
-public class FormaPagamento {
+import java.io.Serializable;
+
+public class FormaPagamento implements Serializable {
 
     private int idFormaPagamento;
     private String Nome;
