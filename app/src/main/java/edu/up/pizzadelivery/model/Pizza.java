@@ -6,11 +6,9 @@ import java.util.List;
 public class Pizza implements Serializable {
 
     private int idPizza;
-    private Sabor sabor;
+    private List<Sabor> sabor;
     private Tamanho tamanho;
     private Borda borda;
-    private double preco;
-
 
     public int getIdPizza() {
         return idPizza;
@@ -20,12 +18,11 @@ public class Pizza implements Serializable {
         this.idPizza = idPizza;
     }
 
-
-    public Sabor getSabor() {
+    public List<Sabor> getSabor() {
         return sabor;
     }
 
-    public void setSabor(Sabor sabor) {
+    public void setSabor(List<Sabor> sabor) {
         this.sabor = sabor;
     }
 
@@ -45,12 +42,5 @@ public class Pizza implements Serializable {
         this.borda = borda;
     }
 
-    public double getPreco() {
-        return preco;
-    }
-
-    public void setPreco(double preco) {
-        this.preco = preco;
-    }
 
 }
