@@ -40,12 +40,12 @@ public class MainActivity extends AppCompatActivity {
                     login.setSenha(edtSenha.getText().toString());
 
                     //preciso que verifique uma daL para esse comando
-                    verificacao = LoginDAL.VerificaDadao(this, login);
+                    //verificacao = LoginDAL.VerificaDadao(this, login);
 
                     //Verifica se existe  no banco.
                     if(verificacao == 0){
-                        Intent telaInicial = new Intent(this, TelaInicialActivity.class); ///esse irei criar mais para frente
-                        startActivity(telaInicial);
+                        //Intent telaInicial = new Intent(this, TelaInicialActivity.class); ///esse irei criar mais para frente
+                        //startActivity(telaInicial);
 
                     }else {
                         Toast.makeText(MainActivity.this, "E-mail/senha incorreto.", Toast.LENGTH_SHORT).show();
