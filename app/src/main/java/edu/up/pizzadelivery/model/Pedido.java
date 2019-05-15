@@ -13,6 +13,7 @@ public class Pedido implements Serializable {
     private Endereco endEntrega;
     private Date Data;
 
+
     public int getIdPedido() {
         return idPedido;
     }
