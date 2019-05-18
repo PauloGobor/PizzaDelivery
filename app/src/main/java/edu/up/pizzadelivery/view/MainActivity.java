@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
                         Toast.makeText(MainActivity.this, "E-mail/senha incorreto.", Toast.LENGTH_SHORT).show();
                     }
                 }else{
-                    Toast.makeText(MainActivity.this, "Favor preencher os campos!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "Favor preencher todos os campos!", Toast.LENGTH_SHORT).show();
                 }
             }
         });

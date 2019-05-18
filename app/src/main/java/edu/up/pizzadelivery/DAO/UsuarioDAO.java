@@ -7,19 +7,20 @@ import edu.up.pizzadelivery.model.Usuario;
 
 public class UsuarioDAO {
 
+    private static boolean     valorReferencia;
+    private static BancoDados  db;
 
-    private static boolean valorReferencia;
+    public static long CadastrarUsuario(Context context, Usuario usuario){
+        db = new BancoDados(context);
 
-//    public static long cadastrarCidade(Context context, Usuario usuario){
-//        BancoDados banco = new BancoDados(context);
-//
-//        return banco.CadastrarUsuario(usuario);
-//
-//    }
+        return db.CadastrarUsuario(usuario);
+
+    }
 
     public static boolean ValidarLogin(Context context, Login login){
 
-        BancoDados db = new BancoDados(context);
+        db = new BancoDados(context);
+
         return valorReferencia =  db.ValidadaLogin(login);
     }
 
