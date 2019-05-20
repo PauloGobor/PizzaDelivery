@@ -12,8 +12,7 @@ public class CadastroDeUsuariosActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastro_de_usuarios);
 
-        // comandos a seguir estao temporarios
-        // ate que possa ser separado em camadas...
+
 
 
     }
