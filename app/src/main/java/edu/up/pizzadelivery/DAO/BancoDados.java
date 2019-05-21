@@ -92,14 +92,11 @@ public class BancoDados extends SQLiteOpenHelper {
                     Contrato.TabelaPizza.NOME_DA_TABELA + "(" +
                     Contrato.TabelaPizza.COLUNA_ID + TIPO_INTEIRO + " PRIMARY KEY AUTOINCREMENT" + VIRGULA +
                     Contrato.TabelaPizza.COLUNA_SABOR + TIPO_INTEIRO + VIRGULA + //FK
-                    Contrato.TabelaPizza.COLUNA_BORDA + TIPO_INTEIRO + VIRGULA +//FK
+
                     Contrato.TabelaPizza.COLUNA_TAMANHO + TIPO_INTEIRO + VIRGULA +
                     " FOREIGN KEY (" + Contrato.TabelaPizza.COLUNA_SABOR + ")" +
                     " REFERENCES " + Contrato.TabelaSabor.NOME_DA_TABELA +
                     "(" + Contrato.TabelaSabor.COLUNA_ID + ")" + VIRGULA +
-                    " FOREIGN KEY (" + Contrato.TabelaPizza.COLUNA_BORDA + ")" +
-                    " REFERENCES " + Contrato.TabelaBorda.NOME_DA_TABELA +
-                    "(" + Contrato.TabelaBorda.COLUNA_ID + ")" + VIRGULA +
                     " FOREIGN KEY (" + Contrato.TabelaPizza.COLUNA_TAMANHO + ")" +
                     " REFERENCES " + Contrato.TabelaTamanho.NOME_DA_TABELA +
                     "(" + Contrato.TabelaTamanho.COLUNA_ID + ")" + ")";
@@ -118,6 +115,7 @@ public class BancoDados extends SQLiteOpenHelper {
                     Contrato.TabelaItemPedido.COLUNA_ID + TIPO_INTEIRO + " PRIMARY KEY AUTOINCREMENT" + VIRGULA +
                     Contrato.TabelaItemPedido.COLUNA_PIZZA + TIPO_INTEIRO + VIRGULA + //FK
                     Contrato.TabelaItemPedido.COLUNA_BEBIDA + TIPO_INTEIRO + VIRGULA +//FK
+                    Contrato.TabelaItemPedido.COLUNA_BORDA + TIPO_INTEIRO + VIRGULA +//FK
                     Contrato.TabelaItemPedido.COLUNA_QUANTIDADE + TIPO_INTEIRO + VIRGULA +
                     Contrato.TabelaItemPedido.COLUNA_SUBTOTAL + TIPO_REAL + VIRGULA +
                     Contrato.TabelaItemPedido.COLUNA_PRECOPEDIDO + TIPO_REAL + VIRGULA +
@@ -126,7 +124,10 @@ public class BancoDados extends SQLiteOpenHelper {
                     "(" + Contrato.TabelaPizza.COLUNA_ID + ")" + VIRGULA +
                     " FOREIGN KEY (" + Contrato.TabelaItemPedido.COLUNA_BEBIDA + ")" +
                     " REFERENCES " + Contrato.TabelaBebida.NOME_DA_TABELA +
-                    "(" + Contrato.TabelaBebida.COLUNA_ID + ")" + ")";
+                    "(" + Contrato.TabelaBebida.COLUNA_ID + ")" + VIRGULA +
+                    " FOREIGN KEY (" + Contrato.TabelaItemPedido.COLUNA_BORDA + ")" +
+                    " REFERENCES " + Contrato.TabelaBorda.NOME_DA_TABELA +
+                    "(" + Contrato.TabelaBorda.COLUNA_ID + ")" + ")";
 
 
     private static final String SQL_CRIAR_TABELA_PEDIDO =
@@ -178,6 +179,10 @@ public class BancoDados extends SQLiteOpenHelper {
         values.put(Contrato.TabelaUsuario.COLUNA_TELEFONE, usuario.getTelefone());
         values.put(Contrato.TabelaUsuario.COLUNA_SENHA, usuario.getSenha());
         values.put(Contrato.TabelaUsuario.COLUNA_CONFSENHA, usuario.getConfSenha());
+
+        // cadastra enderecos
+
+        //values.put(Contrato.TabelaUsuario.COLUNA_ENDERECOID,usuario.getEndereco().getIdEndereco() );
 
         return db.insert(Contrato.TabelaUsuario.NOME_DA_TABELA, null, values);
 
