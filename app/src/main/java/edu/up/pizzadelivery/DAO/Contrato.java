@@ -12,7 +12,7 @@ public final class Contrato {
     }
 
     public static abstract class TabelaUsuario implements BaseColumns {
-        public static final String NOME_DA_TABELA = "tb_Usuarios";
+        public static final String NOME_DA_TABELA = "tb_Usuario";
         public static final String COLUNA_EMAIL = "Email";
         public static final String COLUNA_NOME = "Nome";
         public static final String COLUNA_CPF = "Cpf";
@@ -24,7 +24,7 @@ public final class Contrato {
     }
 
     public static abstract class TabelaEndereco implements BaseColumns {
-        public static final String NOME_DA_TABELA = "tb_Enderecos";
+        public static final String NOME_DA_TABELA = "tb_Endereco";
         public static final String COLUNA_ID = "EnderecoId";
         public static final String COLUNA_CEP = "Cep";
         public static final String COLUNA_RUA = "Rua";
@@ -44,7 +44,7 @@ public final class Contrato {
     }
 
     public static abstract class TabelaBebida implements BaseColumns {
-        public static final String NOME_DA_TABELA = "tb_Bebidas";
+        public static final String NOME_DA_TABELA = "tb_Bebida";
         public static final String COLUNA_ID = "BebidaId";
         public static final String COLUNA_NOME = "Nome";
 
@@ -52,14 +52,14 @@ public final class Contrato {
     }
 
     public static abstract class TabelaBorda implements BaseColumns {
-        public static final String NOME_DA_TABELA = "tb_Bordas";
-        public static final String COLUNA_ID = "BordasId";
+        public static final String NOME_DA_TABELA = "tb_Borda";
+        public static final String COLUNA_ID = "BordaId";
         public static final String COLUNA_NOME = "Nome";
 
     }
 
     public static abstract class TabelaTamanho implements BaseColumns {
-        public static final String NOME_DA_TABELA = "tb_Tamanhos";
+        public static final String NOME_DA_TABELA = "tb_Tamanho";
         public static final String COLUNA_ID = "TamanhoId";
         public static final String COLUNA_NOME = "Nome";
         public static final String COLUNA_QTDPEDACOS = "QTDPEDACOS";
@@ -68,21 +68,21 @@ public final class Contrato {
     }
 
     public static abstract class TabelaSabor implements BaseColumns {
-        public static final String NOME_DA_TABELA = "tb_Sabores";
-        public static final String COLUNA_ID = "SaboresId";
+        public static final String NOME_DA_TABELA = "tb_Sabor";
+        public static final String COLUNA_ID = "SaborId";
         public static final String COLUNA_NOME = "Nome";
         public static final String COLUNA_INGREDIENTES = "Fk_ingredienteId";
     }
 
     public static abstract class TabelaIngrediente implements BaseColumns {
-        public static final String NOME_DA_TABELA = "tb_Ingredientes";
+        public static final String NOME_DA_TABELA = "tb_Ingrediente";
         public static final String COLUNA_ID = "ingredienteId";
         public static final String COLUNA_NOME = "Nome";
     }
 
 
     public static abstract class TabelaPizza implements BaseColumns {
-        public static final String NOME_DA_TABELA = "tb_Pizzas";
+        public static final String NOME_DA_TABELA = "tb_Pizza";
         public static final String COLUNA_ID = "PizzaId";
         public static final String COLUNA_SABOR = "Fk_SaborId";
         public static final String COLUNA_TAMANHO = "Fk_TamanhoId";
@@ -102,7 +102,7 @@ public final class Contrato {
     }
 
     public static abstract class TabelaPedido implements BaseColumns {
-        public static final String NOME_DA_TABELA = "tb_Pedidos";
+        public static final String NOME_DA_TABELA = "tb_Pedido";
         public static final String COLUNA_ID = "PedidoId";
         public static final String COLUNA_USUARIO = "Fk_UsuarioId";
         public static final String COLUNA_ITEM_PEDIDO = "Fk_ItemPedidoId";
