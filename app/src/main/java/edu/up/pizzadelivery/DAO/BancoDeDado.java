@@ -10,7 +10,7 @@ import edu.up.pizzadelivery.model.Bebida;
 import edu.up.pizzadelivery.model.Login;
 import edu.up.pizzadelivery.model.Usuario;
 
-public class BancoDados extends SQLiteOpenHelper {
+public class BancoDeDado extends SQLiteOpenHelper {
     private static final String NOME_BANCO = "PizzaDelivery.db";
     private static final int VERSAO_BANCO = 1;
 
@@ -19,7 +19,7 @@ public class BancoDados extends SQLiteOpenHelper {
     private static final String TIPO_REAL = " REAL";
     private static final String VIRGULA = ", ";
 
-    public BancoDados(Context context) {
+    public BancoDeDado(Context context) {
 
         super(context, NOME_BANCO, null, VERSAO_BANCO);
 
