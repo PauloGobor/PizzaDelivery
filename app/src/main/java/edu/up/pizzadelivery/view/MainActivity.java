@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
 
     private Button   btnEntrar;
 
-    private Long     verificacao;
+    private boolean  verificacao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,27 +35,29 @@ public class MainActivity extends AppCompatActivity {
         btnEntrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //verificação se campos estão preenchidos
                 if (!edtEmail.getText().toString().equals("") && !edtSenha.getText().toString().equals("")) {
 
                     Login login = new Login();
                     login.setEmail(edtEmail.getText().toString());
                     login.setSenha(edtSenha.getText().toString());
 
+                    verificacao = UsuarioDAO.ValidarLogin(MainActivity.this, login);
 
-                    //verificacao = UsuarioDAO.ValidarLogin(MainActivity.this, login);
 
                     //Verifica se existe  no banco.
-                    if(verificacao == 0){
+                    if(verificacao == true){
                         //Intent telaInicial = new Intent(this, TelaInicialActivity.class); ///esse irei criar mais para frente
                         //startActivity(telaInicial);
 
+                        Toast.makeText(MainActivity.this, "Entrou", Toast.LENGTH_SHORT).show();
+
                     }else {
+                        //Caso não encontrar nenhum dado equivalente no banco
                         Toast.makeText(MainActivity.this, "E-mail/senha incorreto.", Toast.LENGTH_SHORT).show();
                     }
-
-
                 }else{
-                    Toast.makeText(MainActivity.this, "Favor preencher os campos!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "Favor preencher todos os campos!", Toast.LENGTH_SHORT).show();
                 }
             }
         });

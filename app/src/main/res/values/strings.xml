@@ -1,4 +1,5 @@
 <resources>
+    <!--Login-->
     <string name="app_name">Pizza Delivery</string>
     <string name="email">E-mail</string>
     <string name="senha">Senha</string>
@@ -7,4 +8,21 @@
     <string name="nconta">Não tem conta? Cadastre-se</string>
     <string name="logar">Entrar</string>
     <string name="cCardapio">Confira nosso cardápio!</string>
+    <!--Usuario-->
+    <string name="dCadastro">Dados Cadastrais</string>
+    <string name="nome">Nome</string>
+    <string name="cpf">CPF</string>
+    <string name="tel">Telefone</string>
+    <string name="dEndereco">Dados de Endereço</string>
+    <string name="cep">CEP</string>
+    <string name="rua">Rua</string>
+    <string name="bairro">Bairro</string>
+    <string name="cidade">Cidade</string>
+    <string name="numero">Número</string>
+    <string name="Comple">Complemento</string>
+    <string name="dAcesso">Dados de Acesso</string>
+    <string name="ConfSenha">Confirme sua senha</string>
+    <string name="cadastrar">Cadastrar</string>
+
+
 </resources>

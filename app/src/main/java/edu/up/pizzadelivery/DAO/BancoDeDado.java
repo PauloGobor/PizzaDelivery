@@ -2,13 +2,15 @@ package edu.up.pizzadelivery.DAO;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import edu.up.pizzadelivery.model.Bebida;
+import edu.up.pizzadelivery.model.Login;
 import edu.up.pizzadelivery.model.Usuario;
 
-public class BancoDados extends SQLiteOpenHelper {
+public class BancoDeDado extends SQLiteOpenHelper {
     private static final String NOME_BANCO = "PizzaDelivery.db";
     private static final int VERSAO_BANCO = 1;
 
@@ -17,7 +19,7 @@ public class BancoDados extends SQLiteOpenHelper {
     private static final String TIPO_REAL = " REAL";
     private static final String VIRGULA = ", ";
 
-    public BancoDados(Context context) {
+    public BancoDeDado(Context context) {
 
         super(context, NOME_BANCO, null, VERSAO_BANCO);
 
@@ -186,5 +188,25 @@ public class BancoDados extends SQLiteOpenHelper {
 
         return db.insert(Contrato.TabelaUsuario.NOME_DA_TABELA, null, values);
 
+    }
+
+
+
+    public boolean ValidadaLogin(Login login){
+
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM " +
+                Contrato.TabelaUsuario.NOME_DA_TABELA + " WHERE "   +
+                Contrato.TabelaUsuario.COLUNA_EMAIL   + " = ? AND " +
+                Contrato.TabelaUsuario.COLUNA_SENHA   + " = ? ",
+                new String[]{login.getEmail(), login.getSenha()});
+
+        if(cursor.getCount() <= 0){
+            cursor.close();
+            return false;
+        }
+        else{
+            return true;
+        }
     }
 }
