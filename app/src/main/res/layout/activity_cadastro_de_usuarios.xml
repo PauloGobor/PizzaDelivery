@@ -6,8 +6,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_marginEnd="20dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -357,10 +357,34 @@
             android:orientation="horizontal">
 
             <Button
+                android:id="@+id/btnCadastrar"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:background="@drawable/btn_entrar"
+                android:drawableStart="@drawable/ic_action_name"
+                android:layout_marginStart="10dp"
+                android:shadowColor="#000000"
+                android:paddingStart="10dp"
+                android:text="@string/cadastrar"
+                android:textColor="#FFFFFF"
+                android:textSize="30sp"
+                tools:ignore="RtlSymmetry" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            tools:ignore="UselessLeaf">
+            <TextView
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="@string/cadastrar" />
+                android:gravity="center"
+                android:textSize="30sp"
+                tools:ignore="NestedWeights" />
+
 
         </LinearLayout>
 
