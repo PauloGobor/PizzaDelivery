@@ -1,4 +1,4 @@
-package edu.up.pizzadelivery.view;
+package edu.up.pizzadelivery.View;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -10,8 +10,7 @@ import android.widget.Toast;
 
 import edu.up.pizzadelivery.DAO.UsuarioDAO;
 import edu.up.pizzadelivery.R;
-import edu.up.pizzadelivery.model.Login;
-import edu.up.pizzadelivery.model.Usuario;
+import edu.up.pizzadelivery.Model.Login;
 
 public class MainActivity extends AppCompatActivity {
 

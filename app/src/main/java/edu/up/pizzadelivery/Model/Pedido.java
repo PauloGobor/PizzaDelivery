@@ -1,4 +1,4 @@
-package edu.up.pizzadelivery.model;
+package edu.up.pizzadelivery.Model;
 
 import java.io.Serializable;
 import java.util.Date;

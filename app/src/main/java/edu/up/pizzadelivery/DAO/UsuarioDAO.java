@@ -2,8 +2,8 @@ package edu.up.pizzadelivery.DAO;
 
 import android.content.Context;
 
-import edu.up.pizzadelivery.model.Login;
-import edu.up.pizzadelivery.model.Usuario;
+import edu.up.pizzadelivery.Model.Login;
+import edu.up.pizzadelivery.Model.Usuario;
 
 public class UsuarioDAO {
 
