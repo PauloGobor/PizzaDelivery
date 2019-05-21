@@ -180,8 +180,14 @@ public class BancoDeDado extends SQLiteOpenHelper {
         values.put(Contrato.TabelaUsuario.COLUNA_TELEFONE, usuario.getTelefone());
         values.put(Contrato.TabelaUsuario.COLUNA_SENHA, usuario.getSenha());
         values.put(Contrato.TabelaUsuario.COLUNA_CONFSENHA, usuario.getConfSenha());
-
-        // cadastra enderecos
+// preenche a tabela endereco
+        values.put(Contrato.TabelaEndereco.COLUNA_CEP, usuario.getEndereco().getCep());
+        values.put(Contrato.TabelaEndereco.COLUNA_BAIRRO, usuario.getEndereco().getBairro());
+        values.put(Contrato.TabelaEndereco.COLUNA_RUA, usuario.getEndereco().getRua());
+        values.put(Contrato.TabelaEndereco.COLUNA_NUMERO, usuario.getEndereco().getNumero());
+        values.put(Contrato.TabelaEndereco.COLUNA_COMPLEMENTO, usuario.getEndereco().getComplemento());
+        values.put(Contrato.TabelaEndereco.COLUNA_CIDADE, usuario.getEndereco().getCidade());
+        //
 
         //values.put(Contrato.TabelaUsuario.COLUNA_ENDERECOID,usuario.getEndereco().getIdEndereco() );
 
