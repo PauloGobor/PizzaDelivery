@@ -62,7 +62,7 @@ public final class Contrato {
         public static final String NOME_DA_TABELA = "tb_Tamanho";
         public static final String COLUNA_ID = "TamanhoId";
         public static final String COLUNA_NOME = "Nome";
-        public static final String COLUNA_QTDPEDACOS = "QTDPEDACOS";
+        public static final String COLUNA_QTDSABOR = "QtdSabor";
         public static final String COLUNA_PRECO = "PRECO";
 
     }

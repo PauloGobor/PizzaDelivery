@@ -85,7 +85,7 @@ public class BancoDeDado extends SQLiteOpenHelper {
                     Contrato.TabelaTamanho.NOME_DA_TABELA + "(" +
                     Contrato.TabelaTamanho.COLUNA_ID + TIPO_INTEIRO + " PRIMARY KEY AUTOINCREMENT" + VIRGULA +
                     Contrato.TabelaTamanho.COLUNA_NOME + TIPO_TEXTO + VIRGULA +
-                    Contrato.TabelaTamanho.COLUNA_QTDPEDACOS + TIPO_INTEIRO + VIRGULA +
+                    Contrato.TabelaTamanho.COLUNA_QTDSABOR + TIPO_INTEIRO + VIRGULA +
                     Contrato.TabelaTamanho.COLUNA_PRECO + TIPO_REAL + ")";
 
     private static final String SQL_CRIAR_TABELA_PIZZA =

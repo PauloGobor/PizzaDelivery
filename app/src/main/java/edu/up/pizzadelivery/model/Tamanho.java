@@ -6,7 +6,7 @@ public class Tamanho implements Serializable {
 
     private int idTamanho;
     private int nome;
-    private int qtdPedacos;
+    private int qtdSabores;
     private double preco;
 
     public int getIdTamanho() {
@@ -25,12 +25,12 @@ public class Tamanho implements Serializable {
         this.nome = nome;
     }
 
-    public int getQtdPedacos() {
-        return qtdPedacos;
+    public int getQtdSabores() {
+        return qtdSabores;
     }
 
-    public void setQtdPedacos(int qtdPedacos) {
-        this.qtdPedacos = qtdPedacos;
+    public void setQtdSabores(int qtdSabores) {
+        this.qtdSabores = qtdSabores;
     }
 
     public double getPreco() {
