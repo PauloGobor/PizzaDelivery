@@ -23,6 +23,12 @@ public class UsuarioDAO {
 
         return valorReferencia =  db.ValidadaLogin(login);
     }
+    public  static boolean JaCadastrado(Context context, String email, String cpf){
+        db = new BancoDeDado(context);
+
+        return valorReferencia = db.JaCadastrado(email, cpf);
+    }
+
 
 
 }

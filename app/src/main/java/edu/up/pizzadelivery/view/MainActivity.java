@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
 
 
                     //Verifica se existe  no banco.
-                    if(verificacao == true){
+                    if(verificacao){
                         //Intent telaInicial = new Intent(this, TelaInicialActivity.class); ///esse irei criar mais para frente
                         //startActivity(telaInicial);
 

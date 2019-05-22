@@ -204,4 +204,22 @@ public class BancoDeDado extends SQLiteOpenHelper {
             return true;
         }
     }
+
+    public boolean JaCadastrado(String email, String cpf){
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM " +
+                        Contrato.TabelaUsuario.NOME_DA_TABELA + " WHERE "   +
+                        Contrato.TabelaUsuario.COLUNA_EMAIL   + " = ? AND " +
+                        Contrato.TabelaUsuario.COLUNA_CPF     + " = ? ",
+                new String[]{email, cpf});
+        ;
+        if(cursor.getCount() <= 0){
+            cursor.close();
+            return false;
+        }
+        else{
+            return true;
+        }
+    }
+
 }
