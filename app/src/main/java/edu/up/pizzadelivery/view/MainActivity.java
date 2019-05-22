@@ -1,4 +1,4 @@
-package edu.up.pizzadelivery.View;
+package edu.up.pizzadelivery.view;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
