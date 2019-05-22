@@ -9,10 +9,16 @@
         android:roundIcon="@mipmap/ic_launcher_pizzadelivery_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+<<<<<<< HEAD
         <activity android:name=".View.PagamentoPedidoActivity"></activity>
         <activity android:name=".View.CardapioActivity" />
         <activity android:name=".View.CadastroDeUsuariosActivity" />
         <activity android:name=".View.MainActivity">
+=======
+        <activity android:name=".view.CardapioActivity"></activity>
+        <activity android:name=".view.CadastroDeUsuariosActivity" />
+        <activity android:name=".view.MainActivity">
+>>>>>>> 48ef34ceaa6e328dba72cc7a0621ca3301dc5877
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

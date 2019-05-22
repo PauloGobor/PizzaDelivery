@@ -1,4 +1,4 @@
-package edu.up.pizzadelivery.View;
+package edu.up.pizzadelivery.view;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -7,6 +7,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import edu.up.pizzadelivery.DAO.UsuarioDAO;
 import edu.up.pizzadelivery.R;
 import edu.up.pizzadelivery.model.Usuario;
 
@@ -26,6 +27,7 @@ public class CadastroDeUsuariosActivity extends AppCompatActivity {
             edtConfSenha;
 
     private Button btnCadastrar;
+    private boolean RtVerific;
 
 
     @Override
@@ -66,21 +68,28 @@ public class CadastroDeUsuariosActivity extends AppCompatActivity {
                         !edtConfSenha.getText().toString().equals("")) {
                     if(edtSenha.getText().toString().equals(edtConfSenha.getText().toString())){
 
-                        //pegando dados e passando para um classe usuario
-                        Usuario usuario = new Usuario();
-                        usuario.setNome(edtNome.getText().toString());
-                        usuario.setEmail(edtEmail.getText().toString());
-                        usuario.setCpf(edtCpf.getText().toString());
-                        usuario.setTelefone(edtTel.getText().toString());
-                        usuario.setSenha(edtSenha.getText().toString()); /// vai ser criptografado antes.
-                        //Parte de endereco
-                        usuario.getEndereco().setCep(edtCep.getText().toString());
-                        usuario.getEndereco().setRua(edtRua.getText().toString());
-                        usuario.getEndereco().setCidade(edtCidade.getText().toString());
-                        usuario.getEndereco().setNumero(Integer.parseInt(edtNumero.getText().toString()));
-                        usuario.getEndereco().setComplemento(edtComplemento.getText().toString());
-
                         /// 1- verificar se email e cpf ja existem cadastrado
+                        RtVerific = UsuarioDAO.JaCadastrado(CadastroDeUsuariosActivity.this, edtEmail.getText().toString(), edtCpf.getText().toString());
+
+                        if(RtVerific){
+                            //pegando dados e passando para um classe usuario
+                            Usuario usuario = new Usuario();
+                            usuario.setNome(edtNome.getText().toString());
+                            usuario.setEmail(edtEmail.getText().toString());
+                            usuario.setCpf(edtCpf.getText().toString());
+                            usuario.setTelefone(edtTel.getText().toString());
+                            usuario.setSenha(edtSenha.getText().toString()); /// vai ser criptografado antes.
+                            //Parte de endereco
+                            usuario.getEndereco().setCep(edtCep.getText().toString());
+                            usuario.getEndereco().setRua(edtRua.getText().toString());
+                            usuario.getEndereco().setCidade(edtCidade.getText().toString());
+                            usuario.getEndereco().setNumero(Integer.parseInt(edtNumero.getText().toString()));
+                            usuario.getEndereco().setComplemento(edtComplemento.getText().toString());
+                        }else {
+                            Toast.makeText(CadastroDeUsuariosActivity.this, "E-mail ou Senha já cadastrados!", Toast.LENGTH_SHORT).show();
+                        }
+
+
                         /// 2- realizar conversao de senha para criptografia
                         /// 3- salvar dados Usuario
                         /// 4- salvar dados endereco
