@@ -10,7 +10,7 @@ import android.widget.Toast;
 
 import edu.up.pizzadelivery.DAO.UsuarioDAO;
 import edu.up.pizzadelivery.R;
-import edu.up.pizzadelivery.Model.Login;
+import edu.up.pizzadelivery.model.Login;
 
 public class MainActivity extends AppCompatActivity {
 

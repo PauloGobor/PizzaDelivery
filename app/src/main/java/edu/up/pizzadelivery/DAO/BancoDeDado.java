@@ -6,8 +6,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import edu.up.pizzadelivery.Model.Login;
-import edu.up.pizzadelivery.Model.Usuario;
+import edu.up.pizzadelivery.model.Login;
+import edu.up.pizzadelivery.model.Usuario;
 
 public class BancoDeDado extends SQLiteOpenHelper {
     private static final String NOME_BANCO = "PizzaDelivery.db";

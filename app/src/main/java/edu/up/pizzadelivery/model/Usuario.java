@@ -1,6 +1,7 @@
-package edu.up.pizzadelivery.Model;
+package edu.up.pizzadelivery.model;
 
 import java.io.Serializable;
+
 
 public class Usuario implements Serializable {
 
