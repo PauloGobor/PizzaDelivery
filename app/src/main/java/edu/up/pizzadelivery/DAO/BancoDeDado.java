@@ -35,7 +35,7 @@ public class BancoDeDado extends SQLiteOpenHelper {
                     Contrato.TabelaUsuario.COLUNA_CONFSENHA + TIPO_TEXTO + VIRGULA +
                     Contrato.TabelaUsuario.COLUNA_ENDERECOID + TIPO_INTEIRO + VIRGULA +
                     " FOREIGN KEY (" + Contrato.TabelaUsuario.COLUNA_ENDERECOID + ")" +
-                    " REFERENCES " + Contrato.TabelaEndereco.NOME_DA_TABELA + "(" + Contrato.TabelaSabor.COLUNA_ID + ")" + ")";  //FK
+                    " REFERENCES " + Contrato.TabelaEndereco.NOME_DA_TABELA + "(" + Contrato.TabelaEndereco.COLUNA_ID + ")" + ")";  //FK
 
 
     private static final String SQL_CRIAR_TABELA_ENDERECO =
@@ -181,6 +181,7 @@ public class BancoDeDado extends SQLiteOpenHelper {
         values.put(Contrato.TabelaUsuario.COLUNA_SENHA, usuario.getSenha());
         values.put(Contrato.TabelaUsuario.COLUNA_CONFSENHA, usuario.getConfSenha());
 // preenche a tabela endereco
+        //provavelmente mude  *****
         values.put(Contrato.TabelaEndereco.COLUNA_CEP, usuario.getEndereco().getCep());
         values.put(Contrato.TabelaEndereco.COLUNA_BAIRRO, usuario.getEndereco().getBairro());
         values.put(Contrato.TabelaEndereco.COLUNA_RUA, usuario.getEndereco().getRua());
