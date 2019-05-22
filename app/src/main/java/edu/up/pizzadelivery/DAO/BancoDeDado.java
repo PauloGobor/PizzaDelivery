@@ -6,9 +6,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import edu.up.pizzadelivery.model.Bebida;
-import edu.up.pizzadelivery.model.Login;
-import edu.up.pizzadelivery.model.Usuario;
+import edu.up.pizzadelivery.Model.Login;
+import edu.up.pizzadelivery.Model.Usuario;
 
 public class BancoDeDado extends SQLiteOpenHelper {
     private static final String NOME_BANCO = "PizzaDelivery.db";
@@ -94,14 +93,11 @@ public class BancoDeDado extends SQLiteOpenHelper {
                     Contrato.TabelaPizza.NOME_DA_TABELA + "(" +
                     Contrato.TabelaPizza.COLUNA_ID + TIPO_INTEIRO + " PRIMARY KEY AUTOINCREMENT" + VIRGULA +
                     Contrato.TabelaPizza.COLUNA_SABOR + TIPO_INTEIRO + VIRGULA + //FK
-                    Contrato.TabelaPizza.COLUNA_BORDA + TIPO_INTEIRO + VIRGULA +//FK
+
                     Contrato.TabelaPizza.COLUNA_TAMANHO + TIPO_INTEIRO + VIRGULA +
                     " FOREIGN KEY (" + Contrato.TabelaPizza.COLUNA_SABOR + ")" +
                     " REFERENCES " + Contrato.TabelaSabor.NOME_DA_TABELA +
                     "(" + Contrato.TabelaSabor.COLUNA_ID + ")" + VIRGULA +
-                    " FOREIGN KEY (" + Contrato.TabelaPizza.COLUNA_BORDA + ")" +
-                    " REFERENCES " + Contrato.TabelaBorda.NOME_DA_TABELA +
-                    "(" + Contrato.TabelaBorda.COLUNA_ID + ")" + VIRGULA +
                     " FOREIGN KEY (" + Contrato.TabelaPizza.COLUNA_TAMANHO + ")" +
                     " REFERENCES " + Contrato.TabelaTamanho.NOME_DA_TABELA +
                     "(" + Contrato.TabelaTamanho.COLUNA_ID + ")" + ")";
@@ -120,6 +116,7 @@ public class BancoDeDado extends SQLiteOpenHelper {
                     Contrato.TabelaItemPedido.COLUNA_ID + TIPO_INTEIRO + " PRIMARY KEY AUTOINCREMENT" + VIRGULA +
                     Contrato.TabelaItemPedido.COLUNA_PIZZA + TIPO_INTEIRO + VIRGULA + //FK
                     Contrato.TabelaItemPedido.COLUNA_BEBIDA + TIPO_INTEIRO + VIRGULA +//FK
+                    Contrato.TabelaItemPedido.COLUNA_BORDA + TIPO_INTEIRO + VIRGULA +//FK
                     Contrato.TabelaItemPedido.COLUNA_QUANTIDADE + TIPO_INTEIRO + VIRGULA +
                     Contrato.TabelaItemPedido.COLUNA_SUBTOTAL + TIPO_REAL + VIRGULA +
                     Contrato.TabelaItemPedido.COLUNA_PRECOPEDIDO + TIPO_REAL + VIRGULA +
@@ -128,7 +125,10 @@ public class BancoDeDado extends SQLiteOpenHelper {
                     "(" + Contrato.TabelaPizza.COLUNA_ID + ")" + VIRGULA +
                     " FOREIGN KEY (" + Contrato.TabelaItemPedido.COLUNA_BEBIDA + ")" +
                     " REFERENCES " + Contrato.TabelaBebida.NOME_DA_TABELA +
-                    "(" + Contrato.TabelaBebida.COLUNA_ID + ")" + ")";
+                    "(" + Contrato.TabelaBebida.COLUNA_ID + ")" + VIRGULA +
+                    " FOREIGN KEY (" + Contrato.TabelaItemPedido.COLUNA_BORDA + ")" +
+                    " REFERENCES " + Contrato.TabelaBorda.NOME_DA_TABELA +
+                    "(" + Contrato.TabelaBorda.COLUNA_ID + ")" + ")";
 
 
     private static final String SQL_CRIAR_TABELA_PEDIDO =
@@ -180,6 +180,16 @@ public class BancoDeDado extends SQLiteOpenHelper {
         values.put(Contrato.TabelaUsuario.COLUNA_TELEFONE, usuario.getTelefone());
         values.put(Contrato.TabelaUsuario.COLUNA_SENHA, usuario.getSenha());
         values.put(Contrato.TabelaUsuario.COLUNA_CONFSENHA, usuario.getConfSenha());
+// preenche a tabela endereco
+        values.put(Contrato.TabelaEndereco.COLUNA_CEP, usuario.getEndereco().getCep());
+        values.put(Contrato.TabelaEndereco.COLUNA_BAIRRO, usuario.getEndereco().getBairro());
+        values.put(Contrato.TabelaEndereco.COLUNA_RUA, usuario.getEndereco().getRua());
+        values.put(Contrato.TabelaEndereco.COLUNA_NUMERO, usuario.getEndereco().getNumero());
+        values.put(Contrato.TabelaEndereco.COLUNA_COMPLEMENTO, usuario.getEndereco().getComplemento());
+        values.put(Contrato.TabelaEndereco.COLUNA_CIDADE, usuario.getEndereco().getCidade());
+        //
+
+        //values.put(Contrato.TabelaUsuario.COLUNA_ENDERECOID,usuario.getEndereco().getIdEndereco() );
 
         return db.insert(Contrato.TabelaUsuario.NOME_DA_TABELA, null, values);
 

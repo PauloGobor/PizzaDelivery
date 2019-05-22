@@ -1,4 +1,4 @@
-package edu.up.pizzadelivery.model;
+package edu.up.pizzadelivery.Model;
 
 import java.io.Serializable;
 
@@ -7,6 +7,7 @@ public class ItemPedido implements Serializable {
     private int Iditem;
     private Pizza pizza;
     private Bebida bebida;
+    private Borda borda;
     private int quantidade;
     private double subTotal;
     private double precoPedido;
@@ -57,5 +58,13 @@ public class ItemPedido implements Serializable {
 
     public void setPrecoPedido(double precoPedido) {
         this.precoPedido = precoPedido;
+    }
+
+    public Borda getBorda() {
+        return borda;
+    }
+
+    public void setBorda(Borda borda) {
+        this.borda = borda;
     }
 }
