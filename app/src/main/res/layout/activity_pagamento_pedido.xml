@@ -29,7 +29,12 @@
         android:orientation="vertical">
 
         <!-- aqui ficara as formas de pagamento-->
+        <ListView
+            android:id="@+id/ListFormaPagamento"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
+        </ListView>
     </LinearLayout>
 
 

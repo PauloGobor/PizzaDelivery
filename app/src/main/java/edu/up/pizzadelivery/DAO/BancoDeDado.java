@@ -6,6 +6,9 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import java.util.ArrayList;
+
+import edu.up.pizzadelivery.model.FormaPagamento;
 import edu.up.pizzadelivery.model.Login;
 import edu.up.pizzadelivery.model.Usuario;
 
@@ -94,7 +97,6 @@ public class BancoDeDado extends SQLiteOpenHelper {
                     Contrato.TabelaPizza.NOME_DA_TABELA + "(" +
                     Contrato.TabelaPizza.COLUNA_ID + TIPO_INTEIRO + " PRIMARY KEY AUTOINCREMENT" + VIRGULA +
                     Contrato.TabelaPizza.COLUNA_SABOR + TIPO_INTEIRO + VIRGULA + //FK
-
                     Contrato.TabelaPizza.COLUNA_TAMANHO + TIPO_INTEIRO + VIRGULA +
                     " FOREIGN KEY (" + Contrato.TabelaPizza.COLUNA_SABOR + ")" +
                     " REFERENCES " + Contrato.TabelaSabor.NOME_DA_TABELA +
@@ -236,5 +238,31 @@ public class BancoDeDado extends SQLiteOpenHelper {
             return true;
         }
     }
+
+    //  ##### METODO PARA RETORNAR FORMAS DE PAGAMENTO EM FORMA DE LISTA #######   ///
+    public ArrayList<FormaPagamento> RetornarFormasPagamento() {
+        ArrayList<FormaPagamento> formasPagamento = new ArrayList<FormaPagamento>();
+        SQLiteDatabase db = getReadableDatabase();
+
+        String[] colunas = {
+                Contrato.TabelaFormaPagamento.COLUNA_ID,
+                Contrato.TabelaFormaPagamento.COLUNA_NOME
+        };
+
+        Cursor cursor = db.query(Contrato.TabelaFormaPagamento.NOME_DA_TABELA, colunas,
+                null, null, null, null, null, null);
+
+        cursor.moveToFirst();
+        if(cursor.getCount() >0) {
+            do {
+                FormaPagamento fp = new FormaPagamento();
+                fp.setNome(cursor.getString(1));
+                formasPagamento.add(fp);
+            } while (cursor.moveToNext());
+        }
+        return formasPagamento;
+    }
+
+
 
 }
