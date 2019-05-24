@@ -35,7 +35,8 @@ public class BancoDeDado extends SQLiteOpenHelper {
                     Contrato.TabelaUsuario.COLUNA_CONFSENHA + TIPO_TEXTO + VIRGULA +
                     Contrato.TabelaUsuario.COLUNA_ENDERECOID + TIPO_INTEIRO + VIRGULA +
                     " FOREIGN KEY (" + Contrato.TabelaUsuario.COLUNA_ENDERECOID + ")" +
-                    " REFERENCES " + Contrato.TabelaEndereco.NOME_DA_TABELA + "(" + Contrato.TabelaEndereco.COLUNA_ID + ")" + ")";  //FK
+                    " REFERENCES " + Contrato.TabelaEndereco.NOME_DA_TABELA +
+                    "(" + Contrato.TabelaEndereco.COLUNA_ID + ")" + ")";  //FK
 
 
     private static final String SQL_CRIAR_TABELA_ENDERECO =
@@ -139,6 +140,9 @@ public class BancoDeDado extends SQLiteOpenHelper {
                     Contrato.TabelaPedido.COLUNA_FORMA_PAGAMENTO + TIPO_INTEIRO + VIRGULA +//FK
                     Contrato.TabelaPedido.COLUNA_ENDERECO + TIPO_INTEIRO + VIRGULA +
                     Contrato.TabelaPedido.COLUNA_DATA + TIPO_TEXTO + VIRGULA +
+                    " FOREIGN KEY (" + Contrato.TabelaPedido.COLUNA_USUARIO + ")" +
+                    " REFERENCES " + Contrato.TabelaUsuario.NOME_DA_TABELA +
+                    "(" + Contrato.TabelaUsuario.COLUNA_EMAIL + ")" + VIRGULA +
                     " FOREIGN KEY (" + Contrato.TabelaPedido.COLUNA_ITEM_PEDIDO + ")" +
                     " REFERENCES " + Contrato.TabelaItemPedido.NOME_DA_TABELA +
                     "(" + Contrato.TabelaItemPedido.COLUNA_ID + ")" + VIRGULA +
