@@ -4,7 +4,6 @@ import java.io.Serializable;
 
 public class Endereco implements Serializable {
 
-
     private String cep;
     private String Rua;
     private String bairro;

@@ -18,7 +18,10 @@ public class PagamentoPedidoActivity extends AppCompatActivity {
 
         /// metodo para listar a forma de pagamento ja esta feito
 
+//        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+//                android.R.layout.simple_list_item_1, lstTamanhos);
 
+//        lstTamanhos.setAdapter(adapter);
 
     }
 }

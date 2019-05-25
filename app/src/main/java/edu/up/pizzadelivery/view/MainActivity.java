@@ -16,9 +16,7 @@ public class MainActivity extends AppCompatActivity {
 
     private EditText edtEmail,
                      edtSenha;
-
     private Button   btnEntrar;
-
     private boolean  verificacao;
 
     @Override

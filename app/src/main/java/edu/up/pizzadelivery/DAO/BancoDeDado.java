@@ -286,3 +286,4 @@ public class BancoDeDado extends SQLiteOpenHelper {
 
 
 }
+

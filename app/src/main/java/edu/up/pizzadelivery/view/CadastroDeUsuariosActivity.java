@@ -96,6 +96,7 @@ public class CadastroDeUsuariosActivity extends AppCompatActivity {
                         /// 5- retornar confirmacao de cadastro ou erro (Toast ou AlertDialog)
                         /// 6- Avisar que será redirecionado para tela de login
                         /// 7- redirecionar para tela de login
+                        /// 8- colocar receber bairro paramentro
 
                     }else{
                         Toast.makeText(CadastroDeUsuariosActivity.this, "Senhas não correspondem!", Toast.LENGTH_SHORT).show();
