@@ -6,21 +6,11 @@ import java.util.List;
 
 public class Pedido implements Serializable {
 
-    private int idPedido;
     private Usuario usuario;
     private List<ItemPedido> itensPedido;
     private FormaPagamento formaPagamento;
     private Endereco endEntrega;
     private Date Data;
-
-
-    public int getIdPedido() {
-        return idPedido;
-    }
-
-    public void setIdPedido(int idPedido) {
-        this.idPedido = idPedido;
-    }
 
     public Usuario getUsuario() {
         return usuario;

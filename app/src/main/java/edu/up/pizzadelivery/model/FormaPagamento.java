@@ -4,16 +4,8 @@ import java.io.Serializable;
 
 public class FormaPagamento implements Serializable {
 
-    private int idFormaPagamento;
+
     private String Nome;
-
-    public int getIdFormaPagamento() {
-        return idFormaPagamento;
-    }
-
-    public void setIdFormaPagamento(int idFormaPagamento) {
-        this.idFormaPagamento = idFormaPagamento;
-    }
 
     public String getNome() {
         return Nome;

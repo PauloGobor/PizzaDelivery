@@ -4,17 +4,9 @@ import java.io.Serializable;
 
 public class Bebida implements Serializable {
 
-    private int idBebida;
+
     private String nome;
     private double preco;
-
-    public int getIdBebida() {
-        return idBebida;
-    }
-
-    public void setIdBebida(int idBebida) {
-        this.idBebida = idBebida;
-    }
 
     public String getNome() {
         return nome;

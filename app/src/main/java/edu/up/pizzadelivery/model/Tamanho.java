@@ -4,24 +4,17 @@ import java.io.Serializable;
 
 public class Tamanho implements Serializable {
 
-    private int idTamanho;
-    private int nome;
+
+    private String nome;
     private int qtdSabores;
     private double preco;
 
-    public int getIdTamanho() {
-        return idTamanho;
-    }
 
-    public void setIdTamanho(int idTamanho) {
-        this.idTamanho = idTamanho;
-    }
-
-    public int getNome() {
+    public String getNome() {
         return nome;
     }
 
-    public void setNome(int nome) {
+    public void setNome(String nome) {
         this.nome = nome;
     }
 

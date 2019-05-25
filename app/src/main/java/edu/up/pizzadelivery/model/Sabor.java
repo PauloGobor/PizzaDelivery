@@ -5,17 +5,8 @@ import java.util.List;
 
 public class Sabor implements Serializable {
 
-    private int idSabor;
     private String nome;
     private List<Ingrediente> ingredientes;
-
-    public int getIdSabor() {
-        return idSabor;
-    }
-
-    public void setIdSabor(int idSabor) {
-        this.idSabor = idSabor;
-    }
 
     public String getNome() {
         return nome;

@@ -10,6 +10,7 @@ import java.util.ArrayList;
 
 import edu.up.pizzadelivery.model.FormaPagamento;
 import edu.up.pizzadelivery.model.Login;
+import edu.up.pizzadelivery.model.Tamanho;
 import edu.up.pizzadelivery.model.Usuario;
 
 public class BancoDeDado extends SQLiteOpenHelper {
@@ -81,7 +82,6 @@ public class BancoDeDado extends SQLiteOpenHelper {
                     " FOREIGN KEY (" + Contrato.TabelaSabor.COLUNA_INGREDIENTES + ")" +
                     " REFERENCES " + Contrato.TabelaIngrediente.NOME_DA_TABELA +
                     "(" + Contrato.TabelaSabor.COLUNA_ID + ")" + ")";  //FK
-
 
 
     private static final String SQL_CRIAR_TABELA_TAMANHO =
@@ -203,38 +203,35 @@ public class BancoDeDado extends SQLiteOpenHelper {
     }
 
 
-
-    public boolean ValidadaLogin(Login login){
+    public boolean ValidadaLogin(Login login) {
 
         SQLiteDatabase db = getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT * FROM " +
-                Contrato.TabelaUsuario.NOME_DA_TABELA + " WHERE "   +
-                Contrato.TabelaUsuario.COLUNA_EMAIL   + " = ? AND " +
-                Contrato.TabelaUsuario.COLUNA_SENHA   + " = ? ",
+                        Contrato.TabelaUsuario.NOME_DA_TABELA + " WHERE " +
+                        Contrato.TabelaUsuario.COLUNA_EMAIL + " = ? AND " +
+                        Contrato.TabelaUsuario.COLUNA_SENHA + " = ? ",
                 new String[]{login.getEmail(), login.getSenha()});
 
-        if(cursor.getCount() <= 0){
+        if (cursor.getCount() <= 0) {
             cursor.close();
             return false;
-        }
-        else{
+        } else {
             return true;
         }
     }
 
-    public boolean JaCadastrado(String email, String cpf){
+    public boolean JaCadastrado(String email, String cpf) {
         SQLiteDatabase db = getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT * FROM " +
-                        Contrato.TabelaUsuario.NOME_DA_TABELA + " WHERE "   +
-                        Contrato.TabelaUsuario.COLUNA_EMAIL   + " = ? AND " +
-                        Contrato.TabelaUsuario.COLUNA_CPF     + " = ? ",
+                        Contrato.TabelaUsuario.NOME_DA_TABELA + " WHERE " +
+                        Contrato.TabelaUsuario.COLUNA_EMAIL + " = ? AND " +
+                        Contrato.TabelaUsuario.COLUNA_CPF + " = ? ",
                 new String[]{email, cpf});
         ;
-        if(cursor.getCount() <= 0){
+        if (cursor.getCount() <= 0) {
             cursor.close();
             return false;
-        }
-        else{
+        } else {
             return true;
         }
     }
@@ -253,7 +250,7 @@ public class BancoDeDado extends SQLiteOpenHelper {
                 null, null, null, null, null, null);
 
         cursor.moveToFirst();
-        if(cursor.getCount() >0) {
+        if (cursor.getCount() > 0) {
             do {
                 FormaPagamento fp = new FormaPagamento();
                 fp.setNome(cursor.getString(1));
@@ -263,6 +260,29 @@ public class BancoDeDado extends SQLiteOpenHelper {
         return formasPagamento;
     }
 
+    //  ##### METODO PARA RETORNAR TAMANHOS DE PIZZA EM FORMA DE LISTA #######   ///
+    public ArrayList<Tamanho> RetornarTamanhos() {
+        ArrayList<Tamanho> tamanhos = new ArrayList<Tamanho>();
+        SQLiteDatabase db = getReadableDatabase();
+
+        String[] colunas = {
+                Contrato.TabelaTamanho.COLUNA_ID,
+                Contrato.TabelaTamanho.COLUNA_NOME
+        };
+
+        Cursor cursor = db.query(Contrato.TabelaTamanho.NOME_DA_TABELA, colunas,
+                null, null, null, null, null, null);
+
+        cursor.moveToFirst();
+        if (cursor.getCount() > 0) {
+            do {
+                Tamanho t = new Tamanho();
+                t.setNome(cursor.getString(1));
+                tamanhos.add(t);
+            } while (cursor.moveToNext());
+        }
+        return tamanhos;
+    }
 
 
 }

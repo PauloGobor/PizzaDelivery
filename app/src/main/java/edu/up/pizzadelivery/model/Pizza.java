@@ -5,18 +5,8 @@ import java.util.List;
 
 public class Pizza implements Serializable {
 
-    private int idPizza;
     private List<Sabor> sabor;
     private Tamanho tamanho;
-
-
-    public int getIdPizza() {
-        return idPizza;
-    }
-
-    public void setIdPizza(int idPizza) {
-        this.idPizza = idPizza;
-    }
 
     public List<Sabor> getSabor() {
         return sabor;

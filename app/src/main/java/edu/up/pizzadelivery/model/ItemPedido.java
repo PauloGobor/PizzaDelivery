@@ -4,21 +4,12 @@ import java.io.Serializable;
 
 public class ItemPedido implements Serializable {
 
-    private int Iditem;
     private Pizza pizza;
     private Bebida bebida;
     private Borda borda;
     private int quantidade;
     private double subTotal;
     private double precoPedido;
-
-    public int getIditem() {
-        return Iditem;
-    }
-
-    public void setIditem(int iditem) {
-        Iditem = iditem;
-    }
 
     public Pizza getPizza() {
         return pizza;
