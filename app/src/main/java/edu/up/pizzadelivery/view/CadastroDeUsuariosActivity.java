@@ -1,5 +1,8 @@
 package edu.up.pizzadelivery.view;
 
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -28,7 +31,8 @@ public class CadastroDeUsuariosActivity extends AppCompatActivity {
             edtConfSenha;
 
     private Button btnCadastrar;
-    private boolean RtVerific;
+    private boolean RtVerific;  //retorno para verificacao
+    private long    RtVerCad;   //retorno para verificao cadastro
 
 
     @Override
@@ -92,13 +96,20 @@ public class CadastroDeUsuariosActivity extends AppCompatActivity {
                             usuario.getEndereco().setNumero(Integer.parseInt(edtNumero.getText().toString()));
                             usuario.getEndereco().setComplemento(edtComplemento.getText().toString());
 
-                            /// 3- salvar dados Usuario
-                            /// 4- salvar dados endereco
+                            /// 3- salvar dados Usuario e endereco
+                            RtVerCad = (long) UsuarioDAO.CadastrarUsuario(CadastroDeUsuariosActivity.this, usuario);
                             /// 5- retornar confirmacao de cadastro ou erro (Toast ou AlertDialog)
-                            /// 6- Avisar que será redirecionado para tela de login
-                            /// 7- redirecionar para tela de login
-                            /// 8- colocar receber bairro paramentro
+                            if(RtVerCad == 0){
+                                /// 6- Avisar que será redirecionado para tela de login
+                                MenssagemConfCad();
 
+                                /// 7- redirecionar para tela de login
+                                Intent telaLogin = new Intent(CadastroDeUsuariosActivity.this, MainActivity.class);
+                                startActivity(telaLogin);
+
+                            }else {// mensagem de erro.
+                                Toast.makeText(CadastroDeUsuariosActivity.this, "Problema ao realizar o cadastro. Tente Mais uma vez!", Toast.LENGTH_SHORT).show();
+                            }
                         }else {
                             Toast.makeText(CadastroDeUsuariosActivity.this, "E-mail ou Senha já cadastrados!", Toast.LENGTH_SHORT).show();
                         }
@@ -110,6 +121,22 @@ public class CadastroDeUsuariosActivity extends AppCompatActivity {
                 }
             }
         });
+    }
 
+    private void MenssagemConfCad() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Cadastro Realizado com Sucesso");
+        builder.setMessage("Você será redireiconado para a tela de login!");
+        builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Intent telaLogin = new Intent(CadastroDeUsuariosActivity.this, MainActivity.class);
+                startActivity(telaLogin);
+            }
+        });
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 }
+
