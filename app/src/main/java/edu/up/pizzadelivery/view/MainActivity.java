@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import edu.up.pizzadelivery.DAO.UsuarioDAO;
 import edu.up.pizzadelivery.R;
+import edu.up.pizzadelivery.model.Criptografia;
 import edu.up.pizzadelivery.model.Login;
 
 public class MainActivity extends AppCompatActivity {
@@ -34,10 +35,12 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 //verificação se campos estão preenchidos
                 if (!edtEmail.getText().toString().equals("") && !edtSenha.getText().toString().equals("")) {
+                    Criptografia crip = new Criptografia();
+                    String senhaConv = crip.criptografar(edtSenha.getText().toString());
 
                     Login login = new Login();
                     login.setEmail(edtEmail.getText().toString());
-                    login.setSenha(edtSenha.getText().toString());
+                    login.setSenha(senhaConv);
 
                     verificacao = UsuarioDAO.ValidarLogin(MainActivity.this, login);
 

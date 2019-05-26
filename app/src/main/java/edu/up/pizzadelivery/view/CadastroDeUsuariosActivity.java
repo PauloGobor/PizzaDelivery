@@ -9,6 +9,7 @@ import android.widget.Toast;
 
 import edu.up.pizzadelivery.DAO.UsuarioDAO;
 import edu.up.pizzadelivery.R;
+import edu.up.pizzadelivery.model.Criptografia;
 import edu.up.pizzadelivery.model.Usuario;
 
 public class CadastroDeUsuariosActivity extends AppCompatActivity {
@@ -72,32 +73,35 @@ public class CadastroDeUsuariosActivity extends AppCompatActivity {
                         RtVerific = UsuarioDAO.JaCadastrado(CadastroDeUsuariosActivity.this, edtEmail.getText().toString(), edtCpf.getText().toString());
 
                         if(RtVerific){
+                            /// 2- realizar conversao de senha para criptografia
+                            Criptografia crip = new Criptografia();
+                            String senhaConv =   crip.criptografar(edtSenha.getText().toString());
+
+
                             //pegando dados e passando para um classe usuario
                             Usuario usuario = new Usuario();
                             usuario.setNome(edtNome.getText().toString());
                             usuario.setEmail(edtEmail.getText().toString());
                             usuario.setCpf(edtCpf.getText().toString());
                             usuario.setTelefone(edtTel.getText().toString());
-                            usuario.setSenha(edtSenha.getText().toString()); /// vai ser criptografado antes.
+                            usuario.setSenha(senhaConv); /// vai ser criptografado antes.
                             //Parte de endereco
                             usuario.getEndereco().setCep(edtCep.getText().toString());
                             usuario.getEndereco().setRua(edtRua.getText().toString());
                             usuario.getEndereco().setCidade(edtCidade.getText().toString());
                             usuario.getEndereco().setNumero(Integer.parseInt(edtNumero.getText().toString()));
                             usuario.getEndereco().setComplemento(edtComplemento.getText().toString());
+
+                            /// 3- salvar dados Usuario
+                            /// 4- salvar dados endereco
+                            /// 5- retornar confirmacao de cadastro ou erro (Toast ou AlertDialog)
+                            /// 6- Avisar que será redirecionado para tela de login
+                            /// 7- redirecionar para tela de login
+                            /// 8- colocar receber bairro paramentro
+
                         }else {
                             Toast.makeText(CadastroDeUsuariosActivity.this, "E-mail ou Senha já cadastrados!", Toast.LENGTH_SHORT).show();
                         }
-
-
-                        /// 2- realizar conversao de senha para criptografia
-                        /// 3- salvar dados Usuario
-                        /// 4- salvar dados endereco
-                        /// 5- retornar confirmacao de cadastro ou erro (Toast ou AlertDialog)
-                        /// 6- Avisar que será redirecionado para tela de login
-                        /// 7- redirecionar para tela de login
-                        /// 8- colocar receber bairro paramentro
-
                     }else{
                         Toast.makeText(CadastroDeUsuariosActivity.this, "Senhas não correspondem!", Toast.LENGTH_SHORT).show();
                     }
