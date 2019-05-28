@@ -52,7 +52,8 @@ public class BancoDeDado extends SQLiteOpenHelper {
                     Contrato.TabelaEndereco.COLUNA_RUA + TIPO_TEXTO + VIRGULA +
                     Contrato.TabelaEndereco.COLUNA_NUMERO + TIPO_INTEIRO + VIRGULA +
                     Contrato.TabelaEndereco.COLUNA_CIDADE + TIPO_TEXTO + VIRGULA +
-                    Contrato.TabelaEndereco.COLUNA_COMPLEMENTO + TIPO_TEXTO + ")";
+                    Contrato.TabelaEndereco.
+                            COLUNA_COMPLEMENTO + TIPO_TEXTO + ")";
 
     private static final String SQL_CRIAR_TABELA_BEBIDA =
             "CREATE TABLE IF NOT EXISTS " +
@@ -235,8 +236,9 @@ public class BancoDeDado extends SQLiteOpenHelper {
             return true;
         }
     }
-
+    //  ########################################################################   ///
     //  ##### METODO PARA RETORNAR FORMAS DE PAGAMENTO EM FORMA DE LISTA #######   ///
+    //  ########################################################################   ///
     public ArrayList<FormaPagamento> RetornarFormasPagamento() {
         ArrayList<FormaPagamento> formasPagamento = new ArrayList<FormaPagamento>();
         SQLiteDatabase db = getReadableDatabase();
@@ -259,8 +261,9 @@ public class BancoDeDado extends SQLiteOpenHelper {
         }
         return formasPagamento;
     }
-
+    //  ########################################################################   ///
     //  ##### METODO PARA RETORNAR TAMANHOS DE PIZZA EM FORMA DE LISTA #######   ///
+    //  ########################################################################   ///
     public ArrayList<Tamanho> RetornarTamanhos() {
         ArrayList<Tamanho> tamanhos = new ArrayList<Tamanho>();
         SQLiteDatabase db = getReadableDatabase();
