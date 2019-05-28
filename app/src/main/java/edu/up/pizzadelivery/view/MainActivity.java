@@ -75,4 +75,9 @@ public class MainActivity extends AppCompatActivity {
         Intent cardapio = new Intent(this, CardapioActivity.class);
         startActivity(cardapio);
     }
+
+    public void TelaLocalizacao(View view) {
+        Intent localizacao = new Intent(this, MapsActivity.class);
+        startActivity(localizacao);
+    }
 }
