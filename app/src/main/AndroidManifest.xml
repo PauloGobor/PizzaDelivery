@@ -33,10 +33,10 @@
             android:name=".view.MapsActivity"
             android:label="@string/title_activity_maps"></activity>
         <activity android:name=".view.EscolherTamanhoActivity" />
-        <activity android:name=".View.PagamentoPedidoActivity" />
-        <activity android:name=".View.CardapioActivity" />
-        <activity android:name=".View.CadastroDeUsuariosActivity" />
-        <activity android:name=".View.MainActivity">
+        <activity android:name=".view.PagamentoPedidoActivity" />
+        <activity android:name=".view.CardapioActivity" />
+        <activity android:name=".view.CadastroDeUsuariosActivity" />
+        <activity android:name=".view.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
