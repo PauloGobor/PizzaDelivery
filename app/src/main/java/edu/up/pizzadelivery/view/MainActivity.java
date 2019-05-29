@@ -77,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void TelaLocalizacao(View view) {
-        Intent localizacao = new Intent(this, MapsActivity.class);
+        Intent localizacao = new Intent(this, PerfilUsuarioActivity.class);
         startActivity(localizacao);
     }
 }

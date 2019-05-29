@@ -5,6 +5,7 @@ import java.io.Serializable;
 
 public class Usuario implements Serializable {
 
+    private int id;
     private String email;
     private String nome;
     private String cpf;
@@ -13,6 +14,13 @@ public class Usuario implements Serializable {
     private String confSenha;
     private Endereco endereco;
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getEmail() {
         return email;

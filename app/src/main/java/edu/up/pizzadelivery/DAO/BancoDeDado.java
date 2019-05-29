@@ -196,8 +196,8 @@ public class BancoDeDado extends SQLiteOpenHelper {
         values.put(Contrato.TabelaEndereco.COLUNA_NUMERO, usuario.getEndereco().getNumero());
         values.put(Contrato.TabelaEndereco.COLUNA_COMPLEMENTO, usuario.getEndereco().getComplemento());
         values.put(Contrato.TabelaEndereco.COLUNA_CIDADE, usuario.getEndereco().getCidade());
+        values.put(Contrato.TabelaEndereco.COLUNA_USUARIOID, usuario.getId());
         //
-
         //values.put(Contrato.TabelaUsuario.COLUNA_ENDERECOID,usuario.getEndereco().getIdEndereco() );
 
         return db.insert(Contrato.TabelaUsuario.NOME_DA_TABELA, null, values);
