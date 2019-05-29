@@ -19,7 +19,7 @@ public final class Contrato {
         public static final String COLUNA_CPF = "Cpf";
         public static final String COLUNA_TELEFONE = "Telefone";
         public static final String COLUNA_SENHA = "Senha";
-        public static final String COLUNA_ENDERECOID = "Fk_EnderecoId";
+
 
     }
 
@@ -32,7 +32,7 @@ public final class Contrato {
         public static final String COLUNA_CIDADE = "Cidade";
         public static final String COLUNA_NUMERO = "Numero";
         public static final String COLUNA_COMPLEMENTO = "Complemento";
-        //public static final String COLUNA_TELEFONE = "Telefone"; FK Endereco
+        public static final String COLUNA_USUARIOID = "Fk_UsuarioId";
     }
 
 

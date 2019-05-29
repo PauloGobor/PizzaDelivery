@@ -37,11 +37,7 @@ public class BancoDeDado extends SQLiteOpenHelper {
                     Contrato.TabelaUsuario.COLUNA_NOME + TIPO_TEXTO + VIRGULA +
                     Contrato.TabelaUsuario.COLUNA_CPF + TIPO_TEXTO + VIRGULA +
                     Contrato.TabelaUsuario.COLUNA_TELEFONE + TIPO_TEXTO + VIRGULA +
-                    Contrato.TabelaUsuario.COLUNA_SENHA + TIPO_TEXTO + VIRGULA +
-                    Contrato.TabelaUsuario.COLUNA_ENDERECOID + TIPO_INTEIRO + VIRGULA +
-                    " FOREIGN KEY (" + Contrato.TabelaUsuario.COLUNA_ENDERECOID + ")" +
-                    " REFERENCES " + Contrato.TabelaEndereco.NOME_DA_TABELA +
-                    "(" + Contrato.TabelaEndereco.COLUNA_ID + ")" + ")";  //FK
+                    Contrato.TabelaUsuario.COLUNA_SENHA + TIPO_TEXTO + ")";  //FK
 
 
     private static final String SQL_CRIAR_TABELA_ENDERECO =
@@ -53,8 +49,11 @@ public class BancoDeDado extends SQLiteOpenHelper {
                     Contrato.TabelaEndereco.COLUNA_RUA + TIPO_TEXTO + VIRGULA +
                     Contrato.TabelaEndereco.COLUNA_NUMERO + TIPO_INTEIRO + VIRGULA +
                     Contrato.TabelaEndereco.COLUNA_CIDADE + TIPO_TEXTO + VIRGULA +
-                    Contrato.TabelaEndereco.
-                            COLUNA_COMPLEMENTO + TIPO_TEXTO + ")";
+                    Contrato.TabelaEndereco.COLUNA_COMPLEMENTO + TIPO_TEXTO + VIRGULA +
+                    Contrato.TabelaEndereco.COLUNA_USUARIOID + TIPO_INTEIRO + VIRGULA +
+                    " FOREIGN KEY (" + Contrato.TabelaEndereco.COLUNA_USUARIOID + ")" +
+                    " REFERENCES " + Contrato.TabelaUsuario.NOME_DA_TABELA +
+                    "(" + Contrato.TabelaUsuario.COLUNA_ID + ")" +")";
 
     private static final String SQL_CRIAR_TABELA_BEBIDA =
             "CREATE TABLE IF NOT EXISTS " +
@@ -181,7 +180,8 @@ public class BancoDeDado extends SQLiteOpenHelper {
     public long CadastrarUsuario(Usuario usuario) {
         SQLiteDatabase db = getWritableDatabase();
         ContentValues values = new ContentValues();
-
+        // PRIMEIRO FAZER A INSERÇÃO NA TABELA DE USUARIO PRA DEPOIS
+        //PEGAR O USUARIO ID E COLOCAR DENTRO DA TABELA ENDERECO .....
         values.put(Contrato.TabelaUsuario.COLUNA_NOME, usuario.getNome());
         values.put(Contrato.TabelaUsuario.COLUNA_EMAIL, usuario.getEmail());
         values.put(Contrato.TabelaUsuario.COLUNA_CPF, usuario.getCpf());
