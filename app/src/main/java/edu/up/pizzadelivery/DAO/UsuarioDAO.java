@@ -9,7 +9,7 @@ public class UsuarioDAO {
 
 
 //    ##################################################
-    //### SHARED PREFERENCE   VERIFICACAO DE QUEM ESTA LOGADO    ######
+    //### SHARED PREFERENCE ->  VERIFICACAO DE QUEM ESTA LOGADO   cookies ######
 
 //    ####################################################
     private static boolean valorReferencia;

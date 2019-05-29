@@ -315,6 +315,41 @@ public class BancoDeDado extends SQLiteOpenHelper {
         return ingredientes;
     }
 
+    //  ########################################################################   ///
+    //  ##### METODO PARA RETORNAR ALTERAR DADOS DO USUARIO #######   ///
+    //  ########################################################################   ///
 
-}
+//    public long alterarUsuario(Usuario usuario){
+//        SQLiteDatabase db =  getWritableDatabase();
+//        ContentValues values = new ContentValues();
+//        // DECLARAR DADOS QUE SERAO ALTERADOS
+//
+//
+//        String condicao = Contrato.TabelaUsuario.COLUNA_ID + " = ?";
+//        String[] argumentos = {String.valueOf(usuario.getId())
+//
+//        };
+//
+//        return db.update(Contrato.TabelaUsuario.NOME_DA_TABELA, values,condicao,argumentos);
+//
+//    }
+    //  ########################################################################   ///
+    //  ##### METODO PARA RETORNAR ALTERAR DADOS DO USUARIO #######   ///
+    //  ########################################################################   ///
+//    public long removerCidade(Usuario c){
+//
+//        SQLiteDatabase db =  getWritableDatabase();
+//
+//
+//        String condicao = Contrato.TabelaCidade.COLUNA_ID + " = ?";
+//        String[] argumentos = {
+//                String.valueOf(c.getId())
+//
+//        };
+//
+//        return db.delete(Contrato.TabelaCidade.NOME_DA_TABELA,condicao,argumentos);
+//
+//
+//
+//    }
 

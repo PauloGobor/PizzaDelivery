@@ -2,15 +2,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_margin="10dp"
     android:background="@android:color/white"
-    android:orientation="vertical"
-    android:layout_margin="10dp">
+    android:orientation="vertical">
 
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="3"
+        android:layout_weight="1.4"
         android:padding="12dp"
         android:src="@mipmap/ic_launcher_pizzadelivery"
         tools:ignore="ContentDescription" />
@@ -18,27 +18,27 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_weight="0.7"
         android:orientation="horizontal">
 
         <TextView
             android:id="@+id/txtEmail"
             android:layout_width="0dp"
             android:layout_height="match_parent"
+            android:layout_marginStart="10dp"
             android:layout_weight="1"
             android:gravity="center"
             android:text="@string/email"
-            android:textSize="32sp"
-            android:layout_marginStart="10dp"
+            android:textSize="28sp"
             tools:ignore="NestedWeights" />
 
         <EditText
             android:id="@+id/edtEmail"
             android:layout_width="0dp"
             android:layout_height="match_parent"
+            android:layout_marginEnd="10dp"
             android:layout_weight="3"
             android:gravity="center"
-            android:layout_marginEnd="10dp"
             android:hint="@string/hintEmail"
             android:inputType="textEmailAddress"
             android:textSize="20sp"
@@ -48,30 +48,30 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_weight="0.7"
         android:orientation="horizontal">
 
         <TextView
             android:id="@+id/txtSenha"
             android:layout_width="0dp"
             android:layout_height="match_parent"
+            android:layout_marginStart="10dp"
             android:layout_weight="1"
             android:gravity="center"
             android:text="@string/senha"
-            android:textSize="32sp"
-            android:layout_marginStart="10dp"
+            android:textSize="28sp"
             tools:ignore="NestedWeights" />
 
         <EditText
             android:id="@+id/edtSenha"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="3"
-            android:padding="10dp"
             android:layout_marginEnd="10dp"
+            android:layout_weight="3"
             android:gravity="center"
-            android:inputType="textPassword"
             android:hint="@string/hintSenha"
+            android:inputType="textPassword"
+            android:padding="10dp"
             android:textSize="20sp"
             tools:ignore="Autofill" />
     </LinearLayout>
@@ -80,85 +80,98 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_weight="0.5"
         android:orientation="horizontal">
 
         <Button
             android:id="@+id/btnEntrar"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginStart="10dp"
             android:background="@drawable/btn_entrar"
             android:drawableStart="@drawable/ic_action_name"
-            android:layout_marginStart="10dp"
-            android:shadowColor="#000000"
             android:paddingStart="10dp"
+            android:shadowColor="#000000"
             android:text="@string/logar"
             android:textColor="#FFFFFF"
             android:textSize="30sp"
             tools:ignore="RtlSymmetry" />
+
+
     </LinearLayout>
 
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        android:orientation="horizontal">
+        android:layout_weight="1.5"
+        android:orientation="vertical">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="3"
-            tools:ignore="NestedWeights" />
-
-        <TextView
-            android:id="@+id/txtNaoCadastro"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_gravity="end"
-            android:gravity="end"
-            android:onClick="TelaCadastroPessoa"
-            android:padding="10dp"
-            android:text="@string/nconta"
-            android:textColor="#666"
-            android:textSize="20sp" />
-    </LinearLayout>
-
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="3"
-            tools:ignore="NestedWeights" />
-
-        <TextView
-            android:id="@+id/txtCardapio"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:onClick="TelaCardapio"
-            android:padding="10dp"
-            android:text="@string/cCardapio"
-            android:textColor="#666"
-            android:textSize="20sp" />
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="3"
-            tools:ignore="NestedWeights" />
         <Button
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="3"
-            android:onClick="TelaLocalizacao"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:onClick="TelaCadastroPessoa"
+            android:text="CADASTRE - SE"
+            android:textSize="28dp"
+            android:padding="12dp"
+
+            />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:onClick="TelaCardapio"
+            android:text="CARDAPIO"
+            android:textSize="28dp"
             tools:ignore="NestedWeights" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:onClick="TelaLocalizacao"
+            android:text="LOCALIZAÇÃO"
+            android:textSize="28dp"
+            tools:ignore="NestedWeights" />
+        <!--<TextView-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_weight="3"-->
+        <!--tools:ignore="NestedWeights" />-->
+
+        <!--<TextView-->
+        <!--android:id="@+id/txtCardapio"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_gravity="center"-->
+        <!--android:onClick="TelaCardapio"-->
+        <!--android:padding="10dp"-->
+        <!--android:text="@string/cCardapio"-->
+        <!--android:textColor="#666"-->
+        <!--android:textSize="20sp" />-->
+
+        <!--<TextView-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_weight="3"-->
+        <!--tools:ignore="NestedWeights" />-->
+
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.2"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:text="Desenvolvido por Paulo e Alex"
+            android:gravity="center"
+            tools:ignore="NestedWeights" />
+    </LinearLayout>
 </LinearLayout>
