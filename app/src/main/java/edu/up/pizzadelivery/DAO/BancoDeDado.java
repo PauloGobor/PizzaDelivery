@@ -288,7 +288,7 @@ public class BancoDeDado extends SQLiteOpenHelper {
         }
         return tamanhos;
     }
-    ]
+
     //  ########################################################################   ///
     //  ##### METODO PARA RETORNAR INGREDIENTES DE PIZZA EM FORMA DE LISTA #######   ///
     //  ########################################################################   ///
