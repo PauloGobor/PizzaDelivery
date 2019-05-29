@@ -7,6 +7,11 @@ import edu.up.pizzadelivery.model.Usuario;
 
 public class UsuarioDAO {
 
+
+//    ##################################################
+    //### SHARED PREFERENCE   VERIFICACAO DE QUEM ESTA LOGADO    ######
+
+//    ####################################################
     private static boolean valorReferencia;
     private static BancoDeDado db;
 

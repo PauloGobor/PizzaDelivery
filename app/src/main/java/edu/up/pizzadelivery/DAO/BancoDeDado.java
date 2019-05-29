@@ -9,6 +9,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import java.util.ArrayList;
 
 import edu.up.pizzadelivery.model.FormaPagamento;
+import edu.up.pizzadelivery.model.Ingrediente;
 import edu.up.pizzadelivery.model.Login;
 import edu.up.pizzadelivery.model.Tamanho;
 import edu.up.pizzadelivery.model.Usuario;
@@ -261,6 +262,7 @@ public class BancoDeDado extends SQLiteOpenHelper {
         }
         return formasPagamento;
     }
+
     //  ########################################################################   ///
     //  ##### METODO PARA RETORNAR TAMANHOS DE PIZZA EM FORMA DE LISTA #######   ///
     //  ########################################################################   ///
@@ -285,6 +287,32 @@ public class BancoDeDado extends SQLiteOpenHelper {
             } while (cursor.moveToNext());
         }
         return tamanhos;
+    }
+    ]
+    //  ########################################################################   ///
+    //  ##### METODO PARA RETORNAR INGREDIENTES DE PIZZA EM FORMA DE LISTA #######   ///
+    //  ########################################################################   ///
+    public ArrayList<Ingrediente> RetornarIngredientes() {
+        ArrayList<Ingrediente> ingredientes = new ArrayList<Ingrediente>();
+        SQLiteDatabase db = getReadableDatabase();
+
+        String[] colunas = {
+                Contrato.TabelaIngrediente.COLUNA_ID,
+                Contrato.TabelaIngrediente.COLUNA_NOME
+        };
+
+        Cursor cursor = db.query(Contrato.TabelaIngrediente.NOME_DA_TABELA, colunas,
+                null, null, null, null, null, null);
+
+        cursor.moveToFirst();
+        if (cursor.getCount() > 0) {
+            do {
+                Ingrediente i = new Ingrediente();
+                i.setNome(cursor.getString(1));
+                ingredientes.add(i);
+            } while (cursor.moveToNext());
+        }
+        return ingredientes;
     }
 
 
