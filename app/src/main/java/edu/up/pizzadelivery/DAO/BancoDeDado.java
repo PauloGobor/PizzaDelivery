@@ -32,12 +32,12 @@ public class BancoDeDado extends SQLiteOpenHelper {
     private static final String SQL_CRIAR_TABELA_USUARIO =
             "CREATE TABLE IF NOT EXISTS " +
                     Contrato.TabelaUsuario.NOME_DA_TABELA + "(" +
-                    Contrato.TabelaUsuario.COLUNA_EMAIL + TIPO_INTEIRO + " PRIMARY KEY" + VIRGULA +
+                    Contrato.TabelaUsuario.COLUNA_ID + TIPO_INTEIRO + " PRIMARY KEY AUTOINCREMENT" + VIRGULA +
+                    Contrato.TabelaUsuario.COLUNA_EMAIL + TIPO_TEXTO + VIRGULA +
                     Contrato.TabelaUsuario.COLUNA_NOME + TIPO_TEXTO + VIRGULA +
                     Contrato.TabelaUsuario.COLUNA_CPF + TIPO_TEXTO + VIRGULA +
                     Contrato.TabelaUsuario.COLUNA_TELEFONE + TIPO_TEXTO + VIRGULA +
                     Contrato.TabelaUsuario.COLUNA_SENHA + TIPO_TEXTO + VIRGULA +
-                    Contrato.TabelaUsuario.COLUNA_CONFSENHA + TIPO_TEXTO + VIRGULA +
                     Contrato.TabelaUsuario.COLUNA_ENDERECOID + TIPO_INTEIRO + VIRGULA +
                     " FOREIGN KEY (" + Contrato.TabelaUsuario.COLUNA_ENDERECOID + ")" +
                     " REFERENCES " + Contrato.TabelaEndereco.NOME_DA_TABELA +
@@ -187,7 +187,7 @@ public class BancoDeDado extends SQLiteOpenHelper {
         values.put(Contrato.TabelaUsuario.COLUNA_CPF, usuario.getCpf());
         values.put(Contrato.TabelaUsuario.COLUNA_TELEFONE, usuario.getTelefone());
         values.put(Contrato.TabelaUsuario.COLUNA_SENHA, usuario.getSenha());
-        values.put(Contrato.TabelaUsuario.COLUNA_CONFSENHA, usuario.getConfSenha());
+
 // preenche a tabela endereco
         //provavelmente mude  *****
         values.put(Contrato.TabelaEndereco.COLUNA_CEP, usuario.getEndereco().getCep());

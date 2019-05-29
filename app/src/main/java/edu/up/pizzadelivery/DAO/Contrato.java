@@ -13,12 +13,12 @@ public final class Contrato {
 
     public static abstract class TabelaUsuario implements BaseColumns {
         public static final String NOME_DA_TABELA = "tb_Usuario";
+        public static final String COLUNA_ID = "Id";
         public static final String COLUNA_EMAIL = "Email";
         public static final String COLUNA_NOME = "Nome";
         public static final String COLUNA_CPF = "Cpf";
         public static final String COLUNA_TELEFONE = "Telefone";
         public static final String COLUNA_SENHA = "Senha";
-        public static final String COLUNA_CONFSENHA = "ConfSenha";
         public static final String COLUNA_ENDERECOID = "Fk_EnderecoId";
 
     }
