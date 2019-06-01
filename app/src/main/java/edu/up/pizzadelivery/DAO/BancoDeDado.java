@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import java.util.ArrayList;
 
@@ -139,13 +140,14 @@ public class BancoDeDado extends SQLiteOpenHelper {
             "CREATE TABLE IF NOT EXISTS " +
                     Contrato.TabelaPedido.NOME_DA_TABELA + "(" +
                     Contrato.TabelaPedido.COLUNA_ID + TIPO_INTEIRO + " PRIMARY KEY AUTOINCREMENT" + VIRGULA +
+                    Contrato.TabelaPedido.COLUNA_USUARIO + TIPO_INTEIRO + VIRGULA + //FK
                     Contrato.TabelaPedido.COLUNA_ITEM_PEDIDO + TIPO_INTEIRO + VIRGULA + //FK
                     Contrato.TabelaPedido.COLUNA_FORMA_PAGAMENTO + TIPO_INTEIRO + VIRGULA +//FK
                     Contrato.TabelaPedido.COLUNA_ENDERECO + TIPO_INTEIRO + VIRGULA +
                     Contrato.TabelaPedido.COLUNA_DATA + TIPO_TEXTO + VIRGULA +
                     " FOREIGN KEY (" + Contrato.TabelaPedido.COLUNA_USUARIO + ")" +
                     " REFERENCES " + Contrato.TabelaUsuario.NOME_DA_TABELA +
-                    "(" + Contrato.TabelaUsuario.COLUNA_EMAIL + ")" + VIRGULA +
+                    "(" + Contrato.TabelaUsuario.COLUNA_ID + ")" + VIRGULA +
                     " FOREIGN KEY (" + Contrato.TabelaPedido.COLUNA_ITEM_PEDIDO + ")" +
                     " REFERENCES " + Contrato.TabelaItemPedido.NOME_DA_TABELA +
                     "(" + Contrato.TabelaItemPedido.COLUNA_ID + ")" + VIRGULA +
@@ -155,6 +157,7 @@ public class BancoDeDado extends SQLiteOpenHelper {
                     " FOREIGN KEY (" + Contrato.TabelaPedido.COLUNA_ENDERECO + ")" +
                     " REFERENCES " + Contrato.TabelaEndereco.NOME_DA_TABELA +
                     "(" + Contrato.TabelaEndereco.COLUNA_ID + ")" + ")";
+
 
 
     @Override
@@ -170,12 +173,16 @@ public class BancoDeDado extends SQLiteOpenHelper {
         db.execSQL(SQL_CRIAR_TABELA_PIZZA);
         db.execSQL(SQL_CRIAR_TABELA_ITEMPEDIDO);
         db.execSQL(SQL_CRIAR_TABELA_PEDIDO);
+
+        Log.i("Criar banco",SQL_CRIAR_TABELA_USUARIO);
+
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
     }
+
 
     public long CadastrarUsuario(Usuario usuario) {
         SQLiteDatabase db = getWritableDatabase();
@@ -187,9 +194,10 @@ public class BancoDeDado extends SQLiteOpenHelper {
         values.put(Contrato.TabelaUsuario.COLUNA_CPF, usuario.getCpf());
         values.put(Contrato.TabelaUsuario.COLUNA_TELEFONE, usuario.getTelefone());
         values.put(Contrato.TabelaUsuario.COLUNA_SENHA, usuario.getSenha());
-
+        //inseri os dados na tabela usuario
+        db.insert(Contrato.TabelaUsuario.NOME_DA_TABELA,null,values);
 // preenche a tabela endereco
-        //provavelmente mude  *****
+        // *****
         values.put(Contrato.TabelaEndereco.COLUNA_CEP, usuario.getEndereco().getCep());
         values.put(Contrato.TabelaEndereco.COLUNA_BAIRRO, usuario.getEndereco().getBairro());
         values.put(Contrato.TabelaEndereco.COLUNA_RUA, usuario.getEndereco().getRua());
@@ -197,11 +205,9 @@ public class BancoDeDado extends SQLiteOpenHelper {
         values.put(Contrato.TabelaEndereco.COLUNA_COMPLEMENTO, usuario.getEndereco().getComplemento());
         values.put(Contrato.TabelaEndereco.COLUNA_CIDADE, usuario.getEndereco().getCidade());
         values.put(Contrato.TabelaEndereco.COLUNA_USUARIOID, usuario.getId());
-        //
-        //values.put(Contrato.TabelaUsuario.COLUNA_ENDERECOID,usuario.getEndereco().getIdEndereco() );
+        db.insert(Contrato.TabelaEndereco.NOME_DA_TABELA, null, values);
 
         return db.insert(Contrato.TabelaUsuario.NOME_DA_TABELA, null, values);
-
     }
 
 
@@ -320,8 +326,8 @@ public class BancoDeDado extends SQLiteOpenHelper {
     //  ##### METODO PARA RETORNAR ALTERAR DADOS DO USUARIO #######   ///
     //  ########################################################################   ///
 
-        public long alterarUsuario(Usuario usuario){
-        SQLiteDatabase db =  getWritableDatabase();
+    public long alterarUsuario(Usuario usuario) {
+        SQLiteDatabase db = getWritableDatabase();
         ContentValues values = new ContentValues();
         // DECLARAR DADOS QUE SERAO ALTERADOS
 
@@ -331,7 +337,7 @@ public class BancoDeDado extends SQLiteOpenHelper {
 
         };
 
-        return db.update(Contrato.TabelaUsuario.NOME_DA_TABELA, values,condicao,argumentos);
+        return db.update(Contrato.TabelaUsuario.NOME_DA_TABELA, values, condicao, argumentos);
 
     }
     //  ########################################################################   ///

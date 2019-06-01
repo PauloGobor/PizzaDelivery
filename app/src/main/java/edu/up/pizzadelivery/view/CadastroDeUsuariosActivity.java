@@ -98,6 +98,7 @@ public class CadastroDeUsuariosActivity extends AppCompatActivity {
                             usuario.getEndereco().setComplemento(edtComplemento.getText().toString());
 
                             /// 3- salvar dados Usuario e endereco
+
                             RtVerCad = (long) UsuarioDAO.CadastrarUsuario(CadastroDeUsuariosActivity.this, usuario);
                             /// 5- retornar confirmacao de cadastro ou erro (Toast ou AlertDialog)
                             if(RtVerCad == 0){

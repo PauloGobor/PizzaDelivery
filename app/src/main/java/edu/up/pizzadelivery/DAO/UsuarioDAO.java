@@ -22,6 +22,7 @@ public class UsuarioDAO {
 
     }
 
+
     public static boolean ValidarLogin(Context context, Login login){
 
         db = new BancoDeDado(context);
