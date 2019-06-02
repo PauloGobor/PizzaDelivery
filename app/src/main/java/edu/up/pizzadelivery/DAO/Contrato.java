@@ -63,7 +63,7 @@ public final class Contrato {
         public static final String COLUNA_ID = "TamanhoId";
         public static final String COLUNA_NOME = "Nome";
         public static final String COLUNA_QTDSABOR = "QtdSabor";
-        public static final String COLUNA_PRECO = "PRECO";
+        public static final String COLUNA_PRECO = "Preco";
 
     }
 

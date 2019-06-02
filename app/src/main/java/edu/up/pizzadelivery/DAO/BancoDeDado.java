@@ -30,6 +30,9 @@ public class BancoDeDado extends SQLiteOpenHelper {
 
     }
 
+    //   ############################################################
+    //   ####### STRING DE CRIACAO DAS TABELAS #####################
+    //   ###########################################################
     private static final String SQL_CRIAR_TABELA_USUARIO =
             "CREATE TABLE IF NOT EXISTS " +
                     Contrato.TabelaUsuario.NOME_DA_TABELA + "(" +
@@ -158,7 +161,21 @@ public class BancoDeDado extends SQLiteOpenHelper {
                     " REFERENCES " + Contrato.TabelaEndereco.NOME_DA_TABELA +
                     "(" + Contrato.TabelaEndereco.COLUNA_ID + ")" + ")";
 
+    private static final String SQL_INSERIR_BROTO = "INSERT INTO "+
+            Contrato.TabelaTamanho.NOME_DA_TABELA +
+            "(Nome, QtdSabor, Preco) VALUES ('Broto', 1, 15)";
 
+    private static final String SQL_INSERIR_MEDIA = "INSERT INTO "+
+            Contrato.TabelaTamanho.NOME_DA_TABELA +
+            "(Nome, QtdSabor, Preco) VALUES ('Média', 1, 22)";
+
+    private static final String SQL_INSERIR_GRANDE = "INSERT INTO "+
+            Contrato.TabelaTamanho.NOME_DA_TABELA +
+            "(Nome, QtdSabor, Preco) VALUES ('Grande', 1, 30)";
+
+    private static final String SQL_INSERIR_BIG = "INSERT INTO "+
+            Contrato.TabelaTamanho.NOME_DA_TABELA +
+            "(Nome, QtdSabor, Preco) VALUES ('Big', 4, 40)";
 
     @Override
     public void onCreate(SQLiteDatabase db) {
@@ -173,6 +190,11 @@ public class BancoDeDado extends SQLiteOpenHelper {
         db.execSQL(SQL_CRIAR_TABELA_PIZZA);
         db.execSQL(SQL_CRIAR_TABELA_ITEMPEDIDO);
         db.execSQL(SQL_CRIAR_TABELA_PEDIDO);
+        Log.i("Criar banco",SQL_INSERIR_BROTO);
+        db.execSQL(SQL_INSERIR_BROTO);
+        db.execSQL(SQL_INSERIR_MEDIA);
+        db.execSQL(SQL_INSERIR_GRANDE);
+        db.execSQL(SQL_INSERIR_BIG);
 
     }
 
@@ -206,7 +228,6 @@ public class BancoDeDado extends SQLiteOpenHelper {
 
         return db.insert(Contrato.TabelaUsuario.NOME_DA_TABELA, null, values);
     }
-
 
     public boolean ValidadaLogin(Login login) {
 
@@ -276,7 +297,9 @@ public class BancoDeDado extends SQLiteOpenHelper {
 
         String[] colunas = {
                 Contrato.TabelaTamanho.COLUNA_ID,
-                Contrato.TabelaTamanho.COLUNA_NOME
+                Contrato.TabelaTamanho.COLUNA_NOME,
+                Contrato.TabelaTamanho.COLUNA_QTDSABOR,
+                Contrato.TabelaTamanho.COLUNA_PRECO
         };
 
         Cursor cursor = db.query(Contrato.TabelaTamanho.NOME_DA_TABELA, colunas,
@@ -286,7 +309,10 @@ public class BancoDeDado extends SQLiteOpenHelper {
         if (cursor.getCount() > 0) {
             do {
                 Tamanho t = new Tamanho();
+                t.setId(cursor.getInt(0));
                 t.setNome(cursor.getString(1));
+                t.setQtdSabores(cursor.getInt(2));
+                t.setPreco(cursor.getDouble(3));
                 tamanhos.add(t);
             } while (cursor.moveToNext());
         }
@@ -351,7 +377,5 @@ public class BancoDeDado extends SQLiteOpenHelper {
         return db.delete(Contrato.TabelaUsuario.NOME_DA_TABELA,
                 condicao, argumentos);
     }
-
-
 }
 

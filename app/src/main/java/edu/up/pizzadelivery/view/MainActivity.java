@@ -1,6 +1,7 @@
 package edu.up.pizzadelivery.view;
 
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -8,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import edu.up.pizzadelivery.DAO.Contrato;
 import edu.up.pizzadelivery.DAO.UsuarioDAO;
 import edu.up.pizzadelivery.R;
 import edu.up.pizzadelivery.model.Criptografia;
@@ -19,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
                      edtSenha;
     private Button   btnEntrar;
     private boolean  verificacao;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,8 +74,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     ///Comando que chama a tela de cardápio
-    public void TelaCardapio(View view) {
-        Intent cardapio = new Intent(this, CardapioActivity.class);
+    public void TelaTamanhos(View view) {
+        Intent cardapio = new Intent(this, EscolherTamanhoActivity.class);
         startActivity(cardapio);
 
     }
