@@ -4,11 +4,18 @@ import java.io.Serializable;
 
 public class Tamanho implements Serializable {
 
-
+    private int id;
     private String nome;
     private int qtdSabores;
     private double preco;
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getNome() {
         return nome;

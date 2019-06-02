@@ -4,12 +4,21 @@ import java.io.Serializable;
 
 public class Endereco implements Serializable {
 
+    private int id;
     private String cep;
     private String Rua;
     private String bairro;
     private String cidade;
     private int numero;
     private String complemento;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getCep() {
         return cep;

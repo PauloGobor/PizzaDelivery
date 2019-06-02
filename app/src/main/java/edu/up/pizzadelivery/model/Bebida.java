@@ -4,9 +4,17 @@ import java.io.Serializable;
 
 public class Bebida implements Serializable {
 
-
+    private int id;
     private String nome;
     private double preco;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getNome() {
         return nome;

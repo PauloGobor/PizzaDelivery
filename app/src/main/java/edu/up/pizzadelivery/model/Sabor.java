@@ -5,8 +5,17 @@ import java.util.List;
 
 public class Sabor implements Serializable {
 
+    private int id;
     private String nome;
     private List<Ingrediente> ingredientes;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getNome() {
         return nome;

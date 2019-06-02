@@ -5,7 +5,11 @@ import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import java.util.ArrayList;
+
+import edu.up.pizzadelivery.DAO.TamanhoDAO;
 import edu.up.pizzadelivery.R;
+import edu.up.pizzadelivery.model.Tamanho;
 
 public class EscolherTamanhoActivity extends AppCompatActivity {
 
@@ -18,9 +22,18 @@ public class EscolherTamanhoActivity extends AppCompatActivity {
 
         lstTamanhos = (ListView) findViewById(R.id.lstTamanhos);
 
-//        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-//                android.R.layout.simple_list_item_1, lstTamanhos);
+        final ArrayList<Tamanho> tamanhosArrayList = TamanhoDAO.retornarTamanhos(this);
+        String[] tamanhos = new String[tamanhosArrayList.size()];
 
-//        lstTamanhos.setAdapter(adapter);
+        for (int i = 0; i < tamanhosArrayList.size(); i++){
+            tamanhos[i] = tamanhosArrayList.get(i).getNome();
+        }
+
+        //O adapter é componente que prepara os dados para o ListView
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_list_item_1, tamanhos);
+        //setAdapter é método que vai popular os dados dentro do ListView
+        lstTamanhos.setAdapter(adapter);
+
     }
 }

@@ -5,8 +5,17 @@ import java.util.List;
 
 public class Pizza implements Serializable {
 
+    private int id;
     private List<Sabor> sabor;
     private Tamanho tamanho;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public List<Sabor> getSabor() {
         return sabor;

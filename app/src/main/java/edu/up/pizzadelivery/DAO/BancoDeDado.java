@@ -174,15 +174,12 @@ public class BancoDeDado extends SQLiteOpenHelper {
         db.execSQL(SQL_CRIAR_TABELA_ITEMPEDIDO);
         db.execSQL(SQL_CRIAR_TABELA_PEDIDO);
 
-        Log.i("Criar banco",SQL_CRIAR_TABELA_USUARIO);
-
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
     }
-
 
     public long CadastrarUsuario(Usuario usuario) {
         SQLiteDatabase db = getWritableDatabase();
@@ -195,7 +192,7 @@ public class BancoDeDado extends SQLiteOpenHelper {
         values.put(Contrato.TabelaUsuario.COLUNA_TELEFONE, usuario.getTelefone());
         values.put(Contrato.TabelaUsuario.COLUNA_SENHA, usuario.getSenha());
         //inseri os dados na tabela usuario
-        db.insert(Contrato.TabelaUsuario.NOME_DA_TABELA,null,values);
+        db.insert(Contrato.TabelaUsuario.NOME_DA_TABELA, null, values);
 // preenche a tabela endereco
         // *****
         values.put(Contrato.TabelaEndereco.COLUNA_CEP, usuario.getEndereco().getCep());
