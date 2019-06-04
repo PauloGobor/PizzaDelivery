@@ -63,13 +63,15 @@ public class BancoDeDado extends SQLiteOpenHelper {
             "CREATE TABLE IF NOT EXISTS " +
                     Contrato.TabelaBebida.NOME_DA_TABELA + "(" +
                     Contrato.TabelaBebida.COLUNA_ID + TIPO_INTEIRO + " PRIMARY KEY AUTOINCREMENT" + VIRGULA +
-                    Contrato.TabelaBebida.COLUNA_NOME + TIPO_TEXTO + ")";
+                    Contrato.TabelaBebida.COLUNA_NOME + TIPO_TEXTO + VIRGULA +
+                    Contrato.TabelaBebida.COLUNA_PRECO + ")";
 
     private static final String SQL_CRIAR_TABELA_BORDA =
             "CREATE TABLE IF NOT EXISTS " +
                     Contrato.TabelaBorda.NOME_DA_TABELA + "(" +
                     Contrato.TabelaBorda.COLUNA_ID + TIPO_INTEIRO + " PRIMARY KEY AUTOINCREMENT" + VIRGULA +
-                    Contrato.TabelaBorda.COLUNA_NOME + TIPO_TEXTO + ")";
+                    Contrato.TabelaBorda.COLUNA_NOME + TIPO_TEXTO + VIRGULA +
+                    Contrato.TabelaBorda.COLUNA_PRECO + TIPO_REAL + ")";
 
 
     private static final String SQL_CRIAR_TABELA_INGREDIENTE =
@@ -161,21 +163,165 @@ public class BancoDeDado extends SQLiteOpenHelper {
                     " REFERENCES " + Contrato.TabelaEndereco.NOME_DA_TABELA +
                     "(" + Contrato.TabelaEndereco.COLUNA_ID + ")" + ")";
 
-    private static final String SQL_INSERIR_BROTO = "INSERT INTO "+
+//    insere tamanhos
+
+    private static final String SQL_INSERIR_BROTO = "INSERT INTO " +
             Contrato.TabelaTamanho.NOME_DA_TABELA +
             "(Nome, QtdSabor, Preco) VALUES ('Broto', 1, 15)";
 
-    private static final String SQL_INSERIR_MEDIA = "INSERT INTO "+
+    private static final String SQL_INSERIR_MEDIA = "INSERT INTO " +
             Contrato.TabelaTamanho.NOME_DA_TABELA +
             "(Nome, QtdSabor, Preco) VALUES ('Média', 1, 22)";
 
-    private static final String SQL_INSERIR_GRANDE = "INSERT INTO "+
+
+    private static final String SQL_INSERIR_GRANDE = "INSERT INTO " +
             Contrato.TabelaTamanho.NOME_DA_TABELA +
             "(Nome, QtdSabor, Preco) VALUES ('Grande', 1, 30)";
 
-    private static final String SQL_INSERIR_BIG = "INSERT INTO "+
+    private static final String SQL_INSERIR_BIG = "INSERT INTO " +
             Contrato.TabelaTamanho.NOME_DA_TABELA +
             "(Nome, QtdSabor, Preco) VALUES ('Big', 4, 40)";
+
+    /// insere formas de pagamentos
+
+    private static final String SQL_INSERIR_FP_DIN = "INSERT INTO " +
+            Contrato.TabelaFormaPagamento.NOME_DA_TABELA +
+            "(Nome) VALUES ('Dinheiro')";
+
+    private static final String SQL_INSERIR_FP_CDT = "INSERT INTO " +
+            Contrato.TabelaFormaPagamento.NOME_DA_TABELA +
+            "(Nome) VALUES ('Credito')";
+
+    private static final String SQL_INSERIR_FP_DBT = "INSERT INTO " +
+            Contrato.TabelaFormaPagamento.NOME_DA_TABELA +
+            "(Nome) VALUES ('Débito')";
+
+    //insere bebidas
+
+    private static final String SQL_INSERIR_BEBIDA_CC = "INSERT INTO " +
+            Contrato.TabelaBebida.NOME_DA_TABELA +
+            "(Nome, Preco) VALUES ('Coca-Cola 2L', 9)";
+
+    private static final String SQL_INSERIR_BEBIDA_FL = "INSERT INTO " +
+            Contrato.TabelaBebida.NOME_DA_TABELA +
+            "(Nome, Preco) VALUES ('Fanta Laranja 2L', 7)";
+
+    private static final String SQL_INSERIR_BEBIDA_GA = "INSERT INTO " +
+            Contrato.TabelaBebida.NOME_DA_TABELA +
+            "(Nome, Preco) VALUES ('Guaraná 2L', 7)";
+
+
+    // insere bordas
+
+    private static final String SQL_INSERIR_BORDA_CH = "INSERT INTO " +
+            Contrato.TabelaBorda.NOME_DA_TABELA +
+            "(Nome, Preco) VALUES ('Cheddar', 4)";
+
+
+    private static final String SQL_INSERIR_BORDA_CT = "INSERT INTO " +
+            Contrato.TabelaBorda.NOME_DA_TABELA +
+            "(Nome, Preco) VALUES ('Catupiry', 4)";
+
+    private static final String SQL_INSERIR_BORDA_CP = "INSERT INTO " +
+            Contrato.TabelaBorda.NOME_DA_TABELA +
+            "(Nome, Preco) VALUES ('Chocolate Preto', 5)";
+
+//    //insere ingredientes
+//    private static final String SQL_INSERIR_INGREDIENTE_1 = "INSERT INTO " +
+//            Contrato.TabelaIngrediente.NOME_DA_TABELA +
+//            "(Nome) VALUES ('Provolone')";
+//
+//    private static final String SQL_INSERIR_INGREDIENTE_2 = "INSERT INTO " +
+//            Contrato.TabelaIngrediente.NOME_DA_TABELA +
+//            "(Nome) VALUES ('Mussarella')";
+//
+//    private static final String SQL_INSERIR_INGREDIENTE_3 = "INSERT INTO " +
+//            Contrato.TabelaIngrediente.NOME_DA_TABELA +
+//            "(Nome) VALUES ('Calabresa')";
+//
+//    private static final String SQL_INSERIR_INGREDIENTE_4 = "INSERT INTO " +
+//            Contrato.TabelaIngrediente.NOME_DA_TABELA +
+//            "(Nome) VALUES ('Manjericao')";
+//
+//    private static final String SQL_INSERIR_INGREDIENTE_5 = "INSERT INTO " +
+//            Contrato.TabelaIngrediente.NOME_DA_TABELA +
+//            "(Nome) VALUES ('Manjericao')";
+//
+//    private static final String SQL_INSERIR_INGREDIENTE_6 = "INSERT INTO " +
+//            Contrato.TabelaIngrediente.NOME_DA_TABELA +
+//            "(Nome) VALUES ('Presunto')";
+//
+//    private static final String SQL_INSERIR_INGREDIENTE_7 = "INSERT INTO " +
+//            Contrato.TabelaIngrediente.NOME_DA_TABELA +
+//            "(Nome) VALUES ('Azeitona')";
+//
+//    private static final String SQL_INSERIR_INGREDIENTE_8 = "INSERT INTO " +
+//            Contrato.TabelaIngrediente.NOME_DA_TABELA +
+//            "(Nome) VALUES ('Cebola')";
+//
+//    private static final String SQL_INSERIR_INGREDIENTE_9 = "INSERT INTO " +
+//            Contrato.TabelaIngrediente.NOME_DA_TABELA +
+//            "(Nome) VALUES ('Tomate')";
+//
+//    private static final String SQL_INSERIR_INGREDIENTE_10 = "INSERT INTO " +
+//            Contrato.TabelaIngrediente.NOME_DA_TABELA +
+//            "(Nome) VALUES ('Catupiry')";
+//
+//    private static final String SQL_INSERIR_INGREDIENTE_11 = "INSERT INTO " +
+//            Contrato.TabelaIngrediente.NOME_DA_TABELA +
+//            "(Nome) VALUES ('Gorgonzola')";
+//
+//    private static final String SQL_INSERIR_INGREDIENTE_12 = "INSERT INTO " +
+//            Contrato.TabelaIngrediente.NOME_DA_TABELA +
+//            "(Nome) VALUES ('Cheddar')";
+//
+//    private static final String SQL_INSERIR_INGREDIENTE_13 = "INSERT INTO " +
+//            Contrato.TabelaIngrediente.NOME_DA_TABELA +
+//            "(Nome) VALUES ('Chocolate')";
+//
+//    private static final String SQL_INSERIR_INGREDIENTE_14 = "INSERT INTO " +
+//            Contrato.TabelaIngrediente.NOME_DA_TABELA +
+//            "(Nome) VALUES ('Chocolate Branco')";
+//
+//
+//
+//
+//    // insere sabores
+//
+//    private static final String SQL_INSERIR_SABOR_FC = "INSERT INTO " +
+//            Contrato.TabelaBorda.NOME_DA_TABELA +
+//            "(Nome) VALUES ('Frango c/ Catupiry')";
+//
+//    private static final String SQL_INSERIR_SABOR_CA = "INSERT INTO " +
+//            Contrato.TabelaBorda.NOME_DA_TABELA +
+//            "(Nome) VALUES ('Calabresa')";
+//
+//    private static final String SQL_INSERIR_SABOR_PI = "INSERT INTO " +
+//            Contrato.TabelaBorda.NOME_DA_TABELA +
+//            "(Nome) VALUES ('Pizzaiolo')";
+//
+//    private static final String SQL_INSERIR_SABOR_RO = "INSERT INTO " +
+//            Contrato.TabelaBorda.NOME_DA_TABELA +
+//            "(Nome) VALUES ('Romana')";
+//
+//    private static final String SQL_INSERIR_SABOR_MA = "INSERT INTO " +
+//            Contrato.TabelaBorda.NOME_DA_TABELA +
+//            "(Nome) VALUES ('Marguerita')";
+//
+//    private static final String SQL_INSERIR_SABOR_TO = "INSERT INTO " +
+//            Contrato.TabelaBorda.NOME_DA_TABELA +
+//            "(Nome) VALUES ('Toscana')";
+//
+//    private static final String SQL_INSERIR_SABOR_PO = "INSERT INTO " +
+//            Contrato.TabelaBorda.NOME_DA_TABELA +
+//            "(Nome) VALUES ('Portuguesa')";
+//
+//    private static final String SQL_INSERIR_SABOR_4Q = "INSERT INTO " +
+//            Contrato.TabelaBorda.NOME_DA_TABELA +
+//            "(Nome) VALUES ('4 Queijos')";
+//
+//    //
+
 
     @Override
     public void onCreate(SQLiteDatabase db) {
@@ -190,11 +336,26 @@ public class BancoDeDado extends SQLiteOpenHelper {
         db.execSQL(SQL_CRIAR_TABELA_PIZZA);
         db.execSQL(SQL_CRIAR_TABELA_ITEMPEDIDO);
         db.execSQL(SQL_CRIAR_TABELA_PEDIDO);
-        Log.i("Criar banco",SQL_INSERIR_BROTO);
+        //insere dados ao criar banco
+        //Log.i("Criar banco", SQL_INSERIR_BROTO);
+        //TAMANHO
         db.execSQL(SQL_INSERIR_BROTO);
         db.execSQL(SQL_INSERIR_MEDIA);
         db.execSQL(SQL_INSERIR_GRANDE);
         db.execSQL(SQL_INSERIR_BIG);
+        //FORMA PAGAMENTO
+        db.execSQL(SQL_INSERIR_FP_CDT);
+        db.execSQL(SQL_INSERIR_FP_DBT);
+        db.execSQL(SQL_INSERIR_FP_DIN);
+        //BEBIDA
+        db.execSQL(SQL_INSERIR_BEBIDA_CC);
+        db.execSQL(SQL_INSERIR_BEBIDA_FL);
+        db.execSQL(SQL_INSERIR_BEBIDA_GA);
+        //BORDA
+        db.execSQL(SQL_INSERIR_BORDA_CH);
+        db.execSQL(SQL_INSERIR_BORDA_CT);
+        db.execSQL(SQL_INSERIR_BORDA_CP);
+
 
     }
 

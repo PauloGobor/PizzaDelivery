@@ -6,6 +6,7 @@ public class Borda implements Serializable {
 
     private int id;
     private int nome;
+    private double preco;
 
     public int getId() {
         return id;
@@ -23,4 +24,11 @@ public class Borda implements Serializable {
         this.nome = nome;
     }
 
+    public double getPreco() {
+        return preco;
+    }
+
+    public void setPreco(double preco) {
+        this.preco = preco;
+    }
 }

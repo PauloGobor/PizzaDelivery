@@ -14,10 +14,4 @@ public class FormaPagamentoDAO {
         return banco.RetornarFormasPagamento();
     }
 
-
-
-
-
-
-
 }

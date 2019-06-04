@@ -15,7 +15,9 @@
         android:roundIcon="@mipmap/ic_launcher_pizzadelivery_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".view.PerfilUsuarioActivity"></activity>
+        <activity android:name=".view.BebidasActivity"></activity>
+        <activity android:name=".view.RelatorioPedidoActivity" />
+        <activity android:name=".view.PerfilUsuarioActivity" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").

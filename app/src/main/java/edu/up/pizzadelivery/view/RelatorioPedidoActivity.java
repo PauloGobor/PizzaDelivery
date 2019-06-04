@@ -2,17 +2,15 @@ package edu.up.pizzadelivery.view;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import edu.up.pizzadelivery.R;
-import edu.up.pizzadelivery.model.Tamanho;
 
-public class CardapioActivity extends AppCompatActivity {
+import edu.up.pizzadelivery.R;
+
+public class RelatorioPedidoActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cardapio);
-
-        Tamanho tamanho = (Tamanho) getIntent().getSerializableExtra("TAMANHO");
+        setContentView(R.layout.activity_relatorio_pedido);
 
     }
 }

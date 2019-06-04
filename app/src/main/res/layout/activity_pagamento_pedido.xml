@@ -9,7 +9,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.2"
+        android:layout_weight="0.3"
         android:orientation="vertical">
 
         <TextView
@@ -25,14 +25,15 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="2"
+        android:layout_weight="1"
         android:orientation="vertical">
 
         <!-- aqui ficara as formas de pagamento-->
         <ListView
             android:id="@+id/ListFormaPagamento"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="0dp"
+            android:layout_weight="0.6">
 
         </ListView>
     </LinearLayout>
@@ -92,7 +93,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_weight="0.4"
         android:orientation="vertical">
 
         <!-- aqui ficara as formas de pagamento-->

@@ -47,7 +47,7 @@ public final class Contrato {
         public static final String NOME_DA_TABELA = "tb_Bebida";
         public static final String COLUNA_ID = "BebidaId";
         public static final String COLUNA_NOME = "Nome";
-
+        public static final String COLUNA_PRECO = "Preco";
 
     }
 
@@ -55,6 +55,7 @@ public final class Contrato {
         public static final String NOME_DA_TABELA = "tb_Borda";
         public static final String COLUNA_ID = "BordaId";
         public static final String COLUNA_NOME = "Nome";
+        public static final String COLUNA_PRECO = "Preco";
 
     }
 

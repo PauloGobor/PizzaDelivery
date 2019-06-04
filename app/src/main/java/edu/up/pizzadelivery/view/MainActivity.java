@@ -13,6 +13,7 @@ import edu.up.pizzadelivery.DAO.Contrato;
 import edu.up.pizzadelivery.DAO.UsuarioDAO;
 import edu.up.pizzadelivery.R;
 import edu.up.pizzadelivery.model.Criptografia;
+import edu.up.pizzadelivery.model.FormaPagamento;
 import edu.up.pizzadelivery.model.Login;
 
 public class MainActivity extends AppCompatActivity {
