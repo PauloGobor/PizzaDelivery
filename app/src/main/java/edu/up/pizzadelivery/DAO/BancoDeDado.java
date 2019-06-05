@@ -9,6 +9,7 @@ import android.util.Log;
 
 import java.util.ArrayList;
 
+import edu.up.pizzadelivery.model.Bebida;
 import edu.up.pizzadelivery.model.FormaPagamento;
 import edu.up.pizzadelivery.model.Ingrediente;
 import edu.up.pizzadelivery.model.Login;
@@ -479,6 +480,36 @@ public class BancoDeDado extends SQLiteOpenHelper {
         }
         return tamanhos;
     }
+
+    //  ########################################################################   ///
+    //  ##### METODO PARA RETORNAR BEBIDAS EM FORMA DE LISTA #######   ///
+    //  ########################################################################   ///
+    public ArrayList<Bebida> RetornarBebidas() {
+        ArrayList<Bebida> bebidas = new ArrayList<Bebida>();
+        SQLiteDatabase db = getReadableDatabase();
+
+        String[] colunas = {
+                Contrato.TabelaTamanho.COLUNA_ID,
+                Contrato.TabelaTamanho.COLUNA_NOME,
+
+        };
+
+        Cursor cursor = db.query(Contrato.TabelaBebida.NOME_DA_TABELA, colunas,
+                null, null, null, null, null, null);
+
+        cursor.moveToFirst();
+        if (cursor.getCount() > 0) {
+            do {
+                Bebida b = new Bebida();
+                b.setId(cursor.getInt(0));
+                b.setNome(cursor.getString(1));
+
+                bebidas.add(b);
+            } while (cursor.moveToNext());
+        }
+        return bebidas;
+    }
+
 
     //  ########################################################################   ///
     //  ##### METODO PARA RETORNAR INGREDIENTES DE PIZZA EM FORMA DE LISTA #######   ///

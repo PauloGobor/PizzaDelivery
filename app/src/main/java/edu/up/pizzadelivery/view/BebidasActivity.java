@@ -7,6 +7,7 @@ import android.widget.ListView;
 
 import java.util.ArrayList;
 
+import edu.up.pizzadelivery.DAO.BebidaDAO;
 import edu.up.pizzadelivery.DAO.TamanhoDAO;
 import edu.up.pizzadelivery.R;
 import edu.up.pizzadelivery.model.Bebida;
@@ -22,7 +23,17 @@ public class BebidasActivity extends AppCompatActivity {
 
         lstBebidas = (ListView) findViewById(R.id.ListBebidas);
 
+        final ArrayList<Bebida> bebidasArrayList = BebidaDAO.retornarBebidas(this);
+        String[] bebidas = new String[bebidasArrayList.size()];
 
+        for (int i = 0; i < bebidasArrayList.size(); i++) {
+            bebidas[i] = bebidasArrayList.get(i).getNome();
+        }
+        //O adapter é componente que prepara os dados para o ListView
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_list_item_1, bebidas);
+        //setAdapter é método que vai popular os dados dentro do ListView
+        lstBebidas.setAdapter(adapter);
 
 
     }
