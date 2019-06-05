@@ -291,7 +291,7 @@ public class BancoDeDado extends SQLiteOpenHelper {
 //
 //    private static final String SQL_INSERIR_SABOR_FC = "INSERT INTO " +
 //            Contrato.TabelaBorda.NOME_DA_TABELA +
-//            "(Nome) VALUES ('Frango c/ Catupiry')";
+//            "(Nome, Fk_IngredienteId) VALUES ('Frango c/ Catupiry', 1)";
 //
 //    private static final String SQL_INSERIR_SABOR_CA = "INSERT INTO " +
 //            Contrato.TabelaBorda.NOME_DA_TABELA +
