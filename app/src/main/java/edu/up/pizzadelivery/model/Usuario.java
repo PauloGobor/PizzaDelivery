@@ -12,7 +12,6 @@ public class Usuario implements Serializable {
     private String telefone;
     private String senha;
     private String confSenha;
-    private Endereco endereco;
 
     public int getId() {
         return id;
@@ -70,11 +69,4 @@ public class Usuario implements Serializable {
         this.confSenha = confSenha;
     }
 
-    public Endereco getEndereco() {
-        return endereco;
-    }
-
-    public void setEndereco(Endereco endereco) {
-        this.endereco = endereco;
-    }
 }

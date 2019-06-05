@@ -11,6 +11,15 @@ public class Endereco implements Serializable {
     private String cidade;
     private int numero;
     private String complemento;
+    private Usuario usuario;
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
 
     public int getId() {
         return id;
