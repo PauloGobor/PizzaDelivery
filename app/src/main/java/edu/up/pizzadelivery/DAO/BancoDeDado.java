@@ -5,14 +5,13 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
 
 import java.util.ArrayList;
 
 import edu.up.pizzadelivery.model.Bebida;
 import edu.up.pizzadelivery.model.FormaPagamento;
-import edu.up.pizzadelivery.model.Ingrediente;
 import edu.up.pizzadelivery.model.Login;
+import edu.up.pizzadelivery.model.Sabor;
 import edu.up.pizzadelivery.model.Tamanho;
 import edu.up.pizzadelivery.model.Usuario;
 
@@ -42,7 +41,9 @@ public class BancoDeDado extends SQLiteOpenHelper {
                     Contrato.TabelaUsuario.COLUNA_NOME + TIPO_TEXTO + VIRGULA +
                     Contrato.TabelaUsuario.COLUNA_CPF + TIPO_TEXTO + VIRGULA +
                     Contrato.TabelaUsuario.COLUNA_TELEFONE + TIPO_TEXTO + VIRGULA +
-                    Contrato.TabelaUsuario.COLUNA_SENHA + TIPO_TEXTO + ")";  //FK
+                    Contrato.TabelaUsuario.COLUNA_SENHA + TIPO_TEXTO +
+
+                    ")";  //FK
 
 
     private static final String SQL_CRIAR_TABELA_ENDERECO =
@@ -75,21 +76,11 @@ public class BancoDeDado extends SQLiteOpenHelper {
                     Contrato.TabelaBorda.COLUNA_PRECO + TIPO_REAL + ")";
 
 
-    private static final String SQL_CRIAR_TABELA_INGREDIENTE =
-            "CREATE TABLE IF NOT EXISTS " +
-                    Contrato.TabelaIngrediente.NOME_DA_TABELA + "(" +
-                    Contrato.TabelaIngrediente.COLUNA_ID + TIPO_INTEIRO + " PRIMARY KEY AUTOINCREMENT" + VIRGULA +
-                    Contrato.TabelaIngrediente.COLUNA_NOME + TIPO_TEXTO + ")";
-
     private static final String SQL_CRIAR_TABELA_SABOR =
             "CREATE TABLE IF NOT EXISTS " +
                     Contrato.TabelaSabor.NOME_DA_TABELA + "(" +
                     Contrato.TabelaSabor.COLUNA_ID + TIPO_INTEIRO + " PRIMARY KEY" + VIRGULA +
-                    Contrato.TabelaSabor.COLUNA_NOME + TIPO_TEXTO + VIRGULA +
-                    Contrato.TabelaSabor.COLUNA_INGREDIENTES + TIPO_INTEIRO + VIRGULA +
-                    " FOREIGN KEY (" + Contrato.TabelaSabor.COLUNA_INGREDIENTES + ")" +
-                    " REFERENCES " + Contrato.TabelaIngrediente.NOME_DA_TABELA +
-                    "(" + Contrato.TabelaSabor.COLUNA_ID + ")" + ")";  //FK
+                    Contrato.TabelaSabor.COLUNA_NOME + TIPO_TEXTO + ")";
 
 
     private static final String SQL_CRIAR_TABELA_TAMANHO =
@@ -106,9 +97,13 @@ public class BancoDeDado extends SQLiteOpenHelper {
                     Contrato.TabelaPizza.COLUNA_ID + TIPO_INTEIRO + " PRIMARY KEY AUTOINCREMENT" + VIRGULA +
                     Contrato.TabelaPizza.COLUNA_SABOR + TIPO_INTEIRO + VIRGULA + //FK
                     Contrato.TabelaPizza.COLUNA_TAMANHO + TIPO_INTEIRO + VIRGULA +
+                    Contrato.TabelaPizza.COLUNA_BORDA + TIPO_INTEIRO + VIRGULA +//FK
                     " FOREIGN KEY (" + Contrato.TabelaPizza.COLUNA_SABOR + ")" +
                     " REFERENCES " + Contrato.TabelaSabor.NOME_DA_TABELA +
                     "(" + Contrato.TabelaSabor.COLUNA_ID + ")" + VIRGULA +
+                    " FOREIGN KEY (" + Contrato.TabelaPizza.COLUNA_BORDA + ")" +
+                    " REFERENCES " + Contrato.TabelaBorda.NOME_DA_TABELA +
+                    "(" + Contrato.TabelaBorda.COLUNA_ID + ")" + VIRGULA +
                     " FOREIGN KEY (" + Contrato.TabelaPizza.COLUNA_TAMANHO + ")" +
                     " REFERENCES " + Contrato.TabelaTamanho.NOME_DA_TABELA +
                     "(" + Contrato.TabelaTamanho.COLUNA_ID + ")" + ")";
@@ -123,23 +118,26 @@ public class BancoDeDado extends SQLiteOpenHelper {
 
     private static final String SQL_CRIAR_TABELA_ITEMPEDIDO =
             "CREATE TABLE IF NOT EXISTS " +
+
                     Contrato.TabelaItemPedido.NOME_DA_TABELA + "(" +
                     Contrato.TabelaItemPedido.COLUNA_ID + TIPO_INTEIRO + " PRIMARY KEY AUTOINCREMENT" + VIRGULA +
                     Contrato.TabelaItemPedido.COLUNA_PIZZA + TIPO_INTEIRO + VIRGULA + //FK
                     Contrato.TabelaItemPedido.COLUNA_BEBIDA + TIPO_INTEIRO + VIRGULA +//FK
-                    Contrato.TabelaItemPedido.COLUNA_BORDA + TIPO_INTEIRO + VIRGULA +//FK
+                    Contrato.TabelaItemPedido.COLUNA_PEDIDO + TIPO_INTEIRO + VIRGULA +//FK
                     Contrato.TabelaItemPedido.COLUNA_QUANTIDADE + TIPO_INTEIRO + VIRGULA +
                     Contrato.TabelaItemPedido.COLUNA_SUBTOTAL + TIPO_REAL + VIRGULA +
                     Contrato.TabelaItemPedido.COLUNA_PRECOPEDIDO + TIPO_REAL + VIRGULA +
                     " FOREIGN KEY (" + Contrato.TabelaItemPedido.COLUNA_PIZZA + ")" +
                     " REFERENCES " + Contrato.TabelaPizza.NOME_DA_TABELA +
                     "(" + Contrato.TabelaPizza.COLUNA_ID + ")" + VIRGULA +
+
+                    " FOREIGN KEY (" + Contrato.TabelaItemPedido.COLUNA_PEDIDO + ")" +
+                    " REFERENCES " + Contrato.TabelaPedido.NOME_DA_TABELA +
+                    "(" + Contrato.TabelaPedido.COLUNA_ID + ")" + VIRGULA + // fk id pedido
+
                     " FOREIGN KEY (" + Contrato.TabelaItemPedido.COLUNA_BEBIDA + ")" +
                     " REFERENCES " + Contrato.TabelaBebida.NOME_DA_TABELA +
-                    "(" + Contrato.TabelaBebida.COLUNA_ID + ")" + VIRGULA +
-                    " FOREIGN KEY (" + Contrato.TabelaItemPedido.COLUNA_BORDA + ")" +
-                    " REFERENCES " + Contrato.TabelaBorda.NOME_DA_TABELA +
-                    "(" + Contrato.TabelaBorda.COLUNA_ID + ")" + ")";
+                    "(" + Contrato.TabelaBebida.COLUNA_ID + ")" + ")";
 
 
     private static final String SQL_CRIAR_TABELA_PEDIDO =
@@ -147,25 +145,27 @@ public class BancoDeDado extends SQLiteOpenHelper {
                     Contrato.TabelaPedido.NOME_DA_TABELA + "(" +
                     Contrato.TabelaPedido.COLUNA_ID + TIPO_INTEIRO + " PRIMARY KEY AUTOINCREMENT" + VIRGULA +
                     Contrato.TabelaPedido.COLUNA_USUARIO + TIPO_INTEIRO + VIRGULA + //FK
-                    Contrato.TabelaPedido.COLUNA_ITEM_PEDIDO + TIPO_INTEIRO + VIRGULA + //FK
                     Contrato.TabelaPedido.COLUNA_FORMA_PAGAMENTO + TIPO_INTEIRO + VIRGULA +//FK
-                    Contrato.TabelaPedido.COLUNA_ENDERECO + TIPO_INTEIRO + VIRGULA +
+                    //  Contrato.TabelaPedido.COLUNA_ENDERECO + TIPO_INTEIRO + VIRGULA +
                     Contrato.TabelaPedido.COLUNA_DATA + TIPO_TEXTO + VIRGULA +
                     " FOREIGN KEY (" + Contrato.TabelaPedido.COLUNA_USUARIO + ")" +
                     " REFERENCES " + Contrato.TabelaUsuario.NOME_DA_TABELA +
                     "(" + Contrato.TabelaUsuario.COLUNA_ID + ")" + VIRGULA +
-                    " FOREIGN KEY (" + Contrato.TabelaPedido.COLUNA_ITEM_PEDIDO + ")" +
-                    " REFERENCES " + Contrato.TabelaItemPedido.NOME_DA_TABELA +
-                    "(" + Contrato.TabelaItemPedido.COLUNA_ID + ")" + VIRGULA +
+
+//                    " FOREIGN KEY (" + Contrato.TabelaPedido.COLUNA_ITEM_PEDIDO + ")" +
+//                    " REFERENCES " + Contrato.TabelaItemPedido.NOME_DA_TABELA +
+//                    "(" + Contrato.TabelaItemPedido.COLUNA_ID + ")" + VIRGULA +
+
                     " FOREIGN KEY (" + Contrato.TabelaPedido.COLUNA_FORMA_PAGAMENTO + ")" +
                     " REFERENCES " + Contrato.TabelaFormaPagamento.NOME_DA_TABELA +
-                    "(" + Contrato.TabelaFormaPagamento.COLUNA_ID + ")" + VIRGULA +
-                    " FOREIGN KEY (" + Contrato.TabelaPedido.COLUNA_ENDERECO + ")" +
-                    " REFERENCES " + Contrato.TabelaEndereco.NOME_DA_TABELA +
-                    "(" + Contrato.TabelaEndereco.COLUNA_ID + ")" + ")";
+                    "(" + Contrato.TabelaFormaPagamento.COLUNA_ID + ")" + ")";
 
-//    insere tamanhos
+//                    + VIRGULA +
+//                    " FOREIGN KEY (" + Contrato.TabelaPedido.COLUNA_ENDERECO + ")" +
+//                    " REFERENCES " + Contrato.TabelaEndereco.NOME_DA_TABELA +
+//                    "(" + Contrato.TabelaEndereco.COLUNA_ID + ")"
 
+    //    insere tamanhos
     private static final String SQL_INSERIR_BROTO = "INSERT INTO " +
             Contrato.TabelaTamanho.NOME_DA_TABELA +
             "(Nome, QtdSabor, Preco) VALUES ('Broto', 1, 15)";
@@ -227,99 +227,41 @@ public class BancoDeDado extends SQLiteOpenHelper {
             Contrato.TabelaBorda.NOME_DA_TABELA +
             "(Nome, Preco) VALUES ('Chocolate Preto', 5)";
 
-//    //insere ingredientes
-//    private static final String SQL_INSERIR_INGREDIENTE_1 = "INSERT INTO " +
-//            Contrato.TabelaIngrediente.NOME_DA_TABELA +
-//            "(Nome) VALUES ('Provolone')";
-//
-//    private static final String SQL_INSERIR_INGREDIENTE_2 = "INSERT INTO " +
-//            Contrato.TabelaIngrediente.NOME_DA_TABELA +
-//            "(Nome) VALUES ('Mussarella')";
-//
-//    private static final String SQL_INSERIR_INGREDIENTE_3 = "INSERT INTO " +
-//            Contrato.TabelaIngrediente.NOME_DA_TABELA +
-//            "(Nome) VALUES ('Calabresa')";
-//
-//    private static final String SQL_INSERIR_INGREDIENTE_4 = "INSERT INTO " +
-//            Contrato.TabelaIngrediente.NOME_DA_TABELA +
-//            "(Nome) VALUES ('Manjericao')";
-//
-//    private static final String SQL_INSERIR_INGREDIENTE_5 = "INSERT INTO " +
-//            Contrato.TabelaIngrediente.NOME_DA_TABELA +
-//            "(Nome) VALUES ('Manjericao')";
-//
-//    private static final String SQL_INSERIR_INGREDIENTE_6 = "INSERT INTO " +
-//            Contrato.TabelaIngrediente.NOME_DA_TABELA +
-//            "(Nome) VALUES ('Presunto')";
-//
-//    private static final String SQL_INSERIR_INGREDIENTE_7 = "INSERT INTO " +
-//            Contrato.TabelaIngrediente.NOME_DA_TABELA +
-//            "(Nome) VALUES ('Azeitona')";
-//
-//    private static final String SQL_INSERIR_INGREDIENTE_8 = "INSERT INTO " +
-//            Contrato.TabelaIngrediente.NOME_DA_TABELA +
-//            "(Nome) VALUES ('Cebola')";
-//
-//    private static final String SQL_INSERIR_INGREDIENTE_9 = "INSERT INTO " +
-//            Contrato.TabelaIngrediente.NOME_DA_TABELA +
-//            "(Nome) VALUES ('Tomate')";
-//
-//    private static final String SQL_INSERIR_INGREDIENTE_10 = "INSERT INTO " +
-//            Contrato.TabelaIngrediente.NOME_DA_TABELA +
-//            "(Nome) VALUES ('Catupiry')";
-//
-//    private static final String SQL_INSERIR_INGREDIENTE_11 = "INSERT INTO " +
-//            Contrato.TabelaIngrediente.NOME_DA_TABELA +
-//            "(Nome) VALUES ('Gorgonzola')";
-//
-//    private static final String SQL_INSERIR_INGREDIENTE_12 = "INSERT INTO " +
-//            Contrato.TabelaIngrediente.NOME_DA_TABELA +
-//            "(Nome) VALUES ('Cheddar')";
-//
-//    private static final String SQL_INSERIR_INGREDIENTE_13 = "INSERT INTO " +
-//            Contrato.TabelaIngrediente.NOME_DA_TABELA +
-//            "(Nome) VALUES ('Chocolate')";
-//
-//    private static final String SQL_INSERIR_INGREDIENTE_14 = "INSERT INTO " +
-//            Contrato.TabelaIngrediente.NOME_DA_TABELA +
-//            "(Nome) VALUES ('Chocolate Branco')";
-//
-//
-//
+
 //
 //    // insere sabores
-//
-//    private static final String SQL_INSERIR_SABOR_FC = "INSERT INTO " +
-//            Contrato.TabelaBorda.NOME_DA_TABELA +
-//            "(Nome, Fk_IngredienteId) VALUES ('Frango c/ Catupiry', 1)";
-//
-//    private static final String SQL_INSERIR_SABOR_CA = "INSERT INTO " +
-//            Contrato.TabelaBorda.NOME_DA_TABELA +
-//            "(Nome) VALUES ('Calabresa')";
-//
-//    private static final String SQL_INSERIR_SABOR_PI = "INSERT INTO " +
-//            Contrato.TabelaBorda.NOME_DA_TABELA +
-//            "(Nome) VALUES ('Pizzaiolo')";
-//
-//    private static final String SQL_INSERIR_SABOR_RO = "INSERT INTO " +
-//            Contrato.TabelaBorda.NOME_DA_TABELA +
-//            "(Nome) VALUES ('Romana')";
-//
-//    private static final String SQL_INSERIR_SABOR_MA = "INSERT INTO " +
-//            Contrato.TabelaBorda.NOME_DA_TABELA +
-//            "(Nome) VALUES ('Marguerita')";
-//
-//    private static final String SQL_INSERIR_SABOR_TO = "INSERT INTO " +
-//            Contrato.TabelaBorda.NOME_DA_TABELA +
-//            "(Nome) VALUES ('Toscana')";
-//
-//    private static final String SQL_INSERIR_SABOR_PO = "INSERT INTO " +
-//            Contrato.TabelaBorda.NOME_DA_TABELA +
-//            "(Nome) VALUES ('Portuguesa')";
-//
-//    private static final String SQL_INSERIR_SABOR_4Q = "INSERT INTO " +
-//            Contrato.TabelaBorda.NOME_DA_TABELA +
-//            "(Nome) VALUES ('4 Queijos')";
+
+    private static final String SQL_INSERIR_SABOR_FC = "INSERT INTO " +
+            Contrato.TabelaSabor.NOME_DA_TABELA +
+            "(Nome) VALUES ('Frango c/ Catupiry')";
+
+    private static final String SQL_INSERIR_SABOR_CA = "INSERT INTO " +
+            Contrato.TabelaSabor.NOME_DA_TABELA +
+            "(Nome) VALUES ('Calabresa')";
+
+    private static final String SQL_INSERIR_SABOR_PI = "INSERT INTO " +
+            Contrato.TabelaSabor.NOME_DA_TABELA +
+            "(Nome) VALUES ('Pizzaiolo')";
+
+    private static final String SQL_INSERIR_SABOR_RO = "INSERT INTO " +
+            Contrato.TabelaSabor.NOME_DA_TABELA +
+            "(Nome) VALUES ('Romana')";
+
+    private static final String SQL_INSERIR_SABOR_MA = "INSERT INTO " +
+            Contrato.TabelaSabor.NOME_DA_TABELA +
+            "(Nome) VALUES ('Marguerita')";
+
+    private static final String SQL_INSERIR_SABOR_TO = "INSERT INTO " +
+            Contrato.TabelaSabor.NOME_DA_TABELA +
+            "(Nome) VALUES ('Toscana')";
+
+    private static final String SQL_INSERIR_SABOR_PO = "INSERT INTO " +
+            Contrato.TabelaSabor.NOME_DA_TABELA +
+            "(Nome) VALUES ('Portuguesa')";
+
+    private static final String SQL_INSERIR_SABOR_4Q = "INSERT INTO " +
+            Contrato.TabelaSabor.NOME_DA_TABELA +
+            "(Nome) VALUES ('4 Queijos')";
 //
 //    //
 
@@ -330,7 +272,6 @@ public class BancoDeDado extends SQLiteOpenHelper {
         db.execSQL(SQL_CRIAR_TABELA_USUARIO);
         db.execSQL(SQL_CRIAR_TABELA_ENDERECO);
         db.execSQL(SQL_CRIAR_TABELA_BORDA);
-        db.execSQL(SQL_CRIAR_TABELA_INGREDIENTE);
         db.execSQL(SQL_CRIAR_TABELA_FORMAPAGAMENTO);
         db.execSQL(SQL_CRIAR_TABELA_TAMANHO);
         db.execSQL(SQL_CRIAR_TABELA_SABOR);
@@ -356,7 +297,15 @@ public class BancoDeDado extends SQLiteOpenHelper {
         db.execSQL(SQL_INSERIR_BORDA_CH);
         db.execSQL(SQL_INSERIR_BORDA_CT);
         db.execSQL(SQL_INSERIR_BORDA_CP);
-
+        //SABORES
+        db.execSQL(SQL_INSERIR_SABOR_FC);
+        db.execSQL(SQL_INSERIR_SABOR_4Q);
+        db.execSQL(SQL_INSERIR_SABOR_CA);
+        db.execSQL(SQL_INSERIR_SABOR_MA);
+        db.execSQL(SQL_INSERIR_SABOR_PI);
+        db.execSQL(SQL_INSERIR_SABOR_PO);
+        db.execSQL(SQL_INSERIR_SABOR_RO);
+        db.execSQL(SQL_INSERIR_SABOR_TO);
 
     }
 
@@ -379,13 +328,7 @@ public class BancoDeDado extends SQLiteOpenHelper {
         db.insert(Contrato.TabelaUsuario.NOME_DA_TABELA, null, values);
 // preenche a tabela endereco
         // *****
-        values.put(Contrato.TabelaEndereco.COLUNA_CEP, usuario.getEndereco().getCep());
-        values.put(Contrato.TabelaEndereco.COLUNA_BAIRRO, usuario.getEndereco().getBairro());
-        values.put(Contrato.TabelaEndereco.COLUNA_RUA, usuario.getEndereco().getRua());
-        values.put(Contrato.TabelaEndereco.COLUNA_NUMERO, usuario.getEndereco().getNumero());
-        values.put(Contrato.TabelaEndereco.COLUNA_COMPLEMENTO, usuario.getEndereco().getComplemento());
-        values.put(Contrato.TabelaEndereco.COLUNA_CIDADE, usuario.getEndereco().getCidade());
-        values.put(Contrato.TabelaEndereco.COLUNA_USUARIOID, usuario.getId());
+
         db.insert(Contrato.TabelaEndereco.NOME_DA_TABELA, null, values);
 
         return db.insert(Contrato.TabelaUsuario.NOME_DA_TABELA, null, values);
@@ -510,35 +453,36 @@ public class BancoDeDado extends SQLiteOpenHelper {
         return bebidas;
     }
 
-
     //  ########################################################################   ///
-    //  ##### METODO PARA RETORNAR INGREDIENTES DE PIZZA EM FORMA DE LISTA #######   ///
+    //  ##### METODO PARA RETORNAR SABOR EM FORMA DE LISTA #######   ///
     //  ########################################################################   ///
-    public ArrayList<Ingrediente> RetornarIngredientes() {
-        ArrayList<Ingrediente> ingredientes = new ArrayList<Ingrediente>();
+    public ArrayList<Sabor> RetornarSabores() {
+        ArrayList<Sabor> sabores = new ArrayList<Sabor>();
         SQLiteDatabase db = getReadableDatabase();
 
         String[] colunas = {
-                Contrato.TabelaIngrediente.COLUNA_ID,
-                Contrato.TabelaIngrediente.COLUNA_NOME
+                Contrato.TabelaFormaPagamento.COLUNA_ID,
+                Contrato.TabelaFormaPagamento.COLUNA_NOME
         };
 
-        Cursor cursor = db.query(Contrato.TabelaIngrediente.NOME_DA_TABELA, colunas,
+        Cursor cursor = db.query(Contrato.TabelaSabor.NOME_DA_TABELA, colunas,
                 null, null, null, null, null, null);
 
         cursor.moveToFirst();
         if (cursor.getCount() > 0) {
             do {
-                Ingrediente i = new Ingrediente();
-                i.setNome(cursor.getString(1));
-                ingredientes.add(i);
+                Sabor s = new Sabor();
+                s.setId((cursor.getInt(0)));
+                s.setNome(cursor.getString(1));
+                sabores.add(s);
             } while (cursor.moveToNext());
         }
-        return ingredientes;
+        return sabores;
     }
 
+
     //  ########################################################################   ///
-    //  ##### METODO PARA RETORNAR ALTERAR DADOS DO USUARIO #######   ///
+    //  ##### METODO PARA ALTERAR DADOS DO USUARIO #######   ///
     //  ########################################################################   ///
 
     public long alterarUsuario(Usuario usuario) {

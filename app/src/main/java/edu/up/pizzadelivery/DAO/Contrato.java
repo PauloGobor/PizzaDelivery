@@ -75,11 +75,6 @@ public final class Contrato {
         public static final String COLUNA_INGREDIENTES = "Fk_ingredienteId";
     }
 
-    public static abstract class TabelaIngrediente implements BaseColumns {
-        public static final String NOME_DA_TABELA = "tb_Ingrediente";
-        public static final String COLUNA_ID = "ingredienteId";
-        public static final String COLUNA_NOME = "Nome";
-    }
 
 
     public static abstract class TabelaPizza implements BaseColumns {
@@ -87,7 +82,7 @@ public final class Contrato {
         public static final String COLUNA_ID = "PizzaId";
         public static final String COLUNA_SABOR = "Fk_SaborId";
         public static final String COLUNA_TAMANHO = "Fk_TamanhoId";
-
+        public static final String COLUNA_BORDA = "Fk_BordaId";
 
     }
 
@@ -96,7 +91,9 @@ public final class Contrato {
         public static final String COLUNA_ID = "ItemPedidoId";
         public static final String COLUNA_PIZZA = "Fk_PizzaId";
         public static final String COLUNA_BEBIDA = "Fk_BebidaId";
-        public static final String COLUNA_BORDA = "Fk_BordaId";
+
+        public static final String COLUNA_PEDIDO = "Fk_VendaId";
+
         public static final String COLUNA_QUANTIDADE = "Quantidade";
         public static final String COLUNA_SUBTOTAL = "Subtotal";
         public static final String COLUNA_PRECOPEDIDO = "PrecoPedido";

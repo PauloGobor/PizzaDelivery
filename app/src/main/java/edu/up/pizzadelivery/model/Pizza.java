@@ -8,6 +8,7 @@ public class Pizza implements Serializable {
     private int id;
     private List<Sabor> sabor;
     private Tamanho tamanho;
+    private Borda borda;
 
     public int getId() {
         return id;
@@ -33,5 +34,11 @@ public class Pizza implements Serializable {
         this.tamanho = tamanho;
     }
 
+    public Borda getBorda() {
+        return borda;
+    }
 
+    public void setBorda(Borda borda) {
+        this.borda = borda;
+    }
 }

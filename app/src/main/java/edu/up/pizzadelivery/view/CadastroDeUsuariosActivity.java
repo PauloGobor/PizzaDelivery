@@ -90,12 +90,12 @@ public class CadastroDeUsuariosActivity extends AppCompatActivity {
                             usuario.setTelefone(edtTel.getText().toString());
                             usuario.setSenha(senhaConv); /// vai ser criptografado antes.
                             //Parte de endereco
-                            usuario.getEndereco().setCep(edtCep.getText().toString());
-                            usuario.getEndereco().setRua(edtRua.getText().toString());
-                            usuario.getEndereco().setBairro(edtBairro.getText().toString());
-                            usuario.getEndereco().setCidade(edtCidade.getText().toString());
-                            usuario.getEndereco().setNumero(Integer.parseInt(edtNumero.getText().toString()));
-                            usuario.getEndereco().setComplemento(edtComplemento.getText().toString());
+//                            usuario.getEndereco().setCep(edtCep.getText().toString());
+//                            usuario.getEndereco().setRua(edtRua.getText().toString());
+//                            usuario.getEndereco().setBairro(edtBairro.getText().toString());
+//                            usuario.getEndereco().setCidade(edtCidade.getText().toString());
+//                            usuario.getEndereco().setNumero(Integer.parseInt(edtNumero.getText().toString()));
+//                            usuario.getEndereco().setComplemento(edtComplemento.getText().toString());
 
                             /// 3- salvar dados Usuario e endereco
 

@@ -7,7 +7,6 @@ public class Sabor implements Serializable {
 
     private int id;
     private String nome;
-    private List<Ingrediente> ingredientes;
 
     public int getId() {
         return id;
@@ -25,12 +24,6 @@ public class Sabor implements Serializable {
         this.nome = nome;
     }
 
-    public List<Ingrediente> getIngredientes() {
-        return ingredientes;
-    }
 
-    public void setIngredientes(List<Ingrediente> ingredientes) {
-        this.ingredientes = ingredientes;
-    }
 
 }
