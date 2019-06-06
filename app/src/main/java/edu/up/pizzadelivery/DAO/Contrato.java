@@ -47,6 +47,7 @@ public final class Contrato {
         public static final String NOME_DA_TABELA = "tb_Bebida";
         public static final String COLUNA_ID = "BebidaId";
         public static final String COLUNA_NOME = "Nome";
+        public static final String COLUNA_QTD = "Quantidade";
         public static final String COLUNA_PRECO = "Preco";
 
     }
@@ -76,7 +77,6 @@ public final class Contrato {
     }
 
 
-
     public static abstract class TabelaPizza implements BaseColumns {
         public static final String NOME_DA_TABELA = "tb_Pizza";
         public static final String COLUNA_ID = "PizzaId";
@@ -91,9 +91,7 @@ public final class Contrato {
         public static final String COLUNA_ID = "ItemPedidoId";
         public static final String COLUNA_PIZZA = "Fk_PizzaId";
         public static final String COLUNA_BEBIDA = "Fk_BebidaId";
-
         public static final String COLUNA_PEDIDO = "Fk_VendaId";
-
         public static final String COLUNA_QUANTIDADE = "Quantidade";
         public static final String COLUNA_SUBTOTAL = "Subtotal";
         public static final String COLUNA_PRECOPEDIDO = "PrecoPedido";
@@ -104,12 +102,11 @@ public final class Contrato {
         public static final String NOME_DA_TABELA = "tb_Pedido";
         public static final String COLUNA_ID = "PedidoId";
         public static final String COLUNA_USUARIO = "Fk_UsuarioId";
-        public static final String COLUNA_ITEM_PEDIDO = "Fk_ItemPedidoId";
+       // public static final String COLUNA_ITEM_PEDIDO = "Fk_ItemPedidoId";
         public static final String COLUNA_FORMA_PAGAMENTO = "Fk_formaPagamentoId";
-        public static final String COLUNA_ENDERECO = "Fk_EnderecoId";
+       // public static final String COLUNA_ENDERECO = "Fk_EnderecoId";
         public static final String COLUNA_DATA = "Data";
 
     }
-
 
 }

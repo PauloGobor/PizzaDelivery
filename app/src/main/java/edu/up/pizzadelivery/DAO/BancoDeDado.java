@@ -42,7 +42,6 @@ public class BancoDeDado extends SQLiteOpenHelper {
                     Contrato.TabelaUsuario.COLUNA_CPF + TIPO_TEXTO + VIRGULA +
                     Contrato.TabelaUsuario.COLUNA_TELEFONE + TIPO_TEXTO + VIRGULA +
                     Contrato.TabelaUsuario.COLUNA_SENHA + TIPO_TEXTO +
-
                     ")";  //FK
 
 
@@ -66,6 +65,7 @@ public class BancoDeDado extends SQLiteOpenHelper {
                     Contrato.TabelaBebida.NOME_DA_TABELA + "(" +
                     Contrato.TabelaBebida.COLUNA_ID + TIPO_INTEIRO + " PRIMARY KEY AUTOINCREMENT" + VIRGULA +
                     Contrato.TabelaBebida.COLUNA_NOME + TIPO_TEXTO + VIRGULA +
+                    Contrato.TabelaBebida.COLUNA_QTD + TIPO_INTEIRO + VIRGULA +
                     Contrato.TabelaBebida.COLUNA_PRECO + ")";
 
     private static final String SQL_CRIAR_TABELA_BORDA =
@@ -98,6 +98,8 @@ public class BancoDeDado extends SQLiteOpenHelper {
                     Contrato.TabelaPizza.COLUNA_SABOR + TIPO_INTEIRO + VIRGULA + //FK
                     Contrato.TabelaPizza.COLUNA_TAMANHO + TIPO_INTEIRO + VIRGULA +
                     Contrato.TabelaPizza.COLUNA_BORDA + TIPO_INTEIRO + VIRGULA +//FK
+
+                    // mudar coluna sabor criar outra tabela
                     " FOREIGN KEY (" + Contrato.TabelaPizza.COLUNA_SABOR + ")" +
                     " REFERENCES " + Contrato.TabelaSabor.NOME_DA_TABELA +
                     "(" + Contrato.TabelaSabor.COLUNA_ID + ")" + VIRGULA +
