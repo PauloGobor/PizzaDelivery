@@ -79,7 +79,7 @@ public class BancoDeDado extends SQLiteOpenHelper {
     private static final String SQL_CRIAR_TABELA_SABOR =
             "CREATE TABLE IF NOT EXISTS " +
                     Contrato.TabelaSabor.NOME_DA_TABELA + "(" +
-                    Contrato.TabelaSabor.COLUNA_ID + TIPO_INTEIRO + " PRIMARY KEY" + VIRGULA +
+                    Contrato.TabelaSabor.COLUNA_ID + TIPO_INTEIRO + " PRIMARY KEY AUTOINCREMENT" + VIRGULA +
                     Contrato.TabelaSabor.COLUNA_NOME + TIPO_TEXTO + ")";
 
 
@@ -253,6 +253,7 @@ public class BancoDeDado extends SQLiteOpenHelper {
             Contrato.TabelaSabor.NOME_DA_TABELA +
             "(Nome) VALUES ('Marguerita')";
 
+
     private static final String SQL_INSERIR_SABOR_TO = "INSERT INTO " +
             Contrato.TabelaSabor.NOME_DA_TABELA +
             "(Nome) VALUES ('Toscana')";
@@ -264,6 +265,18 @@ public class BancoDeDado extends SQLiteOpenHelper {
     private static final String SQL_INSERIR_SABOR_4Q = "INSERT INTO " +
             Contrato.TabelaSabor.NOME_DA_TABELA +
             "(Nome) VALUES ('4 Queijos')";
+
+    private static final String SQL_INSERIR_SABOR_LO = "INSERT INTO " +
+            Contrato.TabelaSabor.NOME_DA_TABELA +
+            "(Nome) VALUES ('Lombinho')";
+
+    private static final String SQL_INSERIR_SABOR_BO = "INSERT INTO " +
+            Contrato.TabelaSabor.NOME_DA_TABELA +
+            "(Nome) VALUES ('Bolonhesa')";
+
+    private static final String SQL_INSERIR_SABOR_BA = "INSERT INTO " +
+            Contrato.TabelaSabor.NOME_DA_TABELA +
+            "(Nome) VALUES ('Bacon')";
 //
 //    //
 
@@ -308,6 +321,9 @@ public class BancoDeDado extends SQLiteOpenHelper {
         db.execSQL(SQL_INSERIR_SABOR_PO);
         db.execSQL(SQL_INSERIR_SABOR_RO);
         db.execSQL(SQL_INSERIR_SABOR_TO);
+        db.execSQL(SQL_INSERIR_SABOR_BA);
+        db.execSQL(SQL_INSERIR_SABOR_BO);
+        db.execSQL(SQL_INSERIR_SABOR_LO);
 
     }
 
@@ -463,12 +479,13 @@ public class BancoDeDado extends SQLiteOpenHelper {
         SQLiteDatabase db = getReadableDatabase();
 
         String[] colunas = {
-                Contrato.TabelaFormaPagamento.COLUNA_ID,
-                Contrato.TabelaFormaPagamento.COLUNA_NOME
+                Contrato.TabelaSabor.COLUNA_ID,
+                Contrato.TabelaSabor.COLUNA_NOME
         };
 
         Cursor cursor = db.query(Contrato.TabelaSabor.NOME_DA_TABELA, colunas,
-                null, null, null, null, null, null);
+                null, null, null, null,
+                Contrato.TabelaSabor.COLUNA_NOME + " ASC", null);
 
         cursor.moveToFirst();
         if (cursor.getCount() > 0) {

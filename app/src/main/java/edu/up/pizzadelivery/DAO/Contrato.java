@@ -73,7 +73,7 @@ public final class Contrato {
         public static final String NOME_DA_TABELA = "tb_Sabor";
         public static final String COLUNA_ID = "SaborId";
         public static final String COLUNA_NOME = "Nome";
-        public static final String COLUNA_INGREDIENTES = "Fk_ingredienteId";
+        //public static final String COLUNA_INGREDIENTES = "Fk_ingredienteId";
     }
 
 
