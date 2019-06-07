@@ -91,25 +91,6 @@ public class BancoDeDado extends SQLiteOpenHelper {
                     Contrato.TabelaTamanho.COLUNA_QTDSABOR + TIPO_INTEIRO + VIRGULA +
                     Contrato.TabelaTamanho.COLUNA_PRECO + TIPO_REAL + ")";
 
-    private static final String SQL_CRIAR_TABELA_PIZZA =
-            "CREATE TABLE IF NOT EXISTS " +
-                    Contrato.TabelaPizza.NOME_DA_TABELA + "(" +
-                    Contrato.TabelaPizza.COLUNA_ID + TIPO_INTEIRO + " PRIMARY KEY AUTOINCREMENT" + VIRGULA +
-                    Contrato.TabelaPizza.COLUNA_SABOR + TIPO_INTEIRO + VIRGULA + //FK
-                    Contrato.TabelaPizza.COLUNA_TAMANHO + TIPO_INTEIRO + VIRGULA +
-                    Contrato.TabelaPizza.COLUNA_BORDA + TIPO_INTEIRO + VIRGULA +//FK
-
-                    // mudar coluna sabor criar outra tabela
-                    " FOREIGN KEY (" + Contrato.TabelaPizza.COLUNA_SABOR + ")" +
-                    " REFERENCES " + Contrato.TabelaSabor.NOME_DA_TABELA +
-                    "(" + Contrato.TabelaSabor.COLUNA_ID + ")" + VIRGULA +
-                    " FOREIGN KEY (" + Contrato.TabelaPizza.COLUNA_BORDA + ")" +
-                    " REFERENCES " + Contrato.TabelaBorda.NOME_DA_TABELA +
-                    "(" + Contrato.TabelaBorda.COLUNA_ID + ")" + VIRGULA +
-                    " FOREIGN KEY (" + Contrato.TabelaPizza.COLUNA_TAMANHO + ")" +
-                    " REFERENCES " + Contrato.TabelaTamanho.NOME_DA_TABELA +
-                    "(" + Contrato.TabelaTamanho.COLUNA_ID + ")" + ")";
-
 
     private static final String SQL_CRIAR_TABELA_FORMAPAGAMENTO =
             "CREATE TABLE IF NOT EXISTS " +
@@ -118,20 +99,52 @@ public class BancoDeDado extends SQLiteOpenHelper {
                     Contrato.TabelaFormaPagamento.COLUNA_NOME + TIPO_TEXTO + ")";
 
 
+    private static final String SQL_CRIAR_TABELA_PIZZA =
+            "CREATE TABLE IF NOT EXISTS " +
+                    Contrato.TabelaPizza.NOME_DA_TABELA + "(" +
+                    Contrato.TabelaPizza.COLUNA_ID + TIPO_INTEIRO + " PRIMARY KEY AUTOINCREMENT" + VIRGULA +
+                    Contrato.TabelaPizza.COLUNA_TAMANHO + TIPO_INTEIRO + VIRGULA + // fk tamanho
+                    Contrato.TabelaPizza.COLUNA_BORDA + TIPO_INTEIRO + VIRGULA +//FK
+
+                    " FOREIGN KEY (" + Contrato.TabelaPizza.COLUNA_TAMANHO + ")" +
+                    " REFERENCES " + Contrato.TabelaTamanho.NOME_DA_TABELA +
+                    "(" + Contrato.TabelaTamanho.COLUNA_ID + ")" + VIRGULA +
+
+                    " FOREIGN KEY (" + Contrato.TabelaPizza.COLUNA_BORDA + ")" +
+                    " REFERENCES " + Contrato.TabelaBorda.NOME_DA_TABELA +
+                    "(" + Contrato.TabelaBorda.COLUNA_ID + ")"
+                    + ")";
+
+
+    private static final String SQL_CRIAR_TABELA_PIZZAPEDIDA =
+            "CREATE TABLE IF NOT EXISTS " +
+                    Contrato.TabelaPizzaPedida.NOME_DA_TABELA + "(" +
+                    Contrato.TabelaPizzaPedida.COLUNA_ID + TIPO_INTEIRO + " PRIMARY KEY AUTOINCREMENT" + VIRGULA +
+                    Contrato.TabelaPizzaPedida.COLUNA_PIZZA + TIPO_INTEIRO + VIRGULA + //FK pizza
+                    Contrato.TabelaPizzaPedida.COLUNA_SABOR + TIPO_INTEIRO + VIRGULA + //FK sabor
+
+                    " FOREIGN KEY (" + Contrato.TabelaPizzaPedida.COLUNA_PIZZA + ")" +
+                    " REFERENCES " + Contrato.TabelaPizza.NOME_DA_TABELA +
+                    "(" + Contrato.TabelaPizza.COLUNA_ID + ")" + VIRGULA +
+
+                    " FOREIGN KEY (" + Contrato.TabelaPizzaPedida.COLUNA_SABOR + ")" +
+                    " REFERENCES " + Contrato.TabelaSabor.NOME_DA_TABELA +
+                    "(" + Contrato.TabelaSabor.COLUNA_ID + ")" + ")";
+
     private static final String SQL_CRIAR_TABELA_ITEMPEDIDO =
             "CREATE TABLE IF NOT EXISTS " +
-
                     Contrato.TabelaItemPedido.NOME_DA_TABELA + "(" +
                     Contrato.TabelaItemPedido.COLUNA_ID + TIPO_INTEIRO + " PRIMARY KEY AUTOINCREMENT" + VIRGULA +
-                    Contrato.TabelaItemPedido.COLUNA_PIZZA + TIPO_INTEIRO + VIRGULA + //FK
+                    Contrato.TabelaItemPedido.COLUNA_PIZZAPEDIDA + TIPO_INTEIRO + VIRGULA + //FK
                     Contrato.TabelaItemPedido.COLUNA_BEBIDA + TIPO_INTEIRO + VIRGULA +//FK
                     Contrato.TabelaItemPedido.COLUNA_PEDIDO + TIPO_INTEIRO + VIRGULA +//FK
                     Contrato.TabelaItemPedido.COLUNA_QUANTIDADE + TIPO_INTEIRO + VIRGULA +
                     Contrato.TabelaItemPedido.COLUNA_SUBTOTAL + TIPO_REAL + VIRGULA +
                     Contrato.TabelaItemPedido.COLUNA_PRECOPEDIDO + TIPO_REAL + VIRGULA +
-                    " FOREIGN KEY (" + Contrato.TabelaItemPedido.COLUNA_PIZZA + ")" +
-                    " REFERENCES " + Contrato.TabelaPizza.NOME_DA_TABELA +
-                    "(" + Contrato.TabelaPizza.COLUNA_ID + ")" + VIRGULA +
+                    //declaracao fks
+                    " FOREIGN KEY (" + Contrato.TabelaItemPedido.COLUNA_PIZZAPEDIDA + ")" +
+                    " REFERENCES " + Contrato.TabelaPizzaPedida.NOME_DA_TABELA +
+                    "(" + Contrato.TabelaPizzaPedida.COLUNA_ID + ")" + VIRGULA + /// fk tb pizza pedida
 
                     " FOREIGN KEY (" + Contrato.TabelaItemPedido.COLUNA_PEDIDO + ")" +
                     " REFERENCES " + Contrato.TabelaPedido.NOME_DA_TABELA +
@@ -139,7 +152,7 @@ public class BancoDeDado extends SQLiteOpenHelper {
 
                     " FOREIGN KEY (" + Contrato.TabelaItemPedido.COLUNA_BEBIDA + ")" +
                     " REFERENCES " + Contrato.TabelaBebida.NOME_DA_TABELA +
-                    "(" + Contrato.TabelaBebida.COLUNA_ID + ")" + ")";
+                    "(" + Contrato.TabelaBebida.COLUNA_ID + ")" + ")"; // fk tbm bebida
 
 
     private static final String SQL_CRIAR_TABELA_PEDIDO =
@@ -154,14 +167,10 @@ public class BancoDeDado extends SQLiteOpenHelper {
                     " REFERENCES " + Contrato.TabelaUsuario.NOME_DA_TABELA +
                     "(" + Contrato.TabelaUsuario.COLUNA_ID + ")" + VIRGULA +
 
-//                    " FOREIGN KEY (" + Contrato.TabelaPedido.COLUNA_ITEM_PEDIDO + ")" +
-//                    " REFERENCES " + Contrato.TabelaItemPedido.NOME_DA_TABELA +
-//                    "(" + Contrato.TabelaItemPedido.COLUNA_ID + ")" + VIRGULA +
-
                     " FOREIGN KEY (" + Contrato.TabelaPedido.COLUNA_FORMA_PAGAMENTO + ")" +
                     " REFERENCES " + Contrato.TabelaFormaPagamento.NOME_DA_TABELA +
                     "(" + Contrato.TabelaFormaPagamento.COLUNA_ID + ")" + ")";
-
+//                    analisar como sera feito o rekacionamento
 //                    + VIRGULA +
 //                    " FOREIGN KEY (" + Contrato.TabelaPedido.COLUNA_ENDERECO + ")" +
 //                    " REFERENCES " + Contrato.TabelaEndereco.NOME_DA_TABELA +
@@ -293,6 +302,7 @@ public class BancoDeDado extends SQLiteOpenHelper {
         db.execSQL(SQL_CRIAR_TABELA_PIZZA);
         db.execSQL(SQL_CRIAR_TABELA_ITEMPEDIDO);
         db.execSQL(SQL_CRIAR_TABELA_PEDIDO);
+        db.execSQL(SQL_CRIAR_TABELA_PIZZAPEDIDA);
         //insere dados ao criar banco
         //Log.i("Criar banco", SQL_INSERIR_BROTO);
         //TAMANHO
@@ -529,6 +539,7 @@ public class BancoDeDado extends SQLiteOpenHelper {
         String[] argumentos = {
                 String.valueOf(c.getId())
         };
+
         return db.delete(Contrato.TabelaUsuario.NOME_DA_TABELA,
                 condicao, argumentos);
     }

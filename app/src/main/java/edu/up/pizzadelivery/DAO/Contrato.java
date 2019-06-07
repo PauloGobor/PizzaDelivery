@@ -73,23 +73,28 @@ public final class Contrato {
         public static final String NOME_DA_TABELA = "tb_Sabor";
         public static final String COLUNA_ID = "SaborId";
         public static final String COLUNA_NOME = "Nome";
-        //public static final String COLUNA_INGREDIENTES = "Fk_ingredienteId";
     }
 
 
     public static abstract class TabelaPizza implements BaseColumns {
         public static final String NOME_DA_TABELA = "tb_Pizza";
         public static final String COLUNA_ID = "PizzaId";
-        public static final String COLUNA_SABOR = "Fk_SaborId";
         public static final String COLUNA_TAMANHO = "Fk_TamanhoId";
         public static final String COLUNA_BORDA = "Fk_BordaId";
 
     }
 
+    public static abstract class TabelaPizzaPedida implements BaseColumns {
+        public static final String NOME_DA_TABELA = "tb_PizzaPedida";
+        public static final String COLUNA_ID = "PizzaPedidaId";
+        public static final String COLUNA_PIZZA = "Fk_PizzaId";
+        public static final String COLUNA_SABOR = "Fk_SaborId";
+    }
+
     public static abstract class TabelaItemPedido implements BaseColumns {
         public static final String NOME_DA_TABELA = "tb_ItensPedido";
         public static final String COLUNA_ID = "ItemPedidoId";
-        public static final String COLUNA_PIZZA = "Fk_PizzaId";
+        public static final String COLUNA_PIZZAPEDIDA = "Fk_PizzaPedidaId";
         public static final String COLUNA_BEBIDA = "Fk_BebidaId";
         public static final String COLUNA_PEDIDO = "Fk_VendaId";
         public static final String COLUNA_QUANTIDADE = "Quantidade";
@@ -102,9 +107,8 @@ public final class Contrato {
         public static final String NOME_DA_TABELA = "tb_Pedido";
         public static final String COLUNA_ID = "PedidoId";
         public static final String COLUNA_USUARIO = "Fk_UsuarioId";
-       // public static final String COLUNA_ITEM_PEDIDO = "Fk_ItemPedidoId";
         public static final String COLUNA_FORMA_PAGAMENTO = "Fk_formaPagamentoId";
-       // public static final String COLUNA_ENDERECO = "Fk_EnderecoId";
+        // public static final String COLUNA_ENDERECO = "Fk_EnderecoId";
         public static final String COLUNA_DATA = "Data";
 
     }
