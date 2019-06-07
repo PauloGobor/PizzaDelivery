@@ -32,10 +32,9 @@ public class EscolherTamanhoActivity extends AppCompatActivity {
             tamanhos[i] = tamanhosArrayList.get(i).getNome();
 
         }
-
         //O adapter é componente que prepara os dados para o ListView
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_list_item_1, tamanhos);
+                R.layout.lista_sabores_personalizada, tamanhos);
         //setAdapter é método que vai popular os dados dentro do ListView
         lstTamanhos.setAdapter(adapter);
         //Criar o clique de cada do ListView

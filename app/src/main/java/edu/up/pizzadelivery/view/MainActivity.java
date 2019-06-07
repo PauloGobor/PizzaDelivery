@@ -48,7 +48,6 @@ public class MainActivity extends AppCompatActivity {
 
                     verificacao = UsuarioDAO.ValidarLogin(MainActivity.this, login);
 
-
                     //Verifica se existe  no banco.
                     if(verificacao){
                         //Intent telaInicial = new Intent(this, TelaInicialActivity.class); ///esse irei criar mais para frente
