@@ -3,12 +3,9 @@
     android:padding="16dp"
     xmlns:android="http://schemas.android.com/apk/res/android" >
 
-    <TextView
-        android:id="@+id/lstTamanhos"
+    <ListView
+        android:id="@+id/lstSabores"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Cardapio"
-        android:textSize="40dp"
-        />
+        android:layout_height="match_parent"/>
 
 </LinearLayout>
