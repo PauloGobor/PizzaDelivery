@@ -7,6 +7,7 @@ public class Sabor implements Serializable {
 
     private int id;
     private String nome;
+    private String descricao;
 
     public int getId() {
         return id;
@@ -24,6 +25,11 @@ public class Sabor implements Serializable {
         this.nome = nome;
     }
 
+    public String getDescricao() {
+        return descricao;
+    }
 
-
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
 }

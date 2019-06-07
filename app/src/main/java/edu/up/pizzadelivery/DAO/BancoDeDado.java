@@ -80,7 +80,8 @@ public class BancoDeDado extends SQLiteOpenHelper {
             "CREATE TABLE IF NOT EXISTS " +
                     Contrato.TabelaSabor.NOME_DA_TABELA + "(" +
                     Contrato.TabelaSabor.COLUNA_ID + TIPO_INTEIRO + " PRIMARY KEY AUTOINCREMENT" + VIRGULA +
-                    Contrato.TabelaSabor.COLUNA_NOME + TIPO_TEXTO + ")";
+                    Contrato.TabelaSabor.COLUNA_NOME + TIPO_TEXTO + VIRGULA +
+                    Contrato.TabelaSabor.COLUNA_DESCRICAO + TIPO_TEXTO + ")";
 
 
     private static final String SQL_CRIAR_TABELA_TAMANHO =
@@ -490,7 +491,8 @@ public class BancoDeDado extends SQLiteOpenHelper {
 
         String[] colunas = {
                 Contrato.TabelaSabor.COLUNA_ID,
-                Contrato.TabelaSabor.COLUNA_NOME
+                Contrato.TabelaSabor.COLUNA_NOME,
+                Contrato.TabelaSabor.COLUNA_DESCRICAO
         };
 
         Cursor cursor = db.query(Contrato.TabelaSabor.NOME_DA_TABELA, colunas,
@@ -503,12 +505,12 @@ public class BancoDeDado extends SQLiteOpenHelper {
                 Sabor s = new Sabor();
                 s.setId((cursor.getInt(0)));
                 s.setNome(cursor.getString(1));
+                s.setDescricao(cursor.getString(2));
                 sabores.add(s);
             } while (cursor.moveToNext());
         }
         return sabores;
     }
-
 
     //  ########################################################################   ///
     //  ##### METODO PARA ALTERAR DADOS DO USUARIO #######   ///
