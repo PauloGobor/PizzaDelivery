@@ -63,6 +63,7 @@ public class TamanhosAdapter extends BaseAdapter {
             public void onCheckedChanged(RadioGroup group, int checkedId) {
 
             }
+
         });
 
 
