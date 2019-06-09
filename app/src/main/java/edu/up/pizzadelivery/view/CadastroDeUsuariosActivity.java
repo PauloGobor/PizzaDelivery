@@ -116,7 +116,7 @@ public class CadastroDeUsuariosActivity extends AppCompatActivity {
 
                                     /// 7- redirecionar para tela de login
                                     Intent telaLogin = new Intent(CadastroDeUsuariosActivity.this, MainActivity.class);
-                                    startActivity(telaLogin);
+
 
                                 }else {// mensagem de erro.
                                     Toast.makeText(CadastroDeUsuariosActivity.this, "Problema ao realizar o cadastro. Tente Mais tarde 2!", Toast.LENGTH_SHORT).show();

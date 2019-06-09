@@ -1,391 +1,286 @@
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginEnd="20dp">
+        android:layout_height="match_parent">
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="fill_parent"
             android:layout_height="match_parent"
-            android:orientation="horizontal">
+            android:orientation="vertical"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            tools:ignore="ScrollViewSize">
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="100dp"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="@string/dCadastro"
-                android:textColor="@android:color/holo_red_dark"
-                android:textSize="40sp" />
+            <android.support.design.widget.TextInputLayout
 
-        </LinearLayout>
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="10dp">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:orientation="horizontal">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/dCadastro"
+                    android:textColor="@android:color/holo_red_dark"
+                    android:textSize="20sp" />
 
-            <TextView
-                android:id="@+id/txtNome"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="@string/nome"
-                android:textSize="30sp" />
+            </android.support.design.widget.TextInputLayout>
 
-            <EditText
-                android:id="@+id/edtNome"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="2"
-                android:gravity="center"
-                tools:ignore="Autofill,LabelFor,TextFields" />
-        </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:orientation="horizontal">
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/input_layout_Nome"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="@string/email"
-                android:textSize="30sp"
-                tools:ignore="NestedWeights" />
+                <EditText
+                    android:id="@+id/edtNome"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:hint="@string/nome"
+                    android:singleLine="true"
+                    tools:ignore="Autofill,LabelFor,TextFields" />
 
-            <EditText
-                android:id="@+id/edtEmail"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="2"
-                android:gravity="center"
-                android:inputType="textEmailAddress"
-                tools:ignore="Autofill,LabelFor" />
+            </android.support.design.widget.TextInputLayout>
 
-        </LinearLayout>
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/input_layout_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:orientation="horizontal">
+                <EditText
+                    android:id="@+id/edtEmail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:hint="@string/email"
+                    android:inputType="textEmailAddress"
+                    android:singleLine="true"
+                    tools:ignore="Autofill,LabelFor,TextFields" />
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="@string/cpf"
-                android:textSize="30sp"
-                tools:ignore="NestedWeights" />
+            </android.support.design.widget.TextInputLayout>
 
-            <EditText
-                android:id="@+id/edtCpf"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="2"
-                android:gravity="center"
-                android:inputType="number"
-                tools:ignore="Autofill,LabelFor"/>
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/input_layout_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-        </LinearLayout>
+                <EditText
+                    android:id="@+id/edtCpf"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:hint="@string/cpf"
+                    android:inputType="number"
+                    android:maxLength="11"
+                    android:singleLine="true"
+                    tools:ignore="Autofill,LabelFor,TextFields" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:orientation="horizontal">
+            </android.support.design.widget.TextInputLayout>
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="@string/tel"
-                android:textSize="30sp"
-                tools:ignore="NestedWeights" />
+            <android.support.design.widget.TextInputLayout
 
-            <EditText
-                android:id="@+id/edtTel"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="2"
-                android:gravity="center"
-                tools:ignore="Autofill,LabelFor"
-                android:inputType="number" />
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-        </LinearLayout>
+                <EditText
+                    android:id="@+id/edtTel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:hint="@string/tel"
+                    android:inputType="number"
+                    android:singleLine="true"
+                    tools:ignore="Autofill,LabelFor,TextFields" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
+            </android.support.design.widget.TextInputLayout>
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="100dp"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="@string/dEndereco"
-                android:textColor="@android:color/holo_red_dark"
-                android:textSize="40sp" />
+            <android.support.design.widget.TextInputLayout
 
-        </LinearLayout>
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:orientation="horizontal">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/dEndereco"
+                    android:textColor="@android:color/holo_red_dark"
+                    android:textSize="20sp" />
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="@string/cep"
-                android:textSize="30sp"
-                tools:ignore="NestedWeights" />
+            </android.support.design.widget.TextInputLayout>
 
-            <EditText
-                android:id="@+id/edtCep"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="2"
-                android:inputType="number"
-                android:gravity="center"
-                tools:ignore="Autofill,LabelFor"/>
+            <android.support.design.widget.TextInputLayout
 
-        </LinearLayout>
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:orientation="horizontal">
+                <EditText
+                    android:id="@+id/edtCep"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:hint="@string/cep"
+                    android:inputType="number"
+                    android:singleLine="true"
+                    tools:ignore="Autofill,LabelFor,TextFields" />
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="@string/rua"
-                android:textSize="30sp"
-                tools:ignore="NestedWeights" />
+            </android.support.design.widget.TextInputLayout>
 
-            <EditText
-                android:id="@+id/edtRua"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="2"
-                android:gravity="center"
-                tools:ignore="Autofill,LabelFor,TextFields"/>
+            <android.support.design.widget.TextInputLayout
 
-        </LinearLayout>
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:orientation="horizontal">
+                <EditText
+                    android:id="@+id/edtRua"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:hint="@string/rua"
+                    android:singleLine="true"
+                    tools:ignore="Autofill,LabelFor,TextFields" />
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="@string/bairro"
-                android:textSize="30sp"
-                tools:ignore="NestedWeights" />
+            </android.support.design.widget.TextInputLayout>
 
-            <EditText
-                android:id="@+id/edtBairro"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="2"
-                android:gravity="center"
-                tools:ignore="Autofill,LabelFor,TextFields"/>
+            <android.support.design.widget.TextInputLayout
 
-        </LinearLayout>
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:orientation="horizontal">
+                <EditText
+                    android:id="@+id/edtBairro"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:hint="@string/bairro"
+                    android:singleLine="true"
+                    tools:ignore="Autofill,LabelFor,TextFields" />
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="@string/cidade"
-                android:textSize="30sp"
-                tools:ignore="NestedWeights" />
+            </android.support.design.widget.TextInputLayout>
 
-            <EditText
-                android:id="@+id/edtCidade"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="2"
-                android:gravity="center"
-                tools:ignore="Autofill,LabelFor,TextFields"/>
+            <android.support.design.widget.TextInputLayout
 
-        </LinearLayout>
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:orientation="horizontal">
+                <EditText
+                    android:id="@+id/edtCidade"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:hint="@string/cidade"
+                    android:singleLine="true"
+                    tools:ignore="Autofill,LabelFor,TextFields" />
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="@string/numero"
-                android:textSize="30sp"
-                tools:ignore="NestedWeights" />
+            </android.support.design.widget.TextInputLayout>
 
-            <EditText
-                android:id="@+id/edtNumero"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="2"
-                android:inputType="number"
-                android:gravity="center"
-                tools:ignore="Autofill,LabelFor"/>
+            <android.support.design.widget.TextInputLayout
 
-        </LinearLayout>
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:orientation="horizontal">
+                <EditText
+                    android:id="@+id/edtNumero"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:hint="@string/numero"
+                    android:inputType="number"
+                    android:singleLine="true"
+                    tools:ignore="Autofill,LabelFor,TextFields" />
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="@string/Comple"
-                android:textSize="20sp"
-                tools:ignore="NestedWeights" />
+            </android.support.design.widget.TextInputLayout>
 
-            <EditText
-                android:id="@+id/edtComplemento"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="2"
-                android:gravity="center"
-                tools:ignore="Autofill,LabelFor,TextFields"/>
+            <android.support.design.widget.TextInputLayout
 
-        </LinearLayout>
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
+                <EditText
+                    android:id="@+id/edtComplemento"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:hint="@string/Comple"
+                    android:singleLine="true"
+                    tools:ignore="Autofill,LabelFor,TextFields" />
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="100dp"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="@string/dAcesso"
-                android:textColor="@android:color/holo_red_dark"
-                android:textSize="40sp" />
+            </android.support.design.widget.TextInputLayout>
 
-        </LinearLayout>
+            <android.support.design.widget.TextInputLayout
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:orientation="horizontal">
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="10dp">
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="@string/senha"
-                android:textSize="30sp"
-                tools:ignore="NestedWeights" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/dAcesso"
+                    android:textColor="@android:color/holo_red_dark"
+                    android:textSize="20sp" />
 
-            <EditText
-                android:id="@+id/edtSenha"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="2"
-                android:gravity="center"
-                android:inputType="textPassword"
-                tools:ignore="Autofill,LabelFor"/>
+            </android.support.design.widget.TextInputLayout>
 
-        </LinearLayout>
+            <android.support.design.widget.TextInputLayout
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:orientation="horizontal">
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="@string/ConfSenha"
-                android:textSize="20sp"
-                tools:ignore="NestedWeights" />
+                <EditText
+                    android:id="@+id/edtSenha"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:hint="@string/senha"
+                    android:singleLine="true"
+                    tools:ignore="Autofill,LabelFor,TextFields" />
 
-            <EditText
-                android:id="@+id/edtConfSenha"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="2"
-                android:gravity="center"
-                android:inputType="textPassword"
-                tools:ignore="Autofill,LabelFor" />
+            </android.support.design.widget.TextInputLayout>
 
-        </LinearLayout>
+            <android.support.design.widget.TextInputLayout
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/edtConfSenha"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:hint="@string/ConfSenha"
+                    android:singleLine="true"
+                    tools:ignore="Autofill,LabelFor,TextFields" />
+
+            </android.support.design.widget.TextInputLayout>
 
             <Button
                 android:id="@+id/btnCadastrar"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:background="@android:color/holo_red_dark"
-                android:layout_marginStart="10dp"
-                android:shadowColor="#000000"
-                android:paddingStart="10dp"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="40dp"
+                android:background="@color/colorPrimary"
                 android:text="@string/cadastrar"
-                android:textColor="#FFFFFF"
-                android:textSize="30sp"
-                tools:ignore="RtlSymmetry" />
+                android:textColor="@android:color/white" />
 
         </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal"
-            tools:ignore="UselessLeaf">
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:textSize="30sp"
-                tools:ignore="NestedWeights" />
+    </ScrollView>
+</android.support.design.widget.CoordinatorLayout>
 
 
-        </LinearLayout>
 
-    </LinearLayout>
-</ScrollView>
+
+
+
