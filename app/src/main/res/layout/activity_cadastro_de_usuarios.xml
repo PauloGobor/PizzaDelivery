@@ -1,7 +1,8 @@
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -236,7 +237,8 @@
             <android.support.design.widget.TextInputLayout
 
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                app:passwordToggleEnabled="true">>
 
                 <EditText
                     android:id="@+id/edtSenha"
@@ -244,6 +246,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:hint="@string/senha"
+                    android:inputType="textPassword"
                     android:singleLine="true"
                     tools:ignore="Autofill,LabelFor,TextFields" />
 
@@ -252,13 +255,15 @@
             <android.support.design.widget.TextInputLayout
 
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                app:passwordToggleEnabled="true">
 
                 <EditText
                     android:id="@+id/edtConfSenha"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
+                    android:inputType="textPassword"
                     android:hint="@string/ConfSenha"
                     android:singleLine="true"
                     tools:ignore="Autofill,LabelFor,TextFields" />
