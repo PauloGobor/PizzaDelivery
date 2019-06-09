@@ -10,9 +10,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.io.Console;
+
 import edu.up.pizzadelivery.DAO.UsuarioDAO;
 import edu.up.pizzadelivery.R;
 import edu.up.pizzadelivery.model.Criptografia;
+import edu.up.pizzadelivery.model.Endereco;
 import edu.up.pizzadelivery.model.Usuario;
 
 public class CadastroDeUsuariosActivity extends AppCompatActivity {
@@ -32,7 +35,8 @@ public class CadastroDeUsuariosActivity extends AppCompatActivity {
 
     private Button btnCadastrar;
     private boolean RtVerific;  //retorno para verificacao
-    private long    RtVerCad;   //retorno para verificao cadastro
+    private long    RtVerCadUser;   //retorno para verificao cadastro
+    private long    RtVerCadEndereco;   //retorno para verificao cadastro de endereco
 
 
     @Override
@@ -68,7 +72,6 @@ public class CadastroDeUsuariosActivity extends AppCompatActivity {
                         !edtBairro.getText().toString().equals("") &&
                         !edtCidade.getText().toString().equals("") &&
                         !edtNumero.getText().toString().equals("") &&
-                        !edtComplemento.getText().toString().equals("") &&
                         !edtSenha.getText().toString().equals("") &&
                         !edtConfSenha.getText().toString().equals("")) {
                     if(edtSenha.getText().toString().equals(edtConfSenha.getText().toString())){
@@ -76,7 +79,7 @@ public class CadastroDeUsuariosActivity extends AppCompatActivity {
                         /// 1- verificar se email e cpf ja existem cadastrado
                         RtVerific = UsuarioDAO.JaCadastrado(CadastroDeUsuariosActivity.this, edtEmail.getText().toString(), edtCpf.getText().toString());
 
-                        if(RtVerific){
+                        if(RtVerific == false){
                             /// 2- realizar conversao de senha para criptografia
                             Criptografia crip = new Criptografia();
                             String senhaConv =   crip.criptografar(edtSenha.getText().toString());
@@ -89,29 +92,40 @@ public class CadastroDeUsuariosActivity extends AppCompatActivity {
                             usuario.setCpf(edtCpf.getText().toString());
                             usuario.setTelefone(edtTel.getText().toString());
                             usuario.setSenha(senhaConv); /// vai ser criptografado antes.
-                            //Parte de endereco
-//                            usuario.getEndereco().setCep(edtCep.getText().toString());
-//                            usuario.getEndereco().setRua(edtRua.getText().toString());
-//                            usuario.getEndereco().setBairro(edtBairro.getText().toString());
-//                            usuario.getEndereco().setCidade(edtCidade.getText().toString());
-//                            usuario.getEndereco().setNumero(Integer.parseInt(edtNumero.getText().toString()));
-//                            usuario.getEndereco().setComplemento(edtComplemento.getText().toString());
 
                             /// 3- salvar dados Usuario e endereco
 
-                            RtVerCad = (long) UsuarioDAO.CadastrarUsuario(CadastroDeUsuariosActivity.this, usuario);
-                            /// 5- retornar confirmacao de cadastro ou erro (Toast ou AlertDialog)
-                            if(RtVerCad == 0){
-                                /// 6- Avisar que será redirecionado para tela de login
-                                MenssagemConfCad();
+                            RtVerCadUser = (long) UsuarioDAO.CadastrarUsuario(CadastroDeUsuariosActivity.this, usuario);
 
-                                /// 7- redirecionar para tela de login
-                                Intent telaLogin = new Intent(CadastroDeUsuariosActivity.this, MainActivity.class);
-                                startActivity(telaLogin);
+                            Endereco endereco = new Endereco();
 
+                            endereco.setCep(edtCep.getText().toString());
+                            endereco.setRua(edtRua.getText().toString());
+                            endereco.setBairro(edtBairro.getText().toString());
+                            endereco.setCidade(edtCidade.getText().toString());
+                            endereco.setNumero(Integer.parseInt(edtNumero.getText().toString()));
+                            endereco.setComplemento(edtComplemento.getText().toString());
+                            endereco.setUsuario(usuario);
+
+                            RtVerCadEndereco = (long) UsuarioDAO.CadastrarEndereco(CadastroDeUsuariosActivity.this, endereco);
+
+                            if(RtVerCadUser != -1){
+                                if( RtVerCadEndereco != -1){
+                                    /// 6- Avisar que será redirecionado para tela de login
+                                    MenssagemConfCad();
+
+                                    /// 7- redirecionar para tela de login
+                                    Intent telaLogin = new Intent(CadastroDeUsuariosActivity.this, MainActivity.class);
+                                    startActivity(telaLogin);
+
+                                }else {// mensagem de erro.
+                                    Toast.makeText(CadastroDeUsuariosActivity.this, "Problema ao realizar o cadastro. Tente Mais tarde 2!", Toast.LENGTH_SHORT).show();
+                                }
                             }else {// mensagem de erro.
-                                Toast.makeText(CadastroDeUsuariosActivity.this, "Problema ao realizar o cadastro. Tente Mais uma vez!", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(CadastroDeUsuariosActivity.this, "Problema ao realizar o cadastro. Tente Mais tarde 1!", Toast.LENGTH_SHORT).show();
                             }
+
+
                         }else {
                             Toast.makeText(CadastroDeUsuariosActivity.this, "E-mail ou Senha já cadastrados!", Toast.LENGTH_SHORT).show();
                         }

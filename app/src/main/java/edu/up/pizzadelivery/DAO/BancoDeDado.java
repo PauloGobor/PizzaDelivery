@@ -9,6 +9,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import java.util.ArrayList;
 
 import edu.up.pizzadelivery.model.Bebida;
+import edu.up.pizzadelivery.model.Endereco;
 import edu.up.pizzadelivery.model.FormaPagamento;
 import edu.up.pizzadelivery.model.Login;
 import edu.up.pizzadelivery.model.Sabor;
@@ -349,14 +350,24 @@ public class BancoDeDado extends SQLiteOpenHelper {
         values.put(Contrato.TabelaUsuario.COLUNA_TELEFONE, usuario.getTelefone());
         values.put(Contrato.TabelaUsuario.COLUNA_SENHA, usuario.getSenha());
         //inseri os dados na tabela usuario
-        db.insert(Contrato.TabelaUsuario.NOME_DA_TABELA, null, values);
-// preenche a tabela endereco
-        // *****
-
-        db.insert(Contrato.TabelaEndereco.NOME_DA_TABELA, null, values);
 
         return db.insert(Contrato.TabelaUsuario.NOME_DA_TABELA, null, values);
     }
+    public long CadastrarEndereco (Endereco endereco){
+        SQLiteDatabase db = getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(Contrato.TabelaEndereco.COLUNA_BAIRRO, endereco.getBairro());
+        values.put(Contrato.TabelaEndereco.COLUNA_CEP, endereco.getCep());
+        values.put(Contrato.TabelaEndereco.COLUNA_CIDADE, endereco.getCidade());
+        values.put(Contrato.TabelaEndereco.COLUNA_COMPLEMENTO, endereco.getComplemento());
+        values.put(Contrato.TabelaEndereco.COLUNA_NUMERO, endereco.getNumero());
+        values.put(Contrato.TabelaEndereco.COLUNA_RUA, endereco.getRua());
+        values.put(Contrato.TabelaEndereco.COLUNA_USUARIOID, endereco.getUsuario().getId());
+
+        return  db.insert(Contrato.TabelaEndereco.NOME_DA_TABELA, null, values);
+    }
+
+
 
     public boolean ValidadaLogin(Login login) {
 

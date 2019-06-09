@@ -2,6 +2,7 @@ package edu.up.pizzadelivery.DAO;
 
 import android.content.Context;
 
+import edu.up.pizzadelivery.model.Endereco;
 import edu.up.pizzadelivery.model.Login;
 import edu.up.pizzadelivery.model.Usuario;
 
@@ -22,6 +23,13 @@ public class UsuarioDAO {
 
     }
 
+    public static long CadastrarEndereco(Context context, Endereco endereco){
+        db = new BancoDeDado(context);
+
+        return db.CadastrarEndereco(endereco);
+
+    }
+
 
     public static boolean ValidarLogin(Context context, Login login){
 
@@ -31,8 +39,13 @@ public class UsuarioDAO {
     }
     public  static boolean JaCadastrado(Context context, String email, String cpf){
         db = new BancoDeDado(context);
+        valorReferencia = db.JaCadastrado(email, cpf);
 
-        return valorReferencia = db.JaCadastrado(email, cpf);
+        if( valorReferencia == true){
+            return true;
+        }else {
+            return false;
+        }
     }
 
 
