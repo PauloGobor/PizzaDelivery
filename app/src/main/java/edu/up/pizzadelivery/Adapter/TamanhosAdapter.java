@@ -13,8 +13,7 @@ import java.util.List;
 
 import edu.up.pizzadelivery.R;
 import edu.up.pizzadelivery.model.Tamanho;
-import edu.up.pizzadelivery.view.EscolherTamanhoActivity;
-import edu.up.pizzadelivery.view.MainActivity;
+
 
 public class TamanhosAdapter extends BaseAdapter {
 
@@ -57,15 +56,15 @@ public class TamanhosAdapter extends BaseAdapter {
 
         nome.setText(tamanho.getNome());
 
-
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
 
+
+
+
             }
-
         });
-
 
         return view;
 
