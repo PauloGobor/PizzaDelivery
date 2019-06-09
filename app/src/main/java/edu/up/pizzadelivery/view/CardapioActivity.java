@@ -7,6 +7,8 @@ import android.widget.ListView;
 
 import java.util.ArrayList;
 
+import edu.up.pizzadelivery.Adapter.SaboresAdapter;
+import edu.up.pizzadelivery.Adapter.TamanhosAdapter;
 import edu.up.pizzadelivery.DAO.SaborDAO;
 import edu.up.pizzadelivery.DAO.TamanhoDAO;
 import edu.up.pizzadelivery.R;
@@ -26,6 +28,7 @@ public class CardapioActivity extends AppCompatActivity {
 
         lstSabores = (ListView) findViewById(R.id.lstSabores);
 
+
         final ArrayList<Sabor> saboresArrayList = SaborDAO.retornarSabor(this);
         String[] sabores = new String[saboresArrayList.size()];
 
@@ -33,11 +36,14 @@ public class CardapioActivity extends AppCompatActivity {
             sabores[i] = saboresArrayList.get(i).getNome();
 
         }
+
+        SaboresAdapter saboresAdapter = new SaboresAdapter(saboresArrayList,this);
         //O adapter é componente que prepara os dados para o ListView
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_list_item_1, sabores);
+
+//        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+//                android.R.layout.simple_list_item_1, sabores);
         //setAdapter é método que vai popular os dados dentro do ListView
-        lstSabores.setAdapter(adapter);
+        lstSabores.setAdapter(saboresAdapter);
         //Criar o clique de cada do ListView
 
 
