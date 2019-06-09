@@ -298,6 +298,7 @@ public class BancoDeDado extends SQLiteOpenHelper {
         db.execSQL(SQL_CRIAR_TABELA_ITEMPEDIDO);
         db.execSQL(SQL_CRIAR_TABELA_PEDIDO);
         db.execSQL(SQL_CRIAR_TABELA_PIZZAPEDIDA);
+
         //insere dados ao criar banco
         //Log.i("Criar banco", SQL_INSERIR_BROTO);
         //TAMANHO

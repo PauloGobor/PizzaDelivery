@@ -1,11 +1,14 @@
-<LinearLayout android:layout_height="match_parent"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:padding="16dp"
-    xmlns:android="http://schemas.android.com/apk/res/android" >
+    android:layout_height="match_parent"
+    android:padding="16dp">
 
-    <ListView
-        android:id="@+id/lstTamanhos"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+
+
+        <ListView
+            android:id="@+id/lstTamanhos"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
 
 </LinearLayout>
