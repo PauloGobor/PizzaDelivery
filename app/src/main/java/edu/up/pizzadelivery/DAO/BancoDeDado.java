@@ -282,7 +282,7 @@ public class BancoDeDado extends SQLiteOpenHelper {
 
     private static final String SQL_INSERIR_SABOR_BA = "INSERT INTO " +
             Contrato.TabelaSabor.NOME_DA_TABELA +
-            "(Nome, Descricao) VALUES (' BACON CROCANTE', 'MOLHO DE TOMATE, BACON, BATATA PALHA E MUSSARELA')";
+            "(Nome, Descricao) VALUES ('BACON CROCANTE', 'MOLHO DE TOMATE, BACON, BATATA PALHA E MUSSARELA')";
 //    //
 
     @Override
