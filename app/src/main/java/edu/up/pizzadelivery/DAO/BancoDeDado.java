@@ -368,7 +368,6 @@ public class BancoDeDado extends SQLiteOpenHelper {
     }
 
 
-
     public boolean ValidadaLogin(Login login) {
 
         SQLiteDatabase db = getReadableDatabase();
