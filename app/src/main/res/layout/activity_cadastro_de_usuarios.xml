@@ -35,12 +35,12 @@
 
 
             <android.support.design.widget.TextInputLayout
-                android:id="@+id/input_layout_Nome"
+                android:id="@+id/edtNome"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                app:errorEnabled="true">
 
                 <EditText
-                    android:id="@+id/edtNome"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
@@ -51,12 +51,12 @@
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
-                android:id="@+id/input_layout_email"
+                android:id="@+id/edtEmail"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                app:errorEnabled="true">
 
                 <EditText
-                    android:id="@+id/edtEmail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
@@ -68,12 +68,14 @@
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
-                android:id="@+id/input_layout_password"
+                android:id="@+id/edtCpf"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                app:counterEnabled="true"
+                app:counterMaxLength="11"
+                app:errorEnabled="true">
 
                 <EditText
-                    android:id="@+id/edtCpf"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
@@ -86,12 +88,12 @@
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
-
+                android:id="@+id/edtTel"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                app:errorEnabled="true">
 
                 <EditText
-                    android:id="@+id/edtTel"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
@@ -106,8 +108,8 @@
 
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="20dp">
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp">
 
                 <TextView
                     android:layout_width="match_parent"
@@ -120,16 +122,19 @@
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
-
+                android:id="@+id/edtCep"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                app:errorEnabled="true"
+                app:counterEnabled="true"
+                app:counterMaxLength="8">
 
                 <EditText
-                    android:id="@+id/edtCep"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:hint="@string/cep"
+                    android:maxLength="8"
                     android:inputType="number"
                     android:singleLine="true"
                     tools:ignore="Autofill,LabelFor,TextFields" />
@@ -137,12 +142,12 @@
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
-
+                android:id="@+id/edtRua"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                app:errorEnabled="true">
 
                 <EditText
-                    android:id="@+id/edtRua"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
@@ -153,12 +158,12 @@
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
-
+                android:id="@+id/edtBairro"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                app:errorEnabled="true">
 
                 <EditText
-                    android:id="@+id/edtBairro"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
@@ -169,12 +174,12 @@
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
-
+                android:id="@+id/edtCidade"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                app:errorEnabled="true">
 
                 <EditText
-                    android:id="@+id/edtCidade"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
@@ -185,12 +190,12 @@
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
-
+                android:id="@+id/edtNumero"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                app:errorEnabled="true">
 
                 <EditText
-                    android:id="@+id/edtNumero"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
@@ -202,12 +207,12 @@
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
-
+                android:id="@+id/edtComplemento"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                app:errorEnabled="true">
 
                 <EditText
-                    android:id="@+id/edtComplemento"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
@@ -235,13 +240,13 @@
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
-
+                android:id="@+id/edtSenha"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:passwordToggleEnabled="true">>
+                app:passwordToggleEnabled="true"
+                app:errorEnabled="true">
 
                 <EditText
-                    android:id="@+id/edtSenha"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
@@ -253,13 +258,13 @@
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
-
+                android:id="@+id/edtConfSenha"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:passwordToggleEnabled="true">
+                app:passwordToggleEnabled="true"
+                app:errorEnabled="true">
 
                 <EditText
-                    android:id="@+id/edtConfSenha"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
