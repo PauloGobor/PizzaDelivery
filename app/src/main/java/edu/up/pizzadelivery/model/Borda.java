@@ -5,7 +5,7 @@ import java.io.Serializable;
 public class Borda implements Serializable {
 
     private int id;
-    private int nome;
+    private String nome;
     private double preco;
 
     public int getId() {
@@ -16,11 +16,11 @@ public class Borda implements Serializable {
         this.id = id;
     }
 
-    public int getNome() {
+    public String getNome() {
         return nome;
     }
 
-    public void setNome(int nome) {
+    public void setNome(String nome) {
         this.nome = nome;
     }
 

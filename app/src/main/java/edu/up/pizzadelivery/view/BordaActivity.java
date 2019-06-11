@@ -7,50 +7,53 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
 import edu.up.pizzadelivery.DAO.BebidaDAO;
-import edu.up.pizzadelivery.DAO.TamanhoDAO;
+import edu.up.pizzadelivery.DAO.BordaDAO;
 import edu.up.pizzadelivery.R;
 import edu.up.pizzadelivery.model.Bebida;
+import edu.up.pizzadelivery.model.Borda;
+import edu.up.pizzadelivery.model.Sabor;
 import edu.up.pizzadelivery.model.Tamanho;
 
-public class BebidasActivity extends AppCompatActivity {
+public class BordaActivity extends AppCompatActivity {
 
-    private ListView lstBebidas;
+    private ListView lstBordas;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_bebidas);
+        setContentView(R.layout.activity_borda);
 
-        lstBebidas = (ListView) findViewById(R.id.ListBebidas);
+        lstBordas = (ListView) findViewById(R.id.lstBordas);
         final Tamanho tamanho = (Tamanho) getIntent().getSerializableExtra("TAMANHO");
+        final Sabor sabor = (Sabor) getIntent().getSerializableExtra("SABOR");
 
-        final ArrayList<Bebida> bebidasArrayList = BebidaDAO.retornarBebidas(this);
-        String[] bebidas = new String[bebidasArrayList.size()];
+        final ArrayList<Borda> bordasArrayList = BordaDAO.retornarBordas(this);
+        String[] bordas = new String[bordasArrayList.size()];
 
-        for (int i = 0; i < bebidasArrayList.size(); i++) {
-            bebidas[i] = bebidasArrayList.get(i).getNome();
+        for (int i = 0; i < bordasArrayList.size(); i++) {
+            bordas[i] = bordasArrayList.get(i).getNome();
+
         }
         //O adapter é componente que prepara os dados para o ListView
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_list_item_1, bebidas);
+                android.R.layout.simple_list_item_1, bordas);
         //setAdapter é método que vai popular os dados dentro do ListView
-        lstBebidas.setAdapter(adapter);
+        lstBordas.setAdapter(adapter);
 
-        lstBebidas.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        lstBordas.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-
-                Intent intent = new Intent(BebidasActivity.this, CarrinhoActivity.class);
-                intent.putExtra("BEBIDA", bebidasArrayList.get(position));
-
+                Intent intent = new Intent(BordaActivity.this, CarrinhoActivity.class);
+                intent.putExtra("BORDA", bordasArrayList.get(position));
                 startActivity(intent);
             }
         });
+
 
 
     }

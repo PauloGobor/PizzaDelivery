@@ -52,7 +52,7 @@ public class CardapioActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(CardapioActivity.this, CarrinhoActivity.class);
-                //passando tamanho
+               // passando tamanho
                intent.putExtra("TAMANHO", tamanho);
                //passando sabor
                intent.putExtra("SABOR",saboresArrayList.get(position));

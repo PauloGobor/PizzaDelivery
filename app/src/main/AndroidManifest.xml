@@ -15,7 +15,8 @@
         android:roundIcon="@mipmap/ic_launcher_pizzadelivery_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".view.CarrinhoActivity"></activity>
+        <activity android:name=".view.BordaActivity"></activity>
+        <activity android:name=".view.CarrinhoActivity" />
         <activity android:name=".view.BebidasActivity" />
         <activity android:name=".view.RelatorioPedidoActivity" />
         <activity android:name=".view.PerfilUsuarioActivity" />

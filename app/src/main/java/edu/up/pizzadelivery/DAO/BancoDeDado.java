@@ -9,6 +9,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import java.util.ArrayList;
 
 import edu.up.pizzadelivery.model.Bebida;
+import edu.up.pizzadelivery.model.Borda;
 import edu.up.pizzadelivery.model.Endereco;
 import edu.up.pizzadelivery.model.FormaPagamento;
 import edu.up.pizzadelivery.model.Login;
@@ -459,6 +460,36 @@ public class BancoDeDado extends SQLiteOpenHelper {
     }
 
     //  ########################################################################   ///
+    //  ##### METODO PARA RETORNAR BORDAS DA PIZZA EM FORMA DE LISTA #######   ///
+    //  ########################################################################   ///
+    public ArrayList<Borda> RetornarBordas() {
+        ArrayList<Borda> bordas = new ArrayList<Borda>();
+        SQLiteDatabase db = getReadableDatabase();
+
+        String[] colunas = {
+                Contrato.TabelaBorda.COLUNA_ID,
+                Contrato.TabelaBorda.COLUNA_NOME,
+                Contrato.TabelaBorda.COLUNA_PRECO
+        };
+
+        Cursor cursor = db.query(Contrato.TabelaBorda.NOME_DA_TABELA, colunas,
+                null, null, null, null, null, null);
+
+        cursor.moveToFirst();
+        if (cursor.getCount() > 0) {
+            do {
+                Borda b = new Borda();
+                b.setId(cursor.getInt(0));
+                b.setNome(cursor.getString(1));
+                b.setPreco(cursor.getDouble(3));
+                bordas.add(b);
+            } while (cursor.moveToNext());
+        }
+        return bordas;
+    }
+
+
+    //  ########################################################################   ///
     //  ##### METODO PARA RETORNAR BEBIDAS EM FORMA DE LISTA #######   ///
     //  ########################################################################   ///
     public ArrayList<Bebida> RetornarBebidas() {
@@ -468,6 +499,7 @@ public class BancoDeDado extends SQLiteOpenHelper {
         String[] colunas = {
                 Contrato.TabelaBebida.COLUNA_ID,
                 Contrato.TabelaBebida.COLUNA_NOME,
+                Contrato.TabelaBebida.COLUNA_PRECO
 
         };
 
@@ -480,6 +512,7 @@ public class BancoDeDado extends SQLiteOpenHelper {
                 Bebida b = new Bebida();
                 b.setId(cursor.getInt(0));
                 b.setNome(cursor.getString(1));
+                b.setPreco(cursor.getDouble(2));
 
                 bebidas.add(b);
             } while (cursor.moveToNext());
