@@ -1,7 +1,10 @@
 package edu.up.pizzadelivery.view;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -24,7 +27,7 @@ public class CardapioActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cardapio);
 
-        Tamanho tamanho = (Tamanho) getIntent().getSerializableExtra("TAMANHO");
+        final Tamanho tamanho = (Tamanho) getIntent().getSerializableExtra("TAMANHO");
 
         lstSabores = (ListView) findViewById(R.id.lstSabores);
 
@@ -37,7 +40,7 @@ public class CardapioActivity extends AppCompatActivity {
 
         }
 
-        SaboresAdapter saboresAdapter = new SaboresAdapter(saboresArrayList,this);
+        SaboresAdapter saboresAdapter = new SaboresAdapter(saboresArrayList,tamanho,this);
         //O adapter é componente que prepara os dados para o ListView
 
 //        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
@@ -45,7 +48,18 @@ public class CardapioActivity extends AppCompatActivity {
         //setAdapter é método que vai popular os dados dentro do ListView
         lstSabores.setAdapter(saboresAdapter);
         //Criar o clique de cada do ListView
+        lstSabores.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(CardapioActivity.this, CarrinhoActivity.class);
+                //passando tamanho
+               intent.putExtra("TAMANHO", tamanho);
+               //passando sabor
+               intent.putExtra("SABOR",saboresArrayList.get(position));
+                startActivity(intent);
 
+            }
+        });
 
     }
 }

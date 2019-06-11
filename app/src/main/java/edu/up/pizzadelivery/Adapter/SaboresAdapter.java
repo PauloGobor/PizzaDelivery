@@ -10,16 +10,19 @@ import java.util.List;
 
 import edu.up.pizzadelivery.R;
 import edu.up.pizzadelivery.model.Sabor;
+import edu.up.pizzadelivery.model.Tamanho;
 
 
 public class SaboresAdapter extends BaseAdapter {
 
     private final List<Sabor> sabores;
     private final Activity act;
+    private Tamanho t;
 
-    public SaboresAdapter(List<Sabor> sabores, Activity act) {
+    public SaboresAdapter(List<Sabor> sabores, Tamanho t, Activity act) {
         this.sabores = sabores;
         this.act = act;
+        this.t = t;
     }
 
     @Override
@@ -44,12 +47,16 @@ public class SaboresAdapter extends BaseAdapter {
         final Sabor sabor = sabores.get(position);
 
 
+
         TextView nome = (TextView)
                 view.findViewById(R.id.txtSaborCustom);
         TextView descricao = (TextView) view.findViewById(R.id.txtDescricaoCustom);
 
+        TextView valor = (TextView) view.findViewById(R.id.txtTotalValor);
+
         nome.setText(sabor.getNome());
         descricao.setText(sabor.getDescricao());
+        valor.setText("R$:"+t.getPreco());
 
         return view;
 

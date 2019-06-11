@@ -8,6 +8,7 @@ import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -20,6 +21,7 @@ public class EscolherTamanhoActivity extends AppCompatActivity {
 
     private ListView lstTamanhos;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,11 +32,8 @@ public class EscolherTamanhoActivity extends AppCompatActivity {
         final ArrayList<Tamanho> tamanhosArrayList = TamanhoDAO.retornarTamanhos(this);
         String[] tamanhos = new String[tamanhosArrayList.size()];
 
-
-
         for (int i = 0; i < tamanhosArrayList.size(); i++) {
             tamanhos[i] = tamanhosArrayList.get(i).getNome();
-
         }
 
        // TamanhosAdapter tamanhosAdapter = new TamanhosAdapter(tamanhosArrayList,this);

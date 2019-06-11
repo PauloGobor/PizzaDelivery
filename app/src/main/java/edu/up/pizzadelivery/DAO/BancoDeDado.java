@@ -466,8 +466,8 @@ public class BancoDeDado extends SQLiteOpenHelper {
         SQLiteDatabase db = getReadableDatabase();
 
         String[] colunas = {
-                Contrato.TabelaTamanho.COLUNA_ID,
-                Contrato.TabelaTamanho.COLUNA_NOME,
+                Contrato.TabelaBebida.COLUNA_ID,
+                Contrato.TabelaBebida.COLUNA_NOME,
 
         };
 

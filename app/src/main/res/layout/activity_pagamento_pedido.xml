@@ -94,8 +94,26 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="0.4"
-        android:orientation="vertical">
+        android:orientation="horizontal">
 
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.1"
+            android:gravity="left"
+            android:text="Total Pedido"
+            android:textColor="@android:color/holo_red_dark"
+            android:textSize="30sp" />
+
+        <TextView
+            android:id="@+id/PagarTotalPedido"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.09"
+            android:gravity="left"
+            android:text="R$: 123,00"
+            android:textColor="@android:color/holo_red_dark"
+            android:textSize="30sp" />
         <!-- aqui ficara as formas de pagamento-->
 
     </LinearLayout>

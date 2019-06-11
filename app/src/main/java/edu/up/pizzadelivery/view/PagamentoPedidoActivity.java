@@ -1,7 +1,9 @@
 package edu.up.pizzadelivery.view;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -38,5 +40,10 @@ public class PagamentoPedidoActivity extends AppCompatActivity {
         ListFormasPagameto.setAdapter(adapter);
         //Criar o clique de cada do ListView
 
+    }
+
+    public void btnFinalizarPedido(View view) {
+        Intent relatorio = new Intent(this, RelatorioPedidoActivity.class);
+        startActivity(relatorio);
     }
 }

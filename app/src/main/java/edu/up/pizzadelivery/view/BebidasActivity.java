@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -22,6 +23,7 @@ public class BebidasActivity extends AppCompatActivity {
         setContentView(R.layout.activity_bebidas);
 
         lstBebidas = (ListView) findViewById(R.id.ListBebidas);
+
 
         final ArrayList<Bebida> bebidasArrayList = BebidaDAO.retornarBebidas(this);
         String[] bebidas = new String[bebidasArrayList.size()];
