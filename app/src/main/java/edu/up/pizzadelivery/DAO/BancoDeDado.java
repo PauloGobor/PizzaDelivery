@@ -393,7 +393,7 @@ public class BancoDeDado extends SQLiteOpenHelper {
                         Contrato.TabelaUsuario.COLUNA_EMAIL + " = ? AND " +
                         Contrato.TabelaUsuario.COLUNA_CPF + " = ? ",
                 new String[]{email, cpf});
-        ;
+
         if (cursor.getCount() <= 0) {
             cursor.close();
             return false;
