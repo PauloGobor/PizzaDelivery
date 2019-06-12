@@ -40,7 +40,7 @@ public class CardapioActivity extends AppCompatActivity {
 
         }
 
-        SaboresAdapter saboresAdapter = new SaboresAdapter(saboresArrayList,tamanho,this);
+        SaboresAdapter saboresAdapter = new SaboresAdapter(saboresArrayList, tamanho, this);
         //O adapter é componente que prepara os dados para o ListView
 
 //        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
@@ -52,10 +52,10 @@ public class CardapioActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(CardapioActivity.this, CarrinhoActivity.class);
-               // passando tamanho
-               intent.putExtra("TAMANHO", tamanho);
-               //passando sabor
-               intent.putExtra("SABOR",saboresArrayList.get(position));
+                // passando tamanho
+                intent.putExtra("TAMANHO", tamanho);
+                //passando sabor
+                intent.putExtra("SABOR", saboresArrayList.get(position));
                 startActivity(intent);
 
             }

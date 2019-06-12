@@ -28,8 +28,8 @@ public class BordaActivity extends AppCompatActivity {
         setContentView(R.layout.activity_borda);
 
         lstBordas = (ListView) findViewById(R.id.lstBordas);
-        final Tamanho tamanho = (Tamanho) getIntent().getSerializableExtra("TAMANHO");
-        final Sabor sabor = (Sabor) getIntent().getSerializableExtra("SABOR");
+//        final Tamanho tamanho = (Tamanho) getIntent().getSerializableExtra("TAMANHO");
+//        final Sabor sabor = (Sabor) getIntent().getSerializableExtra("SABOR");
 
         final ArrayList<Borda> bordasArrayList = BordaDAO.retornarBordas(this);
         String[] bordas = new String[bordasArrayList.size()];
