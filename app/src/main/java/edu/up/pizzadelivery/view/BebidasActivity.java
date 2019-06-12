@@ -11,6 +11,8 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
+import edu.up.pizzadelivery.Adapter.BebidaAdapter;
+import edu.up.pizzadelivery.Adapter.SaboresAdapter;
 import edu.up.pizzadelivery.DAO.BebidaDAO;
 import edu.up.pizzadelivery.DAO.TamanhoDAO;
 import edu.up.pizzadelivery.R;
@@ -34,16 +36,17 @@ public class BebidasActivity extends AppCompatActivity {
         for (int i = 0; i < bebidasArrayList.size(); i++) {
             bebidas[i] = bebidasArrayList.get(i).getNome();
         }
+
+        BebidaAdapter bebidasAdapter = new BebidaAdapter(bebidasArrayList, this);
         //O adapter é componente que prepara os dados para o ListView
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_list_item_1, bebidas);
+//        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+//                android.R.layout.simple_list_item_1, bebidas);
         //setAdapter é método que vai popular os dados dentro do ListView
-        lstBebidas.setAdapter(adapter);
+        lstBebidas.setAdapter(bebidasAdapter);
 
         lstBebidas.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
 
                 Intent intent = new Intent(BebidasActivity.this, CarrinhoActivity.class);
                 intent.putExtra("BEBIDA", bebidasArrayList.get(position));

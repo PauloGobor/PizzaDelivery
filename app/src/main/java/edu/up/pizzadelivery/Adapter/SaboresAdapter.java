@@ -52,7 +52,7 @@ public class SaboresAdapter extends BaseAdapter {
                 view.findViewById(R.id.txtSaborCustom);
         TextView descricao = (TextView) view.findViewById(R.id.txtDescricaoCustom);
 
-        TextView valor = (TextView) view.findViewById(R.id.txtTotalValor);
+        TextView valor = (TextView) view.findViewById(R.id.txtSaborValor);
 
         nome.setText(sabor.getNome());
         descricao.setText(sabor.getDescricao());

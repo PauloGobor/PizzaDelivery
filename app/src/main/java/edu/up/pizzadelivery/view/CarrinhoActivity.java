@@ -24,16 +24,15 @@ public class CarrinhoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_carrinho);
 
         txtCarrinhoSubTotal = (TextView) findViewById(R.id.txtCarrinhoSubTotal);
-// recebendo da ativy anterior itens escolhidos
+//      recebendo da activy anterior itens escolhidos
 
         final Tamanho tamanho = (Tamanho) getIntent().getSerializableExtra("TAMANHO");
         final Sabor sabor = (Sabor) getIntent().getSerializableExtra("SABOR");
-        final Bebida bebida = (Bebida) getIntent().getSerializableExtra("BEBIDA");
-
+      //  final Bebida bebida = (Bebida) getIntent().getSerializableExtra("BEBIDA");
 
         txtCarrinhoSubTotal.setText("Valor");
 
-        // listar itends do carrinho....
+        // listar itens do carrinho....
 
 
     }
