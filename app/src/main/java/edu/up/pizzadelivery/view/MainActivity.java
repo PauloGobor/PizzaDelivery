@@ -1,6 +1,7 @@
 package edu.up.pizzadelivery.view;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -22,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
                      edtSenha;
     private Button   btnEntrar;
     private boolean  verificacao;
+    private static  final  String ARQUIVO_PREF = "LogUsuario";
 
 
     @Override
@@ -50,6 +52,15 @@ public class MainActivity extends AppCompatActivity {
 
                     //Verifica se existe  no banco.
                     if(verificacao){
+
+                        SharedPreferences sheredPreferences = getSharedPreferences(ARQUIVO_PREF,0);
+                        SharedPreferences.Editor editor =  sheredPreferences.edit();
+
+                        editor.putString("Email", edtEmail.getText().toString());
+                        editor.putString("Senha", senhaConv);
+                        editor.commit();
+
+
                         //Intent telaInicial = new Intent(this, TelaInicialActivity.class); ///esse irei criar mais para frente
                         //startActivity(telaInicial);
 

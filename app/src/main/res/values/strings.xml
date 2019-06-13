@@ -24,6 +24,8 @@
     <string name="ConfSenha">Confirme sua senha</string>
     <string name="cadastrar">Cadastrar</string>
     <string name="title_activity_maps">Map</string>
+    <string name="salvar">Salvar</string>
+    <string name="DelCont">Deletar Conta</string>
 
 
 </resources>

@@ -99,6 +99,7 @@ public class CadastroDeUsuariosActivity extends AppCompatActivity {
                     endereco.setCidade(edtCidade.getEditText().getText().toString());
                     endereco.setNumero(Integer.parseInt(edtNumero.getEditText().getText().toString()));
                     endereco.setComplemento(edtComplemento.getEditText().getText().toString());
+                    usuario.setId((int) RtVerCadUser);
                     endereco.setUsuario(usuario);
 
                     RtVerCadEndereco = (long) UsuarioDAO.CadastrarEndereco(CadastroDeUsuariosActivity.this, endereco);
