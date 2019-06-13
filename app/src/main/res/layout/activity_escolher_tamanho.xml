@@ -6,18 +6,24 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.02"
-        android:orientation="horizontal">
+        android:layout_height="match_parent"
+        android:layout_weight="3"
+        android:orientation="vertical">
 
-        <ListView
-            android:id="@+id/lstTamanhos"
-            android:layout_width="282dp"
-            android:layout_height="232dp"
-            android:layout_weight="0.1" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="left"
+            android:text="Tamanhos"
+            android:textColor="@android:color/holo_red_dark"
+            android:textSize="30sp" />
     </LinearLayout>
 
 
-
-
+    <ListView
+        android:id="@+id/lstTamanhos"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="0.3" />
 </LinearLayout>
