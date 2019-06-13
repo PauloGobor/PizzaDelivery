@@ -68,7 +68,7 @@ public class BancoDeDado extends SQLiteOpenHelper {
                     Contrato.TabelaBebida.COLUNA_ID + TIPO_INTEIRO + " PRIMARY KEY AUTOINCREMENT" + VIRGULA +
                     Contrato.TabelaBebida.COLUNA_NOME + TIPO_TEXTO + VIRGULA +
                     Contrato.TabelaBebida.COLUNA_QTD + TIPO_INTEIRO + VIRGULA +
-                    Contrato.TabelaBebida.COLUNA_PRECO + ")";
+                    Contrato.TabelaBebida.COLUNA_PRECO + TIPO_REAL + ")";
 
     private static final String SQL_CRIAR_TABELA_BORDA =
             "CREATE TABLE IF NOT EXISTS " +
@@ -213,6 +213,7 @@ public class BancoDeDado extends SQLiteOpenHelper {
 
     //insere bebidas
 
+
     private static final String SQL_INSERIR_BEBIDA_CC = "INSERT INTO " +
             Contrato.TabelaBebida.NOME_DA_TABELA +
             "(Nome, Preco) VALUES ('COCA-COLA', 9)";
@@ -225,12 +226,15 @@ public class BancoDeDado extends SQLiteOpenHelper {
             Contrato.TabelaBebida.NOME_DA_TABELA +
             "(Nome, Preco) VALUES ('GUARANÁ 2L', 7)";
 
+    private static final String SQL_INSERIR_BEBIDA_SN = "INSERT INTO " +
+            Contrato.TabelaBebida.NOME_DA_TABELA +
+            "(Nome, Preco) VALUES ('S/N', '')";
+
     // insere bordas
 
     private static final String SQL_INSERIR_BORDA_CH = "INSERT INTO " +
             Contrato.TabelaBorda.NOME_DA_TABELA +
             "(Nome, Preco) VALUES ('CHEDDAR', 4)";
-
 
     private static final String SQL_INSERIR_BORDA_CT = "INSERT INTO " +
             Contrato.TabelaBorda.NOME_DA_TABELA +
@@ -239,6 +243,10 @@ public class BancoDeDado extends SQLiteOpenHelper {
     private static final String SQL_INSERIR_BORDA_CP = "INSERT INTO " +
             Contrato.TabelaBorda.NOME_DA_TABELA +
             "(Nome, Preco) VALUES ('CHOCOLATE PRETO', 5)";
+
+    private static final String SQL_INSERIR_BORDA_SN = "INSERT INTO " +
+            Contrato.TabelaBorda.NOME_DA_TABELA +
+            "(Nome, Preco) VALUES ('NORMAL', 0)";
 
 //    // insere sabores
 
@@ -312,10 +320,12 @@ public class BancoDeDado extends SQLiteOpenHelper {
         db.execSQL(SQL_INSERIR_FP_CDT);
         db.execSQL(SQL_INSERIR_FP_DBT);
         db.execSQL(SQL_INSERIR_FP_DIN);
+        db.execSQL(SQL_INSERIR_BORDA_SN);
         //BEBIDA
         db.execSQL(SQL_INSERIR_BEBIDA_CC);
         db.execSQL(SQL_INSERIR_BEBIDA_FL);
         db.execSQL(SQL_INSERIR_BEBIDA_GA);
+        db.execSQL(SQL_INSERIR_BEBIDA_SN);
         //BORDA
         db.execSQL(SQL_INSERIR_BORDA_CH);
         db.execSQL(SQL_INSERIR_BORDA_CT);
@@ -481,7 +491,7 @@ public class BancoDeDado extends SQLiteOpenHelper {
                 Borda b = new Borda();
                 b.setId(cursor.getInt(0));
                 b.setNome(cursor.getString(1));
-                b.setPreco(cursor.getDouble(3));
+                b.setPreco(cursor.getDouble(2));
                 bordas.add(b);
             } while (cursor.moveToNext());
         }

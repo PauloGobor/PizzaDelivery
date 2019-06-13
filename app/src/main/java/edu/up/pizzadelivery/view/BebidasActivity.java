@@ -17,11 +17,15 @@ import edu.up.pizzadelivery.DAO.BebidaDAO;
 import edu.up.pizzadelivery.DAO.TamanhoDAO;
 import edu.up.pizzadelivery.R;
 import edu.up.pizzadelivery.model.Bebida;
+import edu.up.pizzadelivery.model.Borda;
+import edu.up.pizzadelivery.model.Sabor;
 import edu.up.pizzadelivery.model.Tamanho;
 
 public class BebidasActivity extends AppCompatActivity {
 
+
     private ListView lstBebidas;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,6 +33,9 @@ public class BebidasActivity extends AppCompatActivity {
 
         lstBebidas = (ListView) findViewById(R.id.ListBebidas);
         final Tamanho tamanho = (Tamanho) getIntent().getSerializableExtra("TAMANHO");
+        final Sabor sabor = (Sabor) getIntent().getSerializableExtra("SABOR");
+        final Borda borda = (Borda) getIntent().getSerializableExtra("BORDA");
+
 
         final ArrayList<Bebida> bebidasArrayList = BebidaDAO.retornarBebidas(this);
         String[] bebidas = new String[bebidasArrayList.size()];
@@ -50,7 +57,9 @@ public class BebidasActivity extends AppCompatActivity {
 
                 Intent intent = new Intent(BebidasActivity.this, CarrinhoActivity.class);
                 intent.putExtra("BEBIDA", bebidasArrayList.get(position));
-
+                intent.putExtra("BORDA", borda);
+                intent.putExtra("TAMANHO", tamanho);
+                intent.putExtra("SABOR", sabor);
                 startActivity(intent);
             }
         });

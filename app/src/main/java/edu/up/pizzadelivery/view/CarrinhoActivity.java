@@ -9,13 +9,15 @@ import android.widget.TextView;
 
 import edu.up.pizzadelivery.R;
 import edu.up.pizzadelivery.model.Bebida;
+import edu.up.pizzadelivery.model.Borda;
 import edu.up.pizzadelivery.model.Sabor;
 import edu.up.pizzadelivery.model.Tamanho;
 
 public class CarrinhoActivity extends AppCompatActivity {
 
     private TextView txtCarrinhoSubTotal;
-    private double subtotalbebida;
+    private double subtotal;
+
 
 
     @Override
@@ -23,14 +25,19 @@ public class CarrinhoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_carrinho);
 
+        final Tamanho tamanho = (Tamanho) getIntent().getSerializableExtra("TAMANHO");
+        final Sabor sabor = (Sabor) getIntent().getSerializableExtra("SABOR");
+        final Borda borda = (Borda) getIntent().getSerializableExtra("BORDA");
+        final Bebida bebida = (Bebida) getIntent().getSerializableExtra("BEBIDA");
+
         txtCarrinhoSubTotal = (TextView) findViewById(R.id.txtCarrinhoSubTotal);
 //      recebendo da activy anterior itens escolhidos
 
-        final Tamanho tamanho = (Tamanho) getIntent().getSerializableExtra("TAMANHO");
-        final Sabor sabor = (Sabor) getIntent().getSerializableExtra("SABOR");
-      //  final Bebida bebida = (Bebida) getIntent().getSerializableExtra("BEBIDA");
 
-        txtCarrinhoSubTotal.setText("Valor");
+
+        subtotal = subtotal+tamanho.getPreco()+borda.getPreco()+bebida.getPreco();
+
+        txtCarrinhoSubTotal.setText(""+subtotal);
 
         // listar itens do carrinho....
 
@@ -43,9 +50,10 @@ public class CarrinhoActivity extends AppCompatActivity {
 
     }
 
-    public void btnBebidas(View view) {
-        Intent bebidas = new Intent(this, BebidasActivity.class);
-        startActivity(bebidas);
+    public void btnCardapio(View view) {
+        Intent intent = new Intent(this, EscolherTamanhoActivity.class);
+        startActivity(intent);
+
 
 
     }

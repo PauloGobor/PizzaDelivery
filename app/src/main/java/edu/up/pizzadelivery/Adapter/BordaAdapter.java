@@ -9,7 +9,7 @@ import android.widget.TextView;
 import java.util.List;
 
 import edu.up.pizzadelivery.R;
-import edu.up.pizzadelivery.model.Bebida;
+
 import edu.up.pizzadelivery.model.Borda;
 
 public class BordaAdapter extends BaseAdapter {
@@ -42,14 +42,12 @@ public class BordaAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
-        View view = act.getLayoutInflater().inflate(R.layout.lista_custom_bebida_price, parent, false);
+        View view = act.getLayoutInflater().inflate(R.layout.list_custom_borda ,parent, false);
         final Borda borda = bordas.get(position);
-
-
 
         TextView nome = (TextView)
                 view.findViewById(R.id.txtBordaCustom);
-        TextView valor = (TextView) view.findViewById(R.id.txtBordaValor);
+        TextView valor = (TextView) view.findViewById(R.id.txtValorBorda);
 
         nome.setText(borda.getNome());
         valor.setText("R$:"+borda.getPreco());

@@ -51,11 +51,11 @@ public class CardapioActivity extends AppCompatActivity {
         lstSabores.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(CardapioActivity.this, CarrinhoActivity.class);
-                // passando tamanho
-                intent.putExtra("TAMANHO", tamanho);
-                //passando sabor
-                intent.putExtra("SABOR", saboresArrayList.get(position));
+                Intent intent = new Intent(CardapioActivity.this, BordaActivity.class);
+               // passando tamanho
+               intent.putExtra("TAMANHO", tamanho);
+               //passando sabor
+               intent.putExtra("SABOR",saboresArrayList.get(position));
                 startActivity(intent);
 
             }
