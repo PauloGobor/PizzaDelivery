@@ -186,12 +186,12 @@ public class BancoDeDado extends SQLiteOpenHelper {
 
     private static final String SQL_INSERIR_MEDIA = "INSERT INTO " +
             Contrato.TabelaTamanho.NOME_DA_TABELA +
-            "(Nome, QtdSabor, Preco) VALUES ('MÉDIA', 1, 22)";
+            "(Nome, QtdSabor, Preco) VALUES ('MÉDIA', 2, 22)";
 
 
     private static final String SQL_INSERIR_GRANDE = "INSERT INTO " +
             Contrato.TabelaTamanho.NOME_DA_TABELA +
-            "(Nome, QtdSabor, Preco) VALUES ('GRANDE', 1, 30)";
+            "(Nome, QtdSabor, Preco) VALUES ('GRANDE', 3, 30)";
 
     private static final String SQL_INSERIR_BIG = "INSERT INTO " +
             Contrato.TabelaTamanho.NOME_DA_TABELA +

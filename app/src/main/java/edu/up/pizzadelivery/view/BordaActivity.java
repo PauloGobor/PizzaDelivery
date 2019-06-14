@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -24,6 +25,8 @@ import edu.up.pizzadelivery.model.Tamanho;
 public class BordaActivity extends AppCompatActivity {
 
     private ListView lstBordas;
+    final Sabor sabores = (Sabor) getIntent().getSerializableExtra("SABORES");
+    private TextView txtSabores;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,9 +34,11 @@ public class BordaActivity extends AppCompatActivity {
         setContentView(R.layout.activity_borda);
 
         lstBordas = (ListView) findViewById(R.id.lstBordas);
+        txtSabores = (TextView) findViewById(R.id.txtSabores);
         final Tamanho tamanho = (Tamanho) getIntent().getSerializableExtra("TAMANHO");
-        final Sabor sabor = (Sabor) getIntent().getSerializableExtra("SABOR");
 
+
+        txtSabores.setText(String.valueOf(sabores.getNome()));
 
 
         final ArrayList<Borda> bordasArrayList = BordaDAO.retornarBordas(this);
@@ -57,12 +62,11 @@ public class BordaActivity extends AppCompatActivity {
 
                 Intent intent = new Intent(BordaActivity.this, BebidasActivity.class);
                 intent.putExtra("BORDA", bordasArrayList.get(position));
-                intent.putExtra("TAMANHO",tamanho);
-                intent.putExtra("SABOR",sabor);
+                intent.putExtra("TAMANHO", tamanho);
+                intent.putExtra("SABORES", sabores);
                 startActivity(intent);
             }
         });
-
 
 
     }
