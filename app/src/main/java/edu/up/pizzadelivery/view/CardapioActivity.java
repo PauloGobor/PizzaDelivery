@@ -116,7 +116,6 @@ public class CardapioActivity extends AppCompatActivity {
 
                 }
 
-
             }
         });
 

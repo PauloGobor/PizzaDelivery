@@ -7,7 +7,7 @@ import edu.up.pizzadelivery.model.Pedido;
 
 public class PedidoDAO {
 
-    public static long CadastrarUsuario(Context context, Pedido pedido) {
+    public static long CadastrarPedido(Context context, Pedido pedido) {
         BancoDeDado banco = new BancoDeDado(context);
         return banco.CadastrarPedido(pedido);
 
