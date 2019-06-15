@@ -32,9 +32,8 @@ public class BebidasActivity extends AppCompatActivity {
         setContentView(R.layout.activity_bebidas);
 
         lstBebidas = (ListView) findViewById(R.id.ListBebidas);
-        final Tamanho tamanho = (Tamanho) getIntent().getSerializableExtra("TAMANHO");
-        final Sabor sabor = (Sabor) getIntent().getSerializableExtra("SABOR");
-        final Borda borda = (Borda) getIntent().getSerializableExtra("BORDA");
+//        final Tamanho tamanho = (Tamanho) getIntent().getSerializableExtra("TAMANHO");
+//        final Borda borda = (Borda) getIntent().getSerializableExtra("BORDA");
 
 
         final ArrayList<Bebida> bebidasArrayList = BebidaDAO.retornarBebidas(this);
@@ -51,15 +50,18 @@ public class BebidasActivity extends AppCompatActivity {
         //setAdapter é método que vai popular os dados dentro do ListView
         lstBebidas.setAdapter(bebidasAdapter);
 
+
         lstBebidas.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                 Intent intent = new Intent(BebidasActivity.this, CarrinhoActivity.class);
                 intent.putExtra("BEBIDA", bebidasArrayList.get(position));
-                intent.putExtra("BORDA", borda);
-                intent.putExtra("TAMANHO", tamanho);
-                intent.putExtra("SABOR", sabor);
+//                intent.putExtra("BORDA", borda);
+//                intent.putExtra("TAMANHO", tamanho);
+
+                // resolver problema com quantidade...
+
                 startActivity(intent);
             }
         });

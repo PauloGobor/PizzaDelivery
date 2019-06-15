@@ -10,6 +10,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import edu.up.pizzadelivery.Adapter.BebidaAdapter;
 import edu.up.pizzadelivery.Adapter.BordaAdapter;
@@ -25,7 +26,9 @@ import edu.up.pizzadelivery.model.Tamanho;
 public class BordaActivity extends AppCompatActivity {
 
     private ListView lstBordas;
-    final Sabor sabores = (Sabor) getIntent().getSerializableExtra("SABORES");
+    //private List<Sabor> sabores;
+
+    //final Sabor sabores = (Sabor) getIntent().getSerializableExtra("SABORES");
     private TextView txtSabores;
 
     @Override
@@ -34,11 +37,12 @@ public class BordaActivity extends AppCompatActivity {
         setContentView(R.layout.activity_borda);
 
         lstBordas = (ListView) findViewById(R.id.lstBordas);
-        txtSabores = (TextView) findViewById(R.id.txtSabores);
+        //txtSabores = (TextView) findViewById(R.id.txtSabores);
+
         final Tamanho tamanho = (Tamanho) getIntent().getSerializableExtra("TAMANHO");
 
 
-        txtSabores.setText(String.valueOf(sabores.getNome()));
+       // txtSabores.setText(String.valueOf(sabores));
 
 
         final ArrayList<Borda> bordasArrayList = BordaDAO.retornarBordas(this);
@@ -60,10 +64,10 @@ public class BordaActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                Intent intent = new Intent(BordaActivity.this, BebidasActivity.class);
+                Intent intent = new Intent(BordaActivity.this, CardapioActivity.class);
                 intent.putExtra("BORDA", bordasArrayList.get(position));
                 intent.putExtra("TAMANHO", tamanho);
-                intent.putExtra("SABORES", sabores);
+                //intent.putExtra("SABORES", sabores);
                 startActivity(intent);
             }
         });

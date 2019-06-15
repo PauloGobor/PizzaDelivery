@@ -1,15 +1,21 @@
 package edu.up.pizzadelivery.Adapter;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import java.util.List;
 
 import edu.up.pizzadelivery.R;
 import edu.up.pizzadelivery.model.Bebida;
+import edu.up.pizzadelivery.view.BebidasActivity;
+import edu.up.pizzadelivery.view.CardapioActivity;
+import edu.up.pizzadelivery.view.CarrinhoActivity;
 
 public class BebidaAdapter extends BaseAdapter {
 
@@ -48,13 +54,34 @@ public class BebidaAdapter extends BaseAdapter {
 
         TextView nome = (TextView)
                 view.findViewById(R.id.txtBebidaCustom);
-        TextView valor = (TextView) view.findViewById(R.id.txtValorBebida);
+        TextView valor = (TextView)
+                view.findViewById(R.id.txtValorBebida);
+//        EditText quantidade = (EditText)
+//                view.findViewById(R.id.edtQtdBebida);
+//        Button AdicionarItem = (Button)
+//                view.findViewById(R.id.btnAdicionarItemBebida);
 
         nome.setText(bebida.getNome());
         valor.setText("R$:"+bebida.getPreco());
 
+//        String bebidaQtd = String.valueOf(quantidade.toString());
+////        bebida.setQuantidade(Integer.valueOf(bebidaQtd));
+//
+//
+//
+//
+//        AdicionarItem.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+// resolver problema em quantidade ,
+//            }
+//        });
+
         return view;
 
     }
+
+
 
 }

@@ -26,7 +26,7 @@ public class CarrinhoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_carrinho);
 
         final Tamanho tamanho = (Tamanho) getIntent().getSerializableExtra("TAMANHO");
-        final Sabor sabor = (Sabor) getIntent().getSerializableExtra("SABOR");
+       // final Sabor sabor = (Sabor) getIntent().getSerializableExtra("SABOR");
         final Borda borda = (Borda) getIntent().getSerializableExtra("BORDA");
         final Bebida bebida = (Bebida) getIntent().getSerializableExtra("BEBIDA");
 
@@ -35,11 +35,14 @@ public class CarrinhoActivity extends AppCompatActivity {
 
 
 
-        subtotal = subtotal+tamanho.getPreco()+borda.getPreco()+bebida.getPreco();
+       // subtotal = subtotal+tamanho.getPreco()+borda.getPreco();
 
-        txtCarrinhoSubTotal.setText(""+subtotal);
+      //  txtCarrinhoSubTotal.setText(""+bebida.getQuantidade());
 
         // listar itens do carrinho....
+
+
+
 
 
     }
@@ -56,5 +59,11 @@ public class CarrinhoActivity extends AppCompatActivity {
 
 
 
+
+    }
+
+    public void btnBebida(View view) {
+        Intent intent = new Intent(this, BebidasActivity.class);
+        startActivity(intent);
     }
 }

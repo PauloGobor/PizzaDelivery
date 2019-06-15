@@ -23,18 +23,21 @@
             android:id="@+id/txtContador"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1"
+            android:layout_weight="0.8"
             android:gravity="left"
             android:text=""
             android:textSize="10sp" />
-        <TextView
-            android:id="@+id/txtTamanhoSelec"
+
+
+        <Button
+            android:id="@+id/btnAvancarCard"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:layout_height="50dp"
             android:layout_weight="1"
-            android:gravity="left"
-            android:text=""
-            android:textSize="20sp" />
+            android:text="avanca"
+            android:textSize="17dp"
+            />
+
     </LinearLayout>
 
     <ListView
