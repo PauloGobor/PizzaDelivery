@@ -22,13 +22,14 @@ import edu.up.pizzadelivery.DAO.TamanhoDAO;
 import edu.up.pizzadelivery.R;
 import edu.up.pizzadelivery.model.Bebida;
 import edu.up.pizzadelivery.model.Borda;
+import edu.up.pizzadelivery.model.Pizza;
 import edu.up.pizzadelivery.model.Sabor;
 import edu.up.pizzadelivery.model.Tamanho;
 
 public class CardapioActivity extends AppCompatActivity {
 
     private ListView lstSabores;
-    private TextView txtTamanhoSelec, txtContador;
+    private TextView txtContador;
     private Button btnAvancarCard;
     private List<Sabor> SaboresSelecionados;
     private Tamanho tamanhoselecionado;
@@ -44,7 +45,7 @@ public class CardapioActivity extends AppCompatActivity {
         final Borda borda = (Borda) getIntent().getSerializableExtra("BORDA");
 
         lstSabores = (ListView) findViewById(R.id.lstSabores);
-        txtTamanhoSelec = (TextView) findViewById(R.id.txtTamanhoSelec);
+        //txtTamanhoSelec = (TextView) findViewById(R.id.txtTamanhoSelec);
         txtContador = (TextView) findViewById(R.id.txtContador);
         btnAvancarCard = (Button) findViewById(R.id.btnAvancarCard);
 
@@ -58,7 +59,7 @@ public class CardapioActivity extends AppCompatActivity {
         for (int i = 0; i < saboresArrayList.size(); i++) {
             sabores[i] = saboresArrayList.get(i).getNome();
         }
-        txtTamanhoSelec.setText(String.valueOf(tamanhoselecionado.getQtdSabores()));
+        // txtTamanhoSelec.setText(String.valueOf(tamanhoselecionado.getQtdSabores()));
         SaboresAdapter saboresAdapter = new SaboresAdapter(saboresArrayList, tamanho, this);
         //O adapter é componente que prepara os dados para o ListView
 
@@ -78,20 +79,14 @@ public class CardapioActivity extends AppCompatActivity {
 
                     Toast.makeText(CardapioActivity.this, "acaboua selecao", Toast.LENGTH_SHORT).show();
 
-                }else{
-                   // Log.i("escolido", saboresEscolhidosArrayList.get(position).getNome());
+                } else {
+                    // Log.i("escolido", saboresEscolhidosArrayList.get(position).getNome());
                     saboresEscolhidosArrayList.add(saboresArrayList.get(position));
                     ///sabores adicionados com sucesso
-                    txtContador.setText(txtContador.getText()+"-"+String.valueOf(saboresArrayList.get(position).getNome()));
+                    txtContador.setText(txtContador.getText() + "-" + String.valueOf(saboresArrayList.get(position).getNome()));
                     //Log.i("veja", ""+saboresEscolhidosArrayList.get(position).getNome());
                 }
-//
-                // saboresSelecionados
-//               // passando tamanho
-//               intent.putExtra("TAMANHO", tamanho);
-//               //passando sabor
-//               intent.putExtra("SABOR",saboresArrayList.get(position));
-//                startActivity(intent);
+
 
             }
         });
@@ -99,16 +94,27 @@ public class CardapioActivity extends AppCompatActivity {
         btnAvancarCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(CardapioActivity.this, BebidasActivity.class);
+                // verifica se a quantidade de sabores for igual ao tamanho selecionado
+                // ele cadastra e avanca se nao ele solicita que o usuario termine
+                if (saboresEscolhidosArrayList.size() == tamanhoselecionado.getQtdSabores()) {
+                    Intent intent = new Intent(CardapioActivity.this, CarrinhoActivity.class);
 
-//                  CADASTRAR PIZZA
+//
+//               final Pizza pizza = new Pizza();
+//               pizza.getTamanho();
+//               pizza.getBorda();
 
-               // passando tamanho
-               intent.putExtra("TAMANHO", tamanho);
-                intent.putExtra("BORDA", borda);
-               //passando sabor
-               intent.putExtra("SABOR",saboresEscolhidosArrayList);
-               startActivity(intent);
+//                  CADASTRAR PIZZA neste momento tbm pizza e // pizza pedida
+                    // passando tamanho
+                    intent.putExtra("TAMANHO", tamanho);
+                    intent.putExtra("BORDA", borda);
+                    //passando sabor
+                    intent.putExtra("SABOR", saboresEscolhidosArrayList);
+                    startActivity(intent);
+                } else {
+                    Toast.makeText(CardapioActivity.this, "Selecione todos os sabores", Toast.LENGTH_SHORT).show();
+
+                }
 
 
             }

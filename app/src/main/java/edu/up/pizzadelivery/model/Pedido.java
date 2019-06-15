@@ -10,8 +10,7 @@ public class Pedido implements Serializable {
     private Usuario usuario;
     private List<ItemPedido> itensPedido;
     private FormaPagamento formaPagamento;
-    private Endereco endEntrega;
-    private Date Data;
+    private String Data;
 
     public int getId() {
         return id;
@@ -45,21 +44,12 @@ public class Pedido implements Serializable {
         this.formaPagamento = formaPagamento;
     }
 
-    public Endereco getEndEntrega() {
-        return endEntrega;
-    }
 
-    public void setEndEntrega(Endereco endEntrega) {
-        this.endEntrega = endEntrega;
-    }
-
-    public Date getData() {
+    public String getData() {
         return Data;
     }
 
-    public void setData(Date data) {
+    public void setData(String data) {
         Data = data;
     }
-
-
 }

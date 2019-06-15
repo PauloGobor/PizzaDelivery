@@ -13,6 +13,7 @@ import edu.up.pizzadelivery.model.Borda;
 import edu.up.pizzadelivery.model.Endereco;
 import edu.up.pizzadelivery.model.FormaPagamento;
 import edu.up.pizzadelivery.model.Login;
+import edu.up.pizzadelivery.model.Pedido;
 import edu.up.pizzadelivery.model.Sabor;
 import edu.up.pizzadelivery.model.Tamanho;
 import edu.up.pizzadelivery.model.Usuario;
@@ -364,7 +365,8 @@ public class BancoDeDado extends SQLiteOpenHelper {
 
         return db.insert(Contrato.TabelaUsuario.NOME_DA_TABELA, null, values);
     }
-    public long CadastrarEndereco (Endereco endereco){
+
+    public long CadastrarEndereco(Endereco endereco) {
         SQLiteDatabase db = getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(Contrato.TabelaEndereco.COLUNA_BAIRRO, endereco.getBairro());
@@ -375,7 +377,7 @@ public class BancoDeDado extends SQLiteOpenHelper {
         values.put(Contrato.TabelaEndereco.COLUNA_RUA, endereco.getRua());
         values.put(Contrato.TabelaEndereco.COLUNA_USUARIOID, endereco.getUsuario().getId());
 
-        return  db.insert(Contrato.TabelaEndereco.NOME_DA_TABELA, null, values);
+        return db.insert(Contrato.TabelaEndereco.NOME_DA_TABELA, null, values);
     }
 
 
@@ -593,5 +595,21 @@ public class BancoDeDado extends SQLiteOpenHelper {
         return db.delete(Contrato.TabelaUsuario.NOME_DA_TABELA,
                 condicao, argumentos);
     }
+
+
+    public long CadastrarPedido(Pedido pedido) {
+        SQLiteDatabase db = getWritableDatabase();
+        ContentValues values = new ContentValues();
+        // PRIMEIRO FAZER A INSERÇÃO NA TABELA DE USUARIO PRA DEPOIS
+        //PEGAR O USUARIO ID E COLOCAR DENTRO DA TABELA ENDERECO .....
+        values.put(Contrato.TabelaPedido.COLUNA_USUARIO, pedido.getUsuario().getId());
+        values.put(Contrato.TabelaPedido.COLUNA_DATA, pedido.getData());
+        values.put(Contrato.TabelaPedido.COLUNA_FORMA_PAGAMENTO, pedido.getFormaPagamento().getId());
+
+        //inseri os dados na tabela usuario
+        return db.insert(Contrato.TabelaPedido.NOME_DA_TABELA, null, values);
+    }
+
+
 }
 

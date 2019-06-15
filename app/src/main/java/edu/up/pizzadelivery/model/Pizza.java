@@ -6,7 +6,6 @@ import java.util.List;
 public class Pizza implements Serializable {
 
     private int id;
-    private List<Sabor> sabor;
     private Tamanho tamanho;
     private Borda borda;
 
@@ -18,13 +17,6 @@ public class Pizza implements Serializable {
         this.id = id;
     }
 
-    public List<Sabor> getSabor() {
-        return sabor;
-    }
-
-    public void setSabor(List<Sabor> sabor) {
-        this.sabor = sabor;
-    }
 
     public Tamanho getTamanho() {
         return tamanho;
