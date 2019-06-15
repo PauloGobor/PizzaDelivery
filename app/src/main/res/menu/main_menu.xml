@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/editar"
+        android:title="@string/Editar"
+        android:icon="@drawable/ic_account_box_black_24dp"
+        app:showAsAction="never" />
+    <item android:id="@+id/historico"
+        android:icon="@drawable/ic_description_black_24dp"
+        android:title="@string/Historico"
+        app:showAsAction="never">
+    </item>
+    <item android:id="@+id/sair"
+        android:icon="@drawable/ic_exit_to_app_black_24dp"
+        android:title="@string/Sair"
+        app:showAsAction="never"/>
+</menu>
