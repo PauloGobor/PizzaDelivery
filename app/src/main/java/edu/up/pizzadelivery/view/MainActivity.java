@@ -96,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
 
     ///Comando que chama a tela de cardápio
     public void TelaTamanhos(View view) {
-        Intent cardapio = new Intent(this, EscolherTamanhoActivity.class);
+        Intent cardapio = new Intent(this, CardapioInicialActivity.class);
         startActivity(cardapio);
 
     }
