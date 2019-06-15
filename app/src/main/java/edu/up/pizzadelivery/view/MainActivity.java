@@ -36,6 +36,16 @@ public class MainActivity extends AppCompatActivity {
         btnEntrar = (Button)   findViewById(R.id.btnEntrar);
 
 
+        SharedPreferences settings = getSharedPreferences(ARQUIVO_PREF, MODE_PRIVATE);
+        String verificaexistencia1 = (String) settings.getString("Email","" );
+        String verificaexistencia2 = (String) settings.getString("Senha", "");
+
+        if(!verificaexistencia1.equals("") && !verificaexistencia2.equals("")){
+            Intent telaInicial = new Intent(MainActivity.this, AreaClienteActivity.class);
+            startActivity(telaInicial);
+        }
+
+
         btnEntrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -61,8 +71,8 @@ public class MainActivity extends AppCompatActivity {
                         editor.commit();
 
 
-                        //Intent telaInicial = new Intent(this, TelaInicialActivity.class); ///esse irei criar mais para frente
-                        //startActivity(telaInicial);
+                        Intent telaInicial = new Intent(MainActivity.this, AreaClienteActivity.class);
+                        startActivity(telaInicial);
 
                         Toast.makeText(MainActivity.this, "Entrou", Toast.LENGTH_SHORT).show();
 

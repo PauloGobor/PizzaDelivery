@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import edu.up.pizzadelivery.model.Bebida;
 import edu.up.pizzadelivery.model.Borda;
@@ -376,6 +377,34 @@ public class BancoDeDado extends SQLiteOpenHelper {
         values.put(Contrato.TabelaEndereco.COLUNA_USUARIOID, endereco.getUsuario().getId());
 
         return  db.insert(Contrato.TabelaEndereco.NOME_DA_TABELA, null, values);
+    }
+
+    public List<Endereco> RetornaEndereco(int id){
+
+        List<Endereco> e =  new ArrayList<Endereco>();
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery("SELECT  * FROM " +
+                Contrato.TabelaEndereco.NOME_DA_TABELA + " WHERE" +
+                Contrato.TabelaEndereco.COLUNA_USUARIOID + " = "+ id, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                Endereco endereco = new Endereco();
+                endereco.setId(Integer.parseInt(cursor.getString(0)));
+                endereco.setCep(cursor.getString(1));
+                endereco.setRua(cursor.getString(2));
+                endereco.setBairro(cursor.getString(3));
+                endereco.setCidade(cursor.getString(4));
+                endereco.setNumero(Integer.parseInt(cursor.getString(5)));
+                endereco.setComplemento(cursor.getString(6));
+
+                e.add(endereco);
+            } while (cursor.moveToNext());
+        }
+
+        return e;
+
     }
 
 

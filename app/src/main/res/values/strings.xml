@@ -26,6 +26,10 @@
     <string name="title_activity_maps">Map</string>
     <string name="salvar">Salvar</string>
     <string name="DelCont">Deletar Conta</string>
+    <string name="title_activity_area_cliente">Area Cliente</string>
+    <string name="Sair">Sair</string>
+    <string name="Editar">Editar Conta</string>
+    <string name="Historico">Histórico de pedidos</string>
 
 
 </resources>
