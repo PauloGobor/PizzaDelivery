@@ -18,15 +18,7 @@
             android:text="Bordas"
             android:textColor="@android:color/holo_red_dark"
             android:textSize="30sp" />
-        <TextView
-            android:id="@+id/txtSabores"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0.1"
-            android:gravity="left"
-            android:text="Bordas"
-            android:textColor="@android:color/holo_red_dark"
-            android:textSize="10sp" />
+
     </LinearLayout>
 
     <LinearLayout

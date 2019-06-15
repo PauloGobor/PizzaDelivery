@@ -35,6 +35,16 @@
             android:gravity="left"
             android:text=""
             android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/btnAvancarCard"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="avanca"
+            android:textSize="17dp"
+            />
+
     </LinearLayout>
 
     <ListView

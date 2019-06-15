@@ -52,7 +52,7 @@ public class EscolherTamanhoActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
 
-                Intent intent = new Intent(EscolherTamanhoActivity.this, CardapioActivity.class);
+                Intent intent = new Intent(EscolherTamanhoActivity.this, BordaActivity.class);
                 intent.putExtra("TAMANHO", tamanhosArrayList.get(position));
                 startActivity(intent);
             }

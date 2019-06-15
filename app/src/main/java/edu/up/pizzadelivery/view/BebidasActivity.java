@@ -33,8 +33,8 @@ public class BebidasActivity extends AppCompatActivity {
 
         lstBebidas = (ListView) findViewById(R.id.ListBebidas);
         final Tamanho tamanho = (Tamanho) getIntent().getSerializableExtra("TAMANHO");
-        final Sabor sabor = (Sabor) getIntent().getSerializableExtra("SABOR");
         final Borda borda = (Borda) getIntent().getSerializableExtra("BORDA");
+
 
 
         final ArrayList<Bebida> bebidasArrayList = BebidaDAO.retornarBebidas(this);
@@ -59,7 +59,7 @@ public class BebidasActivity extends AppCompatActivity {
                 intent.putExtra("BEBIDA", bebidasArrayList.get(position));
                 intent.putExtra("BORDA", borda);
                 intent.putExtra("TAMANHO", tamanho);
-                intent.putExtra("SABOR", sabor);
+
                 startActivity(intent);
             }
         });
