@@ -13,11 +13,8 @@ import edu.up.pizzadelivery.model.Bebida;
 import edu.up.pizzadelivery.model.Borda;
 import edu.up.pizzadelivery.model.Endereco;
 import edu.up.pizzadelivery.model.FormaPagamento;
-import edu.up.pizzadelivery.model.ItemPedido;
 import edu.up.pizzadelivery.model.Login;
 import edu.up.pizzadelivery.model.Pedido;
-import edu.up.pizzadelivery.model.Pizza;
-import edu.up.pizzadelivery.model.PizzaPedida;
 import edu.up.pizzadelivery.model.Sabor;
 import edu.up.pizzadelivery.model.Tamanho;
 import edu.up.pizzadelivery.model.Usuario;
@@ -384,26 +381,15 @@ public class BancoDeDado extends SQLiteOpenHelper {
         return db.insert(Contrato.TabelaEndereco.NOME_DA_TABELA, null, values);
     }
 
-<<<<<<< HEAD
     public Endereco RetornaEndereco(int id){
 
         Endereco endereco = new Endereco();
-=======
-    public List<Endereco> RetornaEndereco(int id) {
-
-        List<Endereco> e = new ArrayList<Endereco>();
->>>>>>> 6f1f06be909aeb5cc0e38bc6192c437ae913b5ea
 
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT  * FROM " +
-<<<<<<< HEAD
                 Contrato.TabelaEndereco.NOME_DA_TABELA + " WHERE " +
                 Contrato.TabelaEndereco.COLUNA_USUARIOID + " = ?",
                 new String[] {String.valueOf(id)});
-=======
-                Contrato.TabelaEndereco.NOME_DA_TABELA + " WHERE" +
-                Contrato.TabelaEndereco.COLUNA_USUARIOID + " = " + id, null);
->>>>>>> 6f1f06be909aeb5cc0e38bc6192c437ae913b5ea
 
         if (cursor.moveToFirst()) {
                 endereco.setId(Integer.parseInt(cursor.getString(cursor.getColumnIndex(Contrato.TabelaEndereco.COLUNA_ID))));
@@ -670,78 +656,19 @@ public class BancoDeDado extends SQLiteOpenHelper {
                 condicao, argumentos);
     }
 
-    //************************************************
-//*************CADASTRA PEDIDO****************************
-//*******************************************************
+
     public long CadastrarPedido(Pedido pedido) {
         SQLiteDatabase db = getWritableDatabase();
         ContentValues values = new ContentValues();
-
+        // PRIMEIRO FAZER A INSERÇÃO NA TABELA DE USUARIO PRA DEPOIS
+        //PEGAR O USUARIO ID E COLOCAR DENTRO DA TABELA ENDERECO .....
         values.put(Contrato.TabelaPedido.COLUNA_USUARIO, pedido.getUsuario().getId());
         values.put(Contrato.TabelaPedido.COLUNA_DATA, pedido.getData());
+        values.put(Contrato.TabelaPedido.COLUNA_FORMA_PAGAMENTO, pedido.getFormaPagamento().getId());
 
+        //inseri os dados na tabela usuario
         return db.insert(Contrato.TabelaPedido.NOME_DA_TABELA, null, values);
     }
-
-    //************************************************
-//*************CADASTRA PIZZA COM FK PTAMANHO E BORDA***
-//*******************************************************
-    public long CadastrarPizza(Pizza pizza) {
-        SQLiteDatabase db = getWritableDatabase();
-        ContentValues values = new ContentValues();
-
-        values.put(Contrato.TabelaPizza.COLUNA_TAMANHO, pizza.getTamanho().getId());
-        values.put(Contrato.TabelaPizza.COLUNA_BORDA, pizza.getBorda().getId());
-
-        return db.insert(Contrato.TabelaPizza.NOME_DA_TABELA, null, values);
-    }
-
-    //************************************************
-//*************CADASTRA PIZZAPedida COM FK Pizza E FK_SABOR***
-//*******************************************************
-    public long CadastrarPizzaPedida(PizzaPedida pizzaPedida) {
-        SQLiteDatabase db = getWritableDatabase();
-        ContentValues values = new ContentValues();
-
-        values.put(Contrato.TabelaPizzaPedida.COLUNA_PIZZA, pizzaPedida.getPizza().getId());
-        //values.put(Contrato.TabelaPizzaPedida.COLUNA_SABOR, pizzaPedida.getSabores());
-
-        return db.insert(Contrato.TabelaPizzaPedida.NOME_DA_TABELA, null, values);
-    }
-
-    //************************************************
-//*************CADASTRA ITENS NO CARRINHO***
-//*******************************************************
-    public long CadastrarItemPedido(PizzaPedida pizzaPedida, Bebida bebida) {
-        SQLiteDatabase db = getWritableDatabase();
-        ContentValues values = new ContentValues();
-
-        return db.insert(Contrato.TabelaItemPedido.NOME_DA_TABELA, null, values);
-
-    }
-
-
-    //  ########################################################################   ///
-    //  ##### METODO PARA RETORNAR ITENS DO CARRINHO #######   ///
-    //  ########################################################################   ///
-    public ArrayList<ItemPedido> RetornarItemPedido() {
-        ArrayList<ItemPedido> itens = new ArrayList<ItemPedido>();
-        SQLiteDatabase db = getReadableDatabase();
-
-// usar raw query para fazer Join  com os sabores pizza tamanho borda bebida etc......
-
-
-
-        return itens;
-    }
-
-    //  ########################################################################   ///
-    //  ##### METODO PARA RETORNAR HISTORICO DE PEDIDOS   #####################
-    //  ####### IMPLEMENTACAO: FINAL DO PEDIDO E MENU CLIENTE  ################  ///
-    //  ########################################################################   ///
-
-
-
 
 
 }
