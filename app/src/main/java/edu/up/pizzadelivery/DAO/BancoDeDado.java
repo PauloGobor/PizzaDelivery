@@ -13,8 +13,11 @@ import edu.up.pizzadelivery.model.Bebida;
 import edu.up.pizzadelivery.model.Borda;
 import edu.up.pizzadelivery.model.Endereco;
 import edu.up.pizzadelivery.model.FormaPagamento;
+import edu.up.pizzadelivery.model.ItemPedido;
 import edu.up.pizzadelivery.model.Login;
 import edu.up.pizzadelivery.model.Pedido;
+import edu.up.pizzadelivery.model.Pizza;
+import edu.up.pizzadelivery.model.PizzaPedida;
 import edu.up.pizzadelivery.model.Sabor;
 import edu.up.pizzadelivery.model.Tamanho;
 import edu.up.pizzadelivery.model.Usuario;
@@ -656,6 +659,34 @@ public class BancoDeDado extends SQLiteOpenHelper {
                 condicao, argumentos);
     }
 
+    //************************************************
+//*************CADASTRA PIZZA COM FK PTAMANHO E BORDA***
+//*******************************************************
+    public long CadastrarPizza(Pizza pizza) {
+        SQLiteDatabase db = getWritableDatabase();
+        ContentValues values = new ContentValues();
+
+        values.put(Contrato.TabelaPizza.COLUNA_TAMANHO, pizza.getTamanho().getId());
+        values.put(Contrato.TabelaPizza.COLUNA_BORDA, pizza.getBorda().getId());
+
+        return db.insert(Contrato.TabelaPizza.NOME_DA_TABELA, null, values);
+    }
+
+    //************************************************
+    // *************CADASTRA PIZZAPedida COM FK Pizza E FK_SABOR***
+    //*******************************************************
+    public long CadastrarPizzaPedida(PizzaPedida pizzaPedida) {
+        SQLiteDatabase db = getWritableDatabase();
+        ContentValues values = new ContentValues();
+
+        values.put(Contrato.TabelaPizzaPedida.COLUNA_PIZZA, pizzaPedida.getPizza().getId());
+        //values.put(Contrato.TabelaPizzaPedida.COLUNA_SABOR, pizzaPedida.getSabores());
+
+        return db.insert(Contrato.TabelaPizzaPedida.NOME_DA_TABELA, null, values);
+    }
+
+
+
 
     public long CadastrarPedido(Pedido pedido) {
         SQLiteDatabase db = getWritableDatabase();
@@ -669,6 +700,22 @@ public class BancoDeDado extends SQLiteOpenHelper {
         //inseri os dados na tabela usuario
         return db.insert(Contrato.TabelaPedido.NOME_DA_TABELA, null, values);
     }
+
+    //  ########################################################################   ///
+    //  ##### METODO PARA RETORNAR ITENS DO CARRINHO #######   ///
+    //  ########################################################################   ///
+    public ArrayList<ItemPedido> RetornarItemPedido() {
+        ArrayList<ItemPedido> itens = new ArrayList<ItemPedido>();
+        SQLiteDatabase db = getReadableDatabase();
+
+// usar raw query para fazer Join  com os sabores pizza tamanho borda bebida etc......
+
+
+
+        return itens;
+    }
+
+
 
 
 }
