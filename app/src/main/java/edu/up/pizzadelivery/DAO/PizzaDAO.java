@@ -1,6 +1,14 @@
 package edu.up.pizzadelivery.DAO;
 
-public class PizzaDAO {
+import android.content.Context;
 
-    //PizzaDAO
+import edu.up.pizzadelivery.model.Pizza;
+
+public class PizzaDAO {
+    public static long CadastrarPedido(Context context, Pizza pizza) {
+        BancoDeDado banco = new BancoDeDado(context);
+        return banco.CadastrarPizza(pizza);
+
+    }
+
 }

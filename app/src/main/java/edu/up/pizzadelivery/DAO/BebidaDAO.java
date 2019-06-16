@@ -11,6 +11,7 @@ public class BebidaDAO {
     public static ArrayList<Bebida> retornarBebidas(Context context){
         BancoDeDado banco = new BancoDeDado(context);
         return banco.RetornarBebidas();
+
     }
 
 }

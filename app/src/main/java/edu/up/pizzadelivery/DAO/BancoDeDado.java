@@ -13,8 +13,11 @@ import edu.up.pizzadelivery.model.Bebida;
 import edu.up.pizzadelivery.model.Borda;
 import edu.up.pizzadelivery.model.Endereco;
 import edu.up.pizzadelivery.model.FormaPagamento;
+import edu.up.pizzadelivery.model.ItemPedido;
 import edu.up.pizzadelivery.model.Login;
 import edu.up.pizzadelivery.model.Pedido;
+import edu.up.pizzadelivery.model.Pizza;
+import edu.up.pizzadelivery.model.PizzaPedida;
 import edu.up.pizzadelivery.model.Sabor;
 import edu.up.pizzadelivery.model.Tamanho;
 import edu.up.pizzadelivery.model.Usuario;
@@ -381,14 +384,14 @@ public class BancoDeDado extends SQLiteOpenHelper {
         return db.insert(Contrato.TabelaEndereco.NOME_DA_TABELA, null, values);
     }
 
-    public List<Endereco> RetornaEndereco(int id){
+    public List<Endereco> RetornaEndereco(int id) {
 
-        List<Endereco> e =  new ArrayList<Endereco>();
+        List<Endereco> e = new ArrayList<Endereco>();
 
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery("SELECT  * FROM " +
                 Contrato.TabelaEndereco.NOME_DA_TABELA + " WHERE" +
-                Contrato.TabelaEndereco.COLUNA_USUARIOID + " = "+ id, null);
+                Contrato.TabelaEndereco.COLUNA_USUARIOID + " = " + id, null);
 
         if (cursor.moveToFirst()) {
             do {
@@ -625,7 +628,9 @@ public class BancoDeDado extends SQLiteOpenHelper {
                 condicao, argumentos);
     }
 
-
+    //************************************************
+//*************CADASTRA PEDIDO****************************
+//*******************************************************
     public long CadastrarPedido(Pedido pedido) {
         SQLiteDatabase db = getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -635,6 +640,66 @@ public class BancoDeDado extends SQLiteOpenHelper {
 
         return db.insert(Contrato.TabelaPedido.NOME_DA_TABELA, null, values);
     }
+
+    //************************************************
+//*************CADASTRA PIZZA COM FK PTAMANHO E BORDA***
+//*******************************************************
+    public long CadastrarPizza(Pizza pizza) {
+        SQLiteDatabase db = getWritableDatabase();
+        ContentValues values = new ContentValues();
+
+        values.put(Contrato.TabelaPizza.COLUNA_TAMANHO, pizza.getTamanho().getId());
+        values.put(Contrato.TabelaPizza.COLUNA_BORDA, pizza.getBorda().getId());
+
+        return db.insert(Contrato.TabelaPizza.NOME_DA_TABELA, null, values);
+    }
+
+    //************************************************
+//*************CADASTRA PIZZAPedida COM FK Pizza E FK_SABOR***
+//*******************************************************
+    public long CadastrarPizzaPedida(PizzaPedida pizzaPedida) {
+        SQLiteDatabase db = getWritableDatabase();
+        ContentValues values = new ContentValues();
+
+        values.put(Contrato.TabelaPizzaPedida.COLUNA_PIZZA, pizzaPedida.getPizza().getId());
+        //values.put(Contrato.TabelaPizzaPedida.COLUNA_SABOR, pizzaPedida.getSabores());
+
+        return db.insert(Contrato.TabelaPizzaPedida.NOME_DA_TABELA, null, values);
+    }
+
+    //************************************************
+//*************CADASTRA ITENS NO CARRINHO***
+//*******************************************************
+    public long CadastrarItemPedido(PizzaPedida pizzaPedida, Bebida bebida) {
+        SQLiteDatabase db = getWritableDatabase();
+        ContentValues values = new ContentValues();
+
+        return db.insert(Contrato.TabelaItemPedido.NOME_DA_TABELA, null, values);
+
+    }
+
+
+    //  ########################################################################   ///
+    //  ##### METODO PARA RETORNAR ITENS DO CARRINHO #######   ///
+    //  ########################################################################   ///
+    public ArrayList<ItemPedido> RetornarItemPedido() {
+        ArrayList<ItemPedido> itens = new ArrayList<ItemPedido>();
+        SQLiteDatabase db = getReadableDatabase();
+
+// usar raw query para fazer Join  com os sabores pizza tamanho borda bebida etc......
+
+
+
+        return itens;
+    }
+
+    //  ########################################################################   ///
+    //  ##### METODO PARA RETORNAR HISTORICO DE PEDIDOS   #####################
+    //  ####### IMPLEMENTACAO: FINAL DO PEDIDO E MENU CLIENTE  ################  ///
+    //  ########################################################################   ///
+
+
+
 
 
 }
