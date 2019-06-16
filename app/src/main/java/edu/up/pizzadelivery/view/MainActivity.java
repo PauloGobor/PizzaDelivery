@@ -3,6 +3,7 @@ package edu.up.pizzadelivery.view;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -19,8 +20,8 @@ import edu.up.pizzadelivery.model.Login;
 
 public class MainActivity extends AppCompatActivity {
 
-    private EditText edtEmail,
-                     edtSenha;
+    private TextInputLayout edtEmail,
+                            edtSenha;
     private Button   btnEntrar;
     private boolean  verificacao;
     private static  final  String ARQUIVO_PREF = "LogUsuario";
@@ -31,9 +32,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        edtEmail  = (EditText) findViewById(R.id.edtEmail);
-        edtSenha  = (EditText) findViewById(R.id.edtSenha);
-        btnEntrar = (Button)   findViewById(R.id.btnEntrar);
+        edtEmail  =  findViewById(R.id.edtEmail);
+        edtSenha  =  findViewById(R.id.edtSenha);
+        btnEntrar =    findViewById(R.id.btnEntrar);
 
 
         SharedPreferences settings = getSharedPreferences(ARQUIVO_PREF, MODE_PRIVATE);
@@ -50,12 +51,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //verificação se campos estão preenchidos
-                if (!edtEmail.getText().toString().equals("") && !edtSenha.getText().toString().equals("")) {
+                if (!edtEmail.getEditText().getText().toString().equals("") && !edtSenha.getEditText().getText().toString().equals("")) {
                     Criptografia crip = new Criptografia();
-                    String senhaConv = crip.criptografar(edtSenha.getText().toString());
+                    String senhaConv = crip.criptografar(edtSenha.getEditText().getText().toString());
 
                     Login login = new Login();
-                    login.setEmail(edtEmail.getText().toString());
+                    login.setEmail(edtEmail.getEditText().getText().toString());
                     login.setSenha(senhaConv);
 
                     verificacao = UsuarioDAO.ValidarLogin(MainActivity.this, login);
@@ -66,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
                         SharedPreferences sheredPreferences = getSharedPreferences(ARQUIVO_PREF,0);
                         SharedPreferences.Editor editor =  sheredPreferences.edit();
 
-                        editor.putString("Email", edtEmail.getText().toString());
+                        editor.putString("Email", edtEmail.getEditText().getText().toString());
                         editor.putString("Senha", senhaConv);
                         editor.commit();
 
@@ -94,17 +95,10 @@ public class MainActivity extends AppCompatActivity {
         startActivity(cadastroPessoa);
     }
 
-    ///Comando que chama a tela de cardápio
-    public void TelaTamanhos(View view) {
-        Intent cardapio = new Intent(this, CardapioInicialActivity.class);
-        startActivity(cardapio);
-
-    }
 
     public void TelaLocalizacao(View view) {
         Intent localizacao = new Intent(this, MapsActivity.class);
         startActivity(localizacao);
     }
-
 
 }

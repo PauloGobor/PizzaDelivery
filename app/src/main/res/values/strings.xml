@@ -30,6 +30,11 @@
     <string name="Sair">Sair</string>
     <string name="Editar">Editar Conta</string>
     <string name="Historico">Histórico de pedidos</string>
+    <string name="RealizarPedido">Realizar Pedido</string>
+    <string name="Local">Confira nossa localização</string>
+    <string name="CadPessoa">Cadastre-se</string>
+    <string name="Dev">Developed by Paulo and Alex</string>
+    <string name="CorpRegister">PizzaDelivery®</string>
 
 
 </resources>

@@ -32,20 +32,28 @@ public class PerfilUsuarioActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_perfil_usuario);
 
-        edtNome        = findViewById(R.id.edtNome);
-        edtEmail       = findViewById(R.id.edtEmail);
-        edtCpf         = findViewById(R.id.edtCpf);
-        edtTel         = findViewById(R.id.edtTel);
-        edtCep         = findViewById(R.id.edtCep);
-        edtRua         = findViewById(R.id.edtRua);
-        edtBairro      = findViewById(R.id.edtBairro);
-        edtCidade      = findViewById(R.id.edtCidade);
-        edtNumero      = findViewById(R.id.edtNumero);
-        edtComplemento = findViewById(R.id.edtComplemento);
-        edtSenha       = findViewById(R.id.edtSenha);
-        edtConfSenha   = findViewById(R.id.edtConfSenha);
+        edtNome          = findViewById(R.id.edtNome);
+        edtEmail         = findViewById(R.id.edtEmail);
+        edtCpf           = findViewById(R.id.edtCpf);
+        edtTel           = findViewById(R.id.edtTel);
+        edtCep           = findViewById(R.id.edtCep);
+        edtRua           = findViewById(R.id.edtRua);
+        edtBairro        = findViewById(R.id.edtBairro);
+        edtCidade        = findViewById(R.id.edtCidade);
+        edtNumero        = findViewById(R.id.edtNumero);
+        edtComplemento   = findViewById(R.id.edtComplemento);
+        edtSenha         = findViewById(R.id.edtSenha);
+        edtConfSenha     = findViewById(R.id.edtConfSenha);
+        btnSalvar        = findViewById(R.id.btnSalvar);
+        btnEncerrarConta = findViewById(R.id.btnEncerrarConta);
 
 
+        btnEncerrarConta.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
 
 
         btnSalvar.setOnClickListener(new View.OnClickListener() {

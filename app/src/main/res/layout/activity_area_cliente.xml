@@ -10,10 +10,27 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_marginTop="50dp">
 
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        tools:ignore="ScrollViewSize">
+        <Button
+            android:id="@+id/btnFazerPedido"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="40dp"
+            android:background="@color/colorPrimary"
+            android:text="@string/RealizarPedido"
+            android:textColor="@android:color/white" />
 
-
+    </LinearLayout>
 
     </ScrollView>
 </android.support.design.widget.CoordinatorLayout>

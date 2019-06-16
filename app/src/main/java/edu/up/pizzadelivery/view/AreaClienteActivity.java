@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 
 
 import edu.up.pizzadelivery.R;
@@ -15,6 +17,7 @@ import edu.up.pizzadelivery.R;
 public class AreaClienteActivity extends AppCompatActivity {
 
     private static  final  String ARQUIVO_PREF = "LogUsuario";
+    Button btnFazerPedido;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,7 +26,16 @@ public class AreaClienteActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        btnFazerPedido =  findViewById(R.id.btnFazerPedido);
 
+
+        btnFazerPedido.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent fazerPedido = new Intent( AreaClienteActivity.this, EscolherTamanhoActivity.class);
+                startActivity(fazerPedido);
+            }
+        });
 
     }
 
@@ -44,7 +56,7 @@ public class AreaClienteActivity extends AppCompatActivity {
                return true;
            case R.id.historico:
 //               Intent  intent2 = new Intent(this, Historico.class);
-//               startActivity(intent1);
+//               startActivity(intent2);
                return true;
            case R.id.sair:
                SharedPreferences sheredPreferences = getSharedPreferences(ARQUIVO_PREF,0);

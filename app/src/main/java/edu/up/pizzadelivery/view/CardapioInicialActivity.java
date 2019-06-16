@@ -17,7 +17,7 @@ public class CardapioInicialActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cardapio);
+        setContentView(R.layout.activity_cardapio_inicial);
 
         lstSabores = (ListView) findViewById(R.id.lstSabores);
         final ArrayList<Sabor> saboresArrayList = SaborDAO.retornarSabor(this);
