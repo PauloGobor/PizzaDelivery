@@ -629,13 +629,10 @@ public class BancoDeDado extends SQLiteOpenHelper {
     public long CadastrarPedido(Pedido pedido) {
         SQLiteDatabase db = getWritableDatabase();
         ContentValues values = new ContentValues();
-        // PRIMEIRO FAZER A INSERÇÃO NA TABELA DE USUARIO PRA DEPOIS
-        //PEGAR O USUARIO ID E COLOCAR DENTRO DA TABELA ENDERECO .....
+
         values.put(Contrato.TabelaPedido.COLUNA_USUARIO, pedido.getUsuario().getId());
         values.put(Contrato.TabelaPedido.COLUNA_DATA, pedido.getData());
-        values.put(Contrato.TabelaPedido.COLUNA_FORMA_PAGAMENTO, pedido.getFormaPagamento().getId());
 
-        //inseri os dados na tabela usuario
         return db.insert(Contrato.TabelaPedido.NOME_DA_TABELA, null, values);
     }
 
