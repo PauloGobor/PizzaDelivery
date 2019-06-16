@@ -2,6 +2,9 @@ package edu.up.pizzadelivery.DAO;
 
 import android.content.Context;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import edu.up.pizzadelivery.model.Endereco;
 import edu.up.pizzadelivery.model.Login;
 import edu.up.pizzadelivery.model.Usuario;
@@ -48,6 +51,24 @@ public class UsuarioDAO {
         }
     }
 
+    public static Usuario RetornaUsuario(Context context, String email){
+        db = new BancoDeDado(context);
+        return  db.RetornaUsuario(email);
+    }
 
+    public static Endereco RetornaEndereco (Context context, int id){
+        db = new BancoDeDado(context);
+        return db.RetornaEndereco(id);
+    }
+
+    public static void DeletarUsuario(Context context, int id){
+        db = new BancoDeDado(context);
+        db.deleteUsuario(id);
+    }
+
+    public static void DeletarEndereco(Context context, int id){
+        db = new BancoDeDado(context);
+        db.deleteEndereco(id);
+    }
 
 }

@@ -381,34 +381,65 @@ public class BancoDeDado extends SQLiteOpenHelper {
         return db.insert(Contrato.TabelaEndereco.NOME_DA_TABELA, null, values);
     }
 
-    public List<Endereco> RetornaEndereco(int id){
+    public Endereco RetornaEndereco(int id){
 
-        List<Endereco> e =  new ArrayList<Endereco>();
+        Endereco endereco = new Endereco();
 
-        SQLiteDatabase db = this.getWritableDatabase();
+        SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT  * FROM " +
-                Contrato.TabelaEndereco.NOME_DA_TABELA + " WHERE" +
-                Contrato.TabelaEndereco.COLUNA_USUARIOID + " = "+ id, null);
+                Contrato.TabelaEndereco.NOME_DA_TABELA + " WHERE " +
+                Contrato.TabelaEndereco.COLUNA_USUARIOID + " = ?",
+                new String[] {String.valueOf(id)});
 
         if (cursor.moveToFirst()) {
-            do {
-                Endereco endereco = new Endereco();
-                endereco.setId(Integer.parseInt(cursor.getString(0)));
-                endereco.setCep(cursor.getString(1));
-                endereco.setRua(cursor.getString(2));
-                endereco.setBairro(cursor.getString(3));
-                endereco.setCidade(cursor.getString(4));
-                endereco.setNumero(Integer.parseInt(cursor.getString(5)));
-                endereco.setComplemento(cursor.getString(6));
-
-                e.add(endereco);
-            } while (cursor.moveToNext());
+                endereco.setId(Integer.parseInt(cursor.getString(cursor.getColumnIndex(Contrato.TabelaEndereco.COLUNA_ID))));
+                endereco.setCep(cursor.getString(cursor.getColumnIndex(Contrato.TabelaEndereco.COLUNA_CEP)));
+                endereco.setRua(cursor.getString(cursor.getColumnIndex(Contrato.TabelaEndereco.COLUNA_RUA)));
+                endereco.setBairro(cursor.getString(cursor.getColumnIndex(Contrato.TabelaEndereco.COLUNA_BAIRRO)));
+                endereco.setCidade(cursor.getString(cursor.getColumnIndex(Contrato.TabelaEndereco.COLUNA_CIDADE)));
+                endereco.setNumero(Integer.parseInt(cursor.getString(cursor.getColumnIndex(Contrato.TabelaEndereco.COLUNA_NUMERO))));
+                endereco.setComplemento(cursor.getString(cursor.getColumnIndex(Contrato.TabelaEndereco.COLUNA_COMPLEMENTO)));
         }
-
-        return e;
+        return endereco;
 
     }
 
+    public Usuario RetornaUsuario(String email){
+        Usuario lu = new Usuario();
+        SQLiteDatabase db =  this.getReadableDatabase();
+
+        Cursor cursor = db.rawQuery("SELECT * FROM " +
+                Contrato.TabelaUsuario.NOME_DA_TABELA + " WHERE " +
+                Contrato.TabelaUsuario.COLUNA_EMAIL + " = ?" ,
+                new String[]{email});
+
+        if(cursor.moveToFirst()){
+
+             lu.setId(Integer.parseInt(cursor.getString(cursor.getColumnIndex(Contrato.TabelaUsuario.COLUNA_ID))));
+             lu.setNome(cursor.getString(cursor.getColumnIndex(Contrato.TabelaUsuario.COLUNA_NOME)));
+             lu.setEmail(cursor.getString(cursor.getColumnIndex(Contrato.TabelaUsuario.COLUNA_EMAIL)));
+             lu.setCpf(cursor.getString(cursor.getColumnIndex(Contrato.TabelaUsuario.COLUNA_CPF)));
+             lu.setTelefone(cursor.getString(cursor.getColumnIndex(Contrato.TabelaUsuario.COLUNA_TELEFONE)));
+             lu.setSenha(cursor.getString(cursor.getColumnIndex(Contrato.TabelaUsuario.COLUNA_SENHA)));
+             lu.setConfSenha(cursor.getString(cursor.getColumnIndex(Contrato.TabelaUsuario.COLUNA_SENHA)));
+
+        }
+        return lu;
+    }
+
+
+    public void deleteEndereco(int id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(Contrato.TabelaEndereco.NOME_DA_TABELA, Contrato.TabelaEndereco.COLUNA_USUARIOID + " = ?",
+                new String[] { String.valueOf(id) });
+        db.close();
+    }
+    public void deleteUsuario(int id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(Contrato.TabelaUsuario.NOME_DA_TABELA, Contrato.TabelaUsuario.COLUNA_ID + " = ?",
+                new String[] { String.valueOf(id) });
+        db.close();
+    }
 
     public boolean ValidadaLogin(Login login) {
 

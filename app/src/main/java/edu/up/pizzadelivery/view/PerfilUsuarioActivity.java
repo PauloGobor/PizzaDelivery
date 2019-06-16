@@ -1,12 +1,23 @@
 package edu.up.pizzadelivery.view;
 
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.support.design.widget.TextInputLayout;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import edu.up.pizzadelivery.DAO.UsuarioDAO;
 import edu.up.pizzadelivery.R;
+import edu.up.pizzadelivery.model.Endereco;
+import edu.up.pizzadelivery.model.Usuario;
 
 public class PerfilUsuarioActivity extends AppCompatActivity {
 
@@ -22,10 +33,10 @@ public class PerfilUsuarioActivity extends AppCompatActivity {
     private TextInputLayout edtNumero;
     private TextInputLayout edtComplemento;
     private TextInputLayout edtSenha;
-    private TextInputLayout edtConfSenha;
 
     private Button btnSalvar;
     private Button btnEncerrarConta;
+    private static  final  String ARQUIVO_PREF = "LogUsuario";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,15 +54,32 @@ public class PerfilUsuarioActivity extends AppCompatActivity {
         edtNumero        = findViewById(R.id.edtNumero);
         edtComplemento   = findViewById(R.id.edtComplemento);
         edtSenha         = findViewById(R.id.edtSenha);
-        edtConfSenha     = findViewById(R.id.edtConfSenha);
         btnSalvar        = findViewById(R.id.btnSalvar);
         btnEncerrarConta = findViewById(R.id.btnEncerrarConta);
 
+        SharedPreferences settings = getSharedPreferences(ARQUIVO_PREF, MODE_PRIVATE);
+        String shedEmail = (String) settings.getString("Email","" );
+
+        final Usuario usuario = UsuarioDAO.RetornaUsuario(this, shedEmail);
+        final int id = usuario.getId();
+        edtNome.getEditText().setText(usuario.getNome());
+        edtEmail.getEditText().setText(usuario.getEmail());
+        edtCpf.getEditText().setText(usuario.getCpf());
+        edtTel.getEditText().setText(usuario.getTelefone());
+
+        Endereco endereco = UsuarioDAO.RetornaEndereco(this, id);
+        final int idEndereco = endereco.getId();
+        edtCep.getEditText().setText(endereco.getCep());
+        edtRua.getEditText().setText(endereco.getRua());
+        edtBairro.getEditText().setText(endereco.getBairro());
+        edtCidade.getEditText().setText(endereco.getCidade());
+        edtNumero.getEditText().setText(String.valueOf(endereco.getNumero()));
+        edtComplemento.getEditText().setText(endereco.getComplemento());
 
         btnEncerrarConta.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                DeletarConta(id, idEndereco);
             }
         });
 
@@ -73,6 +101,39 @@ public class PerfilUsuarioActivity extends AppCompatActivity {
         });
 
     }
+
+    private void DeletarConta(final int id ,final int idEndereco) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Excluir Contar");
+        builder.setMessage("Tem certeza que deseja excluir sua conta?");
+        builder.setPositiveButton("SIM", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+                SharedPreferences sheredPreferences = getSharedPreferences(ARQUIVO_PREF,0);
+                SharedPreferences.Editor editor =  sheredPreferences.edit();
+
+                UsuarioDAO.DeletarUsuario(PerfilUsuarioActivity.this, id);
+                UsuarioDAO.DeletarEndereco(PerfilUsuarioActivity.this, idEndereco);
+
+                editor.putString("Email","");
+                editor.putString("Senha","");
+                editor.commit();
+                Intent intent = new Intent(PerfilUsuarioActivity.this, MainActivity.class);
+                startActivity(intent);
+
+            }
+        });
+       builder.setNegativeButton("NÃO", new DialogInterface.OnClickListener() {
+           @Override
+           public void onClick(DialogInterface dialog, int which) {
+
+           }
+       });
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+
 
     private boolean validaNome(){
         String nomeInput = edtNome.getEditText().getText().toString().trim();

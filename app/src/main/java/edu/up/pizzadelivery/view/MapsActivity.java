@@ -47,7 +47,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         LatLng pd = new LatLng(-25.433545, -49.275565);
         mMap.addMarker(new MarkerOptions().position(pd).title("Pizza Delivery"));
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(pd, 14F));
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED &&
+                ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION)
+                        != PackageManager.PERMISSION_GRANTED) {
             // TODO: Consider calling
             //    ActivityCompat#requestPermissions
             // here to request the missing permissions, and then overriding
