@@ -7,7 +7,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1"
+        android:layout_weight="2"
         android:orientation="horizontal">
 
         <TextView
@@ -29,14 +29,7 @@
             android:textSize="10sp" />
 
 
-        <Button
-            android:id="@+id/btnAvancarCard"
-            android:layout_width="0dp"
-            android:layout_height="50dp"
-            android:layout_weight="1"
-            android:text="avanca"
-            android:textSize="17dp"
-            />
+
 
     </LinearLayout>
 
@@ -46,6 +39,13 @@
         android:layout_height="match_parent"
         android:layout_weight="0.3" />
 
-
+    <Button
+        android:id="@+id/btnAvancarCard"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="2"
+        android:text="Avancar"
+        android:textSize="17dp"
+        />
 
 </LinearLayout>

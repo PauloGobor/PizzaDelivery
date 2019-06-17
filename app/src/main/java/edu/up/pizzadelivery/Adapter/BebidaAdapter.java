@@ -21,6 +21,7 @@ public class BebidaAdapter extends BaseAdapter {
 
     private final List<Bebida> bebidas;
     private final Activity act;
+
 //    private Tamanho t;
 
     public BebidaAdapter(List<Bebida> bebidas, Activity act) {
@@ -57,9 +58,7 @@ public class BebidaAdapter extends BaseAdapter {
         TextView valor = (TextView)
                 view.findViewById(R.id.txtValorBebida);
 //        EditText quantidade = (EditText)
-//                view.findViewById(R.id.edtQtdBebida);
-//        Button AdicionarItem = (Button)
-//                view.findViewById(R.id.btnAdicionarItemBebida);
+
 
         nome.setText(bebida.getNome());
         valor.setText("R$:"+bebida.getPreco());
