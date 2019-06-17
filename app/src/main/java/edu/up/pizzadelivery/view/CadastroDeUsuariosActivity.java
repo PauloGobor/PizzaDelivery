@@ -110,8 +110,12 @@ public class CadastroDeUsuariosActivity extends AppCompatActivity {
                             MenssagemConfCad();
 
                             /// 7- redirecionar para tela de login
-                            Intent telaLogin = new Intent(CadastroDeUsuariosActivity.this, MainActivity.class);
-
+                            for(int i = 0; i < 10000; i++ ){
+                                if(i == 10000){
+                                    Intent telaLogin = new Intent(CadastroDeUsuariosActivity.this, MainActivity.class);
+                                    startActivity(telaLogin);
+                                }
+                            }
 
                         }else {// mensagem de erro.
                             Toast.makeText(CadastroDeUsuariosActivity.this, "Problema ao realizar o cadastro. Tente Mais tarde! Erro 4.2", Toast.LENGTH_SHORT).show();

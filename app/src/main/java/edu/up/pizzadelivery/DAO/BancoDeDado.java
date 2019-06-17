@@ -355,21 +355,26 @@ public class BancoDeDado extends SQLiteOpenHelper {
 
     }
 
+
+    //  ########################################################################   ///
+    //  ##### METODO QUE CADASTRA USUARIO                                #######   ///
+    //  ########################################################################   ///
     public long CadastrarUsuario(Usuario usuario) {
         SQLiteDatabase db = getWritableDatabase();
         ContentValues values = new ContentValues();
-        // PRIMEIRO FAZER A INSERÇÃO NA TABELA DE USUARIO PRA DEPOIS
-        //PEGAR O USUARIO ID E COLOCAR DENTRO DA TABELA ENDERECO .....
         values.put(Contrato.TabelaUsuario.COLUNA_NOME, usuario.getNome());
         values.put(Contrato.TabelaUsuario.COLUNA_EMAIL, usuario.getEmail());
         values.put(Contrato.TabelaUsuario.COLUNA_CPF, usuario.getCpf());
         values.put(Contrato.TabelaUsuario.COLUNA_TELEFONE, usuario.getTelefone());
         values.put(Contrato.TabelaUsuario.COLUNA_SENHA, usuario.getSenha());
-        //inseri os dados na tabela usuario
 
         return db.insert(Contrato.TabelaUsuario.NOME_DA_TABELA, null, values);
     }
 
+
+    //  ########################################################################   ///
+    //  ##### METODO QUE CADASTRA ENDERECO #######   ///
+    //  ########################################################################   ///
     public long CadastrarEndereco(Endereco endereco) {
         SQLiteDatabase db = getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -384,6 +389,9 @@ public class BancoDeDado extends SQLiteOpenHelper {
         return db.insert(Contrato.TabelaEndereco.NOME_DA_TABELA, null, values);
     }
 
+    //  ###################################################################################   ///
+    //  ##### METODO RETORNA O ENDERECO REFERENTE AO ID DO USAURIO QUE FOI PASSADO  #######   ///
+    //  ###################################################################################   ///
     public Endereco RetornaEndereco(int id){
 
         Endereco endereco = new Endereco();
@@ -407,6 +415,9 @@ public class BancoDeDado extends SQLiteOpenHelper {
 
     }
 
+    //  ########################################################################   ///
+    //  ##### METODO QUE RETORNA O USUARIO REFERENTE AO EMAIL PASSADO    #######   ///
+    //  ########################################################################   ///
     public Usuario RetornaUsuario(String email){
         Usuario lu = new Usuario();
         SQLiteDatabase db =  this.getReadableDatabase();
@@ -430,13 +441,62 @@ public class BancoDeDado extends SQLiteOpenHelper {
         return lu;
     }
 
+    //  ########################################################################   ///
+    //  ##### METODO ATUALIZA DADOS USUARIO                              #######   ///
+    //  ########################################################################   ///
+    public long UpdateUsuario(Usuario usuario){
 
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(Contrato.TabelaUsuario.COLUNA_NOME, usuario.getNome());
+        values.put(Contrato.TabelaUsuario.COLUNA_EMAIL, usuario.getEmail());
+        values.put(Contrato.TabelaUsuario.COLUNA_CPF, usuario.getCpf());
+        values.put(Contrato.TabelaUsuario.COLUNA_TELEFONE, usuario.getTelefone());
+        values.put(Contrato.TabelaUsuario.COLUNA_SENHA, usuario.getSenha());
+
+        return db.update(Contrato.TabelaUsuario.NOME_DA_TABELA, values,
+                Contrato.TabelaUsuario.COLUNA_ID +" = ? AND " +
+                Contrato.TabelaUsuario.COLUNA_EMAIL + " = ?",
+                new String[] { String.valueOf(usuario.getId()), usuario.getEmail()});
+
+
+    }
+
+    //  ########################################################################   ///
+    //  ##### METODO ATUALIZA DADOS ENDERECO REFERENTE AO USAURIO        #######   ///
+    //  ########################################################################   ///
+    public long UpdateEndereco(Endereco endereco){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(Contrato.TabelaEndereco.COLUNA_BAIRRO, endereco.getBairro());
+        values.put(Contrato.TabelaEndereco.COLUNA_CEP, endereco.getCep());
+        values.put(Contrato.TabelaEndereco.COLUNA_CIDADE, endereco.getCidade());
+        values.put(Contrato.TabelaEndereco.COLUNA_COMPLEMENTO, endereco.getComplemento());
+        values.put(Contrato.TabelaEndereco.COLUNA_NUMERO, endereco.getNumero());
+        values.put(Contrato.TabelaEndereco.COLUNA_RUA, endereco.getRua());
+        values.put(Contrato.TabelaEndereco.COLUNA_USUARIOID, endereco.getUsuario().getId());
+
+        return db.update(Contrato.TabelaEndereco.NOME_DA_TABELA, values,
+                Contrato.TabelaEndereco.COLUNA_ID +" = ? AND " +
+                        Contrato.TabelaEndereco.COLUNA_USUARIOID + " = ?",
+                new String[] { String.valueOf(endereco.getId()), String.valueOf(endereco.getUsuario().getId())});
+    }
+
+    //  ########################################################################   ///
+    //  ##### METODO QUE DELETA ENDEREÇO                                 #######   ///
+    //  ########################################################################   ///
     public void deleteEndereco(int id) {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(Contrato.TabelaEndereco.NOME_DA_TABELA, Contrato.TabelaEndereco.COLUNA_USUARIOID + " = ?",
                 new String[] { String.valueOf(id) });
         db.close();
     }
+
+    //  ########################################################################   ///
+    //  ##### METODO QUE DELETA USUARIO                                  #######   ///
+    //  ########################################################################   ///
     public void deleteUsuario(int id) {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(Contrato.TabelaUsuario.NOME_DA_TABELA, Contrato.TabelaUsuario.COLUNA_ID + " = ?",
@@ -444,6 +504,10 @@ public class BancoDeDado extends SQLiteOpenHelper {
         db.close();
     }
 
+    //  ########################################################################   ///
+    //  ##### METODO VERIFICA SE EXITE LOGIN NO SISTEMA COM MESMO EMAIL  #######   ///
+    //  #####  E SENHA                                                   #######   ///
+    //  ########################################################################   ///
     public boolean ValidadaLogin(Login login) {
 
         SQLiteDatabase db = getReadableDatabase();
@@ -461,6 +525,9 @@ public class BancoDeDado extends SQLiteOpenHelper {
         }
     }
 
+    //  ############################################################################   ///
+    //  ##### METODO VERIFICA SE JA EXITE USUARIO CADASTRADO COM MESMO EMAIL #######   ///
+    //  ############################################################################   ///
     public boolean JaCadastrado(String email, String cpf) {
         SQLiteDatabase db = getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT * FROM " +

@@ -8,6 +8,7 @@ import java.util.List;
 import edu.up.pizzadelivery.model.Endereco;
 import edu.up.pizzadelivery.model.Login;
 import edu.up.pizzadelivery.model.Usuario;
+import edu.up.pizzadelivery.view.PerfilUsuarioActivity;
 
 public class UsuarioDAO {
 
@@ -69,6 +70,16 @@ public class UsuarioDAO {
     public static void DeletarEndereco(Context context, int id){
         db = new BancoDeDado(context);
         db.deleteEndereco(id);
+    }
+
+    public static long UpdateUsuario(Context context, Usuario usuario) {
+        db = new BancoDeDado(context);
+        return db.UpdateUsuario(usuario);
+    }
+
+    public static  long UpdateEndereco(Context context, Endereco endereco){
+        db = new BancoDeDado(context);
+        return db.UpdateEndereco(endereco);
     }
 
 }

@@ -1,21 +1,33 @@
 package edu.up.pizzadelivery.view;
 
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
+import android.graphics.BitmapFactory;
+import android.media.Ringtone;
+import android.media.RingtoneManager;
+import android.net.Uri;
+import android.os.Build;
 import android.support.design.widget.TextInputLayout;
+import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 
 import edu.up.pizzadelivery.DAO.UsuarioDAO;
 import edu.up.pizzadelivery.R;
+import edu.up.pizzadelivery.model.Criptografia;
 import edu.up.pizzadelivery.model.Endereco;
 import edu.up.pizzadelivery.model.Usuario;
 
@@ -37,6 +49,7 @@ public class PerfilUsuarioActivity extends AppCompatActivity {
     private Button btnSalvar;
     private Button btnEncerrarConta;
     private static  final  String ARQUIVO_PREF = "LogUsuario";
+    private String senhaConv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,7 +80,7 @@ public class PerfilUsuarioActivity extends AppCompatActivity {
         edtCpf.getEditText().setText(usuario.getCpf());
         edtTel.getEditText().setText(usuario.getTelefone());
 
-        Endereco endereco = UsuarioDAO.RetornaEndereco(this, id);
+        final Endereco endereco = UsuarioDAO.RetornaEndereco(this, id);
         final int idEndereco = endereco.getId();
         edtCep.getEditText().setText(endereco.getCep());
         edtRua.getEditText().setText(endereco.getRua());
@@ -93,12 +106,81 @@ public class PerfilUsuarioActivity extends AppCompatActivity {
                     return;
                 }else{
 
+                    if(!edtSenha.getEditText().getText().toString().equals("")) {
+                        Criptografia crip = new Criptografia();
+                        senhaConv = crip.criptografar(edtSenha.getEditText().getText().toString());
+                    }else {
+                        senhaConv = usuario.getSenha();
+                    }
+                    //pegando dados e passando para um classe usuario
+                    Usuario usuario1 = new Usuario();
+                    usuario1.setId(id);
+                    usuario1.setNome(edtNome.getEditText().getText().toString());
+                    usuario1.setEmail(edtEmail.getEditText().getText().toString());
+                    usuario1.setCpf(edtCpf.getEditText().getText().toString());
+                    usuario1.setTelefone(edtTel.getEditText().getText().toString());
+                    usuario1.setSenha(senhaConv);
 
+                    /// Atualizando os dados no banco por parte do usaurio
+
+                     long rtUpdateUsuario  =   UsuarioDAO.UpdateUsuario(PerfilUsuarioActivity.this, usuario1);
+
+                    Endereco endereco1 = new Endereco();
+                    endereco1.setId(idEndereco);
+                    endereco1.setCep(edtCep.getEditText().getText().toString());
+                    endereco1.setRua(edtRua.getEditText().getText().toString());
+                    endereco1.setBairro(edtBairro.getEditText().getText().toString());
+                    endereco1.setCidade(edtCidade.getEditText().getText().toString());
+                    endereco1.setNumero(Integer.parseInt(edtNumero.getEditText().getText().toString()));
+                    endereco1.setComplemento(edtComplemento.getEditText().getText().toString());
+                    endereco1.setUsuario(usuario1);
+
+                     long rtUpdateEndereco = (long) UsuarioDAO.UpdateEndereco(PerfilUsuarioActivity.this, endereco1);
+
+                    if(rtUpdateEndereco != -1 && rtUpdateUsuario != -1){
+                    SharedPreferences sheredPreferences = getSharedPreferences(ARQUIVO_PREF,0);
+                    SharedPreferences.Editor editor =  sheredPreferences.edit();
+
+                    editor.putString("Email", edtEmail.getEditText().getText().toString());
+                    editor.putString("Senha", senhaConv);
+                    editor.commit();
+
+                    // Cria uma notificacao de Atualizacao.
+                    NotificaçãoSucessoUpdate();
+
+                    }else{
+                        Toast.makeText(PerfilUsuarioActivity.this,
+                                "Problema ao realizar atualização dos dados! Tente novamente! Erro 5.1",
+                                Toast.LENGTH_SHORT).show();
+                    }
                 }
-
-
             }
         });
+    }
+
+    private void NotificaçãoSucessoUpdate() {
+
+//        String id = "my_channel_01";
+//        NotificationManager nn = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+//        NotificationCompat.Builder build = new NotificationCompat.Builder(this, id);
+//        build.setSmallIcon(R.drawable.ic_notifications_black_24dp);
+//        //build.setLargeIcon(BitmapFactory.decodeResource(getResources(), R.drawable.ic_notifications_black_24dp));
+//        //ic_launcher_pizzadelivery_round
+//        build.setTicker("PizzaDelivery");
+//        build.setContentTitle("PizzaDelivery");
+//        build.setContentText("Dados Atualizados com Sucesso!");
+//        build.setPriority(NotificationCompat.PRIORITY_MAX);
+//
+//
+//        Notification n = build.build();
+//        n.vibrate = new long[]{150,300,150,600};
+//        nn.notify(R.drawable.ic_notifications_black_24dp, n);
+//
+//        try{
+//            Uri som = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+//            Ringtone toque = RingtoneManager.getRingtone(this, som);
+//            toque.play();
+//        }catch (Exception e){}
 
     }
 
