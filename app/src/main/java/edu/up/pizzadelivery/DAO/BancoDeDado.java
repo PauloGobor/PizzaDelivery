@@ -149,7 +149,7 @@ public class BancoDeDado extends SQLiteOpenHelper {
                     Contrato.TabelaItemPedido.COLUNA_PEDIDO + TIPO_INTEIRO + VIRGULA +//FK
                     Contrato.TabelaItemPedido.COLUNA_QUANTIDADE + TIPO_INTEIRO + VIRGULA +
                     Contrato.TabelaItemPedido.COLUNA_SUBTOTAL + TIPO_REAL + VIRGULA +
-                    Contrato.TabelaItemPedido.COLUNA_PRECOPEDIDO + TIPO_REAL + VIRGULA +
+//                    Contrato.TabelaItemPedido.COLUNA_PRECOPEDIDO + TIPO_REAL + VIRGULA +
                     //declaracao fks
                     " FOREIGN KEY (" + Contrato.TabelaItemPedido.COLUNA_PIZZAPEDIDA + ")" +
                     " REFERENCES " + Contrato.TabelaPizzaPedida.NOME_DA_TABELA +
@@ -184,7 +184,6 @@ public class BancoDeDado extends SQLiteOpenHelper {
 //                    " FOREIGN KEY (" + Contrato.TabelaPedido.COLUNA_ENDERECO + ")" +
 //                    " REFERENCES " + Contrato.TabelaEndereco.NOME_DA_TABELA +
 //                    "(" + Contrato.TabelaEndereco.COLUNA_ID + ")"
-
 
 
     //    insere tamanhos
@@ -330,10 +329,10 @@ public class BancoDeDado extends SQLiteOpenHelper {
         db.execSQL(SQL_INSERIR_FP_DIN);
         db.execSQL(SQL_INSERIR_BORDA_SN);
         //BEBIDA
+        db.execSQL(SQL_INSERIR_BEBIDA_SN);
         db.execSQL(SQL_INSERIR_BEBIDA_CC);
         db.execSQL(SQL_INSERIR_BEBIDA_FL);
         db.execSQL(SQL_INSERIR_BEBIDA_GA);
-        db.execSQL(SQL_INSERIR_BEBIDA_SN);
         //BORDA
         db.execSQL(SQL_INSERIR_BORDA_CH);
         db.execSQL(SQL_INSERIR_BORDA_CT);
@@ -396,24 +395,24 @@ public class BancoDeDado extends SQLiteOpenHelper {
     //  ###################################################################################   ///
     //  ##### METODO RETORNA O ENDERECO REFERENTE AO ID DO USAURIO QUE FOI PASSADO  #######   ///
     //  ###################################################################################   ///
-    public Endereco RetornaEndereco(int id){
+    public Endereco RetornaEndereco(int id) {
 
         Endereco endereco = new Endereco();
 
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT  * FROM " +
-                Contrato.TabelaEndereco.NOME_DA_TABELA + " WHERE " +
-                Contrato.TabelaEndereco.COLUNA_USUARIOID + " = ?",
-                new String[] {String.valueOf(id)});
+                        Contrato.TabelaEndereco.NOME_DA_TABELA + " WHERE " +
+                        Contrato.TabelaEndereco.COLUNA_USUARIOID + " = ?",
+                new String[]{String.valueOf(id)});
 
         if (cursor.moveToFirst()) {
-                endereco.setId(Integer.parseInt(cursor.getString(cursor.getColumnIndex(Contrato.TabelaEndereco.COLUNA_ID))));
-                endereco.setCep(cursor.getString(cursor.getColumnIndex(Contrato.TabelaEndereco.COLUNA_CEP)));
-                endereco.setRua(cursor.getString(cursor.getColumnIndex(Contrato.TabelaEndereco.COLUNA_RUA)));
-                endereco.setBairro(cursor.getString(cursor.getColumnIndex(Contrato.TabelaEndereco.COLUNA_BAIRRO)));
-                endereco.setCidade(cursor.getString(cursor.getColumnIndex(Contrato.TabelaEndereco.COLUNA_CIDADE)));
-                endereco.setNumero(Integer.parseInt(cursor.getString(cursor.getColumnIndex(Contrato.TabelaEndereco.COLUNA_NUMERO))));
-                endereco.setComplemento(cursor.getString(cursor.getColumnIndex(Contrato.TabelaEndereco.COLUNA_COMPLEMENTO)));
+            endereco.setId(Integer.parseInt(cursor.getString(cursor.getColumnIndex(Contrato.TabelaEndereco.COLUNA_ID))));
+            endereco.setCep(cursor.getString(cursor.getColumnIndex(Contrato.TabelaEndereco.COLUNA_CEP)));
+            endereco.setRua(cursor.getString(cursor.getColumnIndex(Contrato.TabelaEndereco.COLUNA_RUA)));
+            endereco.setBairro(cursor.getString(cursor.getColumnIndex(Contrato.TabelaEndereco.COLUNA_BAIRRO)));
+            endereco.setCidade(cursor.getString(cursor.getColumnIndex(Contrato.TabelaEndereco.COLUNA_CIDADE)));
+            endereco.setNumero(Integer.parseInt(cursor.getString(cursor.getColumnIndex(Contrato.TabelaEndereco.COLUNA_NUMERO))));
+            endereco.setComplemento(cursor.getString(cursor.getColumnIndex(Contrato.TabelaEndereco.COLUNA_COMPLEMENTO)));
         }
         return endereco;
 
@@ -422,24 +421,24 @@ public class BancoDeDado extends SQLiteOpenHelper {
     //  ########################################################################   ///
     //  ##### METODO QUE RETORNA O USUARIO REFERENTE AO EMAIL PASSADO    #######   ///
     //  ########################################################################   ///
-    public Usuario RetornaUsuario(String email){
+    public Usuario RetornaUsuario(String email) {
         Usuario lu = new Usuario();
-        SQLiteDatabase db =  this.getReadableDatabase();
+        SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor cursor = db.rawQuery("SELECT * FROM " +
-                Contrato.TabelaUsuario.NOME_DA_TABELA + " WHERE " +
-                Contrato.TabelaUsuario.COLUNA_EMAIL + " = ?" ,
+                        Contrato.TabelaUsuario.NOME_DA_TABELA + " WHERE " +
+                        Contrato.TabelaUsuario.COLUNA_EMAIL + " = ?",
                 new String[]{email});
 
-        if(cursor.moveToFirst()){
+        if (cursor.moveToFirst()) {
 
-             lu.setId(Integer.parseInt(cursor.getString(cursor.getColumnIndex(Contrato.TabelaUsuario.COLUNA_ID))));
-             lu.setNome(cursor.getString(cursor.getColumnIndex(Contrato.TabelaUsuario.COLUNA_NOME)));
-             lu.setEmail(cursor.getString(cursor.getColumnIndex(Contrato.TabelaUsuario.COLUNA_EMAIL)));
-             lu.setCpf(cursor.getString(cursor.getColumnIndex(Contrato.TabelaUsuario.COLUNA_CPF)));
-             lu.setTelefone(cursor.getString(cursor.getColumnIndex(Contrato.TabelaUsuario.COLUNA_TELEFONE)));
-             lu.setSenha(cursor.getString(cursor.getColumnIndex(Contrato.TabelaUsuario.COLUNA_SENHA)));
-             lu.setConfSenha(cursor.getString(cursor.getColumnIndex(Contrato.TabelaUsuario.COLUNA_SENHA)));
+            lu.setId(Integer.parseInt(cursor.getString(cursor.getColumnIndex(Contrato.TabelaUsuario.COLUNA_ID))));
+            lu.setNome(cursor.getString(cursor.getColumnIndex(Contrato.TabelaUsuario.COLUNA_NOME)));
+            lu.setEmail(cursor.getString(cursor.getColumnIndex(Contrato.TabelaUsuario.COLUNA_EMAIL)));
+            lu.setCpf(cursor.getString(cursor.getColumnIndex(Contrato.TabelaUsuario.COLUNA_CPF)));
+            lu.setTelefone(cursor.getString(cursor.getColumnIndex(Contrato.TabelaUsuario.COLUNA_TELEFONE)));
+            lu.setSenha(cursor.getString(cursor.getColumnIndex(Contrato.TabelaUsuario.COLUNA_SENHA)));
+            lu.setConfSenha(cursor.getString(cursor.getColumnIndex(Contrato.TabelaUsuario.COLUNA_SENHA)));
 
         }
         return lu;
@@ -448,7 +447,7 @@ public class BancoDeDado extends SQLiteOpenHelper {
     //  ########################################################################   ///
     //  ##### METODO ATUALIZA DADOS USUARIO                              #######   ///
     //  ########################################################################   ///
-    public long UpdateUsuario(Usuario usuario){
+    public long UpdateUsuario(Usuario usuario) {
 
         SQLiteDatabase db = this.getWritableDatabase();
 
@@ -460,9 +459,9 @@ public class BancoDeDado extends SQLiteOpenHelper {
         values.put(Contrato.TabelaUsuario.COLUNA_SENHA, usuario.getSenha());
 
         return db.update(Contrato.TabelaUsuario.NOME_DA_TABELA, values,
-                Contrato.TabelaUsuario.COLUNA_ID +" = ? AND " +
-                Contrato.TabelaUsuario.COLUNA_EMAIL + " = ?",
-                new String[] { String.valueOf(usuario.getId()), usuario.getEmail()});
+                Contrato.TabelaUsuario.COLUNA_ID + " = ? AND " +
+                        Contrato.TabelaUsuario.COLUNA_EMAIL + " = ?",
+                new String[]{String.valueOf(usuario.getId()), usuario.getEmail()});
 
 
     }
@@ -470,7 +469,7 @@ public class BancoDeDado extends SQLiteOpenHelper {
     //  ########################################################################   ///
     //  ##### METODO ATUALIZA DADOS ENDERECO REFERENTE AO USAURIO        #######   ///
     //  ########################################################################   ///
-    public long UpdateEndereco(Endereco endereco){
+    public long UpdateEndereco(Endereco endereco) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
@@ -483,9 +482,9 @@ public class BancoDeDado extends SQLiteOpenHelper {
         values.put(Contrato.TabelaEndereco.COLUNA_USUARIOID, endereco.getUsuario().getId());
 
         return db.update(Contrato.TabelaEndereco.NOME_DA_TABELA, values,
-                Contrato.TabelaEndereco.COLUNA_ID +" = ? AND " +
+                Contrato.TabelaEndereco.COLUNA_ID + " = ? AND " +
                         Contrato.TabelaEndereco.COLUNA_USUARIOID + " = ?",
-                new String[] { String.valueOf(endereco.getId()),
+                new String[]{String.valueOf(endereco.getId()),
                         String.valueOf(endereco.getUsuario().getId())});
     }
 
@@ -496,7 +495,7 @@ public class BancoDeDado extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(Contrato.TabelaEndereco.NOME_DA_TABELA,
                 Contrato.TabelaEndereco.COLUNA_USUARIOID + " = ?",
-                new String[] { String.valueOf(id) });
+                new String[]{String.valueOf(id)});
         db.close();
     }
 
@@ -507,7 +506,7 @@ public class BancoDeDado extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(Contrato.TabelaUsuario.NOME_DA_TABELA,
                 Contrato.TabelaUsuario.COLUNA_ID + " = ?",
-                new String[] { String.valueOf(id) });
+                new String[]{String.valueOf(id)});
         db.close();
     }
 
@@ -760,8 +759,6 @@ public class BancoDeDado extends SQLiteOpenHelper {
     }
 
 
-
-
     public long CadastrarPedido(Pedido pedido) {
         SQLiteDatabase db = getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -780,8 +777,10 @@ public class BancoDeDado extends SQLiteOpenHelper {
 
         values.put(Contrato.TabelaItemPedido.COLUNA_BEBIDA, itempedido.getBebida().getId());
         values.put(Contrato.TabelaItemPedido.COLUNA_PIZZAPEDIDA, itempedido.getPizza().getId());
-        values.put(Contrato.TabelaItemPedido.COLUNA_PRECOPEDIDO, itempedido.getPrecoPedido());
+        values.put(Contrato.TabelaItemPedido.COLUNA_SUBTOTAL, itempedido.getSubTotal());
         values.put(Contrato.TabelaItemPedido.COLUNA_QUANTIDADE, itempedido.getQuantidade());
+        values.put(Contrato.TabelaItemPedido.COLUNA_PEDIDO, itempedido.getPedido().getId());
+
 
         //inseri os dados na tabela itempedido
         return db.insert(Contrato.TabelaPedido.NOME_DA_TABELA, null, values);
@@ -797,10 +796,8 @@ public class BancoDeDado extends SQLiteOpenHelper {
 // usar raw query para fazer Join  com os sabores pizza tamanho borda bebida etc......
 
 
-
         return itens;
     }
-
 
 
 }

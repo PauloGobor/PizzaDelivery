@@ -97,10 +97,10 @@ public final class Contrato {
         public static final String COLUNA_ID = "ItemPedidoId";
         public static final String COLUNA_PIZZAPEDIDA = "Fk_PizzaPedidaId";
         public static final String COLUNA_BEBIDA = "Fk_BebidaId";
-        public static final String COLUNA_PEDIDO = "Fk_VendaId";
+        public static final String COLUNA_PEDIDO = "Fk_PedidoId";
         public static final String COLUNA_QUANTIDADE = "Quantidade";
         public static final String COLUNA_SUBTOTAL = "Subtotal";
-        public static final String COLUNA_PRECOPEDIDO = "PrecoPedido";
+
 
     }
 

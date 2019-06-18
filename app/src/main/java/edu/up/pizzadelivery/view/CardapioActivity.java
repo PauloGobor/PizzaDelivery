@@ -1,5 +1,6 @@
 package edu.up.pizzadelivery.view;
 
+import android.content.ClipData;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -19,6 +20,7 @@ import java.util.List;
 
 import edu.up.pizzadelivery.Adapter.SaboresAdapter;
 import edu.up.pizzadelivery.Adapter.TamanhosAdapter;
+import edu.up.pizzadelivery.DAO.ItemPedidoDAO;
 import edu.up.pizzadelivery.DAO.PizzaDAO;
 import edu.up.pizzadelivery.DAO.PizzaPedidaDAO;
 import edu.up.pizzadelivery.DAO.SaborDAO;
@@ -26,6 +28,8 @@ import edu.up.pizzadelivery.DAO.TamanhoDAO;
 import edu.up.pizzadelivery.R;
 import edu.up.pizzadelivery.model.Bebida;
 import edu.up.pizzadelivery.model.Borda;
+import edu.up.pizzadelivery.model.ItemPedido;
+import edu.up.pizzadelivery.model.Pedido;
 import edu.up.pizzadelivery.model.Pizza;
 import edu.up.pizzadelivery.model.PizzaPedida;
 import edu.up.pizzadelivery.model.Sabor;
@@ -48,6 +52,7 @@ public class CardapioActivity extends AppCompatActivity {
 
         final Tamanho tamanho = (Tamanho) getIntent().getSerializableExtra("TAMANHO");
         final Borda borda = (Borda) getIntent().getSerializableExtra("BORDA");
+        final Pedido idPedido = (Pedido) getIntent().getSerializableExtra("IDPEDIDO");
 
         final Pizza pizza = new Pizza();
 
@@ -93,7 +98,7 @@ public class CardapioActivity extends AppCompatActivity {
 
                 if (cliqueSabor > tamanhoselecionado.getQtdSabores()) {
 
-                    Toast.makeText(CardapioActivity.this, "acaboua selecao", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(CardapioActivity.this, "Seleção de sabores finalizada", Toast.LENGTH_SHORT).show();
 
                 } else {
                     // Log.i("escolido", saboresEscolhidosArrayList.get(position).getNome());
@@ -117,6 +122,7 @@ public class CardapioActivity extends AppCompatActivity {
 
                     ///id da pizza
                     //idPizza;
+                    // gravando os dados dentro da tabela pizza pedida.
                     PizzaPedida pizza1 = new PizzaPedida();
                     pizza1.setPizza(pizza);
                     List<Sabor> sabors = saboresEscolhidosArrayList;
@@ -130,7 +136,19 @@ public class CardapioActivity extends AppCompatActivity {
                         Log.i("iDNomePizza: ", "" + pizza1.getSabor().getNome());
                     }
 
-//                  CADASTRAR PIZZA neste momento tbm pizza e // pizza pedida
+                    ItemPedido item = new ItemPedido();
+                    // colocando os item dentro objeto item
+                    item.setPizza(pizza);
+                    item.setQuantidade(1);
+                    item.setSubTotal(pizza.getTamanho().getPreco());
+                    item.setPedido(idPedido);
+
+                    Bebida bebida = new Bebida();
+                    bebida.setId(0);
+                    item.setBebida(bebida);
+
+                    final long iditempedido = ItemPedidoDAO.CadastrarItemPedido(CardapioActivity.this, item);
+
                     // passando tamanho
                     intent.putExtra("TAMANHO", tamanho);
                     intent.putExtra("BORDA", borda);

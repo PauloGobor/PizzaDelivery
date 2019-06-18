@@ -10,7 +10,7 @@ public class ItemPedido implements Serializable {
     private Bebida bebida;
     private int quantidade;
     private double subTotal;
-    private double precoPedido;
+    private Pedido pedido;
 
     public int getId() {
         return id;
@@ -53,12 +53,11 @@ public class ItemPedido implements Serializable {
         this.subTotal = subTotal;
     }
 
-    public double getPrecoPedido() {
-        return precoPedido;
+    public Pedido getPedido() {
+        return pedido;
     }
 
-    public void setPrecoPedido(double precoPedido) {
-        this.precoPedido = precoPedido;
+    public void setPedido(Pedido pedido) {
+        this.pedido = pedido;
     }
-
 }

@@ -18,21 +18,23 @@ import java.util.Date;
 
 import edu.up.pizzadelivery.DAO.PedidoDAO;
 import edu.up.pizzadelivery.DAO.TamanhoDAO;
-import edu.up.pizzadelivery.DAO.UsuarioDAO;
 import edu.up.pizzadelivery.R;
+
 import edu.up.pizzadelivery.model.Pedido;
 import edu.up.pizzadelivery.model.Tamanho;
-import edu.up.pizzadelivery.model.Usuario;
+
 
 public class EscolherTamanhoActivity extends AppCompatActivity {
 
     private ListView lstTamanhos;
     private static  final  String ARQUIVO_PREF = "LogUsuario";
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_escolher_tamanho);
+        final Pedido idPedido = (Pedido) getIntent().getSerializableExtra("IDPEDIDO");
 
         lstTamanhos = (ListView) findViewById(R.id.lstTamanhos);
 
@@ -62,7 +64,7 @@ public class EscolherTamanhoActivity extends AppCompatActivity {
 
                 Intent intent = new Intent(EscolherTamanhoActivity.this, BordaActivity.class);
                 intent.putExtra("TAMANHO", tamanhosArrayList.get(position));
-
+                intent.putExtra("IDPEDIDO", idPedido);
                 startActivity(intent);
 
 

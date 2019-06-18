@@ -75,6 +75,7 @@ public class AreaClienteActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent fazerPedido = new Intent(AreaClienteActivity.this, EscolherTamanhoActivity.class);
                 startActivity(fazerPedido);
+                fazerPedido.putExtra("IDPEDIDO", idPedido);
             }
         });
 

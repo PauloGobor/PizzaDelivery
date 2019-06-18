@@ -19,6 +19,7 @@ import edu.up.pizzadelivery.DAO.BordaDAO;
 import edu.up.pizzadelivery.R;
 import edu.up.pizzadelivery.model.Bebida;
 import edu.up.pizzadelivery.model.Borda;
+import edu.up.pizzadelivery.model.Pedido;
 import edu.up.pizzadelivery.model.Pizza;
 import edu.up.pizzadelivery.model.Sabor;
 import edu.up.pizzadelivery.model.Tamanho;
@@ -35,7 +36,7 @@ public class BordaActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_borda);
-
+        final Pedido idPedido = (Pedido) getIntent().getSerializableExtra("IDPEDIDO");
         lstBordas = (ListView) findViewById(R.id.lstBordas);
         //txtSabores = (TextView) findViewById(R.id.txtSabores);
 
@@ -67,6 +68,7 @@ public class BordaActivity extends AppCompatActivity {
                 Intent intent = new Intent(BordaActivity.this, CardapioActivity.class);
                 intent.putExtra("BORDA", bordasArrayList.get(position));
                 intent.putExtra("TAMANHO", tamanho);
+                intent.putExtra("IDPEDIDO",idPedido);
                 //intent.putExtra("SABORES", sabores);
                 startActivity(intent);
             }
