@@ -6,13 +6,12 @@ import java.util.ArrayList;
 
 import edu.up.pizzadelivery.model.ItemPedido;
 
-
 public class ItemPedidoDAO {
 
-    public static ArrayList<ItemPedido> retornarFormasPagamento(Context context){
+    public static long CadastrarItemPedido(Context context, ItemPedido itempedido) {
         BancoDeDado banco = new BancoDeDado(context);
-        return banco.RetornarItemPedido();
-    }
+        return banco.CadastrarItemPedido(itempedido);
 
+    }
 
 }
