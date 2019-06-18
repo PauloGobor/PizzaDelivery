@@ -6,17 +6,26 @@ import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
+import edu.up.pizzadelivery.DAO.PedidoDAO;
+import edu.up.pizzadelivery.DAO.UsuarioDAO;
 import edu.up.pizzadelivery.R;
+import edu.up.pizzadelivery.model.Pedido;
+import edu.up.pizzadelivery.model.Usuario;
 
 public class AreaClienteActivity extends AppCompatActivity {
 
-    private static  final  String ARQUIVO_PREF = "LogUsuario";
+    private static final String ARQUIVO_PREF = "LogUsuario";
     Button btnFazerPedido;
 
     @Override
@@ -26,13 +35,45 @@ public class AreaClienteActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        btnFazerPedido =  findViewById(R.id.btnFazerPedido);
+        btnFazerPedido = findViewById(R.id.btnFazerPedido);
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy-HH:mm:ss");
+// *****************************************************************************
+//******        aqui eu consigo o resultado da data completa    *****************
+// ************************************************************************* ***
+        Date data = new Date();
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(data);
+        Date data_atual = cal.getTime();
+        String data_completa = dateFormat.format(data_atual);
+        Log.i("data_completa", data_completa);
+
+// *****************************************************************************
+//****** ***********       cadastro de um pedido    *************************
+// ************************************************************************* **
+//******************   verificar aonde consigo colocar o pedido ***************
+// ************************************************************************
+        SharedPreferences settings = getSharedPreferences(ARQUIVO_PREF, MODE_PRIVATE);
+        String shedEmail = (String) settings.getString("Email", "");
+        Log.i("emailretorno: ", "" + shedEmail);
+
+        final Usuario usuario = UsuarioDAO.RetornaUsuario(this, shedEmail);
+        Pedido pedido = new Pedido();
+        pedido.setData(data_completa);
+        pedido.setUsuario(usuario);
+        // pedido.setUsuario();
+
+        final long idPedido = PedidoDAO.CadastrarPedido(this, pedido);
+        //pizza sendo cadastrada...
+        Log.i("Idpedido: ", "" + idPedido);
+        Log.i("IdpedidoData: ", "" + pedido.getData());
+//
+// ********************************************************************************
 
 
         btnFazerPedido.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent fazerPedido = new Intent( AreaClienteActivity.this, EscolherTamanhoActivity.class);
+                Intent fazerPedido = new Intent(AreaClienteActivity.this, EscolherTamanhoActivity.class);
                 startActivity(fazerPedido);
             }
         });
@@ -49,26 +90,26 @@ public class AreaClienteActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-       switch (item.getItemId()){
-           case R.id.editar:
-               Intent  intent1 = new Intent(this, PerfilUsuarioActivity.class);
-               startActivity(intent1);
-               return true;
-           case R.id.historico:
+        switch (item.getItemId()) {
+            case R.id.editar:
+                Intent intent1 = new Intent(this, PerfilUsuarioActivity.class);
+                startActivity(intent1);
+                return true;
+            case R.id.historico:
 //               Intent  intent2 = new Intent(this, Historico.class);
 //               startActivity(intent2);
-               return true;
-           case R.id.sair:
-               SharedPreferences sheredPreferences = getSharedPreferences(ARQUIVO_PREF,0);
-               SharedPreferences.Editor editor =  sheredPreferences.edit();
+                return true;
+            case R.id.sair:
+                SharedPreferences sheredPreferences = getSharedPreferences(ARQUIVO_PREF, 0);
+                SharedPreferences.Editor editor = sheredPreferences.edit();
 
-               editor.putString("Email","");
-               editor.putString("Senha","");
-               editor.commit();
-               finish();
-               return true;
-               default:
-                   return super.onOptionsItemSelected(item);
-       }
+                editor.putString("Email", "");
+                editor.putString("Senha", "");
+                editor.commit();
+                finish();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }

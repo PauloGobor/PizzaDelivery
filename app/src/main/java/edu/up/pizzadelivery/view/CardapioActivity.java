@@ -124,10 +124,10 @@ public class CardapioActivity extends AppCompatActivity {
                     for (Sabor sab : sabors) {
                         pizza1.setSabor(sab);
                         final long idPizzaPedida = PizzaPedidaDAO.CadastrarPizzaPedida(CardapioActivity.this, pizza1);
+                        // mostra no log os dados sendo inseridos
                         Log.i("IdPizzaPedida: ", "" + idPizzaPedida);
                         Log.i("IdPizza: ", "" + idPizza);
-
-
+                        Log.i("iDNomePizza: ", "" + pizza1.getSabor().getNome());
                     }
 
 //                  CADASTRAR PIZZA neste momento tbm pizza e // pizza pedida
@@ -139,7 +139,6 @@ public class CardapioActivity extends AppCompatActivity {
                     startActivity(intent);
                 } else {
                     Toast.makeText(CardapioActivity.this, "Selecione todos os sabores", Toast.LENGTH_SHORT).show();
-
                 }
             }
         });

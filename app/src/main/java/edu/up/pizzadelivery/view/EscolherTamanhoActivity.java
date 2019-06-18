@@ -1,30 +1,33 @@
 package edu.up.pizzadelivery.view;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Adapter;
+
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
-import edu.up.pizzadelivery.Adapter.TamanhosAdapter;
+import edu.up.pizzadelivery.DAO.PedidoDAO;
 import edu.up.pizzadelivery.DAO.TamanhoDAO;
+import edu.up.pizzadelivery.DAO.UsuarioDAO;
 import edu.up.pizzadelivery.R;
+import edu.up.pizzadelivery.model.Pedido;
 import edu.up.pizzadelivery.model.Tamanho;
+import edu.up.pizzadelivery.model.Usuario;
 
 public class EscolherTamanhoActivity extends AppCompatActivity {
 
     private ListView lstTamanhos;
-
+    private static  final  String ARQUIVO_PREF = "LogUsuario";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,19 +53,6 @@ public class EscolherTamanhoActivity extends AppCompatActivity {
         lstTamanhos.setAdapter(adapter);
         //Criar o clique de cada do ListView
         lstTamanhos.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy-HH:mm:ss");
-// *****************************************************************************
-//******        aqui eu consigo o resultado da data completa    *****************
-// ************************************************************************* ***
-        Date data = new Date();
-        Calendar  cal = Calendar.getInstance();
-        cal.setTime(data);
-        Date data_atual = cal.getTime();
-        String data_completa = dateFormat.format(data_atual);
-        Log.i("data_completa", data_completa);
-//
-// ********************************************************************************
-
 
 
         lstTamanhos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -72,6 +62,7 @@ public class EscolherTamanhoActivity extends AppCompatActivity {
 
                 Intent intent = new Intent(EscolherTamanhoActivity.this, BordaActivity.class);
                 intent.putExtra("TAMANHO", tamanhosArrayList.get(position));
+
                 startActivity(intent);
 
 

@@ -187,10 +187,6 @@ public class BancoDeDado extends SQLiteOpenHelper {
 
 
 
-
-    private static  final String SELECT_PIZZA ="SELECT * FROM "
-            + Contrato.TabelaPizza.NOME_DA_TABELA + ")";
-
     //    insere tamanhos
     private static final String SQL_INSERIR_BROTO = "INSERT INTO " +
             Contrato.TabelaTamanho.NOME_DA_TABELA +
@@ -354,8 +350,7 @@ public class BancoDeDado extends SQLiteOpenHelper {
         db.execSQL(SQL_INSERIR_SABOR_BA);
         db.execSQL(SQL_INSERIR_SABOR_BO);
         db.execSQL(SQL_INSERIR_SABOR_LO);
-        db.execSQL(SELECT_PIZZA);
-        Log.i("pizzas",SELECT_PIZZA);
+
 
     }
 
@@ -490,7 +485,8 @@ public class BancoDeDado extends SQLiteOpenHelper {
         return db.update(Contrato.TabelaEndereco.NOME_DA_TABELA, values,
                 Contrato.TabelaEndereco.COLUNA_ID +" = ? AND " +
                         Contrato.TabelaEndereco.COLUNA_USUARIOID + " = ?",
-                new String[] { String.valueOf(endereco.getId()), String.valueOf(endereco.getUsuario().getId())});
+                new String[] { String.valueOf(endereco.getId()),
+                        String.valueOf(endereco.getUsuario().getId())});
     }
 
     //  ########################################################################   ///
@@ -498,7 +494,8 @@ public class BancoDeDado extends SQLiteOpenHelper {
     //  ########################################################################   ///
     public void deleteEndereco(int id) {
         SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(Contrato.TabelaEndereco.NOME_DA_TABELA, Contrato.TabelaEndereco.COLUNA_USUARIOID + " = ?",
+        db.delete(Contrato.TabelaEndereco.NOME_DA_TABELA,
+                Contrato.TabelaEndereco.COLUNA_USUARIOID + " = ?",
                 new String[] { String.valueOf(id) });
         db.close();
     }
@@ -508,7 +505,8 @@ public class BancoDeDado extends SQLiteOpenHelper {
     //  ########################################################################   ///
     public void deleteUsuario(int id) {
         SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(Contrato.TabelaUsuario.NOME_DA_TABELA, Contrato.TabelaUsuario.COLUNA_ID + " = ?",
+        db.delete(Contrato.TabelaUsuario.NOME_DA_TABELA,
+                Contrato.TabelaUsuario.COLUNA_ID + " = ?",
                 new String[] { String.valueOf(id) });
         db.close();
     }
@@ -767,13 +765,12 @@ public class BancoDeDado extends SQLiteOpenHelper {
     public long CadastrarPedido(Pedido pedido) {
         SQLiteDatabase db = getWritableDatabase();
         ContentValues values = new ContentValues();
-        // PRIMEIRO FAZER A INSERÇÃO NA TABELA DE USUARIO PRA DEPOIS
-        //PEGAR O USUARIO ID E COLOCAR DENTRO DA TABELA ENDERECO .....
+
         values.put(Contrato.TabelaPedido.COLUNA_USUARIO, pedido.getUsuario().getId());
         values.put(Contrato.TabelaPedido.COLUNA_DATA, pedido.getData());
-        values.put(Contrato.TabelaPedido.COLUNA_FORMA_PAGAMENTO, pedido.getFormaPagamento().getId());
+//        values.put(Contrato.TabelaPedido.COLUNA_FORMA_PAGAMENTO, pedido.getFormaPagamento().getId());
 
-        //inseri os dados na tabela usuario
+        //inseri os dados na tabela pedido
         return db.insert(Contrato.TabelaPedido.NOME_DA_TABELA, null, values);
     }
 
