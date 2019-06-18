@@ -63,9 +63,12 @@ public class AreaClienteActivity extends AppCompatActivity {
         // pedido.setUsuario();
 
         final long idPedido = PedidoDAO.CadastrarPedido(this, pedido);
+
         //pizza sendo cadastrada...
         Log.i("Idpedido: ", "" + idPedido);
         Log.i("IdpedidoData: ", "" + pedido.getData());
+        Log.i("Idlong-ID: ", "" + idPedido);
+
 
 
 
@@ -78,7 +81,7 @@ public class AreaClienteActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent fazerPedido = new Intent(AreaClienteActivity.this, EscolherTamanhoActivity.class);
                 startActivity(fazerPedido);
-                //fazerPedido.putExtra("IDPEDIDO",l);
+                fazerPedido.putExtra("IDPEDIDO",idPedido);
             }
         });
 

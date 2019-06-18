@@ -150,7 +150,7 @@ public class CardapioActivity extends AppCompatActivity {
                     final long iditempedido = ItemPedidoDAO.CadastrarItemPedido(CardapioActivity.this, item);
 
                     Log.i("itemid",""+item.getId());
-                    Log.i("itempedido",""+item.getPedido());
+                    //Log.i("itempedido",""+item.getPedido());
                     Log.i("itempizza",""+item.getPizza());
                     Log.i("itembebida",""+item.getBebida().getPreco());
                     Log.i("itemquantidade",""+item.getQuantidade());

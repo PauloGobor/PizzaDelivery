@@ -13,14 +13,8 @@ import android.widget.ListView;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-
-import edu.up.pizzadelivery.DAO.PedidoDAO;
 import edu.up.pizzadelivery.DAO.TamanhoDAO;
 import edu.up.pizzadelivery.R;
-
-import edu.up.pizzadelivery.model.Pedido;
 import edu.up.pizzadelivery.model.Tamanho;
 
 
@@ -35,9 +29,9 @@ public class EscolherTamanhoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_escolher_tamanho);
 // id pedido esta vindo null
-       // final Long idPedido = (Long) getIntent().getSerializableExtra("IDPEDIDO");
+        final Long idPedido = (Long) getIntent().getSerializableExtra("IDPEDIDO");
 
-        //Log.i("id do pedido",""+idPedido);
+        Log.i("id do pedido",""+idPedido);
 
 
         lstTamanhos = (ListView) findViewById(R.id.lstTamanhos);
@@ -59,7 +53,6 @@ public class EscolherTamanhoActivity extends AppCompatActivity {
         lstTamanhos.setAdapter(adapter);
         //Criar o clique de cada do ListView
         lstTamanhos.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
-
 
         lstTamanhos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
