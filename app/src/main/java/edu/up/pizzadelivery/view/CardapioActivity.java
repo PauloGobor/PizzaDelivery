@@ -20,12 +20,14 @@ import java.util.List;
 import edu.up.pizzadelivery.Adapter.SaboresAdapter;
 import edu.up.pizzadelivery.Adapter.TamanhosAdapter;
 import edu.up.pizzadelivery.DAO.PizzaDAO;
+import edu.up.pizzadelivery.DAO.PizzaPedidaDAO;
 import edu.up.pizzadelivery.DAO.SaborDAO;
 import edu.up.pizzadelivery.DAO.TamanhoDAO;
 import edu.up.pizzadelivery.R;
 import edu.up.pizzadelivery.model.Bebida;
 import edu.up.pizzadelivery.model.Borda;
 import edu.up.pizzadelivery.model.Pizza;
+import edu.up.pizzadelivery.model.PizzaPedida;
 import edu.up.pizzadelivery.model.Sabor;
 import edu.up.pizzadelivery.model.Tamanho;
 
@@ -47,7 +49,7 @@ public class CardapioActivity extends AppCompatActivity {
         final Tamanho tamanho = (Tamanho) getIntent().getSerializableExtra("TAMANHO");
         final Borda borda = (Borda) getIntent().getSerializableExtra("BORDA");
 
-        Pizza pizza = new Pizza();
+        final Pizza pizza = new Pizza();
 
         pizza.setBorda(borda);
         pizza.setTamanho(tamanho);
@@ -55,7 +57,7 @@ public class CardapioActivity extends AppCompatActivity {
 
         final long idPizza = PizzaDAO.CadastrarPizza(this, pizza);
         //pizza sendo cadastrada...
-        Log.i( "Id: " ,""  +idPizza);
+        Log.i("Idpizza: ", "" + idPizza);
 
 
         lstSabores = (ListView) findViewById(R.id.lstSabores);
@@ -115,11 +117,14 @@ public class CardapioActivity extends AppCompatActivity {
 
                     ///id da pizza
                     //idPizza;
+                    PizzaPedida pizza1 = new PizzaPedida();
+                    pizza1.setPizza(pizza);
                     List<Sabor> sabors = saboresEscolhidosArrayList;
-                    for (Sabor sab: sabors){
 
-
-
+                    for (Sabor sab : sabors) {
+                        pizza1.setSabor(sab);
+                        final long idPizzaPedida = PizzaPedidaDAO.CadastrarPizzaPedida(CardapioActivity.this, pizza1);
+                        Log.i("IdPizzaPedida: ", "" + idPizzaPedida);
 
                     }
 //                  CADASTRAR PIZZA neste momento tbm pizza e // pizza pedida
@@ -133,7 +138,6 @@ public class CardapioActivity extends AppCompatActivity {
                     Toast.makeText(CardapioActivity.this, "Selecione todos os sabores", Toast.LENGTH_SHORT).show();
 
                 }
-
             }
         });
 
