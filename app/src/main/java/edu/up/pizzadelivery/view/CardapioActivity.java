@@ -1,6 +1,8 @@
 package edu.up.pizzadelivery.view;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -17,6 +19,7 @@ import java.util.List;
 
 import edu.up.pizzadelivery.Adapter.SaboresAdapter;
 import edu.up.pizzadelivery.Adapter.TamanhosAdapter;
+import edu.up.pizzadelivery.DAO.PizzaDAO;
 import edu.up.pizzadelivery.DAO.SaborDAO;
 import edu.up.pizzadelivery.DAO.TamanhoDAO;
 import edu.up.pizzadelivery.R;
@@ -43,6 +46,17 @@ public class CardapioActivity extends AppCompatActivity {
 
         final Tamanho tamanho = (Tamanho) getIntent().getSerializableExtra("TAMANHO");
         final Borda borda = (Borda) getIntent().getSerializableExtra("BORDA");
+
+        Pizza pizza = new Pizza();
+
+        pizza.setBorda(borda);
+        pizza.setTamanho(tamanho);
+
+
+        final long idPizza = PizzaDAO.CadastrarPizza(this, pizza);
+        //pizza sendo cadastrada...
+        Log.i( "Id: " ,""  +idPizza);
+
 
         lstSabores = (ListView) findViewById(R.id.lstSabores);
         //txtTamanhoSelec = (TextView) findViewById(R.id.txtTamanhoSelec);
@@ -99,11 +113,15 @@ public class CardapioActivity extends AppCompatActivity {
                 if (saboresEscolhidosArrayList.size() == tamanhoselecionado.getQtdSabores()) {
                     Intent intent = new Intent(CardapioActivity.this, CarrinhoActivity.class);
 
-//
-//               final Pizza pizza = new Pizza();
-//               pizza.getTamanho();
-//               pizza.getBorda();
+                    ///id da pizza
+                    //idPizza;
+                    List<Sabor> sabors = saboresEscolhidosArrayList;
+                    for (Sabor sab: sabors){
 
+
+
+
+                    }
 //                  CADASTRAR PIZZA neste momento tbm pizza e // pizza pedida
                     // passando tamanho
                     intent.putExtra("TAMANHO", tamanho);

@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -184,6 +185,12 @@ public class BancoDeDado extends SQLiteOpenHelper {
 //                    " REFERENCES " + Contrato.TabelaEndereco.NOME_DA_TABELA +
 //                    "(" + Contrato.TabelaEndereco.COLUNA_ID + ")"
 
+
+
+
+    private static  final String SELECT_PIZZA ="SELECT * FROM "
+            + Contrato.TabelaPizza.NOME_DA_TABELA + ")";
+
     //    insere tamanhos
     private static final String SQL_INSERIR_BROTO = "INSERT INTO " +
             Contrato.TabelaTamanho.NOME_DA_TABELA +
@@ -347,6 +354,8 @@ public class BancoDeDado extends SQLiteOpenHelper {
         db.execSQL(SQL_INSERIR_SABOR_BA);
         db.execSQL(SQL_INSERIR_SABOR_BO);
         db.execSQL(SQL_INSERIR_SABOR_LO);
+        db.execSQL(SELECT_PIZZA);
+        Log.i("pizzas",SELECT_PIZZA);
 
     }
 
@@ -747,7 +756,7 @@ public class BancoDeDado extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
 
         values.put(Contrato.TabelaPizzaPedida.COLUNA_PIZZA, pizzaPedida.getPizza().getId());
-        //values.put(Contrato.TabelaPizzaPedida.COLUNA_SABOR, pizzaPedida.getSabores());
+        values.put(Contrato.TabelaPizzaPedida.COLUNA_SABOR, pizzaPedida.getSabor().getId());
 
         return db.insert(Contrato.TabelaPizzaPedida.NOME_DA_TABELA, null, values);
     }
@@ -781,7 +790,6 @@ public class BancoDeDado extends SQLiteOpenHelper {
 
         return itens;
     }
-
 
 
 

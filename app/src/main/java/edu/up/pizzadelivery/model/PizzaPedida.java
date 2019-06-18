@@ -7,7 +7,7 @@ public class PizzaPedida implements Serializable {
 
     private int id;
     private Pizza pizza;
-    private List<Sabor> sabores;
+    private Sabor sabor;
 
     public int getId() {
         return id;
@@ -25,11 +25,11 @@ public class PizzaPedida implements Serializable {
         this.pizza = pizza;
     }
 
-    public List<Sabor> getSabores() {
-        return sabores;
+    public Sabor getSabor() {
+        return sabor;
     }
 
-    public void setSabores(List<Sabor> sabores) {
-        this.sabores = sabores;
+    public void setSabor(Sabor sabor) {
+        this.sabor = sabor;
     }
 }
