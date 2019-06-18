@@ -125,8 +125,11 @@ public class CardapioActivity extends AppCompatActivity {
                         pizza1.setSabor(sab);
                         final long idPizzaPedida = PizzaPedidaDAO.CadastrarPizzaPedida(CardapioActivity.this, pizza1);
                         Log.i("IdPizzaPedida: ", "" + idPizzaPedida);
+                        Log.i("IdPizza: ", "" + idPizza);
+
 
                     }
+
 //                  CADASTRAR PIZZA neste momento tbm pizza e // pizza pedida
                     // passando tamanho
                     intent.putExtra("TAMANHO", tamanho);
