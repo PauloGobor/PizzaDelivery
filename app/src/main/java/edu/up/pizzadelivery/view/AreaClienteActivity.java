@@ -66,6 +66,9 @@ public class AreaClienteActivity extends AppCompatActivity {
         //pizza sendo cadastrada...
         Log.i("Idpedido: ", "" + idPedido);
         Log.i("IdpedidoData: ", "" + pedido.getData());
+
+
+
 //
 // ********************************************************************************
 
@@ -75,7 +78,7 @@ public class AreaClienteActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent fazerPedido = new Intent(AreaClienteActivity.this, EscolherTamanhoActivity.class);
                 startActivity(fazerPedido);
-                fazerPedido.putExtra("IDPEDIDO", idPedido);
+                //fazerPedido.putExtra("IDPEDIDO",l);
             }
         });
 

@@ -350,7 +350,6 @@ public class BancoDeDado extends SQLiteOpenHelper {
         db.execSQL(SQL_INSERIR_SABOR_BO);
         db.execSQL(SQL_INSERIR_SABOR_LO);
 
-
     }
 
     @Override

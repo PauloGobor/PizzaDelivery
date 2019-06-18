@@ -52,13 +52,13 @@ public class CardapioActivity extends AppCompatActivity {
 
         final Tamanho tamanho = (Tamanho) getIntent().getSerializableExtra("TAMANHO");
         final Borda borda = (Borda) getIntent().getSerializableExtra("BORDA");
-        final Pedido idPedido = (Pedido) getIntent().getSerializableExtra("IDPEDIDO");
+        //final Pedido idPedido = (Pedido) getIntent().getSerializableExtra("IDPEDIDO");
 
         final Pizza pizza = new Pizza();
 
         pizza.setBorda(borda);
         pizza.setTamanho(tamanho);
-
+//Log.i("id pedido no cardapio",""+idPedido);
 
         final long idPizza = PizzaDAO.CadastrarPizza(this, pizza);
         //pizza sendo cadastrada...
@@ -141,7 +141,7 @@ public class CardapioActivity extends AppCompatActivity {
                     item.setPizza(pizza);
                     item.setQuantidade(1);
                     item.setSubTotal(pizza.getTamanho().getPreco());
-                    item.setPedido(idPedido);
+                    //item.setPedido(idPedido);
 
                     Bebida bebida = new Bebida();
                     bebida.setId(0);
@@ -149,6 +149,11 @@ public class CardapioActivity extends AppCompatActivity {
 
                     final long iditempedido = ItemPedidoDAO.CadastrarItemPedido(CardapioActivity.this, item);
 
+                    Log.i("itemid",""+item.getId());
+                    Log.i("itempedido",""+item.getPedido());
+                    Log.i("itempizza",""+item.getPizza());
+                    Log.i("itembebida",""+item.getBebida().getPreco());
+                    Log.i("itemquantidade",""+item.getQuantidade());
                     // passando tamanho
                     intent.putExtra("TAMANHO", tamanho);
                     intent.putExtra("BORDA", borda);
