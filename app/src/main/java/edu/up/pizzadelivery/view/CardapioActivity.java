@@ -53,14 +53,17 @@ public class CardapioActivity extends AppCompatActivity {
         final Tamanho tamanho = (Tamanho) getIntent().getSerializableExtra("TAMANHO");
         final Borda borda = (Borda) getIntent().getSerializableExtra("BORDA");
         //final Pedido idPedido = (Pedido) getIntent().getSerializableExtra("IDPEDIDO");
-
+        Bundle bundle = getIntent().getExtras();
+        final int idPedido = bundle.getInt("IDPEDIDO");
+        Log.i("idpedido",""+idPedido);
         final Pizza pizza = new Pizza();
 
         pizza.setBorda(borda);
         pizza.setTamanho(tamanho);
 //Log.i("id pedido no cardapio",""+idPedido);
 
-        final long idPizza = PizzaDAO.CadastrarPizza(this, pizza);
+        final int idPizza = (int) PizzaDAO.CadastrarPizza(this, pizza);
+        pizza.setId(idPizza);
         //pizza sendo cadastrada...
         Log.i("Idpizza: ", "" + idPizza);
 
@@ -129,31 +132,33 @@ public class CardapioActivity extends AppCompatActivity {
 
                     for (Sabor sab : sabors) {
                         pizza1.setSabor(sab);
-                        final long idPizzaPedida = PizzaPedidaDAO.CadastrarPizzaPedida(CardapioActivity.this, pizza1);
+                        int idPizzaPedida = (int) PizzaPedidaDAO.CadastrarPizzaPedida(CardapioActivity.this, pizza1);
                         // mostra no log os dados sendo inseridos
                         Log.i("IdPizzaPedida: ", "" + idPizzaPedida);
                         Log.i("IdPizza: ", "" + idPizza);
                         Log.i("iDNomePizza: ", "" + pizza1.getSabor().getNome());
                     }
 
+
                     ItemPedido item = new ItemPedido();
                     // colocando os item dentro objeto item
                     item.setPizza(pizza);
                     item.setQuantidade(1);
                     item.setSubTotal(pizza.getTamanho().getPreco());
-                    //item.setPedido(idPedido);
+                    item.setPedido(idPedido);
 
                     Bebida bebida = new Bebida();
-                    bebida.setId(0);
+                    bebida.setId(1);
                     item.setBebida(bebida);
 
                     final long iditempedido = ItemPedidoDAO.CadastrarItemPedido(CardapioActivity.this, item);
 
-                    Log.i("itemid",""+item.getId());
-                    //Log.i("itempedido",""+item.getPedido());
-                    Log.i("itempizza",""+item.getPizza());
-                    Log.i("itembebida",""+item.getBebida().getPreco());
-                    Log.i("itemquantidade",""+item.getQuantidade());
+                    Log.i("iditem",""+iditempedido);
+                    Log.i("idpedido",""+item.getPedido());
+                    Log.i("iditempizza",""+item.getPizza().getId());
+                    Log.i("iditempizzalocal",""+item.getPizza());
+                    Log.i("iditembebida",""+item.getBebida().getNome());
+                    Log.i("iditemquantidade",""+item.getQuantidade());
                     // passando tamanho
                     intent.putExtra("TAMANHO", tamanho);
                     intent.putExtra("BORDA", borda);

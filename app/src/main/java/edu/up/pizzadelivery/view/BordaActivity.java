@@ -36,7 +36,10 @@ public class BordaActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_borda);
-        final Pedido idPedido = (Pedido) getIntent().getSerializableExtra("IDPEDIDO");
+        //final Pedido idPedido = (Pedido) getIntent().getSerializableExtra("IDPEDIDO");
+        Bundle bundle = getIntent().getExtras();
+        final int idPedido = bundle.getInt("IDPEDIDO");
+
         lstBordas = (ListView) findViewById(R.id.lstBordas);
         //txtSabores = (TextView) findViewById(R.id.txtSabores);
 

@@ -778,11 +778,11 @@ public class BancoDeDado extends SQLiteOpenHelper {
         values.put(Contrato.TabelaItemPedido.COLUNA_PIZZAPEDIDA, itempedido.getPizza().getId());
         values.put(Contrato.TabelaItemPedido.COLUNA_SUBTOTAL, itempedido.getSubTotal());
         values.put(Contrato.TabelaItemPedido.COLUNA_QUANTIDADE, itempedido.getQuantidade());
-        values.put(Contrato.TabelaItemPedido.COLUNA_PEDIDO, itempedido.getPedido().getId());
+        values.put(Contrato.TabelaItemPedido.COLUNA_PEDIDO, itempedido.getPedido());
 
 
         //inseri os dados na tabela itempedido
-        return db.insert(Contrato.TabelaPedido.NOME_DA_TABELA, null, values);
+        return db.insert(Contrato.TabelaItemPedido.NOME_DA_TABELA, null, values);
     }
 
     //  ########################################################################   ///

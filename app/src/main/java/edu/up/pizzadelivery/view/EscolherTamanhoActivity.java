@@ -28,8 +28,11 @@ public class EscolherTamanhoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_escolher_tamanho);
-// id pedido esta vindo null
-        final Long idPedido = (Long) getIntent().getSerializableExtra("IDPEDIDO");
+        // id pedido esta vindo null
+
+
+        Bundle bundle = getIntent().getExtras();
+        final int idPedido = bundle.getInt("IDPEDIDO");
 
         Log.i("id do pedido",""+idPedido);
 
@@ -61,7 +64,7 @@ public class EscolherTamanhoActivity extends AppCompatActivity {
 
                 Intent intent = new Intent(EscolherTamanhoActivity.this, BordaActivity.class);
                 intent.putExtra("TAMANHO", tamanhosArrayList.get(position));
-                //intent.putExtra("IDPEDIDO", idPedido);
+                intent.putExtra("IDPEDIDO", idPedido);
                 startActivity(intent);
 
 
