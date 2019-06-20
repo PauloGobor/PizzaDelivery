@@ -4,6 +4,7 @@ import android.content.Context;
 
 import java.util.ArrayList;
 
+import edu.up.pizzadelivery.model.Borda;
 import edu.up.pizzadelivery.model.ItemPedido;
 import edu.up.pizzadelivery.model.Pedido;
 
@@ -18,6 +19,11 @@ public class ItemPedidoDAO {
         BancoDeDado banco = new BancoDeDado(context);
         return banco.RetornarSomaCarrinho(p);
 
+    }
+
+    public static ArrayList<ItemPedido> retornarItemPedido(Context context,Pedido pedido){
+        BancoDeDado banco = new BancoDeDado(context);
+        return banco.RetornarItemPedido(pedido);
     }
 
 }

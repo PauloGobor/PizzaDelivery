@@ -145,16 +145,16 @@ public class BancoDeDado extends SQLiteOpenHelper {
             "CREATE TABLE IF NOT EXISTS " +
                     Contrato.TabelaItemPedido.NOME_DA_TABELA + "(" +
                     Contrato.TabelaItemPedido.COLUNA_ID + TIPO_INTEIRO + " PRIMARY KEY AUTOINCREMENT" + VIRGULA +
-                    Contrato.TabelaItemPedido.COLUNA_PIZZAPEDIDA + TIPO_INTEIRO + VIRGULA + //FK
+                    Contrato.TabelaItemPedido.COLUNA_PIZZA + TIPO_INTEIRO + VIRGULA + //FK
                     Contrato.TabelaItemPedido.COLUNA_BEBIDA + TIPO_INTEIRO + VIRGULA +//FK
                     Contrato.TabelaItemPedido.COLUNA_PEDIDO + TIPO_INTEIRO + VIRGULA +//FK
                     Contrato.TabelaItemPedido.COLUNA_QUANTIDADE + TIPO_INTEIRO + VIRGULA +
                     Contrato.TabelaItemPedido.COLUNA_SUBTOTAL + TIPO_REAL + VIRGULA +
 //                    Contrato.TabelaItemPedido.COLUNA_PRECOPEDIDO + TIPO_REAL + VIRGULA +
                     //declaracao fks
-                    " FOREIGN KEY (" + Contrato.TabelaItemPedido.COLUNA_PIZZAPEDIDA + ")" +
-                    " REFERENCES " + Contrato.TabelaPizzaPedida.NOME_DA_TABELA +
-                    "(" + Contrato.TabelaPizzaPedida.COLUNA_ID + ")" + VIRGULA + /// fk tb pizza pedida
+                    " FOREIGN KEY (" + Contrato.TabelaItemPedido.COLUNA_PIZZA + ")" +
+                    " REFERENCES " + Contrato.TabelaPizza.NOME_DA_TABELA +
+                    "(" + Contrato.TabelaPizza.COLUNA_ID + ")" + VIRGULA + /// fk tb pizza pedida
 
                     " FOREIGN KEY (" + Contrato.TabelaItemPedido.COLUNA_PEDIDO + ")" +
                     " REFERENCES " + Contrato.TabelaPedido.NOME_DA_TABELA +
@@ -776,7 +776,7 @@ public class BancoDeDado extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
 
         values.put(Contrato.TabelaItemPedido.COLUNA_BEBIDA, itempedido.getBebida().getId());
-        values.put(Contrato.TabelaItemPedido.COLUNA_PIZZAPEDIDA, itempedido.getPizza().getId());
+        values.put(Contrato.TabelaItemPedido.COLUNA_PIZZA, itempedido.getPizza().getId());
         values.put(Contrato.TabelaItemPedido.COLUNA_SUBTOTAL, itempedido.getSubTotal());
         values.put(Contrato.TabelaItemPedido.COLUNA_QUANTIDADE, itempedido.getQuantidade());
         values.put(Contrato.TabelaItemPedido.COLUNA_PEDIDO, itempedido.getPedido());
@@ -789,42 +789,87 @@ public class BancoDeDado extends SQLiteOpenHelper {
     //  ########################################################################   ///
     //  ##### METODO PARA RETORNAR ITENS DO CARRINHO #######   ///
     //  ########################################################################   ///
-    public ArrayList<ItemPedido> RetornarItemPedido() {
+    public ArrayList<ItemPedido> RetornarItemPedido(Pedido pedido) {
         ArrayList<ItemPedido> itens = new ArrayList<ItemPedido>();
         SQLiteDatabase db = getReadableDatabase();
 
-// usar raw query para fazer Join  com os sabores pizza tamanho borda bebida etc......
+        Cursor cursor;
+        cursor = db.rawQuery("SELECT " +
+                Contrato.TabelaTamanho.NOME_DA_TABELA + "." + Contrato.TabelaTamanho.COLUNA_NOME + VIRGULA +
+                Contrato.TabelaBorda.NOME_DA_TABELA + "." + Contrato.TabelaBorda.COLUNA_NOME + VIRGULA +
+                // Contrato.TabelaSabor.NOME_DA_TABELA  + "." + Contrato.TabelaSabor.COLUNA_NOME + VIRGULA +
+                Contrato.TabelaBebida.NOME_DA_TABELA + "." + Contrato.TabelaBebida.COLUNA_NOME + VIRGULA +
+                Contrato.TabelaItemPedido.NOME_DA_TABELA + "." + Contrato.TabelaItemPedido.COLUNA_QUANTIDADE +
+                ////***************/ FROM *******************//
+                " FROM " + Contrato.TabelaItemPedido.NOME_DA_TABELA +
 
-//        private static final String SQL_RETORNAR_ITENS_CARRINHO =
-//                "SELECT " + Contrato.TabelaTamanho.NOME_DA_TABELA + "." + Contrato.TabelaTamanho.COLUNA_NOME + VIRGULA +
-//                        Contrato.TabelaBorda.NOME_DA_TABELA  + "." + Contrato.TabelaBorda.COLUNA_NOME + VIRGULA +
-//                        Contrato.TabelaSabor.NOME_DA_TABELA  + "." + Contrato.TabelaSabor.COLUNA_NOME + VIRGULA +
-//                        Contrato.TabelaBebida.NOME_DA_TABELA  + "." + Contrato.TabelaBebida.COLUNA_NOME +
-//                        " FROM " + Contrato.TabelaItemPedido.NOME_DA_TABELA +
-//                        "  INNER JOIN " + Contrato.TabelaTamanho.NOME_DA_TABELA + Contrato.TabelaBorda.NOME_DA_TABELA  +
-//                        Contrato.TabelaSabor.NOME_DA_TABELA  + Contrato.TabelaBebida.NOME_DA_TABELA  +
-//                        Contrato.TabelaPizza.NOME_DA_TABELA  + " WHERE " +;
+                //*************8*** INNER JOIN carrinho*****8*************/////
+//                "  INNER JOIN " + Contrato.TabelaPizzaPedida.NOME_DA_TABELA + " ON " + "(" +
+//                Contrato.TabelaItemPedido.COLUNA_PIZZAPEDIDA + " = " + Contrato.TabelaPizzaPedida.COLUNA_ID + ")" +
 
+                "  INNER JOIN " + Contrato.TabelaBebida.NOME_DA_TABELA + " ON " + "(" +
+                Contrato.TabelaItemPedido.NOME_DA_TABELA + "." + Contrato.TabelaItemPedido.COLUNA_BEBIDA + " = " +
+                Contrato.TabelaBebida.NOME_DA_TABELA + "." + Contrato.TabelaBebida.COLUNA_ID + ")" +
+                //*************8*** INNER JOIN pizza*****8*************/////
 
+                "  INNER JOIN " + Contrato.TabelaPizza.NOME_DA_TABELA + " ON " + "(" +
+                Contrato.TabelaItemPedido.NOME_DA_TABELA + "." + Contrato.TabelaItemPedido.COLUNA_PIZZA + " = " +
+                Contrato.TabelaPizza.NOME_DA_TABELA + "." + Contrato.TabelaPizza.COLUNA_ID + ")" +
+                //*************8*** INNER JOIN itens pizza*****9*************/////
+
+                "  INNER JOIN " + Contrato.TabelaTamanho.NOME_DA_TABELA + " ON " + "(" +
+                Contrato.TabelaPizza.NOME_DA_TABELA + "." + Contrato.TabelaPizza.COLUNA_TAMANHO + " = " +
+                Contrato.TabelaTamanho.NOME_DA_TABELA + "." + Contrato.TabelaTamanho.COLUNA_ID + ")" +
+
+                "  INNER JOIN " + Contrato.TabelaBorda.NOME_DA_TABELA + " ON " + "(" +
+                Contrato.TabelaPizza.NOME_DA_TABELA + "." + Contrato.TabelaPizza.COLUNA_BORDA + " = " +
+                Contrato.TabelaBorda.NOME_DA_TABELA + "." + Contrato.TabelaBorda.COLUNA_ID + ")" +
+                //***************** WHWRE COM O ID DO PEDIDO ***********************
+                " WHERE " + Contrato.TabelaItemPedido.COLUNA_PEDIDO + " = " + pedido.getId() + ";", null);
+
+        Log.i("", "" + cursor.getCount());
+        if (cursor.getCount() > 0) {
+            Tamanho tamanho = new Tamanho();
+            int idtamanho;
+            Borda borda = new Borda();
+            int idborda;
+            Bebida bebida = new Bebida();
+            int idbebida;
+            Pizza pizza = new Pizza();
+//            pizza.setPizza(pizza.);
+            cursor.moveToFirst();
+            do {
+                idtamanho = cursor.getInt(0);
+                tamanho.setId(idtamanho);
+                idborda = cursor.getInt(1);
+                borda.setId(idborda);
+                idbebida = cursor.getInt(2);
+                bebida.setId(idbebida);
+
+                pizza.setTamanho(tamanho);
+                pizza.setBorda(borda);
+
+                ItemPedido item = new ItemPedido();
+                item.setPizza(pizza);
+                item.setBebida(bebida);
+                item.setQuantidade(cursor.getInt(3));
+
+//                .setId((cursor.getInt(0))); tamanho borda bebida quantidae
+//                s.setNome(cursor.getString(1));
+//                s.setDescricao(cursor.getString(2));
+                itens.add(item);
+
+            } while (cursor.moveToNext());
+        }
         return itens;
 
     }
 
 
-    private static final String SQL_RETORNAR_SOMA_DO_CARRINHO =
-            "SELECT SUM(" + Contrato.TabelaItemPedido.COLUNA_SUBTOTAL + ") FROM " +
-                    Contrato.TabelaItemPedido.NOME_DA_TABELA +
-                    " where " + Contrato.TabelaItemPedido.COLUNA_PEDIDO + " = ?";
-
-    double subtotal;
-
     public double RetornarSomaCarrinho(Pedido p) {
         SQLiteDatabase db = getReadableDatabase();
-        String[] argumentos = {
-                String.valueOf(p.getId())
-        };
-        Cursor c = db.query(Contrato.TabelaItemPedido.NOME_DA_TABELA, null, null, null, null, null, null);
-
+        double subtotal;
+        Cursor c;//= db.query(Contrato.TabelaItemPedido.NOME_DA_TABELA, null, null, null, null, null, null);
 
         c = db.rawQuery("SELECT SUM(" + Contrato.TabelaItemPedido.COLUNA_SUBTOTAL + ") FROM " +
                 Contrato.TabelaItemPedido.NOME_DA_TABELA +
@@ -835,11 +880,35 @@ public class BancoDeDado extends SQLiteOpenHelper {
             subtotal = -1;
         c.close();
 
-
-        // Log.i("subtotal","="+c.getDouble(0));
-
-//        subtotal = c.getDouble(0);
         return subtotal;
 
     }
 }
+
+
+//    final String SQL_RETORNAR_ITENS_CARRINHO =
+//            "SELECT " + Contrato.TabelaTamanho.NOME_DA_TABELA + "." + Contrato.TabelaTamanho.COLUNA_NOME + VIRGULA +
+//                    Contrato.TabelaBorda.NOME_DA_TABELA + "." + Contrato.TabelaBorda.COLUNA_NOME + VIRGULA +
+//                    // Contrato.TabelaSabor.NOME_DA_TABELA  + "." + Contrato.TabelaSabor.COLUNA_NOME + VIRGULA +
+//                    Contrato.TabelaBebida.NOME_DA_TABELA + "." + Contrato.TabelaBebida.COLUNA_NOME + VIRGULA +
+//                    Contrato.TabelaItemPedido.NOME_DA_TABELA + "." + Contrato.TabelaItemPedido.COLUNA_QUANTIDADE +
+//                    ////***************/ FROM *******************//
+//                    " FROM " + Contrato.TabelaItemPedido.NOME_DA_TABELA +
+//
+//                    //*************8*** INNER JOIN carrinho*****8*************/////
+//                    "  INNER JOIN " + Contrato.TabelaPizzaPedida.NOME_DA_TABELA + " ON " + "(" +
+//                    Contrato.TabelaItemPedido.COLUNA_PIZZAPEDIDA + " = " + Contrato.TabelaPizzaPedida.COLUNA_ID + ")" +
+//
+//                    "  INNER JOIN " + Contrato.TabelaBebida.NOME_DA_TABELA + " ON " + "(" +
+//                    Contrato.TabelaItemPedido.COLUNA_BEBIDA + " = " + Contrato.TabelaBebida.COLUNA_ID + ")" +
+//                    //*************8*** INNER JOIN pizza*****8*************/////
+//                    "  INNER JOIN " + Contrato.TabelaPizza.NOME_DA_TABELA + " ON " + "(" +
+//                    Contrato.TabelaPizzaPedida.COLUNA_PIZZA + " = " + Contrato.TabelaPizza.COLUNA_ID + ")" +
+//                    //*************8*** INNER JOIN itens pizza*****9*************/////
+//                    "  INNER JOIN " + Contrato.TabelaTamanho.NOME_DA_TABELA + " ON " + "(" +
+//                    Contrato.TabelaPizza.COLUNA_TAMANHO + " = " + Contrato.TabelaTamanho.COLUNA_ID + ")" +
+//
+//                    "  INNER JOIN " + Contrato.TabelaBorda.NOME_DA_TABELA + " ON " + "(" +
+//                    Contrato.TabelaPizza.COLUNA_BORDA + " = " + Contrato.TabelaBorda.COLUNA_ID + ")" +
+//                    //***************** WHWRE COM O ID DO PEDIDO ***********************
+//                    " WHERE ;" + Contrato.TabelaItemPedido.COLUNA_PEDIDO + " = " + pedido.getId();
