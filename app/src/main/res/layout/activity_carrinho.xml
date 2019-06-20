@@ -59,7 +59,6 @@
             android:layout_height="match_parent"
             android:layout_weight="0.3"
             android:background="@android:color/holo_red_dark"
-            android:onClick="btnCardapio"
             android:text="Cardapio"
             android:textColor="#FFFFFF"
             android:textSize="25sp" />
@@ -81,7 +80,6 @@
             android:layout_height="match_parent"
             android:layout_weight="0.3"
             android:background="@android:color/holo_red_dark"
-            android:onClick="btnpgamento"
             android:text="Finalizar Pedido"
             android:textColor="#FFFFFF"
             android:textSize="30sp" />

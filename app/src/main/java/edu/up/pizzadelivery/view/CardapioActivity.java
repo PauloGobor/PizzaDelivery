@@ -144,7 +144,7 @@ public class CardapioActivity extends AppCompatActivity {
                     // colocando os item dentro objeto item
                     item.setPizza(pizza);
                     item.setQuantidade(1);
-                    item.setSubTotal(pizza.getTamanho().getPreco());
+                    item.setSubTotal(pizza.getTamanho().getPreco() + pizza.getBorda().getPreco());
                     item.setPedido(idPedido);
 
                     Bebida bebida = new Bebida();
@@ -156,6 +156,8 @@ public class CardapioActivity extends AppCompatActivity {
                     Log.i("iditem",""+iditempedido);
                     Log.i("idpedido",""+item.getPedido());
                     Log.i("iditempizza",""+item.getPizza().getId());
+                    Log.i("idsubtotal",""+item.getSubTotal());
+
                     Log.i("iditempizzalocal",""+item.getPizza());
                     Log.i("iditembebida",""+item.getBebida().getNome());
                     Log.i("iditemquantidade",""+item.getQuantidade());
@@ -164,6 +166,7 @@ public class CardapioActivity extends AppCompatActivity {
                     intent.putExtra("BORDA", borda);
                     //passando sabor
                     intent.putExtra("SABOR", saboresEscolhidosArrayList);
+                    intent.putExtra("IDPEDIDO",idPedido);
                     startActivity(intent);
                 } else {
                     Toast.makeText(CardapioActivity.this, "Selecione todos os sabores", Toast.LENGTH_SHORT).show();

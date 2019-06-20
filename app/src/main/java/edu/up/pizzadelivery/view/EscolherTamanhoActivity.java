@@ -34,6 +34,7 @@ public class EscolherTamanhoActivity extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
         final int idPedido = bundle.getInt("IDPEDIDO");
 
+
         Log.i("id do pedido",""+idPedido);
 
 

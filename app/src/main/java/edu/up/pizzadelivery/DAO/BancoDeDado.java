@@ -64,6 +64,7 @@ public class BancoDeDado extends SQLiteOpenHelper {
                     Contrato.TabelaEndereco.COLUNA_CIDADE + TIPO_TEXTO + VIRGULA +
                     Contrato.TabelaEndereco.COLUNA_COMPLEMENTO + TIPO_TEXTO + VIRGULA +
                     Contrato.TabelaEndereco.COLUNA_USUARIOID + TIPO_INTEIRO + VIRGULA +
+
                     " FOREIGN KEY (" + Contrato.TabelaEndereco.COLUNA_USUARIOID + ")" +
                     " REFERENCES " + Contrato.TabelaUsuario.NOME_DA_TABELA +
                     "(" + Contrato.TabelaUsuario.COLUNA_ID + ")" + ")";
@@ -794,10 +795,51 @@ public class BancoDeDado extends SQLiteOpenHelper {
 
 // usar raw query para fazer Join  com os sabores pizza tamanho borda bebida etc......
 
+//        private static final String SQL_RETORNAR_ITENS_CARRINHO =
+//                "SELECT " + Contrato.TabelaTamanho.NOME_DA_TABELA + "." + Contrato.TabelaTamanho.COLUNA_NOME + VIRGULA +
+//                        Contrato.TabelaBorda.NOME_DA_TABELA  + "." + Contrato.TabelaBorda.COLUNA_NOME + VIRGULA +
+//                        Contrato.TabelaSabor.NOME_DA_TABELA  + "." + Contrato.TabelaSabor.COLUNA_NOME + VIRGULA +
+//                        Contrato.TabelaBebida.NOME_DA_TABELA  + "." + Contrato.TabelaBebida.COLUNA_NOME +
+//                        " FROM " + Contrato.TabelaItemPedido.NOME_DA_TABELA +
+//                        "  INNER JOIN " + Contrato.TabelaTamanho.NOME_DA_TABELA + Contrato.TabelaBorda.NOME_DA_TABELA  +
+//                        Contrato.TabelaSabor.NOME_DA_TABELA  + Contrato.TabelaBebida.NOME_DA_TABELA  +
+//                        Contrato.TabelaPizza.NOME_DA_TABELA  + " WHERE " +;
+
 
         return itens;
+
     }
 
 
-}
+    private static final String SQL_RETORNAR_SOMA_DO_CARRINHO =
+            "SELECT SUM(" + Contrato.TabelaItemPedido.COLUNA_SUBTOTAL + ") FROM " +
+                    Contrato.TabelaItemPedido.NOME_DA_TABELA +
+                    " where " + Contrato.TabelaItemPedido.COLUNA_PEDIDO + " = ?";
 
+    double subtotal;
+
+    public double RetornarSomaCarrinho(Pedido p) {
+        SQLiteDatabase db = getReadableDatabase();
+        String[] argumentos = {
+                String.valueOf(p.getId())
+        };
+        Cursor c = db.query(Contrato.TabelaItemPedido.NOME_DA_TABELA, null, null, null, null, null, null);
+
+
+        c = db.rawQuery("SELECT SUM(" + Contrato.TabelaItemPedido.COLUNA_SUBTOTAL + ") FROM " +
+                Contrato.TabelaItemPedido.NOME_DA_TABELA +
+                " where " + Contrato.TabelaItemPedido.COLUNA_PEDIDO + " = " + p.getId(), null);
+        if (c.moveToFirst())
+            subtotal = c.getInt(0);
+        else
+            subtotal = -1;
+        c.close();
+
+
+        // Log.i("subtotal","="+c.getDouble(0));
+
+//        subtotal = c.getDouble(0);
+        return subtotal;
+
+    }
+}
