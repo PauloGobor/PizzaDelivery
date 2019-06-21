@@ -12,8 +12,10 @@ import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Build;
+import android.provider.Settings;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.NotificationManagerCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -30,6 +32,7 @@ import edu.up.pizzadelivery.R;
 import edu.up.pizzadelivery.model.Criptografia;
 import edu.up.pizzadelivery.model.Endereco;
 import edu.up.pizzadelivery.model.Usuario;
+import edu.up.pizzadelivery.utils.notification;
 
 public class PerfilUsuarioActivity extends AppCompatActivity {
 
@@ -50,6 +53,8 @@ public class PerfilUsuarioActivity extends AppCompatActivity {
     private Button btnEncerrarConta;
     private static  final  String ARQUIVO_PREF = "LogUsuario";
     private String senhaConv;
+    String TITULO =  "PizzaDelivery";
+    String TEXTO =  "Dados Atualizados com sucesso!";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -146,7 +151,7 @@ public class PerfilUsuarioActivity extends AppCompatActivity {
                     editor.commit();
 
                     // Cria uma notificacao de Atualizacao.
-                    NotificaçãoSucessoUpdate();
+                        notification.enviarNotificacao(PerfilUsuarioActivity.this, TITULO, TEXTO );
 
                     }else{
                         Toast.makeText(PerfilUsuarioActivity.this,
@@ -160,27 +165,25 @@ public class PerfilUsuarioActivity extends AppCompatActivity {
 
     private void NotificaçãoSucessoUpdate() {
 
-//        String id = "my_channel_01";
+
+//        Uri som = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
 //        NotificationManager nn = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
 //        NotificationCompat.Builder build = new NotificationCompat.Builder(this, id);
-//        build.setSmallIcon(R.drawable.ic_notifications_black_24dp);
-//        //build.setLargeIcon(BitmapFactory.decodeResource(getResources(), R.drawable.ic_notifications_black_24dp));
-//        //ic_launcher_pizzadelivery_round
+//
+//        //build.setSmallIcon(R.drawable.ic_notifications_black_24dp);
+//        //build.setLargeIcon(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher_pizzadelivery_round));
 //        build.setTicker("PizzaDelivery");
 //        build.setContentTitle("PizzaDelivery");
 //        build.setContentText("Dados Atualizados com Sucesso!");
-//        build.setPriority(NotificationCompat.PRIORITY_MAX);
-//
+//        build.setSound(som);
+//        build.setVibrate(pattern);
 //
 //        Notification n = build.build();
-//        n.vibrate = new long[]{150,300,150,600};
-//        nn.notify(R.drawable.ic_notifications_black_24dp, n);
-//
-//        try{
-//            Uri som = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
-//            Ringtone toque = RingtoneManager.getRingtone(this, som);
-//            toque.play();
-//        }catch (Exception e){}
+//        nn.notify(1, build.build())
+//        build.setSound(Settings.System.DEFAULT_NOTIFICATION_URI);
+//        Ringtone toque = RingtoneManager.getRingtone(this, som);
+//        toque.play();
+
 
     }
 
