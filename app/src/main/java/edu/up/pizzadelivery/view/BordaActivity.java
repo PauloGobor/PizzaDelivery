@@ -45,7 +45,6 @@ public class BordaActivity extends AppCompatActivity {
 
         final Tamanho tamanho = (Tamanho) getIntent().getSerializableExtra("TAMANHO");
 
-
        // txtSabores.setText(String.valueOf(sabores));
 
 

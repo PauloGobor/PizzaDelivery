@@ -143,6 +143,7 @@ public class CardapioActivity extends AppCompatActivity {
                     ItemPedido item = new ItemPedido();
                     // colocando os item dentro objeto item
                     item.setPizza(pizza);
+                    Log.i("iditempizza",""+pizza.getId());
                     item.setQuantidade(1);
                     item.setSubTotal(pizza.getTamanho().getPreco() + pizza.getBorda().getPreco());
                     item.setPedido(idPedido);
@@ -150,17 +151,17 @@ public class CardapioActivity extends AppCompatActivity {
                     Bebida bebida = new Bebida();
                     bebida.setId(1);
                     item.setBebida(bebida);
-
                     final long iditempedido = ItemPedidoDAO.CadastrarItemPedido(CardapioActivity.this, item);
 
-                    Log.i("iditem",""+iditempedido);
-                    Log.i("idpedido",""+item.getPedido());
-                    Log.i("iditempizza",""+item.getPizza().getId());
-                    Log.i("idsubtotal",""+item.getSubTotal());
-
-                    Log.i("iditempizzalocal",""+item.getPizza());
-                    Log.i("iditembebida",""+item.getBebida().getNome());
-                    Log.i("iditemquantidade",""+item.getQuantidade());
+                    Log.i("iditem",""+pizza);
+//                    Log.i("iditem",""+item.getBebida().getNome());
+//
+//                    Log.i("iditempedido",""+item.getPedido());
+//                    Log.i("iditemtamanho",""+item.getPizza().getTamanho().getNome());
+//                    Log.i("idsubtotal",""+item.getSubTotal());
+//
+//                    Log.i("iditembebida",""+item.getBebida().getNome());
+//                    Log.i("iditemquantidade",""+item.getQuantidade());
                     // passando tamanho
                     intent.putExtra("TAMANHO", tamanho);
                     intent.putExtra("BORDA", borda);

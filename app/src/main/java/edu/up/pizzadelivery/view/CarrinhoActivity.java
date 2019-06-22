@@ -3,15 +3,22 @@ package edu.up.pizzadelivery.view;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
+import edu.up.pizzadelivery.Adapter.BordaAdapter;
+import edu.up.pizzadelivery.DAO.BordaDAO;
 import edu.up.pizzadelivery.DAO.ItemPedidoDAO;
 import edu.up.pizzadelivery.R;
 import edu.up.pizzadelivery.model.Bebida;
 import edu.up.pizzadelivery.model.Borda;
+import edu.up.pizzadelivery.model.ItemPedido;
 import edu.up.pizzadelivery.model.Pedido;
 import edu.up.pizzadelivery.model.Sabor;
 import edu.up.pizzadelivery.model.Tamanho;
@@ -21,7 +28,7 @@ public class CarrinhoActivity extends AppCompatActivity {
     private TextView txtCarrinhoSubTotal;
     private double subtotal;
     private Button btnCardapio, btnPagamento;
-
+    private ListView lstCarrinho;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +45,7 @@ public class CarrinhoActivity extends AppCompatActivity {
         btnCardapio = (Button) findViewById(R.id.btnCardapio);
         btnPagamento = (Button) findViewById(R.id.btnPagamento);
         txtCarrinhoSubTotal = (TextView) findViewById(R.id.txtCarrinhoSubTotal);
+        lstCarrinho = (ListView) findViewById(R.id.lstCarrinho);
 //      recebendo da activy anterior itens escolhidos
 
 
@@ -46,15 +54,36 @@ public class CarrinhoActivity extends AppCompatActivity {
         p.setId(idPedido);
         final double subtotal = ItemPedidoDAO.RetornarSomaCarrinho(this,p);
         txtCarrinhoSubTotal.setText(String.valueOf(subtotal));
+//
+        final ArrayList<ItemPedido> itemsArrayList = ItemPedidoDAO.retornarItemPedido(this,idPedido);
+        String[] items = new String[itemsArrayList.size()];
+
+        for (int i = 0; i < itemsArrayList.size(); i++) {
+//            Log.i("item","" + itemsArrayList.get(i).getPizza().getTamanho().getNome());
+//            Log.i("itemstringsubtotal","" + itemsArrayList.get(i).getSubTotal());
+//            Log.i("itemstringibebida nome","" + itemsArrayList.get(i).getBebida().getNome());
+//            Log.i("itemstringnomeborda","" + itemsArrayList.get(i).getPizza().getBorda().getNome());
+//
+            items[i] = String.valueOf(itemsArrayList.get(i).getPizza().getTamanho().getNome());
+        }
+        //O adapter é componente que prepara os dados para o ListView
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_list_item_1, items);
+
+        //BordaAdapter bordasAdapter = new BordaAdapter(itemsArrayList, this);
+        //setAdapter é método que vai popular os dados dentro do ListView
+        lstCarrinho.setAdapter(adapter);
 
         // listar itens do carrinho....
+
+
+
 
         btnCardapio.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(CarrinhoActivity.this, EscolherTamanhoActivity.class);
                 intent.putExtra("IDPEDIDO", idPedido);
-
                 startActivity(intent);
 
             }
