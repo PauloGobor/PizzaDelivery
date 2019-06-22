@@ -21,7 +21,7 @@ public class ItemPedidoDAO {
 
     }
 
-    public static ArrayList<ItemPedido> retornarItemPedido(Context context,Pedido pedido){
+    public static ArrayList<ItemPedido> retornarItemPedido(Context context,int pedido){
         BancoDeDado banco = new BancoDeDado(context);
         return banco.RetornarItemPedido(pedido);
     }

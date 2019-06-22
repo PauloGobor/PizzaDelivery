@@ -789,12 +789,13 @@ public class BancoDeDado extends SQLiteOpenHelper {
     //  ########################################################################   ///
     //  ##### METODO PARA RETORNAR ITENS DO CARRINHO #######   ///
     //  ########################################################################   ///
-    public ArrayList<ItemPedido> RetornarItemPedido(Pedido pedido) {
+    public ArrayList<ItemPedido> RetornarItemPedido(int pedido) {
         ArrayList<ItemPedido> itens = new ArrayList<ItemPedido>();
         SQLiteDatabase db = getReadableDatabase();
 
         Cursor cursor;
         cursor = db.rawQuery("SELECT " +
+                Contrato.TabelaItemPedido.NOME_DA_TABELA + "." + Contrato.TabelaItemPedido.COLUNA_ID + VIRGULA +
                 Contrato.TabelaTamanho.NOME_DA_TABELA + "." + Contrato.TabelaTamanho.COLUNA_NOME + VIRGULA +
                 Contrato.TabelaBorda.NOME_DA_TABELA + "." + Contrato.TabelaBorda.COLUNA_NOME + VIRGULA +
                 // Contrato.TabelaSabor.NOME_DA_TABELA  + "." + Contrato.TabelaSabor.COLUNA_NOME + VIRGULA +
@@ -803,9 +804,6 @@ public class BancoDeDado extends SQLiteOpenHelper {
                 ////***************/ FROM *******************//
                 " FROM " + Contrato.TabelaItemPedido.NOME_DA_TABELA +
 
-                //*************8*** INNER JOIN carrinho*****8*************/////
-//                "  INNER JOIN " + Contrato.TabelaPizzaPedida.NOME_DA_TABELA + " ON " + "(" +
-//                Contrato.TabelaItemPedido.COLUNA_PIZZAPEDIDA + " = " + Contrato.TabelaPizzaPedida.COLUNA_ID + ")" +
 
                 "  INNER JOIN " + Contrato.TabelaBebida.NOME_DA_TABELA + " ON " + "(" +
                 Contrato.TabelaItemPedido.NOME_DA_TABELA + "." + Contrato.TabelaItemPedido.COLUNA_BEBIDA + " = " +
@@ -825,34 +823,41 @@ public class BancoDeDado extends SQLiteOpenHelper {
                 Contrato.TabelaPizza.NOME_DA_TABELA + "." + Contrato.TabelaPizza.COLUNA_BORDA + " = " +
                 Contrato.TabelaBorda.NOME_DA_TABELA + "." + Contrato.TabelaBorda.COLUNA_ID + ")" +
                 //***************** WHWRE COM O ID DO PEDIDO ***********************
-                " WHERE " + Contrato.TabelaItemPedido.COLUNA_PEDIDO + " = " + pedido.getId() + ";", null);
+                " WHERE " + Contrato.TabelaItemPedido.COLUNA_PEDIDO + " = " + pedido + ";", null);
 
         Log.i("", "" + cursor.getCount());
         if (cursor.getCount() > 0) {
-            Tamanho tamanho = new Tamanho();
-            int idtamanho;
-            Borda borda = new Borda();
-            int idborda;
-            Bebida bebida = new Bebida();
-            int idbebida;
-            Pizza pizza = new Pizza();
+
 //            pizza.setPizza(pizza.);
             cursor.moveToFirst();
             do {
-                idtamanho = cursor.getInt(0);
-                tamanho.setId(idtamanho);
-                idborda = cursor.getInt(1);
-                borda.setId(idborda);
-                idbebida = cursor.getInt(2);
-                bebida.setId(idbebida);
-
-                pizza.setTamanho(tamanho);
-                pizza.setBorda(borda);
+                Tamanho tamanho = new Tamanho();
+                String idtamanho;
+                Borda borda = new Borda();
+                String idborda;
+                Bebida bebida = new Bebida();
+                int idbebida;
+                Pizza pizza = new Pizza();
+                //bebida.setId(idbebida);
+              //  pizza.setTamanho(tamanho);
+               // pizza.setBorda(borda);
 
                 ItemPedido item = new ItemPedido();
+                item.setId(cursor.getInt(0));
+
+                idtamanho = cursor.getString(1);
+                tamanho.setNome(idtamanho);
+
+                idborda = cursor.getString(2);
+                borda.setNome(idborda);
+                idbebida = cursor.getInt(3);
+                pizza.setTamanho(tamanho);
+                pizza.setBorda(borda);
                 item.setPizza(pizza);
-                item.setBebida(bebida);
-                item.setQuantidade(cursor.getInt(3));
+
+                // item.setPizza(pizza.getId());
+                //item.setBebida(idbebida);
+                item.setQuantidade(cursor.getInt(4));
 
 //                .setId((cursor.getInt(0))); tamanho borda bebida quantidae
 //                s.setNome(cursor.getString(1));

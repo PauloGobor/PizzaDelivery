@@ -61,7 +61,7 @@ public final class Contrato {
     }
 
     public static abstract class TabelaTamanho implements BaseColumns {
-        public static final String NOME_DA_TABELA = "Tamanho";
+        public static final String NOME_DA_TABELA = "Tamanhos";
         public static final String COLUNA_ID = "TamanhoId";
         public static final String COLUNA_NOME = "NomeTamanho";
         public static final String COLUNA_QTDSABOR = "QtdSabor";
