@@ -190,117 +190,117 @@ public class BancoDeDado extends SQLiteOpenHelper {
     //    insere tamanhos
     private static final String SQL_INSERIR_BROTO = "INSERT INTO " +
             Contrato.TabelaTamanho.NOME_DA_TABELA +
-            "(Nome, QtdSabor, Preco) VALUES ('BROTO', 1, 15)";
+            "(NomeTamanho, QtdSabor, Preco) VALUES ('BROTO', 1, 15)";
 
     private static final String SQL_INSERIR_MEDIA = "INSERT INTO " +
             Contrato.TabelaTamanho.NOME_DA_TABELA +
-            "(Nome, QtdSabor, Preco) VALUES ('MÉDIA', 2, 22)";
+            "(NomeTamanho, QtdSabor, Preco) VALUES ('MÉDIA', 2, 22)";
 
 
     private static final String SQL_INSERIR_GRANDE = "INSERT INTO " +
             Contrato.TabelaTamanho.NOME_DA_TABELA +
-            "(Nome, QtdSabor, Preco) VALUES ('GRANDE', 3, 30)";
+            "(NomeTamanho, QtdSabor, Preco) VALUES ('GRANDE', 3, 30)";
 
     private static final String SQL_INSERIR_BIG = "INSERT INTO " +
             Contrato.TabelaTamanho.NOME_DA_TABELA +
-            "(Nome, QtdSabor, Preco) VALUES ('BIG', 4, 40)";
+            "(NomeTamanho, QtdSabor, Preco) VALUES ('BIG', 4, 40)";
 
     /// insere formas de pagamentos
 
     private static final String SQL_INSERIR_FP_DIN = "INSERT INTO " +
             Contrato.TabelaFormaPagamento.NOME_DA_TABELA +
-            "(Nome) VALUES ('DINHEIRO')";
+            "(NomeFormaPagamento) VALUES ('DINHEIRO')";
 
     private static final String SQL_INSERIR_FP_CDT = "INSERT INTO " +
             Contrato.TabelaFormaPagamento.NOME_DA_TABELA +
-            "(Nome) VALUES ('CRÉDITO')";
+            "(NomeFormaPagamento) VALUES ('CRÉDITO')";
 
     private static final String SQL_INSERIR_FP_DBT = "INSERT INTO " +
             Contrato.TabelaFormaPagamento.NOME_DA_TABELA +
-            "(Nome) VALUES ('DÉBITO')";
+            "(NomeFormaPagamento) VALUES ('DÉBITO')";
 
     //insere bebidas
 
 
     private static final String SQL_INSERIR_BEBIDA_CC = "INSERT INTO " +
             Contrato.TabelaBebida.NOME_DA_TABELA +
-            "(Nome, Preco) VALUES ('COCA-COLA', 9)";
+            "(NomeBebida, Preco) VALUES ('COCA-COLA', 9)";
 
     private static final String SQL_INSERIR_BEBIDA_FL = "INSERT INTO " +
             Contrato.TabelaBebida.NOME_DA_TABELA +
-            "(Nome, Preco) VALUES ('FANTA LARANJA 2L', 7)";
+            "(NomeBebida, Preco) VALUES ('FANTA LARANJA 2L', 7)";
 
     private static final String SQL_INSERIR_BEBIDA_GA = "INSERT INTO " +
             Contrato.TabelaBebida.NOME_DA_TABELA +
-            "(Nome, Preco) VALUES ('GUARANÁ 2L', 7)";
+            "(NomeBebida, Preco) VALUES ('GUARANÁ 2L', 7)";
 
     private static final String SQL_INSERIR_BEBIDA_SN = "INSERT INTO " +
             Contrato.TabelaBebida.NOME_DA_TABELA +
-            "(Nome, Preco) VALUES ('S/N', '')";
+            "(NomeBebida, Preco) VALUES ('S/N', '')";
 
     // insere bordas
 
     private static final String SQL_INSERIR_BORDA_CH = "INSERT INTO " +
             Contrato.TabelaBorda.NOME_DA_TABELA +
-            "(Nome, Preco) VALUES ('CHEDDAR', 4)";
+            "(NomeBorda, Preco) VALUES ('CHEDDAR', 4)";
 
     private static final String SQL_INSERIR_BORDA_CT = "INSERT INTO " +
             Contrato.TabelaBorda.NOME_DA_TABELA +
-            "(Nome, Preco) VALUES ('CATUPIRY', 4)";
+            "(NomeBorda, Preco) VALUES ('CATUPIRY', 4)";
 
     private static final String SQL_INSERIR_BORDA_CP = "INSERT INTO " +
             Contrato.TabelaBorda.NOME_DA_TABELA +
-            "(Nome, Preco) VALUES ('CHOCOLATE PRETO', 5)";
+            "(NomeBorda, Preco) VALUES ('CHOCOLATE PRETO', 5)";
 
     private static final String SQL_INSERIR_BORDA_SN = "INSERT INTO " +
             Contrato.TabelaBorda.NOME_DA_TABELA +
-            "(Nome, Preco) VALUES ('NORMAL', 0)";
+            "(NomeBorda, Preco) VALUES ('NORMAL', 0)";
 
 //    // insere sabores
 
     private static final String SQL_INSERIR_SABOR_FC = "INSERT INTO " +
             Contrato.TabelaSabor.NOME_DA_TABELA +
-            "(Nome, Descricao) VALUES ('FRANGO C/ CATUPIRY', 'MOLHO DE TOMATE, MUSSARELA, FRANGO DESFIADO AO MOLHO DE CATUPIRY' )";
+            "(NomeSabor, Descricao) VALUES ('FRANGO C/ CATUPIRY', 'MOLHO DE TOMATE, MUSSARELA, FRANGO DESFIADO AO MOLHO DE CATUPIRY' )";
 
     private static final String SQL_INSERIR_SABOR_CA = "INSERT INTO " +
             Contrato.TabelaSabor.NOME_DA_TABELA +
-            "(Nome, Descricao) VALUES ('CALABRESA', 'MOLHO DE TOMATE, MUSSARELA E CALABRESA')";
+            "(NomeSabor, Descricao) VALUES ('CALABRESA', 'MOLHO DE TOMATE, MUSSARELA E CALABRESA')";
 
     private static final String SQL_INSERIR_SABOR_PI = "INSERT INTO " +
             Contrato.TabelaSabor.NOME_DA_TABELA +
-            "(Nome, Descricao) VALUES ('PIZZAIOLO', 'MOLHO DE TOMATE, MUSSARELA, FRANGO DESFIADO AO MOLHO, PALMITO, MILHO, CALABRESA E CATUPIRY')";
+            "(NomeSabor, Descricao) VALUES ('PIZZAIOLO', 'MOLHO DE TOMATE, MUSSARELA, FRANGO DESFIADO AO MOLHO, PALMITO, MILHO, CALABRESA E CATUPIRY')";
 
     private static final String SQL_INSERIR_SABOR_RO = "INSERT INTO " +
             Contrato.TabelaSabor.NOME_DA_TABELA +
-            "(Nome, Descricao) VALUES ('PARMEGIANA', 'MOLHO DE TOMATE, PRESUNTO, MOLHO PARMEGIANA, PARMESÃO E MUSSARELA')";
+            "(NomeSabor, Descricao) VALUES ('PARMEGIANA', 'MOLHO DE TOMATE, PRESUNTO, MOLHO PARMEGIANA, PARMESÃO E MUSSARELA')";
 
     private static final String SQL_INSERIR_SABOR_MA = "INSERT INTO " +
             Contrato.TabelaSabor.NOME_DA_TABELA +
-            "(Nome, Descricao) VALUES ('MARGUERITA', 'MOLHO DE TOMATE, TOMATES, PARMESÃO, MANJERICÃO, AZEITE DE OLIVA E MUSSARELA')";
+            "(NomeSabor, Descricao) VALUES ('MARGUERITA', 'MOLHO DE TOMATE, TOMATES, PARMESÃO, MANJERICÃO, AZEITE DE OLIVA E MUSSARELA')";
 
     private static final String SQL_INSERIR_SABOR_TO = "INSERT INTO " +
             Contrato.TabelaSabor.NOME_DA_TABELA +
-            "(Nome, Descricao) VALUES ('TOSCANA','MOLHO DE TOMATE, MUSSARELA, CALABRESA E OVOS')";
+            "(NomeSabor, Descricao) VALUES ('TOSCANA','MOLHO DE TOMATE, MUSSARELA, CALABRESA E OVOS')";
 
     private static final String SQL_INSERIR_SABOR_PO = "INSERT INTO " +
             Contrato.TabelaSabor.NOME_DA_TABELA +
-            "(Nome, Descricao) VALUES ('PORTUGUESA', 'MOLHO DE TOMATE, PRESUNTO, MUSSARELA, OVOS, CEBOLA E AZEITONAS')";
+            "(NomeSabor, Descricao) VALUES ('PORTUGUESA', 'MOLHO DE TOMATE, PRESUNTO, MUSSARELA, OVOS, CEBOLA E AZEITONAS')";
 
     private static final String SQL_INSERIR_SABOR_4Q = "INSERT INTO " +
             Contrato.TabelaSabor.NOME_DA_TABELA +
-            "(Nome, Descricao) VALUES ('DO CHEFF', 'MOLHO DE TOMATE, MUSSARELA, PALMITO, CHAMPIGNON E MOLHO BRANCO')";
+            "(NomeSabor, Descricao) VALUES ('DO CHEFF', 'MOLHO DE TOMATE, MUSSARELA, PALMITO, CHAMPIGNON E MOLHO BRANCO')";
 
     private static final String SQL_INSERIR_SABOR_LO = "INSERT INTO " +
             Contrato.TabelaSabor.NOME_DA_TABELA +
-            "(Nome, Descricao) VALUES ('LOMBO C/ CATUPIRY', 'MOLHO DE TOMATE, LOMBO, MUSSARELA E CATUPIRY')";
+            "(NomeSabor, Descricao) VALUES ('LOMBO C/ CATUPIRY', 'MOLHO DE TOMATE, LOMBO, MUSSARELA E CATUPIRY')";
 
     private static final String SQL_INSERIR_SABOR_BO = "INSERT INTO " +
             Contrato.TabelaSabor.NOME_DA_TABELA +
-            "(Nome, Descricao) VALUES ('BOLONHESA', 'MOLHO DE TOMATE, BOLONHESA, MOLHO PARMEGIANA, PARMESÃO E MUSSARELA')";
+            "(NomeSabor, Descricao) VALUES ('BOLONHESA', 'MOLHO DE TOMATE, BOLONHESA, MOLHO PARMEGIANA, PARMESÃO E MUSSARELA')";
 
     private static final String SQL_INSERIR_SABOR_BA = "INSERT INTO " +
             Contrato.TabelaSabor.NOME_DA_TABELA +
-            "(Nome, Descricao) VALUES ('BACON CROCANTE', 'MOLHO DE TOMATE, BACON, BATATA PALHA E MUSSARELA')";
+            "(NomeSabor, Descricao) VALUES ('BACON CROCANTE', 'MOLHO DE TOMATE, BACON, BATATA PALHA E MUSSARELA')";
 //    //
 
     @Override
