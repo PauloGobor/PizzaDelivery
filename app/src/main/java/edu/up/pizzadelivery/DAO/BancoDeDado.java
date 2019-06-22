@@ -800,7 +800,9 @@ public class BancoDeDado extends SQLiteOpenHelper {
                 Contrato.TabelaBorda.NOME_DA_TABELA + "." + Contrato.TabelaBorda.COLUNA_NOME + VIRGULA +
                 // Contrato.TabelaSabor.NOME_DA_TABELA  + "." + Contrato.TabelaSabor.COLUNA_NOME + VIRGULA +
                 Contrato.TabelaBebida.NOME_DA_TABELA + "." + Contrato.TabelaBebida.COLUNA_NOME + VIRGULA +
-                Contrato.TabelaItemPedido.NOME_DA_TABELA + "." + Contrato.TabelaItemPedido.COLUNA_QUANTIDADE +
+                Contrato.TabelaItemPedido.NOME_DA_TABELA + "." + Contrato.TabelaItemPedido.COLUNA_QUANTIDADE + VIRGULA +
+                Contrato.TabelaItemPedido.NOME_DA_TABELA + "." + Contrato.TabelaItemPedido.COLUNA_SUBTOTAL +
+
                 ////***************/ FROM *******************//
                 " FROM " + Contrato.TabelaItemPedido.NOME_DA_TABELA +
 
@@ -836,7 +838,7 @@ public class BancoDeDado extends SQLiteOpenHelper {
                 Borda borda = new Borda();
                 String idborda;
                 Bebida bebida = new Bebida();
-                int idbebida;
+                String idbebida;
                 Pizza pizza = new Pizza();
                 //bebida.setId(idbebida);
               //  pizza.setTamanho(tamanho);
@@ -850,14 +852,20 @@ public class BancoDeDado extends SQLiteOpenHelper {
 
                 idborda = cursor.getString(2);
                 borda.setNome(idborda);
-                idbebida = cursor.getInt(3);
+
+                idbebida = cursor.getString(3);
+                bebida.setNome(idbebida);
+
                 pizza.setTamanho(tamanho);
                 pizza.setBorda(borda);
+
                 item.setPizza(pizza);
+                item.setBebida(bebida);
 
                 // item.setPizza(pizza.getId());
                 //item.setBebida(idbebida);
                 item.setQuantidade(cursor.getInt(4));
+                item.setSubTotal(cursor.getDouble(5));
 
 //                .setId((cursor.getInt(0))); tamanho borda bebida quantidae
 //                s.setNome(cursor.getString(1));
