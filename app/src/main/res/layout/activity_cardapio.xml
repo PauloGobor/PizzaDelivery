@@ -43,9 +43,12 @@
         android:id="@+id/btnAvancarCard"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="2"
+        android:layout_weight="1.9"
         android:text="Avancar"
         android:textSize="17dp"
+        android:background="@color/colorPrimary"
+        android:textColor="@android:color/white"
+
         />
 
 </LinearLayout>

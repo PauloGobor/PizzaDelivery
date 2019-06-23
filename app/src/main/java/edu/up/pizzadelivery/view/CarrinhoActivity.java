@@ -13,6 +13,8 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import edu.up.pizzadelivery.Adapter.BordaAdapter;
+import edu.up.pizzadelivery.Adapter.CarrinhoAdapter;
+import edu.up.pizzadelivery.Adapter.SaboresAdapter;
 import edu.up.pizzadelivery.DAO.BordaDAO;
 import edu.up.pizzadelivery.DAO.ItemPedidoDAO;
 import edu.up.pizzadelivery.R;
@@ -67,12 +69,14 @@ public class CarrinhoActivity extends AppCompatActivity {
             items[i] = String.valueOf(itemsArrayList.get(i).getPizza().getTamanho().getNome());
         }
         //O adapter é componente que prepara os dados para o ListView
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_list_item_1, items);
+        CarrinhoAdapter CarrinhoAdapter = new CarrinhoAdapter(itemsArrayList, this);
+
+//        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+//                android.R.layout.simple_list_item_1, items);
 
         //BordaAdapter bordasAdapter = new BordaAdapter(itemsArrayList, this);
         //setAdapter é método que vai popular os dados dentro do ListView
-        lstCarrinho.setAdapter(adapter);
+        lstCarrinho.setAdapter(CarrinhoAdapter);
 
         // listar itens do carrinho....
 

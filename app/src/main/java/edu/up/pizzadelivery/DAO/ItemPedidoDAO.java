@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import edu.up.pizzadelivery.model.Borda;
 import edu.up.pizzadelivery.model.ItemPedido;
 import edu.up.pizzadelivery.model.Pedido;
+import edu.up.pizzadelivery.model.Sabor;
 
 public class ItemPedidoDAO {
 
@@ -24,6 +25,11 @@ public class ItemPedidoDAO {
     public static ArrayList<ItemPedido> retornarItemPedido(Context context,int pedido){
         BancoDeDado banco = new BancoDeDado(context);
         return banco.RetornarItemPedido(pedido);
+    }
+
+    public static ArrayList<Sabor> retornarSaboresPizza(Context context, int pizza){
+        BancoDeDado banco = new BancoDeDado(context);
+        return banco.RetornarSaboresPizza(pizza);
     }
 
 }

@@ -9,13 +9,13 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.3"
+        android:layout_weight="0.15"
         android:orientation="vertical">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="0.1"
+            android:layout_weight="1"
             android:gravity="left"
             android:text="Carrinho"
             android:textColor="@android:color/holo_red_dark"
@@ -39,6 +39,15 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_weight="0.03"
+        android:orientation="vertical">
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
         android:layout_weight="0.1"
         android:orientation="horizontal">
 
@@ -49,7 +58,7 @@
             android:gravity="left"
             android:text="SubTotal:"
             android:textColor="@android:color/holo_red_dark"
-            android:textSize="30sp" />
+            android:textSize="25sp" />
 
         <TextView
             android:id="@+id/txtCarrinhoSubTotal"
@@ -61,6 +70,7 @@
             android:textColor="@android:color/holo_red_dark"
             android:textSize="25sp" />
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -70,33 +80,48 @@
         <Button
             android:id="@+id/btnCardapio"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="0.3"
-            android:background="@android:color/holo_red_dark"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/colorPrimary"
             android:text="Cardapio"
-            android:textColor="#FFFFFF"
-            android:textSize="25sp" />
+            android:textColor="@android:color/white"
+            android:textSize="12dp"
+            />
 
-        <Button
-            android:id="@+id/btnBebidas"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="0.3"
-            android:background="@android:color/holo_red_dark"
-            android:onClick="btnBebida"
-            android:text="Bebidas"
-            android:textColor="#FFFFFF"
-            android:textSize="25sp" />
+        <TextView
+            android:layout_width="10dp"
+            android:layout_height="match_parent" />
 
         <Button
             android:id="@+id/btnPagamento"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="0.3"
-            android:background="@android:color/holo_red_dark"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/colorPrimary"
             android:text="Finalizar Pedido"
-            android:textColor="#FFFFFF"
-            android:textSize="30sp" />
+            android:textColor="@android:color/white"
+            android:textSize="12dp"
+            />
+
+        <TextView
+            android:layout_width="10dp"
+            android:layout_height="match_parent" />
+
+
+        <Button
+            android:id="@+id/btnBebidas"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/colorPrimary"
+            android:onClick="btnBebida"
+            android:text="Bebidas"
+            android:textColor="@android:color/white"
+            android:textSize="12dp"
+
+            />
+
+
     </LinearLayout>
 
 </LinearLayout>
