@@ -168,6 +168,9 @@ public class CardapioActivity extends AppCompatActivity {
                     //passando sabor
                     intent.putExtra("SABOR", saboresEscolhidosArrayList);
                     intent.putExtra("IDPEDIDO",idPedido);
+
+                    int idItemPedido = (int) iditempedido;
+                    intent.putExtra("IDITEMPEDIDO", idItemPedido);
                     startActivity(intent);
                 } else {
                     Toast.makeText(CardapioActivity.this, "Selecione todos os sabores", Toast.LENGTH_SHORT).show();

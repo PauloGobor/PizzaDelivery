@@ -38,11 +38,7 @@ public class BebidasActivity extends AppCompatActivity {
         final Borda borda = (Borda) getIntent().getSerializableExtra("BORDA");
         Bundle bundle = getIntent().getExtras();
         final int idPedido = bundle.getInt("IDPEDIDO");
-
-
-
-
-
+        final int idItemPedido = bundle.getInt("IDITEMPEDIDO");
 
         final ArrayList<Bebida> bebidasArrayList = BebidaDAO.retornarBebidas(this);
         final String[] bebidas = new String[bebidasArrayList.size()];
@@ -63,18 +59,17 @@ public class BebidasActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-
-
                 ItemPedido itemPedido = new ItemPedido();
                 itemPedido.setBebida(bebidasArrayList.get(position));
 
-                long retn = ItemPedidoDAO.UpdateItemPedido(BebidasActivity.this, itemPedido, idPedido);
+                long retn = ItemPedidoDAO.UpdateItemPedido(BebidasActivity.this, itemPedido, idItemPedido);
 
                 Intent intent = new Intent(BebidasActivity.this, CarrinhoActivity.class);
                 intent.putExtra("BEBIDA", bebidasArrayList.get(position));
                 intent.putExtra("BORDA", borda);
                 intent.putExtra("TAMANHO", tamanho);
                 intent.putExtra("IDPEDIDO", idPedido);
+                intent.putExtra("IDITEMPEDIDO", idItemPedido);
 
                 // resolver problema com quantidade...
 

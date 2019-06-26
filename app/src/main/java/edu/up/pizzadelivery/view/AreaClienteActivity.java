@@ -105,8 +105,8 @@ Log.i("data pedido",""+pedido.getData());
                 startActivity(intent1);
                 return true;
             case R.id.historico:
-//               Intent  intent2 = new Intent(this, Historico.class);
-//               startActivity(intent2);
+               Intent  intent2 = new Intent(this, RelatorioPedidoActivity.class);
+               startActivity(intent2);
                 return true;
             case R.id.sair:
                 SharedPreferences sheredPreferences = getSharedPreferences(ARQUIVO_PREF, 0);

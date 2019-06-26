@@ -8,7 +8,6 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import edu.up.pizzadelivery.model.Bebida;
 import edu.up.pizzadelivery.model.Borda;
@@ -786,7 +785,9 @@ public class BancoDeDado extends SQLiteOpenHelper {
         return db.insert(Contrato.TabelaItemPedido.NOME_DA_TABELA, null, values);
     }
 
-    public long EditarItemPedido(ItemPedido itempedido,long idPedido){
+
+
+    public long EditarItemPedido(ItemPedido itempedido, long idPedido){
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
@@ -794,7 +795,7 @@ public class BancoDeDado extends SQLiteOpenHelper {
 
 
         return db.update(Contrato.TabelaItemPedido.NOME_DA_TABELA, values,
-                Contrato.TabelaItemPedido.COLUNA_PEDIDO + " = ? ",
+                Contrato.TabelaItemPedido.COLUNA_ID + " = ? ",
                 new String[]{String.valueOf(idPedido)});
     }
 
@@ -873,7 +874,6 @@ public class BancoDeDado extends SQLiteOpenHelper {
                 pizza.setTamanho(tamanho);
                 pizza.setBorda(borda);
 
-
                 item.setPizza(pizza);
                 item.setBebida(bebida);
 
@@ -946,6 +946,39 @@ public class BancoDeDado extends SQLiteOpenHelper {
         return sabores;
 
     }
+
+
+
+
+
+
+   public ArrayList<Pedido> RetornaHistoricoPedido(int idUsuario){
+        ArrayList<Pedido> pedidos = new ArrayList<Pedido>();
+         SQLiteDatabase db = getReadableDatabase();
+
+       Cursor cursor;
+       cursor =  db.rawQuery("SELECT * FROM " + Contrato.TabelaPedido.NOME_DA_TABELA +  " WHERE " +
+                Contrato.TabelaPedido.COLUNA_USUARIO  +" = " + idUsuario, null );
+       if (cursor.getCount() > 0) {
+
+           cursor.moveToFirst();
+           do {
+               Pedido pedido = new Pedido();
+               pedido.setId(Integer.parseInt(cursor.getString(cursor.getColumnIndex(Contrato.TabelaPedido.COLUNA_ID))));
+
+
+
+
+
+              pedidos.add(pedido);
+
+           } while (cursor.moveToNext());
+       }
+
+
+
+        return pedidos;
+   }
 
 }
 
