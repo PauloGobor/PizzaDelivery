@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -53,7 +54,9 @@ public class PagamentoPedidoActivity extends AppCompatActivity {
     }
 
     public void btnFinalizarPedido(View view) {
-        Intent relatorio = new Intent(this, RelatorioPedidoActivity.class);
+        Toast.makeText(PagamentoPedidoActivity.this, "Pedido Realizado com sucesso", Toast.LENGTH_SHORT).show();
+
+        Intent relatorio = new Intent(this, AreaClienteActivity.class);
         startActivity(relatorio);
     }
 }

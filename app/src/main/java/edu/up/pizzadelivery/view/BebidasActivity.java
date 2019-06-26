@@ -14,10 +14,12 @@ import java.util.ArrayList;
 import edu.up.pizzadelivery.Adapter.BebidaAdapter;
 import edu.up.pizzadelivery.Adapter.SaboresAdapter;
 import edu.up.pizzadelivery.DAO.BebidaDAO;
+import edu.up.pizzadelivery.DAO.ItemPedidoDAO;
 import edu.up.pizzadelivery.DAO.TamanhoDAO;
 import edu.up.pizzadelivery.R;
 import edu.up.pizzadelivery.model.Bebida;
 import edu.up.pizzadelivery.model.Borda;
+import edu.up.pizzadelivery.model.ItemPedido;
 import edu.up.pizzadelivery.model.Sabor;
 import edu.up.pizzadelivery.model.Tamanho;
 
@@ -32,12 +34,18 @@ public class BebidasActivity extends AppCompatActivity {
         setContentView(R.layout.activity_bebidas);
 
         lstBebidas = (ListView) findViewById(R.id.ListBebidas);
-//        final Tamanho tamanho = (Tamanho) getIntent().getSerializableExtra("TAMANHO");
-//        final Borda borda = (Borda) getIntent().getSerializableExtra("BORDA");
+        final Tamanho tamanho = (Tamanho) getIntent().getSerializableExtra("TAMANHO");
+        final Borda borda = (Borda) getIntent().getSerializableExtra("BORDA");
+        Bundle bundle = getIntent().getExtras();
+        final int idPedido = bundle.getInt("IDPEDIDO");
+
+
+
+
 
 
         final ArrayList<Bebida> bebidasArrayList = BebidaDAO.retornarBebidas(this);
-        String[] bebidas = new String[bebidasArrayList.size()];
+        final String[] bebidas = new String[bebidasArrayList.size()];
 
         for (int i = 0; i < bebidasArrayList.size(); i++) {
             bebidas[i] = bebidasArrayList.get(i).getNome();
@@ -55,10 +63,18 @@ public class BebidasActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
+
+
+                ItemPedido itemPedido = new ItemPedido();
+                itemPedido.setBebida(bebidasArrayList.get(position));
+
+                long retn = ItemPedidoDAO.UpdateItemPedido(BebidasActivity.this, itemPedido, idPedido);
+
                 Intent intent = new Intent(BebidasActivity.this, CarrinhoActivity.class);
                 intent.putExtra("BEBIDA", bebidasArrayList.get(position));
-//                intent.putExtra("BORDA", borda);
-//                intent.putExtra("TAMANHO", tamanho);
+                intent.putExtra("BORDA", borda);
+                intent.putExtra("TAMANHO", tamanho);
+                intent.putExtra("IDPEDIDO", idPedido);
 
                 // resolver problema com quantidade...
 

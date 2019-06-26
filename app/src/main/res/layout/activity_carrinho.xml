@@ -114,7 +114,6 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@color/colorPrimary"
-            android:onClick="btnBebida"
             android:text="Bebidas"
             android:textColor="@android:color/white"
             android:textSize="12dp"

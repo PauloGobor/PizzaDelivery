@@ -16,6 +16,12 @@ public class ItemPedidoDAO {
         return banco.CadastrarItemPedido(itempedido);
     }
 
+    public static long UpdateItemPedido(Context context,ItemPedido itempedido,long idPedido){
+        BancoDeDado banco = new BancoDeDado(context);
+        return banco.EditarItemPedido(itempedido,idPedido);
+    }
+
+
     public static double RetornarSomaCarrinho(Context context, Pedido p){
         BancoDeDado banco = new BancoDeDado(context);
         return banco.RetornarSomaCarrinho(p);

@@ -29,7 +29,7 @@ public class CarrinhoActivity extends AppCompatActivity {
 
     private TextView txtCarrinhoSubTotal;
     private double subtotal;
-    private Button btnCardapio, btnPagamento;
+    private Button btnCardapio, btnPagamento, btnBebida;
     private ListView lstCarrinho;
 
     @Override
@@ -48,6 +48,7 @@ public class CarrinhoActivity extends AppCompatActivity {
         btnPagamento = (Button) findViewById(R.id.btnPagamento);
         txtCarrinhoSubTotal = (TextView) findViewById(R.id.txtCarrinhoSubTotal);
         lstCarrinho = (ListView) findViewById(R.id.lstCarrinho);
+        btnBebida = (Button) findViewById(R.id.btnBebidas);
 //      recebendo da activy anterior itens escolhidos
 
 
@@ -57,7 +58,7 @@ public class CarrinhoActivity extends AppCompatActivity {
         final double subtotal = ItemPedidoDAO.RetornarSomaCarrinho(this,p);
         txtCarrinhoSubTotal.setText(String.valueOf(subtotal));
 //
-        final ArrayList<ItemPedido> itemsArrayList = ItemPedidoDAO.retornarItemPedido(this,idPedido);
+        final ArrayList<ItemPedido> itemsArrayList = ItemPedidoDAO.retornarItemPedido(this, idPedido);
         String[] items = new String[itemsArrayList.size()];
 
         for (int i = 0; i < itemsArrayList.size(); i++) {
@@ -102,14 +103,19 @@ public class CarrinhoActivity extends AppCompatActivity {
             }
         });
 
+        btnBebida.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(CarrinhoActivity.this, BebidasActivity.class);
+                intent.putExtra("BORDA", borda);
+                intent.putExtra("TAMANHO", tamanho);
+                intent.putExtra("IDPEDIDO", idPedido);
+                startActivity(intent);
+            }
+        });
+
 
 
     }
 
-
-
-    public void btnBebida(View view) {
-        Intent intent = new Intent(this, BebidasActivity.class);
-        startActivity(intent);
-    }
 }

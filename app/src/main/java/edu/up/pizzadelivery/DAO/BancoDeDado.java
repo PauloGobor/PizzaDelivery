@@ -786,6 +786,19 @@ public class BancoDeDado extends SQLiteOpenHelper {
         return db.insert(Contrato.TabelaItemPedido.NOME_DA_TABELA, null, values);
     }
 
+    public long EditarItemPedido(ItemPedido itempedido,long idPedido){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(Contrato.TabelaItemPedido.COLUNA_BEBIDA, itempedido.getBebida().getId());
+
+
+        return db.update(Contrato.TabelaItemPedido.NOME_DA_TABELA, values,
+                Contrato.TabelaItemPedido.COLUNA_PEDIDO + " = ? ",
+                new String[]{String.valueOf(idPedido)});
+    }
+
+
     //  ########################################################################   ///
     //  ##### METODO PARA RETORNAR ITENS DO CARRINHO #######   ///
     //  ########################################################################   ///

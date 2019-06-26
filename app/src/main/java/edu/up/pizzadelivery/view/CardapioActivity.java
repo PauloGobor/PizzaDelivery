@@ -153,7 +153,7 @@ public class CardapioActivity extends AppCompatActivity {
                     item.setBebida(bebida);
                     final long iditempedido = ItemPedidoDAO.CadastrarItemPedido(CardapioActivity.this, item);
 
-                    Log.i("iditem",""+pizza);
+//                    Log.i("iditem",""+pizza);
 //                    Log.i("iditem",""+item.getBebida().getNome());
 //
 //                    Log.i("iditempedido",""+item.getPedido());

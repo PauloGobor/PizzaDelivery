@@ -57,11 +57,12 @@ public class BebidaAdapter extends BaseAdapter {
                 view.findViewById(R.id.txtBebidaCustom);
         TextView valor = (TextView)
                 view.findViewById(R.id.txtValorBebida);
-//        EditText quantidade = (EditText)
+        //EditText quantidade = (EditText) view.findViewById(R.id.edtQtdBebida);
 
 
         nome.setText(bebida.getNome());
         valor.setText("R$:"+bebida.getPreco());
+
 
 //        String bebidaQtd = String.valueOf(quantidade.toString());
 ////        bebida.setQuantidade(Integer.valueOf(bebidaQtd));
