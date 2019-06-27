@@ -957,18 +957,26 @@ public class BancoDeDado extends SQLiteOpenHelper {
          SQLiteDatabase db = getReadableDatabase();
 
        Cursor cursor;
-       cursor =  db.rawQuery("SELECT * FROM " + Contrato.TabelaPedido.NOME_DA_TABELA +  " WHERE " +
-                Contrato.TabelaPedido.COLUNA_USUARIO  +" = " + idUsuario, null );
+       cursor =  db.rawQuery("SELECT "+ Contrato.TabelaUsuario.COLUNA_NOME + "," +
+               Contrato.TabelaItemPedido.COLUNA_ID + ", " +
+               Contrato.TabelaTamanho.COLUNA_NOME + ", " +
+               Contrato.TabelaBorda.COLUNA_NOME + ", " +
+               Contrato.TabelaBebida.COLUNA_NOME +
+               " FROM " + Contrato.TabelaPedido.NOME_DA_TABELA +
+               " INNER JOIN "  + Contrato.TabelaUsuario.NOME_DA_TABELA + " ON " + Contrato.TabelaPedido.COLUNA_USUARIO +" = "+ Contrato.TabelaUsuario.COLUNA_ID +
+               " INNER JOIN "  + Contrato.TabelaItemPedido.NOME_DA_TABELA + " ON " + Contrato.TabelaPedido.COLUNA_ID +" = " + Contrato.TabelaItemPedido.COLUNA_PEDIDO +
+               " INNER JOIN "  + Contrato.TabelaBebida.NOME_DA_TABELA +  " ON " + Contrato.TabelaItemPedido.COLUNA_BEBIDA+" = " + Contrato.TabelaBebida.COLUNA_ID +
+               " INNER JOIN "  + Contrato.TabelaPizza.NOME_DA_TABELA +  " ON "  + Contrato.TabelaItemPedido.COLUNA_PIZZA+" = "+ Contrato.TabelaPizza.COLUNA_ID +
+               " INNER JOIN "  + Contrato.TabelaTamanho.NOME_DA_TABELA + " ON " + Contrato.TabelaPizza.COLUNA_TAMANHO+" = " + Contrato.TabelaTamanho.COLUNA_ID +
+               " INNER JOIN "  + Contrato.TabelaBorda.NOME_DA_TABELA + " ON " + Contrato.TabelaPizza.COLUNA_BORDA +" = "+ Contrato.TabelaBorda.COLUNA_ID +
+               " WHERE " + Contrato.TabelaPedido.COLUNA_USUARIO + " = ?" ,new String[] {String.valueOf(idUsuario)});
+
+
        if (cursor.getCount() > 0) {
 
            cursor.moveToFirst();
            do {
                Pedido pedido = new Pedido();
-               pedido.setId(Integer.parseInt(cursor.getString(cursor.getColumnIndex(Contrato.TabelaPedido.COLUNA_ID))));
-
-
-
-
 
               pedidos.add(pedido);
 

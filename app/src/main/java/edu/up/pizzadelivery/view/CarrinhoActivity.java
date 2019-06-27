@@ -60,8 +60,6 @@ public class CarrinhoActivity extends AppCompatActivity {
         p.setId(idPedido);
         double subtotal = ItemPedidoDAO.RetornarSomaCarrinho(this, p);
 
-        final double subTotalPagamento = subtotal;
-
         txtCarrinhoSubTotal.setText(String.valueOf(subtotal));
 
         final ArrayList<ItemPedido> itemsArrayList = ItemPedidoDAO.retornarItemPedido(this, idPedido);
@@ -82,6 +80,8 @@ public class CarrinhoActivity extends AppCompatActivity {
         }
 
         txtCarrinhoSubTotal.setText(String.valueOf(subtotal));
+
+        final double subTotalPagamento = subtotal;
 
         String[] items = new String[itemsArrayList.size()];
 
