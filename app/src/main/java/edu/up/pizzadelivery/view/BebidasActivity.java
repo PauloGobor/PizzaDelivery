@@ -3,6 +3,7 @@ package edu.up.pizzadelivery.view;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -20,6 +21,7 @@ import edu.up.pizzadelivery.R;
 import edu.up.pizzadelivery.model.Bebida;
 import edu.up.pizzadelivery.model.Borda;
 import edu.up.pizzadelivery.model.ItemPedido;
+import edu.up.pizzadelivery.model.Pizza;
 import edu.up.pizzadelivery.model.Sabor;
 import edu.up.pizzadelivery.model.Tamanho;
 
@@ -59,17 +61,44 @@ public class BebidasActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                ItemPedido itemPedido = new ItemPedido();
-                itemPedido.setBebida(bebidasArrayList.get(position));
+               // itemPedido.setBebida(bebidasArrayList.get(position));
 
-                long retn = ItemPedidoDAO.UpdateItemPedido(BebidasActivity.this, itemPedido, idItemPedido);
+                ItemPedido item = new ItemPedido();
+                // colocando os item dentro objeto item
+
+                Borda borda = new Borda();
+                Tamanho tamanho = new Tamanho();
+
+                // formando a pizza
+                borda.setId(1);
+                tamanho.setId(1);
+                Pizza pizza = new Pizza();
+                pizza.setBorda(borda);
+                pizza.setTamanho(tamanho);
+                pizza.setId(1);
+
+                Bebida bebida = new Bebida();
+                bebida.setId(bebidasArrayList.get(position).getId());
+                bebida.setNome(bebidasArrayList.get(position).getNome());
+                bebida.setPreco(bebidasArrayList.get(position).getPreco());
+
+                item.setPizza(pizza);
+
+                item.setQuantidade(1);
+                item.setSubTotal(bebida.getPreco());
+                item.setBebida(bebida);
+                item.setPedido(idPedido);
+
+                final long iditempedido = ItemPedidoDAO.CadastrarItemPedido(BebidasActivity.this, item);
+
+
+                // long retn = ItemPedidoDAO.UpdateItemPedido(BebidasActivity.this, itemPedido, idItemPedido);
 
                 Intent intent = new Intent(BebidasActivity.this, CarrinhoActivity.class);
-                intent.putExtra("BEBIDA", bebidasArrayList.get(position));
-                intent.putExtra("BORDA", borda);
-                intent.putExtra("TAMANHO", tamanho);
                 intent.putExtra("IDPEDIDO", idPedido);
                 intent.putExtra("IDITEMPEDIDO", idItemPedido);
+
+
 
                 // resolver problema com quantidade...
 

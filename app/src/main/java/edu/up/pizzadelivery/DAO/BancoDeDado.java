@@ -187,6 +187,10 @@ public class BancoDeDado extends SQLiteOpenHelper {
 
 
     //    insere tamanhos
+    private static final String SQL_INSERIR_TAMANHO_SN = "INSERT INTO " +
+            Contrato.TabelaTamanho.NOME_DA_TABELA +
+            "(NomeTamanho, QtdSabor, Preco) VALUES ('S/N', '', '')";
+
     private static final String SQL_INSERIR_BROTO = "INSERT INTO " +
             Contrato.TabelaTamanho.NOME_DA_TABELA +
             "(NomeTamanho, QtdSabor, Preco) VALUES ('BROTO', 1, 15)";
@@ -239,6 +243,11 @@ public class BancoDeDado extends SQLiteOpenHelper {
 
     // insere bordas
 
+
+    private static final String SQL_INSERIR_BORDA_SN = "INSERT INTO " +
+            Contrato.TabelaBorda.NOME_DA_TABELA +
+            "(NomeBorda, Preco) VALUES ('S/N', '')";
+
     private static final String SQL_INSERIR_BORDA_CH = "INSERT INTO " +
             Contrato.TabelaBorda.NOME_DA_TABELA +
             "(NomeBorda, Preco) VALUES ('CHEDDAR', 4)";
@@ -251,7 +260,7 @@ public class BancoDeDado extends SQLiteOpenHelper {
             Contrato.TabelaBorda.NOME_DA_TABELA +
             "(NomeBorda, Preco) VALUES ('CHOCOLATE PRETO', 5)";
 
-    private static final String SQL_INSERIR_BORDA_SN = "INSERT INTO " +
+    private static final String SQL_INSERIR_BORDA_NM = "INSERT INTO " +
             Contrato.TabelaBorda.NOME_DA_TABELA +
             "(NomeBorda, Preco) VALUES ('NORMAL', 0)";
 
@@ -300,6 +309,10 @@ public class BancoDeDado extends SQLiteOpenHelper {
     private static final String SQL_INSERIR_SABOR_BA = "INSERT INTO " +
             Contrato.TabelaSabor.NOME_DA_TABELA +
             "(NomeSabor, Descricao) VALUES ('BACON CROCANTE', 'MOLHO DE TOMATE, BACON, BATATA PALHA E MUSSARELA')";
+    //    //
+    private static final String SQL_PIZZA_VAZIA = "INSERT INTO " +
+            Contrato.TabelaPizza.NOME_DA_TABELA +
+            "(TamanhoId, BordaId) VALUES (1, 1)";
 //    //
 
     @Override
@@ -319,6 +332,7 @@ public class BancoDeDado extends SQLiteOpenHelper {
         //insere dados ao criar banco
         //Log.i("Criar banco", SQL_INSERIR_BROTO);
         //TAMANHO
+        db.execSQL(SQL_INSERIR_TAMANHO_SN);
         db.execSQL(SQL_INSERIR_BROTO);
         db.execSQL(SQL_INSERIR_MEDIA);
         db.execSQL(SQL_INSERIR_GRANDE);
@@ -327,16 +341,19 @@ public class BancoDeDado extends SQLiteOpenHelper {
         db.execSQL(SQL_INSERIR_FP_CDT);
         db.execSQL(SQL_INSERIR_FP_DBT);
         db.execSQL(SQL_INSERIR_FP_DIN);
-        db.execSQL(SQL_INSERIR_BORDA_SN);
+        db.execSQL(SQL_PIZZA_VAZIA);
+
         //BEBIDA
         db.execSQL(SQL_INSERIR_BEBIDA_SN);
         db.execSQL(SQL_INSERIR_BEBIDA_CC);
         db.execSQL(SQL_INSERIR_BEBIDA_FL);
         db.execSQL(SQL_INSERIR_BEBIDA_GA);
         //BORDA
+        db.execSQL(SQL_INSERIR_BORDA_SN);
         db.execSQL(SQL_INSERIR_BORDA_CH);
         db.execSQL(SQL_INSERIR_BORDA_CT);
         db.execSQL(SQL_INSERIR_BORDA_CP);
+        db.execSQL(SQL_INSERIR_BORDA_NM);
         //SABORES
         db.execSQL(SQL_INSERIR_SABOR_FC);
         db.execSQL(SQL_INSERIR_SABOR_4Q);
@@ -786,8 +803,7 @@ public class BancoDeDado extends SQLiteOpenHelper {
     }
 
 
-
-    public long EditarItemPedido(ItemPedido itempedido, long idPedido){
+    public long EditarItemPedido(ItemPedido itempedido, long idPedido) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
@@ -817,7 +833,6 @@ public class BancoDeDado extends SQLiteOpenHelper {
                 Contrato.TabelaItemPedido.NOME_DA_TABELA + "." + Contrato.TabelaItemPedido.COLUNA_QUANTIDADE + VIRGULA +
                 Contrato.TabelaItemPedido.NOME_DA_TABELA + "." + Contrato.TabelaItemPedido.COLUNA_SUBTOTAL + VIRGULA +
                 Contrato.TabelaItemPedido.NOME_DA_TABELA + "." + Contrato.TabelaItemPedido.COLUNA_PIZZA +
-
 
 
                 ////***************/ FROM *******************//
@@ -948,45 +963,40 @@ public class BancoDeDado extends SQLiteOpenHelper {
     }
 
 
-
-
-
-
-   public ArrayList<Pedido> RetornaHistoricoPedido(int idUsuario){
+    public ArrayList<Pedido> RetornaHistoricoPedido(int idUsuario) {
         ArrayList<Pedido> pedidos = new ArrayList<Pedido>();
-         SQLiteDatabase db = getReadableDatabase();
+        SQLiteDatabase db = getReadableDatabase();
 
-       Cursor cursor;
-       cursor =  db.rawQuery("SELECT "+ Contrato.TabelaUsuario.COLUNA_NOME + "," +
-               Contrato.TabelaItemPedido.COLUNA_ID + ", " +
-               Contrato.TabelaTamanho.COLUNA_NOME + ", " +
-               Contrato.TabelaBorda.COLUNA_NOME + ", " +
-               Contrato.TabelaBebida.COLUNA_NOME +
-               " FROM " + Contrato.TabelaPedido.NOME_DA_TABELA +
-               " INNER JOIN "  + Contrato.TabelaUsuario.NOME_DA_TABELA + " ON " + Contrato.TabelaPedido.COLUNA_USUARIO +" = "+ Contrato.TabelaUsuario.COLUNA_ID +
-               " INNER JOIN "  + Contrato.TabelaItemPedido.NOME_DA_TABELA + " ON " + Contrato.TabelaPedido.COLUNA_ID +" = " + Contrato.TabelaItemPedido.COLUNA_PEDIDO +
-               " INNER JOIN "  + Contrato.TabelaBebida.NOME_DA_TABELA +  " ON " + Contrato.TabelaItemPedido.COLUNA_BEBIDA+" = " + Contrato.TabelaBebida.COLUNA_ID +
-               " INNER JOIN "  + Contrato.TabelaPizza.NOME_DA_TABELA +  " ON "  + Contrato.TabelaItemPedido.COLUNA_PIZZA+" = "+ Contrato.TabelaPizza.COLUNA_ID +
-               " INNER JOIN "  + Contrato.TabelaTamanho.NOME_DA_TABELA + " ON " + Contrato.TabelaPizza.COLUNA_TAMANHO+" = " + Contrato.TabelaTamanho.COLUNA_ID +
-               " INNER JOIN "  + Contrato.TabelaBorda.NOME_DA_TABELA + " ON " + Contrato.TabelaPizza.COLUNA_BORDA +" = "+ Contrato.TabelaBorda.COLUNA_ID +
-               " WHERE " + Contrato.TabelaPedido.COLUNA_USUARIO + " = ?" ,new String[] {String.valueOf(idUsuario)});
+        Cursor cursor;
+        cursor = db.rawQuery("SELECT " + Contrato.TabelaUsuario.COLUNA_NOME + "," +
+                Contrato.TabelaItemPedido.COLUNA_ID + ", " +
+                Contrato.TabelaTamanho.COLUNA_NOME + ", " +
+                Contrato.TabelaBorda.COLUNA_NOME + ", " +
+                Contrato.TabelaBebida.COLUNA_NOME +
+                " FROM " + Contrato.TabelaPedido.NOME_DA_TABELA +
+                " INNER JOIN " + Contrato.TabelaUsuario.NOME_DA_TABELA + " ON " + Contrato.TabelaPedido.COLUNA_USUARIO + " = " + Contrato.TabelaUsuario.COLUNA_ID +
+                " INNER JOIN " + Contrato.TabelaItemPedido.NOME_DA_TABELA + " ON " + Contrato.TabelaPedido.COLUNA_ID + " = " + Contrato.TabelaItemPedido.COLUNA_PEDIDO +
+                " INNER JOIN " + Contrato.TabelaBebida.NOME_DA_TABELA + " ON " + Contrato.TabelaItemPedido.COLUNA_BEBIDA + " = " + Contrato.TabelaBebida.COLUNA_ID +
+                " INNER JOIN " + Contrato.TabelaPizza.NOME_DA_TABELA + " ON " + Contrato.TabelaItemPedido.COLUNA_PIZZA + " = " + Contrato.TabelaPizza.COLUNA_ID +
+                " INNER JOIN " + Contrato.TabelaTamanho.NOME_DA_TABELA + " ON " + Contrato.TabelaPizza.COLUNA_TAMANHO + " = " + Contrato.TabelaTamanho.COLUNA_ID +
+                " INNER JOIN " + Contrato.TabelaBorda.NOME_DA_TABELA + " ON " + Contrato.TabelaPizza.COLUNA_BORDA + " = " + Contrato.TabelaBorda.COLUNA_ID +
+                " WHERE " + Contrato.TabelaPedido.COLUNA_USUARIO + " = ?", new String[]{String.valueOf(idUsuario)});
 
 
-       if (cursor.getCount() > 0) {
+        if (cursor.getCount() > 0) {
 
-           cursor.moveToFirst();
-           do {
-               Pedido pedido = new Pedido();
+            cursor.moveToFirst();
+            do {
+                Pedido pedido = new Pedido();
 
-              pedidos.add(pedido);
+                pedidos.add(pedido);
 
-           } while (cursor.moveToNext());
-       }
-
+            } while (cursor.moveToNext());
+        }
 
 
         return pedidos;
-   }
+    }
 
 }
 

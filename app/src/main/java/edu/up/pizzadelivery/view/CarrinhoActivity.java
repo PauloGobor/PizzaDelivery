@@ -64,33 +64,28 @@ public class CarrinhoActivity extends AppCompatActivity {
 
         final ArrayList<ItemPedido> itemsArrayList = ItemPedidoDAO.retornarItemPedido(this, idPedido);
 
-        double preco = 0.0d;
-        for(ItemPedido itemPedido : itemsArrayList){
-            ArrayList<Bebida> bebidaArrayList = BebidaDAO.retornarBebidas(this);
-            for (Bebida bebida1 : bebidaArrayList) {
-                if(itemPedido.getBebida() != null){
-                    if(bebida1.getNome().equalsIgnoreCase(itemPedido.getBebida().getNome())){
-                        preco = bebida1.getPreco();
-                        double subtotalBebidas = preco > 0 ? preco + subtotal : subtotal;
-                        subtotal = subtotalBebidas;
+//        double preco = 0.0d;
+//        for(ItemPedido itemPedido : itemsArrayList){
+//            ArrayList<Bebida> bebidaArrayList = BebidaDAO.retornarBebidas(this);
+//            for (Bebida bebida1 : bebidaArrayList) {
+//                if(itemPedido.getBebida() != null){
+//                    if(bebida1.getNome().equalsIgnoreCase(itemPedido.getBebida().getNome())){
+//                        preco = bebida1.getPreco();
+//                        double subtotalBebidas = preco > 0 ? preco + subtotal : subtotal;
+//                        subtotal = subtotalBebidas;
+//
+//                    }
+//                }
+//            }
+//        }
 
-                    }
-                }
-            }
-        }
-
-        txtCarrinhoSubTotal.setText(String.valueOf(subtotal));
+      //  txtCarrinhoSubTotal.setText(String.valueOf(subtotal));
 
         final double subTotalPagamento = subtotal;
 
         String[] items = new String[itemsArrayList.size()];
 
         for (int i = 0; i < itemsArrayList.size(); i++) {
-//            Log.i("item","" + itemsArrayList.get(i).getPizza().getTamanho().getNome());
-//            Log.i("itemstringsubtotal","" + itemsArrayList.get(i).getSubTotal());
-//            Log.i("itemstringibebida nome","" + itemsArrayList.get(i).getBebida().getNome());
-//            Log.i("itemstringnomeborda","" + itemsArrayList.get(i).getPizza().getBorda().getNome());
-//
             items[i] = String.valueOf(itemsArrayList.get(i).getPizza().getTamanho().getNome());
         }
         //O adapter é componente que prepara os dados para o ListView
