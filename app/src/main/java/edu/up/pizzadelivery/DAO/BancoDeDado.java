@@ -968,12 +968,18 @@ public class BancoDeDado extends SQLiteOpenHelper {
         SQLiteDatabase db = getReadableDatabase();
 
         Cursor cursor;
-        cursor = db.rawQuery("SELECT " + Contrato.TabelaUsuario.COLUNA_NOME + "," +
-                Contrato.TabelaItemPedido.COLUNA_ID + ", " +
-                Contrato.TabelaTamanho.COLUNA_NOME + ", " +
-                Contrato.TabelaBorda.COLUNA_NOME + ", " +
-                Contrato.TabelaBebida.COLUNA_NOME +
+        cursor = db.rawQuery("SELECT " +
+                // sql
+                Contrato.TabelaUsuario.NOME_DA_TABELA + "." + Contrato.TabelaUsuario.COLUNA_NOME + VIRGULA +
+                Contrato.TabelaItemPedido.NOME_DA_TABELA + "." + Contrato.TabelaItemPedido.COLUNA_ID + VIRGULA +
+                Contrato.TabelaTamanho.NOME_DA_TABELA + "." + Contrato.TabelaTamanho.COLUNA_NOME + VIRGULA +
+                Contrato.TabelaBorda.NOME_DA_TABELA + "." + Contrato.TabelaBorda.COLUNA_NOME + VIRGULA +
+                Contrato.TabelaBebida.NOME_DA_TABELA + "." + Contrato.TabelaBebida.COLUNA_NOME + VIRGULA +
+                Contrato.TabelaFormaPagamento.NOME_DA_TABELA + "." + Contrato.TabelaFormaPagamento.COLUNA_NOME + VIRGULA +
+                Contrato.TabelaItemPedido.NOME_DA_TABELA + "." + Contrato.TabelaItemPedido.COLUNA_PIZZA +
+                // from
                 " FROM " + Contrato.TabelaPedido.NOME_DA_TABELA +
+                /// inner join
                 " INNER JOIN " + Contrato.TabelaUsuario.NOME_DA_TABELA + " ON " + Contrato.TabelaPedido.COLUNA_USUARIO + " = " + Contrato.TabelaUsuario.COLUNA_ID +
                 " INNER JOIN " + Contrato.TabelaItemPedido.NOME_DA_TABELA + " ON " + Contrato.TabelaPedido.COLUNA_ID + " = " + Contrato.TabelaItemPedido.COLUNA_PEDIDO +
                 " INNER JOIN " + Contrato.TabelaBebida.NOME_DA_TABELA + " ON " + Contrato.TabelaItemPedido.COLUNA_BEBIDA + " = " + Contrato.TabelaBebida.COLUNA_ID +
@@ -988,6 +994,8 @@ public class BancoDeDado extends SQLiteOpenHelper {
             cursor.moveToFirst();
             do {
                 Pedido pedido = new Pedido();
+
+
 
                 pedidos.add(pedido);
 

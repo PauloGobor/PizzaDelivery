@@ -92,7 +92,6 @@ public class BebidasActivity extends AppCompatActivity {
                 final long iditempedido = ItemPedidoDAO.CadastrarItemPedido(BebidasActivity.this, item);
 
 
-                // long retn = ItemPedidoDAO.UpdateItemPedido(BebidasActivity.this, itemPedido, idItemPedido);
 
                 Intent intent = new Intent(BebidasActivity.this, CarrinhoActivity.class);
                 intent.putExtra("IDPEDIDO", idPedido);
