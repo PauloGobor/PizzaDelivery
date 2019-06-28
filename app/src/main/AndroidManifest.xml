@@ -16,14 +16,18 @@
         android:roundIcon="@mipmap/ic_launcher_pizzadelivery_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".view.CardapioInicialActivity"></activity>
+        <activity android:name=".view.DetalhesPedidoActivity"></activity>
+        <activity android:name=".view.CardapioInicialActivity" />
         <activity android:name=".view.AreaClienteActivity" />
-        <activity android:name=".view.BordaActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".view.CarrinhoActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".view.BebidasActivity"
-            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".view.BordaActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.CarrinhoActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.BebidasActivity"
+            android:screenOrientation="portrait" />
         <activity android:name=".view.RelatorioPedidoActivity" />
         <activity android:name=".view.PerfilUsuarioActivity" />
         <!--
@@ -41,12 +45,15 @@
         <activity
             android:name=".view.MapsActivity"
             android:label="@string/title_activity_maps" />
-        <activity android:name=".view.EscolherTamanhoActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".view.PagamentoPedidoActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".view.CardapioActivity"
-            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".view.EscolherTamanhoActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.PagamentoPedidoActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.CardapioActivity"
+            android:screenOrientation="portrait" />
         <activity android:name=".view.CadastroDeUsuariosActivity" />
         <activity android:name=".view.MainActivity">
             <intent-filter>

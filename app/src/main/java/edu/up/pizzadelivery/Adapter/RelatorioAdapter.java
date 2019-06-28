@@ -46,7 +46,8 @@ public class RelatorioAdapter extends BaseAdapter {
         View view = act.getLayoutInflater().inflate(R.layout.list_custom_relatorio, parent, false);
         final Pedido pedido = items.get(position);
 
-
+        TextView id = (TextView)
+                view.findViewById(R.id.txtIdPedidoRelatorio);
 
         TextView data = (TextView)
                 view.findViewById(R.id.txtDataCompra);
@@ -58,6 +59,7 @@ public class RelatorioAdapter extends BaseAdapter {
 
 
        // idpedido.setText(pedido.getId());
+        id.setText(String.valueOf(pedido.getId()));
         data.setText(pedido.getData());
         nomeCliente.setText(pedido.getUsuario().getNome());
         valorPago.setText(String.valueOf(pedido.getTotal()));

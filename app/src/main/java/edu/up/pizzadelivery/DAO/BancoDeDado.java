@@ -1017,7 +1017,9 @@ public class BancoDeDado extends SQLiteOpenHelper {
                 Contrato.TabelaUsuario.NOME_DA_TABELA + "." + Contrato.TabelaUsuario.COLUNA_NOME + VIRGULA +
                 Contrato.TabelaPedido.NOME_DA_TABELA + "." + Contrato.TabelaPedido.COLUNA_TOTAL + VIRGULA +
                 Contrato.TabelaFormaPagamento.NOME_DA_TABELA + "." + Contrato.TabelaFormaPagamento.COLUNA_NOME + VIRGULA +
-                Contrato.TabelaPedido.NOME_DA_TABELA + "." + Contrato.TabelaPedido.COLUNA_DATA +
+                Contrato.TabelaPedido.NOME_DA_TABELA + "." + Contrato.TabelaPedido.COLUNA_DATA + VIRGULA +
+                Contrato.TabelaPedido.NOME_DA_TABELA + "." + Contrato.TabelaPedido.COLUNA_ID +
+
 
 
                 " FROM " + Contrato.TabelaPedido.NOME_DA_TABELA +
@@ -1058,7 +1060,7 @@ public class BancoDeDado extends SQLiteOpenHelper {
 
 
                 pedido.setData(cursor.getString(3));
-
+                pedido.setId(cursor.getInt(4));
                 pedidos.add(pedido);
 
             } while (cursor.moveToNext());

@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -40,7 +41,7 @@ public class RelatorioPedidoActivity extends AppCompatActivity {
 
 
         final ArrayList<Pedido> itemsArrayList = PedidoDAO.RetornaHistoricoPedido(this, idUsuario);
-        String[] items = new String[itemsArrayList.size()];
+        final String[] items = new String[itemsArrayList.size()];
 
 
 
@@ -56,6 +57,19 @@ public class RelatorioPedidoActivity extends AppCompatActivity {
 
         //setAdapter é método que vai popular os dados dentro do ListView
         lstPedido.setAdapter(relatorio);
+
+
+        lstPedido.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent =  new Intent(RelatorioPedidoActivity.this, DetalhesPedidoActivity.class);
+                intent.putExtra("IDPEDIDO",itemsArrayList.get(position).getId());
+                startActivity(intent);
+
+            }
+        });
+
+
 
     }
 

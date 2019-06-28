@@ -64,22 +64,6 @@ public class CarrinhoActivity extends AppCompatActivity {
 
         final ArrayList<ItemPedido> itemsArrayList = ItemPedidoDAO.retornarItemPedido(this, idPedido);
 
-//        double preco = 0.0d;
-//        for(ItemPedido itemPedido : itemsArrayList){
-//            ArrayList<Bebida> bebidaArrayList = BebidaDAO.retornarBebidas(this);
-//            for (Bebida bebida1 : bebidaArrayList) {
-//                if(itemPedido.getBebida() != null){
-//                    if(bebida1.getNome().equalsIgnoreCase(itemPedido.getBebida().getNome())){
-//                        preco = bebida1.getPreco();
-//                        double subtotalBebidas = preco > 0 ? preco + subtotal : subtotal;
-//                        subtotal = subtotalBebidas;
-//
-//                    }
-//                }
-//            }
-//        }
-
-      //  txtCarrinhoSubTotal.setText(String.valueOf(subtotal));
 
         final double subTotalPagamento = subtotal;
 
