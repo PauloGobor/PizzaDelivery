@@ -118,6 +118,7 @@ public class CarrinhoActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(CarrinhoActivity.this, PagamentoPedidoActivity.class);
                 intent.putExtra("SUBTOTAL", subTotalPagamento);
+                intent.putExtra("IDPEDIDO", idPedido);
                 startActivity(intent);
             }
         });

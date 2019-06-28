@@ -14,8 +14,10 @@ import java.util.ArrayList;
 
 import edu.up.pizzadelivery.DAO.FormaPagamentoDAO;
 import edu.up.pizzadelivery.DAO.TamanhoDAO;
+import edu.up.pizzadelivery.DAO.UsuarioDAO;
 import edu.up.pizzadelivery.R;
 import edu.up.pizzadelivery.model.FormaPagamento;
+import edu.up.pizzadelivery.model.Pedido;
 import edu.up.pizzadelivery.model.Tamanho;
 
 public class PagamentoPedidoActivity extends AppCompatActivity {
@@ -29,6 +31,7 @@ public class PagamentoPedidoActivity extends AppCompatActivity {
 
         Bundle bundle = getIntent().getExtras();
         final double subtotal= bundle.getDouble("SUBTOTAL");
+        final int idPedido = bundle.getInt("IDPEDIDO");
 
         ListFormasPagameto = (ListView) findViewById(R.id.ListFormaPagamento);
         PagarTotalPedido = (TextView) findViewById(R.id.PagarTotalPedido);
@@ -56,6 +59,22 @@ public class PagamentoPedidoActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
+                Pedido p = new Pedido();
+                FormaPagamento f = new FormaPagamento();
+                f.setId(formaPagamentosArrayList.get(position).getId());
+                f.setNome(formaPagamentosArrayList.get(position).getNome());
+                p.setFormaPagamento(f);
+
+                long updatePagamento  =  FormaPagamentoDAO.AtualizaFormaPagamento(PagamentoPedidoActivity.this, p, idPedido);
+
+                if(updatePagamento != -1){
+                    Toast.makeText(PagamentoPedidoActivity.this, "Pedido Finalizado Com Sucesso", Toast.LENGTH_LONG).show();
+
+
+                }else {
+                    Toast.makeText(PagamentoPedidoActivity.this, "Erro Ao Finalizar Pedido!", Toast.LENGTH_LONG).show();
+                }
+
             }
         });
 
@@ -63,10 +82,4 @@ public class PagamentoPedidoActivity extends AppCompatActivity {
 
     }
 
-    public void btnFinalizarPedido(View view) {
-        Toast.makeText(PagamentoPedidoActivity.this, "Pedido Realizado com sucesso", Toast.LENGTH_SHORT).show();
-
-        Intent relatorio = new Intent(this, AreaClienteActivity.class);
-        startActivity(relatorio);
-    }
 }

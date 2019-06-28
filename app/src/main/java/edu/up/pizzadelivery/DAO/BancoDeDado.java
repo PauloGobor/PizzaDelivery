@@ -585,6 +585,7 @@ public class BancoDeDado extends SQLiteOpenHelper {
         if (cursor.getCount() > 0) {
             do {
                 FormaPagamento fp = new FormaPagamento();
+                fp.setId(cursor.getInt(0));
                 fp.setNome(cursor.getString(1));
                 formasPagamento.add(fp);
             } while (cursor.moveToNext());
@@ -803,15 +804,17 @@ public class BancoDeDado extends SQLiteOpenHelper {
     }
 
 
-    public long EditarItemPedido(ItemPedido itempedido, long idPedido) {
+
+
+    public long AtualizaFormaPAgamento(Pedido pedido, int idPedido) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
-        values.put(Contrato.TabelaItemPedido.COLUNA_BEBIDA, itempedido.getBebida().getId());
+        values.put(Contrato.TabelaPedido.COLUNA_FORMA_PAGAMENTO, pedido.getFormaPagamento().getId());
 
 
-        return db.update(Contrato.TabelaItemPedido.NOME_DA_TABELA, values,
-                Contrato.TabelaItemPedido.COLUNA_ID + " = ? ",
+        return db.update(Contrato.TabelaPedido.NOME_DA_TABELA, values,
+                Contrato.TabelaPedido.COLUNA_ID + " = ? ",
                 new String[]{String.valueOf(idPedido)});
     }
 
