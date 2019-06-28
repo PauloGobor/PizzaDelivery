@@ -78,6 +78,8 @@ public class CarrinhoAdapter extends BaseAdapter {
         final ArrayList<Sabor> saboresArrayList = ItemPedidoDAO.retornarSaboresPizza(act, idpizza);
         List<Sabor> saboresS = saboresArrayList;
 
+
+
 //        for (int i = 0; i < saboresArrayList.size(); i++) {
 //            saboresS[i] = saboresArrayList.get(i).getNome();
 //        }
