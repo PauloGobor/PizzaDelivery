@@ -47,37 +47,20 @@ public class RelatorioAdapter extends BaseAdapter {
         final Pedido pedido = items.get(position);
 
 
-        TextView idpedido = (TextView)
-                view.findViewById(R.id.txtId);
+
         TextView data = (TextView)
                 view.findViewById(R.id.txtDataCompra);
         TextView nomeCliente = (TextView)
                 view.findViewById(R.id.txtCliente);
-        TextView pizza = (TextView)
-                view.findViewById(R.id.txtListPizza);
         TextView valorPago = (TextView)
                 view.findViewById(R.id.txtValorPago);
 
 
 
-        idpedido.setText(pedido.getId());
-
+       // idpedido.setText(pedido.getId());
         data.setText(pedido.getData());
         nomeCliente.setText(pedido.getUsuario().getNome());
-
-//        final ArrayList<ItemPedido> itemPedidos = ItemPedidoDAO.retornarSaboresPizza(act, idPedidos);
-//        List<ItemPedido> itemPedidosS = itemPedidos;
-//
-//
-//
-//        for (ItemPedido ped : itemPedidosS) {
-//
-//            pizza.setText(pizza.getText() + String.valueOf(ped.getPizza().getTamanho().getNome() + ","));
-//            valorPago.setText(valorPago.getText() + String.valueOf(ped.getSubTotal() + ","));
-//
-//        }
-
-
+        valorPago.setText(String.valueOf(pedido.getTotal()));
 
         return view;
 

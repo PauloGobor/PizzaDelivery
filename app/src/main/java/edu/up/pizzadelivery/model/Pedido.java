@@ -11,9 +11,6 @@ public class Pedido implements Serializable {
     private List<ItemPedido> itensPedido;
     private FormaPagamento formaPagamento;
     private String Data;
-
-
-
     private double Total;
 
     public int getId() {

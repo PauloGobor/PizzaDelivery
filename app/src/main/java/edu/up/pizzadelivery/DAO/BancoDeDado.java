@@ -805,8 +805,6 @@ public class BancoDeDado extends SQLiteOpenHelper {
     }
 
 
-
-
     public long AtualizaFormaPAgamento(Pedido pedido, int idPedido) {
         SQLiteDatabase db = this.getWritableDatabase();
 
@@ -968,48 +966,107 @@ public class BancoDeDado extends SQLiteOpenHelper {
     }
 
 
+//    public ArrayList<Pedido> RetornaHistoricoPedido(int idUsuario) {
+//        ArrayList<Pedido> pedidos = new ArrayList<Pedido>();
+//        SQLiteDatabase db = getReadableDatabase();
+//
+//        Cursor cursor;
+//        cursor = db.rawQuery("SELECT " +
+//                // sql
+//                Contrato.TabelaUsuario.NOME_DA_TABELA + "." + Contrato.TabelaUsuario.COLUNA_NOME + VIRGULA +
+//                Contrato.TabelaItemPedido.NOME_DA_TABELA + "." + Contrato.TabelaItemPedido.COLUNA_ID + VIRGULA +
+//                Contrato.TabelaTamanho.NOME_DA_TABELA + "." + Contrato.TabelaTamanho.COLUNA_NOME + VIRGULA +
+//                Contrato.TabelaBorda.NOME_DA_TABELA + "." + Contrato.TabelaBorda.COLUNA_NOME + VIRGULA +
+//                Contrato.TabelaBebida.NOME_DA_TABELA + "." + Contrato.TabelaBebida.COLUNA_NOME + VIRGULA +
+//                Contrato.TabelaFormaPagamento.NOME_DA_TABELA + "." + Contrato.TabelaFormaPagamento.COLUNA_NOME + VIRGULA +
+//                Contrato.TabelaItemPedido.NOME_DA_TABELA + "." + Contrato.TabelaItemPedido.COLUNA_PIZZA +
+//                // from
+//                " FROM " + Contrato.TabelaPedido.NOME_DA_TABELA +
+//                /// inner join
+//                " INNER JOIN " + Contrato.TabelaUsuario.NOME_DA_TABELA + " ON " + Contrato.TabelaPedido.COLUNA_USUARIO + " = " + Contrato.TabelaUsuario.COLUNA_ID +
+//                " INNER JOIN " + Contrato.TabelaItemPedido.NOME_DA_TABELA + " ON " + Contrato.TabelaPedido.COLUNA_ID + " = " + Contrato.TabelaItemPedido.COLUNA_PEDIDO +
+//                " INNER JOIN " + Contrato.TabelaBebida.NOME_DA_TABELA + " ON " + Contrato.TabelaItemPedido.COLUNA_BEBIDA + " = " + Contrato.TabelaBebida.COLUNA_ID +
+//                " INNER JOIN " + Contrato.TabelaPizza.NOME_DA_TABELA + " ON " + Contrato.TabelaItemPedido.COLUNA_PIZZA + " = " + Contrato.TabelaPizza.COLUNA_ID +
+//                " INNER JOIN " + Contrato.TabelaTamanho.NOME_DA_TABELA + " ON " + Contrato.TabelaPizza.COLUNA_TAMANHO + " = " + Contrato.TabelaTamanho.COLUNA_ID +
+//                " INNER JOIN " + Contrato.TabelaBorda.NOME_DA_TABELA + " ON " + Contrato.TabelaPizza.COLUNA_BORDA + " = " + Contrato.TabelaBorda.COLUNA_ID +
+//                " WHERE " + Contrato.TabelaPedido.COLUNA_USUARIO + " = ?", new String[]{String.valueOf(idUsuario)});
+//
+//
+//        if (cursor.getCount() > 0) {
+//
+//            cursor.moveToFirst();
+//            do {
+//                Pedido pedido = new Pedido();
+//
+//
+//                pedidos.add(pedido);
+//
+//            } while (cursor.moveToNext());
+//        }
+//
+//
+//        return pedidos;
+//    }
+
     public ArrayList<Pedido> RetornaHistoricoPedido(int idUsuario) {
         ArrayList<Pedido> pedidos = new ArrayList<Pedido>();
         SQLiteDatabase db = getReadableDatabase();
 
         Cursor cursor;
         cursor = db.rawQuery("SELECT " +
-                // sql
                 Contrato.TabelaUsuario.NOME_DA_TABELA + "." + Contrato.TabelaUsuario.COLUNA_NOME + VIRGULA +
-                Contrato.TabelaItemPedido.NOME_DA_TABELA + "." + Contrato.TabelaItemPedido.COLUNA_ID + VIRGULA +
-                Contrato.TabelaTamanho.NOME_DA_TABELA + "." + Contrato.TabelaTamanho.COLUNA_NOME + VIRGULA +
-                Contrato.TabelaBorda.NOME_DA_TABELA + "." + Contrato.TabelaBorda.COLUNA_NOME + VIRGULA +
-                Contrato.TabelaBebida.NOME_DA_TABELA + "." + Contrato.TabelaBebida.COLUNA_NOME + VIRGULA +
+                Contrato.TabelaPedido.NOME_DA_TABELA + "." + Contrato.TabelaPedido.COLUNA_TOTAL + VIRGULA +
                 Contrato.TabelaFormaPagamento.NOME_DA_TABELA + "." + Contrato.TabelaFormaPagamento.COLUNA_NOME + VIRGULA +
-                Contrato.TabelaItemPedido.NOME_DA_TABELA + "." + Contrato.TabelaItemPedido.COLUNA_PIZZA +
-                // from
+                Contrato.TabelaPedido.NOME_DA_TABELA + "." + Contrato.TabelaPedido.COLUNA_DATA +
+
+
                 " FROM " + Contrato.TabelaPedido.NOME_DA_TABELA +
                 /// inner join
-                " INNER JOIN " + Contrato.TabelaUsuario.NOME_DA_TABELA + " ON " + Contrato.TabelaPedido.COLUNA_USUARIO + " = " + Contrato.TabelaUsuario.COLUNA_ID +
-                " INNER JOIN " + Contrato.TabelaItemPedido.NOME_DA_TABELA + " ON " + Contrato.TabelaPedido.COLUNA_ID + " = " + Contrato.TabelaItemPedido.COLUNA_PEDIDO +
-                " INNER JOIN " + Contrato.TabelaBebida.NOME_DA_TABELA + " ON " + Contrato.TabelaItemPedido.COLUNA_BEBIDA + " = " + Contrato.TabelaBebida.COLUNA_ID +
-                " INNER JOIN " + Contrato.TabelaPizza.NOME_DA_TABELA + " ON " + Contrato.TabelaItemPedido.COLUNA_PIZZA + " = " + Contrato.TabelaPizza.COLUNA_ID +
-                " INNER JOIN " + Contrato.TabelaTamanho.NOME_DA_TABELA + " ON " + Contrato.TabelaPizza.COLUNA_TAMANHO + " = " + Contrato.TabelaTamanho.COLUNA_ID +
-                " INNER JOIN " + Contrato.TabelaBorda.NOME_DA_TABELA + " ON " + Contrato.TabelaPizza.COLUNA_BORDA + " = " + Contrato.TabelaBorda.COLUNA_ID +
-                " WHERE " + Contrato.TabelaPedido.COLUNA_USUARIO + " = ?", new String[]{String.valueOf(idUsuario)});
+                "  INNER JOIN " + Contrato.TabelaUsuario.NOME_DA_TABELA + " ON " + "(" +
+                Contrato.TabelaPedido.NOME_DA_TABELA + "." + Contrato.TabelaPedido.COLUNA_USUARIO + " = " +
+                Contrato.TabelaUsuario.NOME_DA_TABELA + "." + Contrato.TabelaUsuario.COLUNA_ID + ")" +
+                "  INNER JOIN " + Contrato.TabelaFormaPagamento.NOME_DA_TABELA + " ON " + "(" +
+                Contrato.TabelaPedido.NOME_DA_TABELA + "." + Contrato.TabelaPedido.COLUNA_FORMA_PAGAMENTO + " = " +
+                Contrato.TabelaFormaPagamento.NOME_DA_TABELA + "." + Contrato.TabelaFormaPagamento.COLUNA_ID + ")" +
+
+                //***************** WHWRE COM O ID D PIZZA ***********************
+                " WHERE " + Contrato.TabelaPedido.COLUNA_USUARIO + " = " + idUsuario + ";", null);
 
 
         if (cursor.getCount() > 0) {
 
+//            pizza.setPizza(pizza.);
             cursor.moveToFirst();
             do {
+                Usuario usuario = new Usuario();
+                String idusario;
+                FormaPagamento fp = new FormaPagamento();
+                String idForapagamaento;
+
+
                 Pedido pedido = new Pedido();
 
+                idusario = cursor.getString(0);
+                usuario.setNome(idusario);
+                pedido.setUsuario(usuario);
 
+                pedido.setTotal(cursor.getDouble(1));
+
+                idForapagamaento = cursor.getString(2);
+                fp.setNome(idForapagamaento);
+                pedido.setFormaPagamento(fp);
+
+
+                pedido.setData(cursor.getString(3));
 
                 pedidos.add(pedido);
 
             } while (cursor.moveToNext());
         }
-
-
         return pedidos;
+
     }
+
 
 }
 

@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -29,6 +30,7 @@ public class RelatorioPedidoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_relatorio_pedido);
 
 
+        lstPedido = (ListView) findViewById(R.id.lstPedido);
 
         SharedPreferences settings = getSharedPreferences(ARQUIVO_PREF, MODE_PRIVATE);
         String verificaexistencia1 = (String) settings.getString("Email","" );
@@ -37,19 +39,19 @@ public class RelatorioPedidoActivity extends AppCompatActivity {
         int idUsuario = usuario.getId();
 
 
-        final ArrayList<Pedido> itemsArrayList = PedidoDAO.retornarPedidos(this, idUsuario);
+        final ArrayList<Pedido> itemsArrayList = PedidoDAO.RetornaHistoricoPedido(this, idUsuario);
         String[] items = new String[itemsArrayList.size()];
 
-        for (int i = 0; i < itemsArrayList.size(); i++) {
-            items[i] = String.valueOf(itemsArrayList.get(i).getId());
-            items[i] = String.valueOf(itemsArrayList.get(i).getData());
-            items[i] = String.valueOf(itemsArrayList.get(i).getUsuario().getNome());
-            items[i] = String.valueOf(itemsArrayList.get(i).getItensPedido());
-            items[i] = String.valueOf(itemsArrayList.get(i).getFormaPagamento().getNome());
 
+
+        for (int i = 0; i < itemsArrayList.size(); i++) {
+            items[i] = String.valueOf(itemsArrayList.get(i).getData());
         }
         //O adapter é componente que prepara os dados para o ListView
         RelatorioAdapter relatorio = new RelatorioAdapter(itemsArrayList, this);
+
+//                ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+//                android.R.layout.simple_list_item_1, items);
 
 
         //setAdapter é método que vai popular os dados dentro do ListView
@@ -58,7 +60,7 @@ public class RelatorioPedidoActivity extends AppCompatActivity {
     }
 
     public void btnNovoPedido(View view) {
-        Intent novoPedido = new Intent(this, EscolherTamanhoActivity.class);
+        Intent novoPedido = new Intent(this, AreaClienteActivity.class);
         startActivity(novoPedido);
     }
 }

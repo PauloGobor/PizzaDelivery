@@ -15,7 +15,7 @@ public class PedidoDAO {
 
     }
 
-    public static ArrayList<Pedido> retornarPedidos(Context context, int idUsuario){
+    public static ArrayList<Pedido> RetornaHistoricoPedido(Context context, int idUsuario){
         BancoDeDado banco = new BancoDeDado(context);
         return banco.RetornaHistoricoPedido(idUsuario);
     }
