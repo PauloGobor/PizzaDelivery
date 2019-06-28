@@ -172,6 +172,7 @@ public class BancoDeDado extends SQLiteOpenHelper {
                     Contrato.TabelaPedido.COLUNA_FORMA_PAGAMENTO + TIPO_INTEIRO + VIRGULA +//FK
                     //  Contrato.TabelaPedido.COLUNA_ENDERECO + TIPO_INTEIRO + VIRGULA +
                     Contrato.TabelaPedido.COLUNA_DATA + TIPO_TEXTO + VIRGULA +
+                    Contrato.TabelaPedido.COLUNA_TOTAL + TIPO_REAL + VIRGULA +
                     " FOREIGN KEY (" + Contrato.TabelaPedido.COLUNA_USUARIO + ")" +
                     " REFERENCES " + Contrato.TabelaUsuario.NOME_DA_TABELA +
                     "(" + Contrato.TabelaUsuario.COLUNA_ID + ")" + VIRGULA +
@@ -811,6 +812,7 @@ public class BancoDeDado extends SQLiteOpenHelper {
 
         ContentValues values = new ContentValues();
         values.put(Contrato.TabelaPedido.COLUNA_FORMA_PAGAMENTO, pedido.getFormaPagamento().getId());
+        values.put(Contrato.TabelaPedido.COLUNA_TOTAL, pedido.getTotal());
 
 
         return db.update(Contrato.TabelaPedido.NOME_DA_TABELA, values,

@@ -36,7 +36,7 @@ public class PagamentoPedidoActivity extends AppCompatActivity {
         ListFormasPagameto = (ListView) findViewById(R.id.ListFormaPagamento);
         PagarTotalPedido = (TextView) findViewById(R.id.PagarTotalPedido);
 
-        PagarTotalPedido.setText(String.valueOf(subtotal));
+        PagarTotalPedido.setText("R$: "+String.valueOf(subtotal));
 
         final ArrayList<FormaPagamento> formaPagamentosArrayList = FormaPagamentoDAO.retornarFormasPagamento(this);
         String[] formaspagamento = new String[formaPagamentosArrayList.size()];
@@ -59,21 +59,29 @@ public class PagamentoPedidoActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                Pedido p = new Pedido();
-                FormaPagamento f = new FormaPagamento();
-                f.setId(formaPagamentosArrayList.get(position).getId());
-                f.setNome(formaPagamentosArrayList.get(position).getNome());
-                p.setFormaPagamento(f);
-
-                long updatePagamento  =  FormaPagamentoDAO.AtualizaFormaPagamento(PagamentoPedidoActivity.this, p, idPedido);
-
-                if(updatePagamento != -1){
-                    Toast.makeText(PagamentoPedidoActivity.this, "Pedido Finalizado Com Sucesso", Toast.LENGTH_LONG).show();
-
+                if(formaPagamentosArrayList.get(position).equals(3)){
 
                 }else {
-                    Toast.makeText(PagamentoPedidoActivity.this, "Erro Ao Finalizar Pedido!", Toast.LENGTH_LONG).show();
+
+                    Pedido p = new Pedido();
+                    FormaPagamento f = new FormaPagamento();
+                    f.setId(formaPagamentosArrayList.get(position).getId());
+                    f.setNome(formaPagamentosArrayList.get(position).getNome());
+                    p.setFormaPagamento(f);
+                    p.setTotal(subtotal);
+
+                    long updatePagamento  =  FormaPagamentoDAO.AtualizaFormaPagamento(PagamentoPedidoActivity.this, p, idPedido);
+
+                    if(updatePagamento != -1){
+                        Toast.makeText(PagamentoPedidoActivity.this, "Pedido Finalizado Com Sucesso", Toast.LENGTH_LONG).show();
+
+
+                    }else {
+                        Toast.makeText(PagamentoPedidoActivity.this, "Erro Ao Finalizar Pedido!", Toast.LENGTH_LONG).show();
+                    }
+
                 }
+
 
             }
         });

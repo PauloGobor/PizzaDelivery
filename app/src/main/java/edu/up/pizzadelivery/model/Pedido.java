@@ -12,6 +12,10 @@ public class Pedido implements Serializable {
     private FormaPagamento formaPagamento;
     private String Data;
 
+
+
+    private double Total;
+
     public int getId() {
         return id;
     }
@@ -51,5 +55,13 @@ public class Pedido implements Serializable {
 
     public void setData(String data) {
         Data = data;
+    }
+
+    public double getTotal() {
+        return Total;
+    }
+
+    public void setTotal(double total) {
+        Total = total;
     }
 }

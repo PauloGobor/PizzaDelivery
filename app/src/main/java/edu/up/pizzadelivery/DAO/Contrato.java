@@ -111,6 +111,7 @@ public final class Contrato {
         public static final String COLUNA_FORMA_PAGAMENTO = "FormaPagamentoId";
         // public static final String COLUNA_ENDERECO = "Fk_EnderecoId";
         public static final String COLUNA_DATA = "Data";
+        public static final String COLUNA_TOTAL = "Total";
 
     }
 
