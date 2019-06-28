@@ -609,7 +609,7 @@ public class BancoDeDado extends SQLiteOpenHelper {
         };
 
         Cursor cursor = db.query(Contrato.TabelaTamanho.NOME_DA_TABELA, colunas,
-                null, null, null, null, null, null);
+                Contrato.TabelaTamanho.COLUNA_ID +" <> 1", null, null, null, null, null);
 
         cursor.moveToFirst();
         if (cursor.getCount() > 0) {
@@ -639,7 +639,7 @@ public class BancoDeDado extends SQLiteOpenHelper {
         };
 
         Cursor cursor = db.query(Contrato.TabelaBorda.NOME_DA_TABELA, colunas,
-                null, null, null, null, null, null);
+                Contrato.TabelaBorda.COLUNA_ID +" <> 1", null, null, null, null, null);
 
         cursor.moveToFirst();
         if (cursor.getCount() > 0) {
@@ -670,7 +670,7 @@ public class BancoDeDado extends SQLiteOpenHelper {
         };
 
         Cursor cursor = db.query(Contrato.TabelaBebida.NOME_DA_TABELA, colunas,
-                null, null, null, null, null, null);
+                Contrato.TabelaBebida.COLUNA_ID +" <> 1", null, null, null, null, null);
 
         cursor.moveToFirst();
         if (cursor.getCount() > 0) {
