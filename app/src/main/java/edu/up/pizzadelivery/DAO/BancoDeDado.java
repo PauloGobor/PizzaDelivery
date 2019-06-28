@@ -595,7 +595,7 @@ public class BancoDeDado extends SQLiteOpenHelper {
     }
 
     //  ########################################################################   ///
-    //  ##### METODO PARA RETORNAR TAMANHOS DE PIZZA EM FORMA DE LISTA #######   ///
+    //  ##### METODO PARA RETORNAR TAMANHOS DE PIZZA EM FORMAgit push DE LISTA #######   ///
     //  ########################################################################   ///
     public ArrayList<Tamanho> RetornarTamanhos() {
         ArrayList<Tamanho> tamanhos = new ArrayList<Tamanho>();

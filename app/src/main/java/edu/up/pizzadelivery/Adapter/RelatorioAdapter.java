@@ -55,6 +55,8 @@ public class RelatorioAdapter extends BaseAdapter {
                 view.findViewById(R.id.txtCliente);
         TextView valorPago = (TextView)
                 view.findViewById(R.id.txtValorPago);
+        TextView formaPagamento = (TextView)
+                view.findViewById(R.id.txtFormaPagamentoPedido);
 
 
 
@@ -63,6 +65,7 @@ public class RelatorioAdapter extends BaseAdapter {
         data.setText(pedido.getData());
         nomeCliente.setText(pedido.getUsuario().getNome());
         valorPago.setText(String.valueOf(pedido.getTotal()));
+        formaPagamento.setText(pedido.getFormaPagamento().getNome());
 
         return view;
 

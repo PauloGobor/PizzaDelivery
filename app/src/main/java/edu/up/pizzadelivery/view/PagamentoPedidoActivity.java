@@ -80,21 +80,27 @@ public class PagamentoPedidoActivity extends AppCompatActivity {
                         @Override
                         public void onClick(View v) {
 
-                            Pedido p = new Pedido();
-                            FormaPagamento f = new FormaPagamento();
-                            f.setId(posicaoPag);
-                            f.setNome(posicaoNome);
-                            p.setFormaPagamento(f);
-                            p.setTotal(subtotal);
+                            double a = Double.valueOf(edtTroco.getText().toString());
+                            if (a>subtotal) {
 
-                            long updatePagamento  =  FormaPagamentoDAO.AtualizaFormaPagamento(PagamentoPedidoActivity.this, p, idPedido);
+                                Pedido p = new Pedido();
+                                FormaPagamento f = new FormaPagamento();
+                                f.setId(posicaoPag);
+                                f.setNome(posicaoNome);
+                                p.setFormaPagamento(f);
+                                p.setTotal(subtotal);
 
-                            if(updatePagamento != -1){
-                                MenssagemConfCad();
-                            }else {
-                                Toast.makeText(PagamentoPedidoActivity.this, "Erro Ao Finalizar Pedido!", Toast.LENGTH_LONG).show();
+                                long updatePagamento = FormaPagamentoDAO.AtualizaFormaPagamento(PagamentoPedidoActivity.this, p, idPedido);
+
+                                if (updatePagamento != -1) {
+                                    MenssagemConfCad();
+                                } else {
+                                    Toast.makeText(PagamentoPedidoActivity.this, "Erro Ao Finalizar Pedido!", Toast.LENGTH_LONG).show();
+                                }
+                            }else{
+                                Toast.makeText(PagamentoPedidoActivity.this, "Valor menor que o total!", Toast.LENGTH_LONG).show();
+
                             }
-
                         }
                     });
 
@@ -118,7 +124,6 @@ public class PagamentoPedidoActivity extends AppCompatActivity {
 
                 }
 
-
             }
         });
     }
@@ -133,8 +138,6 @@ public class PagamentoPedidoActivity extends AppCompatActivity {
                 startActivity(telaLogin);
             }
         });
-
-
 
         AlertDialog dialog = builder.create();
         dialog.show();
